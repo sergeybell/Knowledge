@@ -1,0 +1,309 @@
+# Tracking from RFQ vane to Emittance Scanner
+# Optics for RFQ commissioning 
+# Arun: February 4th 2016. 
+# Doubts :Verify Corrector Length to put in Optim
+# Calibration coefficients	
+# PXIE opticx (starts fom the RFQ vanes and goes to the beam dump)
+# Total Length is 414.78 cm (up to dump cone)
+# Corrector Calibration Coefficient is changed 1.46/2.6 * standalone measurement T-cm
+# Corrector cener is shifted by 7.6 cm from their physical center to adjust their kicks according to rectangular model
+# Scraper plates position are included in file
+# Separation bw TOF Flight monitor and M10BPM is 630 mm. It is when TOF flight is at downstream toward dump	
+
+#  Data From Shift 11 Jan 2017 
+
+$E = 2.10;               =>  2.1226695      # Initial Beam Energy in MeV.
+  $P=sqrt(($E+$Mp)^2-$Mp^2);  =>  62.8107023
+  $gamma=1+$E/$Mp;            =>  1.00223814
+  $beta=sqrt(1-1/$gamma^2);   =>  0.0667929231
+  $EmitN =0.1797e-4;            =>  2.1e-05             # cm, rms
+  $EmitNL=0.28e-4;            =>  2.8e-05
+  $Emit=$EmitN/$gamma/$beta;  =>  0.000313702455998
+  $Accept=3^2 * $Emit ;       =>  0.00282332210.398
+  $EmitL_n=$Mp*$EmitNL/$c*1e6;=>  8.763338807999999e-07   # eV s; 
+  $f_RF=162.5e6;  		  =>   162500000        # RF Fundamental Frequency 
+  $WaveLen=$c/$f_RF;  		  =>  184.487666        # cm
+# Elements Parameters database   
+#========== MEBT quads======================================== 
+$Lqd     = 10 ; =>           10  # cm Doublet quadrupole length
+$T2kGaus = 10 ; =>           10  # conversion from Tesla to kilo Gauss 
+
+
+#--Calibration Coefficients Int (G.dz)/I (Tesla/Amp)
+$CalP:M00QD=  -0.14227;   =>   -0.14227T
+$CalP:M00QF=   0.14241;   =>    0.14241
+$CalP:M10QD=  -0.14224;   =>   -0.14224 
+$CalP:M10QF=   0.14421;   =>    0.14421
+
+
+# 
+# ----------Currents in Quads (Amp)------------------
+$P:M00QDI=    7.792;    =>    7.792
+$P:M00QFI=    6.428;    =>    6.428
+$P:M10QDI=    5.58;    =>    5.58
+$P:M10QFI=    4.96;     =>    4.96
+#---------- Quad Gradient in kG/cm----------------------- 
+$M00QDG	=  ($P:M00QDI)*($CalP:M00QD)/($Lqd)* $T2kGaus ;  =>   -1.1086
+$M00QFG	=  ($P:M00QFI)*($CalP:M00QF)/($Lqd)* $T2kGaus ;  =>    1.026
+$M10QDG	=  ($P:M10QDI)*($CalP:M10QD)/($Lqd)* $T2kGaus ;  =>   -0.7778
+$M10QFG	=  ($P:M10QFI)*($CalP:M10QF)/($Lqd)* $T2kGaus ;  =>    0.5883
+
+#=========MEBT Correctors============================================
+
+$Lkqd    = 1.0e-06;  =>  1.0e-06  # cm quadrupole corrector length Need to verify and change
+
+#---Calibration Coefficient for correctors Tesla-cm/Amp
+# calculated using scaling measurement coefficient with simulation: 1.46/2.6* measurement. 
+
+#$CalP:M00CX=      0.0003504*100;  =>      0.000624*100  # Tcm/A
+#$CalP:M00CY=      0.000336923*100;  =>    0.000600*100  # Tcm/A
+#$CalP:M10CX=      0.0003459077*100;  =>      0.000616*100  # Tcm/A
+#$CalP:M10CY=      0.000342538461*100;  =>      0.000610*100  # Tcm/A
+
+# Calibration coefficients are estimated from Beam Measurement and scraper 
+
+$CalP:M00CX=      0.0004245446*100;  =>      0.000624*100  # Tcm/A
+$CalP:M00CY=      0.0004461506*100;  =>      0.000600*100  # Tcm/A
+$CalP:M10CX=      0.0003539611*100;  =>      0.000616*100  # Tcm/A
+$CalP:M10CY=      0.0003744933*100;  =>      0.000610*100  # Tcm/A
+
+
+#----Current setting in Correctors  
+
+$P:M00CXI=      0.0;    =>   -0.301   
+$P:M00CYI=      0.0;        =>   -0.65    # Amp
+$P:M10CXI=     1.0;            =>      0     # Amp
+$P:M10CYI=     1.0;            =>      0     
+
+#------ Field Strength in Correctors ( kG)T
+
+$M00CXB=      (($CalP:M00CX) * ($P:M00CXI)* $T2kGaus)/ ($Lkqd ) ;  =>      0  # kG
+$M00CYB=      (($CalP:M00CY) * ($P:M00CYI)* $T2kGaus)/ ($Lkqd ) ;  =>      0  # kG
+$M10CXB=      (($CalP:M10CX) * ($P:M10CXI)* $T2kGaus)/ ($Lkqd ) ;  =>      0  # kG
+$M10CYB=      (($CalP:M10CY) * ($P:M10CYI)* $T2kGaus)/ ($Lkqd ) ;  =>      0  # kG
+
+
+# ==========Scrapers===========================
+
+#----scraper 1
+$M01PT=       1.5;  =>      1.5  # cm  Paddle Top i.e. Vertical Aperture 
+$M01PR=       1.5;  =>      1.5  # cm  Paddle Right i.e. horizontal Aperture 
+$M01PB=       1.5;  =>      1.5  # cm  Paddle Bottom i.e. Vertical Aperture 
+$M01PL=       1.5;  =>      1.5  # cm  Paddle Left i.e. horizontal Aperture
+
+#--Scraper 2
+$M11PT=       1.5;  =>      1.5  # cm  Paddle Top i.e. Vertical Aperture 
+$M11PB=       1.5;  =>      1.5  # cm  Paddle Bottom i.e. Vertical Aperture
+ 
+$M11PR=       1.5;  =>      1.5  # cm  Paddle Right i.e. horizontal Aperture
+$M11PL=       1.5;  =>      1.5  # cm  Paddle Left i.e. horizontal Aperture
+
+
+#------------- --------------------------------------------------------------
+
+
+  # Bunch current
+	$Ibeam=0.005  ; 		  =>    0.005  # A
+ $f_bunch=$f_RF/2; 			  =>    81250000
+ $N_bunch=$Ibeam/(1.6e-19*$f_bunch);  =>   384615385
+ 
+# Peak Current that is equivalent to 5mA
+
+ $Ipeak = 0.13
+
+
+
+# Initial Twiss parameters  
+	
+		$BetaZ	=      95;  	=>          95
+		$AlphaZ	=      0.05;  	=>        0.05
+
+# =========== Verify following numbers =============
+# Longitudinal phase spase
+$SigmaS=sqrt($BetaZ*$EmitNL/$gamma/$beta);  =>  0.18835672
+$SigmaP=sqrt($EmitNL/$gamma/$beta/$BetaZ*(1+$AlphaZ*$AlphaZ));  =>0.00198517915
+$AlphaPS=$AlphaZ*sqrt(1+$AlphaZ*$AlphaZ);  => 0.050062461
+
+
+#
+OptiM
+Energy[MeV]=2.1        Mass[MeV]=938.27205 
+Emittance: ex[cm]=$Accept  ey[cm]=$Accept  DP/P=3*$SigmaP
+Initial:	BetaX[cm]=81.243 	BetaY[cm]=50.2774 
+	AlfaX=-1.4719 	AlfaY=-0.0765154 
+	DispersX[cm]=-0 	DispersY[cm]=0 
+	Dsp_PrimeX=0 	DspPrimeY=-0 
+	X[cm]=0.000    	Y[cm]=0.000    	Z[cm]=182.960  	S[cm]=0.000    
+	tetaX[deg]=180      	tetaY[deg]=-0       
+#
+begin lattice. Number of periods=1
+ok2es kM10CY kM10CX okhlcadj okhl oqda hAper 
+qM10QF hAper oqd iM10BPM oqd hAper qM10QD 
+hAper oqdb ocav2db2 oaMEBT1 osp12cav oscp1LP2E hcolM01PL 
+ospcp2p hcolM01PR ospcp2p hcolM01PB ospcp2p hcolM01PT oscp1d2TP 
+kM00CY kM00CX okhlcadj okhl oqda hAper qM00QF 
+hAper oqd iM00BPM oqd hAper qM00QD hAper 
+oqdb oRFQ2quad 
+end lattice
+
+#  aMEBT1
+#  oaMEBT1 
+
+begin list: dL=1.  dB=.1  dG=0.01  dS=0.01
+
+# MEBT 
+
+#---Beamline baperture 
+hAper	Ax[cm]=1.5 	Ay[cm]=1.5 	Shape=1 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+hAper2	Ax[cm]=1.6 	Ay[cm]=1.6 	Shape=1 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+hAper3	Ax[cm]=1.55 	Ay[cm]=1.55 	Shape=1 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+hAper4	Ax[cm]=3.0 	Ay[cm]=3.0 	Shape=1 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+hAper5	Ax[cm]=7.3 	Ay[cm]=7.3 	Shape=1 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+hAper6	Ax[cm]=8.0	Ay[cm]=8.0	Shape=1 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+hAper7	Ax[cm]=10.0	Ay[cm]=10.0	Shape=1 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+# Toroid limiting Aperture
+hAperTor	Ax[cm]=14.0	Ay[cm]=14.0	Shape=1 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0    
+
+#--- Drifts
+oadrift L[cm]=1e-09   
+
+# distance from Vane tip to first quad
+oRFQ2quad 	L[cm]=25    
+# distance before quad doublet 
+oqda            L[cm]=5 
+# half distance between quads of doblet   
+oqd 	L[cm]=3.5  
+# distance after quad doublet 
+oqdb            L[cm]=5
+# distance to adust corrector center
+okhlcadj	 L[cm]=7.6
+
+# half length of correctors, correctors are modeled as thin element with zero length, removed it when correctors elements have finite length       
+okhl            L[cm]=0.9 
+
+# drift from correctors to ring pick up center 
+#ok2rp          L[cm]=0.26
+
+
+#drift bw ring pick up center to scraper 1  
+#orp2sp1        L[cm]=0.98 
+
+# scrper 18 cm box: Begin
+# scraper1 drift to top plate 
+oscp1d2TP       L[cm]=6.28
+
+# Scraper1 each plate separtion 
+ospcp2p           L[cm]=0.56 
+
+# scraper 1 left plate to scraper1 end
+oscp1LP2E	L[cm]=8.38
+
+
+# scrper1 to cavity l
+osp12cav           L[cm]=3.02 
+# Cavity 1 to doublet 2
+ocav2db2        L[cm]=5.14
+# corrector 2 center to  Emittance scanner center
+ok2es	L[cm]=22.46 
+# scraper 2 
+# drift to top plate 
+oscp2d2TP       L[cm]=31.46
+
+# scraper 2 left plate to ring pick up center
+oscp2end2rp 	L[cm]=9.31
+
+# ring pick up center to Toroid center
+orp2M15T L[cm]=16.49
+
+# Toroid to Limiting aperture
+oM15T2limap   L[cm]=14.3
+
+# Limiting Aperture to Beam pipe
+olimap2bp1  L[cm]=7.49
+
+# Beam pipe 1 Length
+obp1L   L[cm]=22.54
+
+# Beam pipe 2 Length
+obp2L   L[cm]=89.34
+
+
+# beam pipe 2 to halo electrode 
+o2MX5P L[cm]=39.19
+iMX5P  L[cm]=0 
+
+# MX15p to Faraday cup 
+o2MX1FPC  L[cm]=9.33
+
+ 
+
+#------ BPMs---
+iM00BPM 	L[cm]=0  
+iM10BPM 	L[cm]=0  
+iMX2TOF	L[cm]=0
+
+#------ scrapers
+
+        #horizontal and vertical paddles are defined separately in form of
+        # two elements; for horizontal paddle, vertical aperture is put arbitrary large 1.5 cm in this case
+#scraper 1		
+	hcolM01PT	Ax[cm]=1.5 		Ay[cm]=$M01PT 	Shape=0 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+                hcolM01PB	Ax[cm]=1.5 		Ay[cm]=$M01PB	Shape=0 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+	hcolM01PR	Ax[cm]=$M01PR 		Ay[cm]= 1.5 	Shape=0 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+                hcolM01PL	Ax[cm]=$M01PL 		Ay[cm]= 1.5 	Shape=0 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+#scraper 2
+	hcolM11PT	Ax[cm]=1.5 		Ay[cm]=$M11PT 	Shape=0 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+                hcolM11PB	Ax[cm]=1.5 		Ay[cm]=$M11PB 	Shape=0 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+	hcolM11PR	Ax[cm]=$M11PR 		Ay[cm]= 1.5 	Shape=0 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+                hcolM11PL	Ax[cm]=$M11PL 		Ay[cm]= 1.5 	Shape=0 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+
+
+
+#--correctors   
+ 
+  # X- correctors are defined as thin element in this case
+  
+  # 1st set  
+  kM00CX 	L[cm]=1e-6       	B[kG]=$M00CXB   	Tilt[deg]=-0       
+  kM00CY 	L[cm]=$Lkqd       	B[kG]=$M00CYB   	Tilt[deg]=-90     
+   
+  # 2nd  set 
+  kM10CX 	L[cm]=1e-6       	B[kG]=$M10CXB   	Tilt[deg]=-0       
+  kM10CY 	L[cm]=$Lkqd       	B[kG]=$M10CYB   	Tilt[deg]=-90     
+ 
+#---quadrupoles  
+   
+  qM00QF 	L[cm]=10         	G[kG/cm]=$M00QFG		Tilt[deg]=-0      
+  qM00QD 	L[cm]=10         	G[kG/cm]=$M00QDG 		Tilt[deg]=-0      
+  qM10QF 	L[cm]=10          	G[kG/cm]=$M10QFG		Tilt[deg]=-0      
+  qM10QD	L[cm]=10         	G[kG/cm]=$M10QDG		Tilt[deg]=-0       
+
+# --- Bunching Cavities
+
+aMEBT1 	L[cm]=20      Ncell=2  Eff_L[cm]=2.3  A[MeV]=-0.001         Phase[deg]=-90  WaveL[cm]=$WaveLen
+# use this drift to replace cavity
+oaMEBT1  	L[cm]=20 
+#
+    
+end list of elements
+
+TrajParamBlock
+	X[cm]=0.0 	Teta_X[rad]=0.
+	Y[cm]=0. 	Teta_Y[rad]=0.
+	s[cm]=0 	DeltaP/P=0
+EndTrajParamBlock
+
+4D_BetaBlock
+	Beta_X_1[cm]=$BetaX 	Beta_X_2[cm]=0
+	Alfa_X_1=$AlphaX  	Alfa_X_2=0
+	Beta_Y_1[cm]=0 		Beta_Y_2[cm]=$BetaY
+	Alfa_Y_1=0  		Alfa_Y_2=$AlphaY
+	Nu_1[deg]=0 		Nu_2[deg]=0 	U=0
+	Emit1[cm]=$Emit  	Emit2[cm]=$Emit
+	DispX[cm]=0 	DispY[cm]=0
+	DispXpr[cm]=0 	DispYpr[cm]=0
+End4DBetaBlock
+SpaceChargeBlock
+  BeamCurrent[A]= $Ipeak
+  BunchLength[cm]= $SigmaS   dP/P=$SigmaP   Alpha[-1,1]=$AlphaPS   S_Offset[cm]=0.
+EndSpaceChargeBlock

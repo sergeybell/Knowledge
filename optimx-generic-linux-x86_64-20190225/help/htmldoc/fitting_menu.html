@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="header.js"> </script>
+<title> OptimX Help: Fitting Menu </title>
+</head>
+<body>
+<h2>Fitting Menu</h2>
+<p>
+<p> The Fitting menu provides methods to fit lattice parameters <p>
+<table class=sansserif>
+<tr><td> Betas </td><td>	<a href="">     Perform a fitting of beta-functions and dispersion. </a></td></tr>
+<tr><td> Undo</td><td>		<a href="">	Undo results of the last fitting procedure. </a> </td></tr>
+<tr><td> Stop</td><td>		<a href="">	Stop fitting. </a></td></tr>
+</table>
+<h4>Fitting|Betas</h4>
+<p>
+  This command performs fitting (matching) of beta-functions, dispersion and momentum compaction.
+  If the input (lattice) file contains no fitting block, invoking "Fitting|Betas" command will
+  prompt the user and append a template to the lattice description in the lattice editor window.
+  The command may be invoked again once the required parameter entries have been filled-in.
+  While the calculations proceed, messages from the non-linear optimizer will appear into a new
+  dedicated text window. Iterations may be stopped by pressing the "Stop" button on the top
+  button bar or invoking the "Fitting|Stop" menu action.
+  While it is safe to examine the contents of other windows while fitting is in progress,
+  one should abstain from invoking other commands as this will likely produce
+  unexpected results or may even cause the program to crash.
+</p>
+<p>
+  Nonlinear optimization is performed using the method of steepest descent with automatic
+  step size adjustment. The initial step sizes used for length, magnetic field and
+  field gradient are prescribed in the fitting block.
+  Each parameter is assigned an accuracy; a zero or negative accuracy implies that the
+  corresponding parameter is not participating in the fit.
+
+  A sample fitting block is shown below.  As demonstrated in this example, elements may be assigned to groups. 
+  Parameters of elements belonging to a given group are varied proportionally.
+
+  To compute the objective function, the program makes use of the accuracy parameters
+  The relative magnitudes of the latter act as relative weighting factors If the iterations
+  fail to converge or if convergence is too slow,  modifying the relative magnitudes of the
+  accuracy parameters may help.
+
+</p> 
+<pre>
+
+# initial values of steps for length, magnetic field and its gradient
+BetaFitBlock dL[cm]=0.01 dB[kG]=0.01 dG[kG/cm]=0.001
+#Required parameters and their accuracy listed below(dPARM<=0. - no fitting)
+#Maximum Betas[cm] and MomentumCompaction are on the next line
+BtXmax=5000.  dBtXmax=0.  BtYmax=5000.  dBtYmax=0.  Alfa=0.  dAlfa=0.
+# Fitting parameters at the end of the lattice
+Beta_X[cm]=1603.9 	dBeta_X[cm]=0.1 	Alfa_X=0 	dAlfa_X=-0.0001
+Beta_Y[cm]=359.5 	dBeta_Y[cm]=0.1 	Alfa_Y=0 	dAlfa_Y=-0.0001 
+Disp_X[cm]=269.058 	dDisp_X[cm]=-1 	        D_prime_X=0 	dD_prime_X=-0.001 
+Disp_Y[cm]=0 	        dDisp_Y[cm]=-1 	        D_prime_Y=0 	dD_prime_Y=-0.001 
+Qx=0.550986 	        dQx=-0.01 
+Qy=0.658466 	        dQy=-0.01 
+#
+#Fit at element with number =2 
+#To perform a fit at an intermediate element location: uncomment the line above, 
+# write the correct element index and insert six lines describing the
+# fit parameters. You can use up to 4 intermediate points
+# Each point has to be determined as described above
+#
+# Groups of elements below. Each group has to be located on one line
+# beginning from the letter describing the variable such as: L:, B:, Q: 
+G: Qf QF1
+G: Qd
+EndBetaFitBlock
+</pre>
+<h4>Fitting|Undo</h4>
+<p>
+Undo results of the last fitting procedure.
+</p>
+<h4>Fitting|Stop</h4>
+<p>
+Stop fitting.
+</p>
+</body>
+</html>

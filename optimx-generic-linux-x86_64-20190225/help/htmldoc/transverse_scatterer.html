@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="header.js"></script>
+<title> OptimM Help: Transverse Scatterer </title>
+</head>
+<body>
+<h4>T-transverse random particle scattering </h4>
+<table id="element">
+  <tr>
+    <th>Parameter Description</th>
+    <th>Argument Order</th>
+    <th>Argument Mnemonic </th>
+    <th>Units </th>
+    <th>Default Value</th>
+  </tr>
+  <tr>
+    <td>RMS Energy Loss </td>
+    <td>  1    </td>
+    <td> Rms loss    </td>
+    <td> MeV    </td>
+    <td> 0.0   </td>
+  </tr>
+  <tr class="alt">
+    <td>Thickness gradient </td>
+    <td>  2    </td>
+    <td> dL/dx/L    </td>
+    <td> [1/cm]  </td>
+    <td> 0.0     </td>
+  </tr>
+  <tr>
+    <td>Tilt     </td>
+     <td>  3     </td>
+    <td>  Tilt     </td>
+    <td>  deg </td>
+    <td>  0.0 </td>
+  </tr>
+</table>
+<p>
+
+This element which randomly scatters particles in the transverse plane.
+Every particle gets an independent random (Gaussian distributed) kick.
+The first parameter specifies the scattering rms angular spread. The second
+parameter is the relative thickness gradient (for ionization cooling wedged absorber).
+The third parameter is the wedge tilt (roll). 
+</p>
+<pre>
+t1 	Rms angle[mrad]=0.1  	dL/dx/L[1/cm]=0 	Tilt[deg]=0
+</pre>
+</body>
+</html>
+  

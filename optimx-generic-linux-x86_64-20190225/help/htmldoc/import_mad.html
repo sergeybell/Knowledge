@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="css/optim.css" media="screen" />
+<script src="header.js"></script>
+</head>
+<body>
+<h2> Importing from MAD (version 8.x)</h2>
+To avoid parsing the full MAD input language, conversion from MAD to OptiM relies on
+files in MAD TWISS table format. The TWISS table format is a flat
+(non-hierarchical) ascii format where all elements of a beamline and their attributes
+appear in sequential order. 
+
+To create a MAD TWISS format file suitable for conversion to OptiM format,
+use the following MAD commands:
+<pre>
+TWSS0 : BETA0, ENERGY=E0, BETX=TBETX, ALFX=TALFX, DX=TDX, DPX=TDPX,  BETY=TBETY, ALFY=TALFY
+TWISS, BETA0=TWSS0, MUX=0, MUY=0, SAVE, TAPE="elin1_twiss.twiss"
+</pre>
+MAD should then output a Twiss file with contents similar to this:
+<pre>
+Windows    TWISS08/10/0121.08.01Windows        1       F    2452
+NLC e- Main Linac Section 1 [CD1] (08-SEP-1998)                                 
+  INITIAL  0.000000 0.0000000E+00 0.0000000E+00 0.0000000E+00 0.0000000E+00 1.00000E+01
+ 0.0000000E+00 0.0000000E+00 0.0000000E+00 0.0000000E+00 0.0000000E+00
+-1.759698614E+00 1.940651185E+01 0.0000000E+00 0.0000000E+00 0.0000000E+00
+ 4.462273347E-01 5.680578813E+00 0.0000000E+00 0.0000000E+00 0.0000000E+00
+ 0.0000000E+00 0.0000000E+00 0.0000000E+00 0.0000000E+00 0.0000000E+00
+MARKBEGELIN1 0.000000 0.0000000E+00 0.0000000E+00 0.0000000E+00 0.0000000E+00 1.00000E+01
+ 0.0000000E+00 0.0000000E+00 0.0000000E+00 0.0000000E+00 0.0000000E+00
+-1.759698614E+00 1.940651185E+01 0.0000000E+00 0.0000000E+00 0.0000000E+00
+ 4.462273347E-01 5.680578813E+00 0.0000000E+00 0.0000000E+00 0.0000000E+00
+ 0.0000000E+00 0.0000000E+00 0.0000000E+00 0.0000000E+00 0.0000000E+00
+MARKLI01BEG 0.000000 0.0000000E+00 0.0000000E+00 0.0000000E+00 0.0000000E+00 1.00000E+01
+ 0.0000000E+00 0.0000000E+00 0.0000000E+00 0.0000000E+00 0.0000000E+00
+-1.759698614E+00 1.940651185E+01 0.0000000E+00 0.0000000E+00 0.0000000E+00
+ 4.462273347E-01 5.680578813E+00 0.0000000E+00 0.0000000E+00 0.0000000E+00
+ 0.0000000E+00 0.0000000E+00 0.0000000E+00 0.0000000E+00 0.0000000E+00
+QUADQQ0101 0.16510 0.0000E+00 6.016028194E-01 0.0000E+00 6.35000E-03 0.5Q12.75 1.000E+01
+ 0.0000000E+00 0.0000000E+00 0.0000000E+00 0.0000000E+00 0.0000000E+00
+ 1.697690371E-01 1.967045355E+01 1.341231688E-03 0.0000000E+00 0.0000000E+00
+-1.447008314E-01 5.631067131E+00 4.659334708E-03 0.0000000E+00 0.0000000E+00
+ 0.0000000E+00 0.0000000E+00 0.0000000E+00 0.0000000E+00 1.651000000E-01
+</pre>
+Each element of the beamline is described over 5 lines which contain the element parameters as well as the values
+of the Twiss functions at the element downstream end. Refer to the MAD manual for more details.
+<p>
+Once a file in MAD twiss table format has been created, from the top menu select File | Import | from MAD and
+pick the *.twiss file. You will be prompted for the particle type and the initial energy.
+Enter either one of the total or kinetic energy in the appropriate box.</p> 
+<p>
+While MAD outputs the total energy of the particle, $E_t = \gamma mc^2$, OptiM uses the kinetic energy,
+$E_k = (\gamma-1)mc^2$. If the energy is reported in the MAD TWISS output, (MAD with acceleration reports the energy)
+the correct initial TOTAL energy should automatically appears in the dialog box, but the particle type may
+not be set correctly and will need to be manually adjusted. Note that when there is no acceleration,
+specifying an incorrect initial energy causes the magnetic field to be rescaled; however, the lattice
+functions will remain unchanged.
+</p>
+
+</body>
+</html>
+  

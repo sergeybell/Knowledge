@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="header.js"> </script>
+</head>
+<body>
+<h4>CC : Pseudo-Solenoid (focusing only, no H/V coupling)   </h4>
+
+<table id="element">
+   <tr>
+    <th>Parameter Description</th>
+    <th>Argument Order</th>
+    <th>Argument Name </th>
+    <th>Units </th>
+    <th>Default Value</th>
+  </tr>
+  <tr>
+    <td>Length </td>
+    <td>  1    </td>
+    <td>  L    </td>
+    <td> cm    </td>
+    <td> 0.0   </td>
+  </tr>
+  <tr class="alt">
+    <td> Axial Field </td>
+    <td>  2   </td>
+    <td>  B    </td>
+    <td>  kG   </td>
+    <td>  0.0   </td>
+  </tr>
+  <tr>
+    <td> Effective Aperture </td>
+    <td>   3  </td>
+    <td>   a  </td>
+    <td>  degrees </td>
+    <td>  0.0     </td>
+  </tr>
+</table>
+
+<p>
+For a solenoid (element type "C" ) if the second letter in the element name is also a "C" ("c")
+the program treats the latter as a pure radially focusing element  of strength
+$$ 
+		k = \frac{e B}{p c}
+$$
+The corresponding 2D transfer matrices for horizontal and vertical motion are both 
+$$
+M_{x,x'} = M_{y,y'} = 
+\left( \begin{array}{cc} 
+\cos kL/2 & \frac{\sin kL/2}{k/2} \\
+-\frac{k}{2} \sin kL/2 & \cos kL/2
+\end{array}
+\right)
+$$
+The horizontal and vertical motions are decoupled. This transfer matrix coincides with that
+of a regular solenoid when $kL = 2pn \;\;\; n = 0, 1, 2, 3 \ldots$.  Similarly to the 
+regular solenoid element, soft-edge effects are taken into account if an effective
+radius "a" $> 0.0$  is specified. (see C-Solenoid).
+</p>
+<pre>
+Examples: 
+Cc1		L[cm]=10	B[kG]=20
+cc1		L[cm]=1100	B[kG]=1
+</pre>
+</body>
+</html>
+  

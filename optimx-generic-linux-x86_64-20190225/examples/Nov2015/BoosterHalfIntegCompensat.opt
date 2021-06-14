@@ -1,0 +1,1404 @@
+# Further improvements
+# Injection septum is not bound to power supply
+# What is bIBEX4 orbit bump, not bound up to power supply
+# Apertures for injection and extraction  magnets and kickers
+# Other possible aperture limitations
+# Verify positions and nomenclature for instrumentations
+# Verify field signs for injection extraction orbit bumps
+# Orbit bumps are not bound to power supplies
+# Verify that all optics power supply currents are used in the include file
+# Verify positions of the magnets in DOGLEGS 
+# Check with alignment data
+#
+# Title of the MAD output file: Windows    TWISS29/03/0509.49.41Windows        1       F     773
+# Converted from MAD output file: D:\Optics\Tevatron\Booster\MADfromRepository\booster.TWISS
+# File converted from booster MAD file (located in repository) by V. Lebedev at March 29, 2005
+# 
+# File updated to reflect new corrector packages, M. McAteer, March 21, 2012
+# Dogleg in section 13 changed to drift -MM
+# Changed field/current transfer functions for doglegs and BEX bump  -MM
+# Moved h pinger and notcher to section L5, added v pinger and nokker in section 12  -MM
+# Changed ORBUMP configuration to match current 3-magnet setup (as in current MAD file)  -MM
+#========================================
+$p1=0;  =>           0
+$p2=0;  =>           0
+$pd=1;  =>           1
+#
+$X1=        0.51;  =>        0.51
+$TX1=        0.15;  =>        0.15
+$Y1=        0.32;  =>        0.32
+$TY1=        0.36;  =>        0.36
+#
+$X2=       -0.08;  =>       -0.08
+$TX2=       0.235;  =>       0.235
+$Y2=       -0.32;  =>       -0.32
+$TY2=       0.115;  =>       0.115
+#
+$XD=      -0.215;  =>      -0.215
+$TXD=       -0.09;  =>       -0.09
+$YD=       -0.06;  =>       -0.06
+$TYD=        0.04;  =>        0.04
+$DeltaP0=.5;  =>         0.5
+#===============================================
+$X=$X1*$p1+$X2*$p2+$XD*$pd;  =>      -0.215
+$TX=($TX1*$p1+$TX2*$p2+$TXD*$pd)*0.001;  =>      -9e-05
+$Y=$Y1*$p1+$Y2*$p2+$YD*$pd;  =>       -0.06
+$TY=($TY1*$p1+$TY2*$p2+$TYD*$pd)*0.001;  =>       4e-05
+$DeltaP=$DeltaP0*$pd*0.001;  =>      0.0005
+#========================================
+#include boosterCorrectors.opi
+#include PseudoQuadErrors.opi
+#===============
+# Energy and momentum
+ARRAY $t0[32]= {2., 3.0983, 4.18341, 5.22078, 6.21663, 7.17663, 8.10591, 9.00911, 9.89035, 10.7533, 11.6013, 12.4371, 13.2632, 14.0816, 14.8943, 15.7026, 16.5077, 17.3106, 18.1121, 18.9125, 19.7122, 20.5114, 21.3103, 22.1086, 22.9064, 23.7034, 24.4994, 25.2944, 26.088, 26.8803, 27.6711, 28.4606};
+$slot = 1;    # select time slot to use
+$CPswitch=0;  =>           0  # turns corrector packages on
+$DSswitch=1;  =>           0  # turns design on $CPswitch has to be zero
+$errSwitch=0;  =>           0  # turns pseudoquad errors (from LOCO analysis) on
+$bendSwitch=1;  =>           1  # turns doglegs bex bumps and orbump on
+$FDSextSwitch=0;  =>           0  # turns bending magnet sextupole edge fields on
+#
+$Einj=399.9904;  =>    399.9904
+$Eext=8000;  =>        8000
+$Pinj = sqrt(($Einj+$Mp)^2-$Mp^2);  =>  954.252579
+$Pext = sqrt(($Eext+$Mp)^2-$Mp^2);  =>  8888.89608
+$P0=($Pext+$Pinj)/2 - ($Pext-$Pinj)/2* cos(2*$PI*15*($t0[$slot]-2)/1000);  =>  975.488145
+$gamma=sqrt(($P0^2/$Mp^2) + 1);  =>  1.42630193
+$E0=($gamma-1)*$Mp;  =>    399.9904
+$beta=sqrt(1-1/$gamma/$gamma);  => 0.713049369
+$Brho=$P0/$c*1e11;  =>  3183.04398
+$C=47420.3;  =>     47420.3
+$LambdaRF=$C/84;  =>  564.527381
+$F_RF=$c*$beta/$LambdaRF;  =>    37866511
+#----------------------
+# Emittancee
+$AcceptN=       0.004;  =>       0.004
+$Accept=$AcceptN/($gamma*$beta);  =>0.0038474075
+$DPoverPtot=0.005;  =>       0.005
+$EmitN=       0.0012;  =>      0.0012
+$Emit=$EmitN/($gamma*$beta);  =>0.00115422225
+#----------------------
+# Correction to the design optics
+$DSQS24=       0.05874388*975.488145/$P0
+$DSQS01=       0.03648554*975.488145/$P0
+$DSQS02=       -0.01056517*975.488145/$P0
+$DSQS03=       -0.03085508*975.488145/$P0
+$DSQS04=       -0.0005645643*975.488145/$P0
+$DSQS05=       0.02189907*975.488145/$P0
+$DSQS06=       -0.02638315*975.488145/$P0
+$DSQL03=       0.0103101*975.488145/$P0
+$DSQL04=       -0.008869336*975.488145/$P0
+# Correction for half integer resonance
+$DHISswitch=1
+#
+$DSQS12=        0.06 # corr F
+$DSQL13=0
+$DSQS13=        0.09 # corr F
+$DSQL14=           0 # corr D
+$DSQS14=           0 # corr F
+$DSQL15=      0 #  center - Corr D ====
+$DSQS15= 0 
+#
+$DSQL16= $DSQL14 # corr
+$DSQS16=$DSQS13 # corr
+$DSQL17=$DSQL13
+$DSQS17=        $DSQS12 # corr
+$DSQL18=0
+$DSQS18=       0 # corr
+#----------------------
+# Scaling constants
+$scalHK         = $CPswitch*    -0.000366*10/0.024;  =>           0
+$scalVK         = $CPswitch*    -0.000365*10/0.024;  =>           0
+$scalQ            = $CPswitch*   0.002489*10/2.4;  =>           0
+$scalSQ          = $CPswitch*   0.003924*10/2.4;  =>           0
+$scalSX          = $CPswitch*   -2*  0.045831*10/100/2.4;  =>           0
+$scalSS           = $CPswitch*   -2*  0.045477*10/100/2.4;  =>           0
+$scalHarSX    = $CPswitch*   -2* 0.003717 *10/100/30;  =>           0
+$scalHarSSX  = $CPswitch*   -2* 0.003717 *10/100/30;  =>           0
+$scalDOG      = $bendSwitch*  0.415/24.722;  =>           0
+$scalBEX       = $bendSwitch*  0.000536*10/.265;  =>           0
+#----------------------
+# Main Dipoles
+$Ndip=96/2;  =>          48
+$Ldip=288.9612;  =>    288.9612
+$B_F = -0.77926016*$P0/$Pinj;  => -0.77926016
+$B_D = -0.66266478*$P0/$Pinj;  => -0.66266478
+$G_F = 0.01725831*$P0/954.252579;  =>  0.01725831
+$G_D = -0.01836836*$P0/954.252579;  => -0.01836836
+$AngF=-$B_F*$Ldip*360/(2*$PI*$Brho)/2;  =>   2.0266185
+$AngD=-$B_D*$Ldip*360/(2*$PI*$Brho)/2;  =>   1.7233894
+$AngTotal=2*($AngF+$AngD)*$Ndip;  =>  360.000759
+$iMainBus=1023*$P0/ 8888.89608;  =>  109.822455
+$bFMAG="hmagF mFMAG gFMAG bFMAG gFMAG mFMAG hmagF";
+$bDMAG="hmagD mDMAG gDMAG bDMAG gDMAG mDMAG hmagD";
+$S_F=  $FDSextSwitch*($Brho *-0.0119/10000 + 0.0365/10);  =>           0
+$S_D= $FDSextSwitch*($Brho * 0.04087/10000 + 0.0738/10);  =>           0
+#+++++++++
+# Extraction dogleg
+#$iB:DOGL03=$iB:DOGL3*3.01798/1.416;  =>  626.614492
+$lenDOG03_0=24.722;  =>      24.722
+$vbDOG03=$scalDOG*$iB:DOGL3;  =>           0
+$vaDOG03=asin($vbDOG03*$lenDOG03_0/$Brho);  =>           0
+$lenDOG03=$lenDOG03_0*(1. +  ($vbDOG03*$lenDOG03_0/$Brho)^2 / 6.);  =>      24.722
+$L_oL03B=30.039/cos($vaDOG03);  =>      30.039
+$vaDOG03=$vaDOG03*180/$PI;  =>           0
+$S_DOG=0;  =>           0
+$bDOGp="mDOGp gDOGp bDOGp gDOGp mDOGp";
+$bDOGm="mDOGp gDOGm bDOGm gDOGm mDOGp";
+# ++++++++
+# Injection orbit bump
+# Orb.bump 
+$lenORBUM0=48.23;  =>       48.23
+$bORBUMP= $bendSwitch*  2.926*$iB:ORBUMP[$slot];  =>           0
+$gORBUMP= $bendSwitch*  0.00198*$iB:ORBUMP[$slot];  =>           0
+$vaORBUMP=asin($bORBUMP*$lenORBUM0/$Brho);  =>           0
+$LORBUMP=$lenORBUM0*(1. +  ($bORBUMP*$lenORBUM0/$Brho)^2 / 6.);  =>       48.23
+$L_oL01C=45.432/cos($vaORBUMP);  =>      45.432
+$vaORBUMP=$vaORBUMP*180/$PI;  =>           0
+$bORBUMPp="gORBUMPp  bORBUMPp  gORBUMPp";
+$bORBUMPm="gORBUMPm  bORBUMPm  gORBUMPm";
+# 
+#+++++++
+$lenBEX=26.5;  =>        26.5
+$vkBEX2=$scalBEX*$iB:BEX2[$slot];  =>           0
+$vkBEX3=$scalBEX*$iB:BEX3[$slot];  =>           0
+$vkBEX4=$scalBEX*$iB:BEX4[$slot];  =>           0
+#+++++++
+#variables 
+$vkHS24   =   $scalHK*$iB:HS24[$slot] ;  =>           0
+$vkVS24   =   $scalVK*$iB:VS24[$slot]  ;  =>           0
+$vkHL01   =   $scalHK*$iB:HL01[$slot]  ;  =>           0
+$vkVL01   =   $scalVK*$iB:VL01[$slot]  ;  =>           0
+$vkHS01   =   $scalHK*$iB:HS01[$slot] ;  =>           0
+$vkVS01   =   $scalVK*$iB:VS01[$slot] ;  =>           0
+$vkHL02   =   $scalHK*$iB:HL02[$slot] ;  =>           0
+$vkVL02   =   $scalVK*$iB:VL02[$slot]  ;  =>           0
+$vkHS02   =   $scalHK*$iB:HS02[$slot]  ;  =>           0
+$vkVS02   =   $scalVK*$iB:VS02[$slot] ;  =>           0
+$vkHL03   =   $scalHK*$iB:HL03[$slot]  ;  =>           0
+$vkVL03   =   $scalVK*$iB:VL03[$slot] ;  =>           0
+$vkHS03   =   $scalHK*$iB:HS03[$slot] ;  =>           0
+$vkVS03   =   $scalVK*$iB:VS03[$slot]  ;  =>           0
+$vkHL04   =   $scalHK*$iB:HL04[$slot] ;  =>           0
+$vkVL04   =   $scalVK*$iB:VL04[$slot] ;  =>           0
+$vkHS04   =   $scalHK*$iB:HS04[$slot] ;  =>           0
+$vkVS04   =   $scalVK*$iB:VS04[$slot]  ;  =>           0
+$vkHL05   =   $scalHK*$iB:HL05[$slot]  ;  =>           0
+$vkVL05   =   $scalVK*$iB:VL05[$slot]  ;  =>           0
+$vkHS05   =   $scalHK*$iB:HS05[$slot]  ;  =>           0
+$vkVS05   =   $scalVK*$iB:VS05[$slot]  ;  =>           0
+$vkHL06   =   $scalHK*$iB:HL06[$slot]  ;  =>           0
+$vkVL06   =   $scalVK*$iB:VL06[$slot]  ;  =>           0
+$vkHS06   =   $scalHK*$iB:HS06[$slot]  ;  =>           0
+$vkVS06   =   $scalVK*$iB:VS06[$slot]  ;  =>           0
+$vkHL07   =   $scalHK*$iB:HL07[$slot]  ;  =>           0
+$vkVL07   =   $scalVK*$iB:VL07[$slot]  ;  =>           0
+$vkHS07   =   $scalHK*$iB:HS07[$slot]  ;  =>           0
+$vkVS07   =   $scalVK*$iB:VS07[$slot]  ;  =>           0
+$vkHL08   =   $scalHK*$iB:HL08[$slot]  ;  =>           0
+$vkVL08   =   $scalVK*$iB:VL08[$slot]  ;  =>           0
+$vkHS08   =   $scalHK*$iB:HS08[$slot]  ;  =>           0
+$vkVS08   =   $scalVK*$iB:VS08[$slot]  ;  =>           0
+$vkHL09   =   $scalHK*$iB:HL09[$slot]  ;  =>           0
+$vkVL09   =   $scalVK*$iB:VL09[$slot]  ;  =>           0
+$vkHS09   =   $scalHK*$iB:HS09[$slot]  ;  =>           0
+$vkVS09   =   $scalVK*$iB:VS09[$slot]  ;  =>           0
+$vkHL10   =   $scalHK*$iB:HL10[$slot]  ;  =>           0
+$vkVL10   =   $scalVK*$iB:VL10[$slot]  ;  =>           0
+$vkHS10   =   $scalHK*$iB:HS10[$slot]  ;  =>           0
+$vkVS10   =   $scalVK*$iB:VS10[$slot]  ;  =>           0
+$vkHL11   =   $scalHK*$iB:HL11[$slot]  ;  =>           0
+$vkVL11   =   $scalVK*$iB:VL11[$slot]  ;  =>           0
+$vkHS11   =   $scalHK*$iB:HS11[$slot]  ;  =>           0
+$vkVS11   =   $scalVK*$iB:VS11[$slot]  ;  =>           0
+$vkHL12   =   $scalHK*$iB:HL12[$slot]  ;  =>           0
+$vkVL12   =   $scalVK*$iB:VL12[$slot]  ;  =>           0
+$vkHS12   =   $scalHK*$iB:HS12[$slot]  ;  =>           0
+$vkVS12   =   $scalVK*$iB:VS12[$slot]  ;  =>           0
+$vkHL13   =   $scalHK*$iB:HL13[$slot]  ;  =>           0
+$vkVL13   =   $scalVK*$iB:VL13[$slot]  ;  =>           0
+$vkHS13   =   $scalHK*$iB:HS13[$slot]  ;  =>           0
+$vkVS13   =   $scalVK*$iB:VS13[$slot]  ;  =>           0
+$vkHL14   =   $scalHK*$iB:HL14[$slot]  ;  =>           0
+$vkVL14   =   $scalVK*$iB:VL14[$slot]  ;  =>           0
+$vkHS14   =   $scalHK*$iB:HS14[$slot]  ;  =>           0
+$vkVS14   =   $scalVK*$iB:VS14[$slot]  ;  =>           0
+$vkHL15   =   $scalHK*$iB:HL15[$slot]  ;  =>           0
+$vkVL15   =   $scalVK*$iB:VL15[$slot]  ;  =>           0
+$vkHS15   =   $scalHK*$iB:HS15[$slot]  ;  =>           0
+$vkVS15   =   $scalVK*$iB:VS15[$slot]  ;  =>           0
+$vkHL16   =   $scalHK*$iB:HL16[$slot]  ;  =>           0
+$vkVL16   =   $scalVK*$iB:VL16[$slot]  ;  =>           0
+$vkHS16   =   $scalHK*$iB:HS16[$slot]  ;  =>           0
+$vkVS16   =   $scalVK*$iB:VS16[$slot]  ;  =>           0
+$vkHL17   =   $scalHK*$iB:HL17[$slot]  ;  =>           0
+$vkVL17   =   $scalVK*$iB:VL17[$slot]  ;  =>           0
+$vkHS17   =   $scalHK*$iB:HS17[$slot]  ;  =>           0
+$vkVS17   =   $scalVK*$iB:VS17[$slot]  ;  =>           0
+$vkHL18   =   $scalHK*$iB:HL18[$slot]  ;  =>           0
+$vkVL18   =   $scalVK*$iB:VL18[$slot]  ;  =>           0
+$vkHS18   =   $scalHK*$iB:HS18[$slot]  ;  =>           0
+$vkVS18   =   $scalVK*$iB:VS18[$slot]  ;  =>           0
+$vkHL19   =   $scalHK*$iB:HL19[$slot]  ;  =>           0
+$vkVL19   =   $scalVK*$iB:VL19[$slot]  ;  =>           0
+$vkHS19   =   $scalHK*$iB:HS19[$slot]  ;  =>           0
+$vkVS19   =   $scalVK*$iB:VS19[$slot]  ;  =>           0
+$vkHL20   =   $scalHK*$iB:HL20[$slot]  ;  =>           0
+$vkVL20   =   $scalVK*$iB:VL20[$slot]  ;  =>           0
+$vkHS20   =   $scalHK*$iB:HS20[$slot]  ;  =>           0
+$vkVS20   =   $scalVK*$iB:VS20[$slot]  ;  =>           0
+$vkHL21   =   $scalHK*$iB:HL21[$slot]  ;  =>           0
+$vkVL21   =   $scalVK*$iB:VL21[$slot]  ;  =>           0
+$vkHS21   =   $scalHK*$iB:HS21[$slot]  ;  =>           0
+$vkVS21   =   $scalVK*$iB:VS21[$slot]  ;  =>           0
+$vkHL22   =   $scalHK*$iB:HL22[$slot]  ;  =>           0
+$vkVL22   =   $scalVK*$iB:VL22[$slot]  ;  =>           0
+$vkHS22   =   $scalHK*$iB:HS22[$slot]  ;  =>           0
+$vkVS22   =   $scalVK*$iB:VS22[$slot]  ;  =>           0
+$vkHL23   =   $scalHK*$iB:HL23[$slot]  ;  =>           0
+$vkVL23   =   $scalVK*$iB:VL23[$slot]  ;  =>           0
+$vkHS23   =   $scalHK*$iB:HS23[$slot]  ;  =>           0
+$vkVS23   =   $scalVK*$iB:VS23[$slot]  ;  =>           0
+$vkHL24   =   $scalHK*$iB:HL24[$slot]  ;  =>           0
+$vkVL24   =   $scalVK*$iB:VL24[$slot]  ;  =>           0
+#
+#variables about quads and skew quads
+$vqQL01 = $scalQ*$iB:QL01[$slot];  =>           0
+$vqQS01 = $scalQ*$iB:QS01[$slot]+$DSswitch*$DSQS01;  =>           0
+$vqQL02 = $scalQ*$iB:QL02[$slot];  =>           0
+$vqQS02 = $scalQ*$iB:QS02[$slot]+$DSswitch*$DSQS02;  =>           0
+$vqQL03 = $scalQ*$iB:QL03[$slot]+$DSswitch*$DSQL03;  =>           0
+$vqQS03 = $scalQ*$iB:QS03[$slot]+$DSswitch*$DSQS03;  =>           0
+$vqQL04 = $scalQ*$iB:QL04[$slot]+$DSswitch*$DSQL04;  =>           0
+$vqQS04 = $scalQ*$iB:QS04[$slot]+$DSswitch*$DSQS04;  =>           0
+$vqQL05 = $scalQ*$iB:QL05[$slot];  =>           0
+$vqQS05 = $scalQ*$iB:QS05[$slot]+$DSswitch*$DSQS05;  =>           0
+$vqQL06 = $scalQ*$iB:QL06[$slot];  =>           0
+$vqQS06 = $scalQ*$iB:QS06[$slot]+$DSswitch*$DSQS06;  =>           0
+$vqQL07 = $scalQ*$iB:QL07[$slot];  =>           0
+$vqQS07 = $scalQ*$iB:QS07[$slot];  =>           0
+$vqQL08 = $scalQ*$iB:QL08[$slot];  =>           0
+$vqQS08 = $scalQ*$iB:QS08[$slot];  =>           0
+$vqQL09 = $scalQ*$iB:QL09[$slot];  =>           0
+$vqQS09 = $scalQ*$iB:QS09[$slot];  =>           0
+$vqQL10 = $scalQ*$iB:QL10[$slot];  =>           0
+$vqQS10 = $scalQ*$iB:QS10[$slot];  =>           0
+$vqQL11 = $scalQ*$iB:QL11[$slot];  =>           0
+$vqQS11 = $scalQ*$iB:QS11[$slot];  =>           0
+$vqQL12 = $scalQ*$iB:QL12[$slot]
+$vqQS12 = $scalQ*$iB:QS12[$slot]+$DHISswitch*$DSQS12;  =>           0
+$vqQL13 = $scalQ*$iB:QL13[$slot]+$DHISswitch*$DSQL13;;  =>           0
+$vqQS13 = $scalQ*$iB:QS13[$slot]+$DHISswitch*$DSQS13;;  =>           0
+$vqQL14 = $scalQ*$iB:QL14[$slot]+$DHISswitch*$DSQL14;;  =>           0
+$vqQS14 = $scalQ*$iB:QS14[$slot]+$DHISswitch*$DSQS14;;  =>           0
+$vqQL15 = $scalQ*$iB:QL15[$slot]+$DHISswitch*$DSQL15;;  =>           0
+$vqQS15 = $scalQ*$iB:QS15[$slot]+$DHISswitch*$DSQS15;;  =>           0
+$vqQL16 = $scalQ*$iB:QL16[$slot]+$DHISswitch*$DSQL16;;  =>           0
+$vqQS16 = $scalQ*$iB:QS16[$slot]+$DHISswitch*$DSQS16;;  =>           0
+$vqQL17 = $scalQ*$iB:QL17[$slot]+$DHISswitch*$DSQL17;;  =>           0
+$vqQS17 = $scalQ*$iB:QS17[$slot]+$DHISswitch*$DSQS17;;  =>           0
+$vqQL18 = $scalQ*$iB:QL18[$slot]+$DHISswitch*$DSQL18;;  =>           0
+$vqQS18 = $scalQ*$iB:QS18[$slot]+$DHISswitch*$DSQS18;;  =>           0
+$vqQL19 = $scalQ*$iB:QL19[$slot];  =>           0
+$vqQS19 = $scalQ*$iB:QS19[$slot];  =>           0
+$vqQL20 = $scalQ*$iB:QL20[$slot];  =>           0
+$vqQS20 = $scalQ*$iB:QS20[$slot];  =>           0
+$vqQL21 = $scalQ*$iB:QL21[$slot];  =>           0
+$vqQS21 = $scalQ*$iB:QS21[$slot];  =>           0
+$vqQL22 = $scalQ*$iB:QL22[$slot];  =>           0
+$vqQS22 = $scalQ*$iB:QS22[$slot];  =>           0
+$vqQL23 = $scalQ*$iB:QL23[$slot];  =>           0
+$vqQS23 = $scalQ*$iB:QS23[$slot];  =>           0
+$vqQL24 = $scalQ*$iB:QL24[$slot];  =>           0
+$vqQS24 = $scalQ*$iB:QS24[$slot]+$DSswitch*$DSQS24;  =>           0
+$vqSQL01 = $scalSQ*$iB:SQL01[$slot] ;  =>           0
+$vqSQS01 = $scalSQ*$iB:SQS01[$slot] ;  =>           0
+$vqSQL02 = $scalSQ*$iB:SQL02[$slot] ;  =>           0
+$vqSQS02 = $scalSQ*$iB:SQS02[$slot] ;  =>           0
+$vqSQS03 = $scalSQ*$iB:SQS03[$slot] ;  =>           0
+$vqSQL03 = $scalSQ*$iB:SQL03[$slot] ;  =>           0
+$vqSQL04 = $scalSQ*$iB:SQL04[$slot] ;  =>           0
+$vqSQS04 = $scalSQ*$iB:SQS04[$slot] ;  =>           0
+$vqSQL05 = $scalSQ*$iB:SQL05[$slot] ;  =>           0
+$vqSQS05 = $scalSQ*$iB:SQS05[$slot] ;  =>           0
+$vqSQL06 = $scalSQ*$iB:SQL06[$slot] ;  =>           0
+$vqSQS06 = $scalSQ*$iB:SQS06[$slot] ;  =>           0
+$vqSQL07 = $scalSQ*$iB:SQL07[$slot] ;  =>           0
+$vqSQS07 = $scalSQ*$iB:SQS07[$slot] ;  =>           0
+$vqSQL08 = $scalSQ*$iB:SQL08[$slot] ;  =>           0
+$vqSQS08 = $scalSQ*$iB:SQS08[$slot] ;  =>           0
+$vqSQL09 = $scalSQ*$iB:SQL09[$slot] ;  =>           0
+$vqSQS09 = $scalSQ*$iB:SQS09[$slot] ;  =>           0
+$vqSQL10 = $scalSQ*$iB:SQL10[$slot] ;  =>           0
+$vqSQS10 = $scalSQ*$iB:SQS10[$slot] ;  =>           0
+$vqSQL11 = $scalSQ*$iB:SQL11[$slot] ;  =>           0
+$vqSQS11 = $scalSQ*$iB:SQS11[$slot] ;  =>           0
+$vqSQS12 = $scalSQ*$iB:SQS12[$slot] ;  =>           0
+$vqSQL12 = $scalSQ*$iB:SQL12[$slot] ;  =>           0
+$vqSQL13 = $scalSQ*$iB:SQL13[$slot] ;  =>           0
+$vqSQS13 = $scalSQ*$iB:SQS13[$slot] ;  =>           0
+$vqSQL14 = $scalSQ*$iB:SQL14[$slot] ;  =>           0
+$vqSQS14 = $scalSQ*$iB:SQS14[$slot] ;  =>           0
+$vqSQL15 = $scalSQ*$iB:SQL15[$slot] ;  =>           0
+$vqSQS15 = $scalSQ*$iB:SQS15[$slot] ;  =>           0
+$vqSQS16 = $scalSQ*$iB:SQS16[$slot] ;  =>           0
+$vqSQL16 = $scalSQ*$iB:SQL16[$slot] ;  =>           0
+$vqSQL17 = $scalSQ*$iB:SQL17[$slot] ;  =>           0
+$vqSQS17 = $scalSQ*$iB:SQS17[$slot] ;  =>           0
+$vqSQL18 = $scalSQ*$iB:SQL18[$slot] ;  =>           0
+$vqSQS18 = $scalSQ*$iB:SQS18[$slot] ;  =>           0
+$vqSQL19 = $scalSQ*$iB:SQL19[$slot] ;  =>           0
+$vqSQS19 = $scalSQ*$iB:SQS19[$slot] ;  =>           0
+$vqSQL20 = $scalSQ*$iB:SQL20[$slot] ;  =>           0
+$vqSQS20 = $scalSQ*$iB:SQS20[$slot] ;  =>           0
+$vqSQL21 = $scalSQ*$iB:SQL21[$slot] ;  =>           0
+$vqSQS21 = $scalSQ*$iB:SQS21[$slot] ;  =>           0
+$vqSQL22 = $scalSQ*$iB:SQL22[$slot] ;  =>           0
+$vqSQS22 = $scalSQ*$iB:SQS22[$slot] ;  =>           0
+$vqSQL23 = $scalSQ*$iB:SQL23[$slot] ;  =>           0
+$vqSQS23 = $scalSQ*$iB:SQS23[$slot] ;  =>           0
+$vqSQL24 = $scalSQ*$iB:SQL24[$slot] ;  =>           0
+$vqSQS24 = $scalSQ*$iB:SQS24[$slot] ;  =>           0
+#
+# variables for quad and skew quad errors
+$vqQSerr24=$errSwitch*$Brho*$vaQSerr24[$slot];  =>           0
+$vqSQSerr24=$errSwitch*$Brho*$vaSQSerr24[$slot];  =>           0
+$vqQLerr01= $errSwitch*$Brho*$vaQLerr01[$slot];  =>           0
+$vqSQLerr01= $errSwitch*$Brho*$vaSQLerr01[$slot];  =>           0
+$vqQSerr01= $errSwitch*$Brho*$vaQSerr01[$slot];  =>           0
+$vqSQSerr01= $errSwitch*$Brho*$vaSQSerr01[$slot];  =>           0
+$vqQLerr02= $errSwitch*$Brho*$vaQLerr02[$slot];  =>           0
+$vqSQLerr02= $errSwitch*$Brho*$vaSQLerr02[$slot];  =>           0
+$vqQSerr02= $errSwitch*$Brho*$vaQSerr02[$slot];  =>           0
+$vqSQSerr02= $errSwitch*$Brho*$vaSQSerr02[$slot];  =>           0
+$vqQLerr03= $errSwitch*$Brho*$vaQLerr03[$slot];  =>           0
+$vqSQLerr03= $errSwitch*$Brho*$vaSQLerr03[$slot];  =>           0
+$vqQSerr03= $errSwitch*$Brho*$vaQSerr03[$slot];  =>           0
+$vqSQSerr03= $errSwitch*$Brho*$vaSQSerr03[$slot];  =>           0
+$vqQLerr04= $errSwitch*$Brho*$vaQLerr04[$slot];  =>           0
+$vqSQLerr04= $errSwitch*$Brho*$vaSQLerr04[$slot];  =>           0
+$vqQSerr04= $errSwitch*$Brho*$vaQSerr04[$slot];  =>           0
+$vqSQSerr04= $errSwitch*$Brho*$vaSQSerr04[$slot];  =>           0
+$vqQLerr05= $errSwitch*$Brho*$vaQLerr05[$slot];  =>           0
+$vqSQLerr05= $errSwitch*$Brho*$vaSQLerr05[$slot];  =>           0
+$vqQSerr05= $errSwitch*$Brho*$vaQSerr05[$slot];  =>           0
+$vqSQSerr05= $errSwitch*$Brho*$vaSQSerr05[$slot];  =>           0
+$vqQLerr06= $errSwitch*$Brho*$vaQLerr06[$slot];  =>           0
+$vqSQLerr06= $errSwitch*$Brho*$vaSQLerr06[$slot];  =>           0
+$vqQSerr06= $errSwitch*$Brho*$vaQSerr06[$slot];  =>           0
+$vqSQSerr06= $errSwitch*$Brho*$vaSQSerr06[$slot];  =>           0
+$vqQLerr07= $errSwitch*$Brho*$vaQLerr07[$slot];  =>           0
+$vqSQLerr07= $errSwitch*$Brho*$vaSQLerr07[$slot];  =>           0
+$vqQSerr07= $errSwitch*$Brho*$vaQSerr07[$slot];  =>           0
+$vqSQSerr07= $errSwitch*$Brho*$vaSQSerr07[$slot];  =>           0
+$vqQLerr08= $errSwitch*$Brho*$vaQLerr08[$slot];  =>           0
+$vqSQLerr08= $errSwitch*$Brho*$vaSQLerr08[$slot];  =>           0
+$vqQSerr08= $errSwitch*$Brho*$vaQSerr08[$slot];  =>           0
+$vqSQSerr08= $errSwitch*$Brho*$vaSQSerr08[$slot];  =>           0
+$vqQLerr09= $errSwitch*$Brho*$vaQLerr09[$slot];  =>           0
+$vqSQLerr09= $errSwitch*$Brho*$vaSQLerr09[$slot];  =>           0
+$vqQSerr09= $errSwitch*$Brho*$vaQSerr09[$slot];  =>           0
+$vqSQSerr09= $errSwitch*$Brho*$vaSQSerr09[$slot];  =>           0
+$vqQLerr10= $errSwitch*$Brho*$vaQLerr10[$slot];  =>           0
+$vqSQLerr10= $errSwitch*$Brho*$vaSQLerr10[$slot];  =>           0
+$vqQSerr10= $errSwitch*$Brho*$vaQSerr10[$slot];  =>           0
+$vqSQSerr10= $errSwitch*$Brho*$vaSQSerr10[$slot];  =>           0
+$vqQLerr11= $errSwitch*$Brho*$vaQLerr11[$slot];  =>           0
+$vqSQLerr11= $errSwitch*$Brho*$vaSQLerr11[$slot];  =>           0
+$vqQSerr11= $errSwitch*$Brho*$vaQSerr11[$slot];  =>           0
+$vqSQSerr11= $errSwitch*$Brho*$vaSQSerr11[$slot];  =>           0
+$vqQLerr12= $errSwitch*$Brho*$vaQLerr12[$slot];  =>           0
+$vqSQLerr12= $errSwitch*$Brho*$vaSQLerr12[$slot];  =>           0
+$vqQSerr12= $errSwitch*$Brho*$vaQSerr12[$slot];  =>           0
+$vqSQSerr12= $errSwitch*$Brho*$vaSQSerr12[$slot];  =>           0
+$vqQLerr13= $errSwitch*$Brho*$vaQLerr13[$slot];  =>           0
+$vqSQLerr13= $errSwitch*$Brho*$vaSQLerr13[$slot];  =>           0
+$vqQSerr13= $errSwitch*$Brho*$vaQSerr13[$slot];  =>           0
+$vqSQSerr13= $errSwitch*$Brho*$vaSQSerr13[$slot];  =>           0
+$vqQLerr14= $errSwitch*$Brho*$vaQLerr14[$slot];  =>           0
+$vqSQLerr14= $errSwitch*$Brho*$vaSQLerr14[$slot];  =>           0
+$vqQSerr14= $errSwitch*$Brho*$vaQSerr14[$slot];  =>           0
+$vqSQSerr14= $errSwitch*$Brho*$vaSQSerr14[$slot];  =>           0
+$vqQLerr15= $errSwitch*$Brho*$vaQLerr15[$slot];  =>           0
+$vqSQLerr15= $errSwitch*$Brho*$vaSQLerr15[$slot];  =>           0
+$vqQSerr15= $errSwitch*$Brho*$vaQSerr15[$slot];  =>           0
+$vqSQSerr15= $errSwitch*$Brho*$vaSQSerr15[$slot];  =>           0
+$vqQLerr16= $errSwitch*$Brho*$vaQLerr16[$slot];  =>           0
+$vqSQLerr16= $errSwitch*$Brho*$vaSQLerr16[$slot];  =>           0
+$vqQSerr16= $errSwitch*$Brho*$vaQSerr16[$slot];  =>           0
+$vqSQSerr16= $errSwitch*$Brho*$vaSQSerr16[$slot];  =>           0
+$vqQLerr17= $errSwitch*$Brho*$vaQLerr17[$slot];  =>           0
+$vqSQLerr17= $errSwitch*$Brho*$vaSQLerr17[$slot];  =>           0
+$vqQSerr17= $errSwitch*$Brho*$vaQSerr17[$slot];  =>           0
+$vqSQSerr17= $errSwitch*$Brho*$vaSQSerr17[$slot];  =>           0
+$vqQLerr18= $errSwitch*$Brho*$vaQLerr18[$slot];  =>           0
+$vqSQLerr18= $errSwitch*$Brho*$vaSQLerr18[$slot];  =>           0
+$vqQSerr18= $errSwitch*$Brho*$vaQSerr18[$slot];  =>           0
+$vqSQSerr18= $errSwitch*$Brho*$vaSQSerr18[$slot];  =>           0
+$vqQLerr19= $errSwitch*$Brho*$vaQLerr19[$slot];  =>           0
+$vqSQLerr19= $errSwitch*$Brho*$vaSQLerr19[$slot];  =>           0
+$vqQSerr19= $errSwitch*$Brho*$vaQSerr19[$slot];  =>           0
+$vqSQSerr19= $errSwitch*$Brho*$vaSQSerr19[$slot];  =>           0
+$vqQLerr20= $errSwitch*$Brho*$vaQLerr20[$slot];  =>           0
+$vqSQLerr20= $errSwitch*$Brho*$vaSQLerr20[$slot];  =>           0
+$vqQSerr20= $errSwitch*$Brho*$vaQSerr20[$slot];  =>           0
+$vqSQSerr20= $errSwitch*$Brho*$vaSQSerr20[$slot];  =>           0
+$vqQLerr21= $errSwitch*$Brho*$vaQLerr21[$slot];  =>           0
+$vqSQLerr21= $errSwitch*$Brho*$vaSQLerr21[$slot];  =>           0
+$vqQSerr21= $errSwitch*$Brho*$vaQSerr21[$slot];  =>           0
+$vqSQSerr21= $errSwitch*$Brho*$vaSQSerr21[$slot];  =>           0
+$vqQLerr22= $errSwitch*$Brho*$vaQLerr22[$slot];  =>           0
+$vqSQLerr22= $errSwitch*$Brho*$vaSQLerr22[$slot];  =>           0
+$vqQSerr22= $errSwitch*$Brho*$vaQSerr22[$slot];  =>           0
+$vqSQSerr22= $errSwitch*$Brho*$vaSQSerr22[$slot];  =>           0
+$vqQLerr23= $errSwitch*$Brho*$vaQLerr23[$slot];  =>           0
+$vqSQLerr23= $errSwitch*$Brho*$vaSQLerr23[$slot];  =>           0
+$vqQSerr23= $errSwitch*$Brho*$vaQSerr23[$slot];  =>           0
+$vqSQSerr23= $errSwitch*$Brho*$vaSQSerr23[$slot];  =>           0
+$vqQLerr24= $errSwitch*$Brho*$vaQLerr24[$slot];  =>           0
+$vqSQLerr24= $errSwitch*$Brho*$vaSQLerr24[$slot];  =>           0
+#
+#variables about sextupoles and skew sextupoles
+$vsSXS24   =   $scalSX*$iB:SXS24[$slot]  ;  =>           0
+$vsSSS24   =   $scalSS*$iB:SSS24[$slot]  ;  =>           0
+$vsSXL01   =   $scalSX*$iB:SXL01[$slot]  ;  =>           0
+$vsSSL01   =   $scalSS*$iB:SSL01[$slot]  ;  =>           0
+$vsSXS01   =   $scalSX*$iB:SXS01[$slot]  ;  =>           0
+$vsSSS01   =   $scalSS*$iB:SSS01[$slot]  ;  =>           0
+$vsSXL02   =   $scalSX*$iB:SXL02[$slot]  ;  =>           0
+$vsSSL02   =   $scalSS*$iB:SSL02[$slot]  ;  =>           0
+$vsSXS02   =   $scalSX*$iB:SXS02[$slot]  ;  =>           0
+$vsSSS02   =   $scalSS*$iB:SSS02[$slot]  ;  =>           0
+$vsSXL03   =   $scalSX*$iB:SXL03[$slot]  ;  =>           0
+$vsSSL03   =   $scalSS*$iB:SSL03[$slot]  ;  =>           0
+$vsSXS03   =   $scalSX*$iB:SXS03[$slot]  ;  =>           0
+$vsSSS03   =   $scalSS*$iB:SSS03[$slot]  ;  =>           0
+$vsSXL04   =   $scalSX*$iB:SXL04[$slot]  ;  =>           0
+$vsSSL04   =   $scalSS*$iB:SSL04[$slot]  ;  =>           0
+$vsSXS04   =   $scalSX*$iB:SXS04[$slot]  ;  =>           0
+$vsSSS04   =   $scalSS*$iB:SSS04[$slot]  ;  =>           0
+$vsSXL05   =   $scalSX*$iB:SXL05[$slot]  ;  =>           0
+$vsSSL05   =   $scalSS*$iB:SSL05[$slot]  ;  =>           0
+$vsSXS05   =   $scalSX*$iB:SXS05[$slot]  ;  =>           0
+$vsSSS05   =   $scalSS*$iB:SSS05[$slot]  ;  =>           0
+$vsSXL06   =   $scalSX*$iB:SXL06[$slot]  ;  =>           0
+$vsSSL06   =   $scalSS*$iB:SSL06[$slot]  ;  =>           0
+$vsSXS06   =   $scalSX*$iB:SXS06[$slot]  ;  =>           0
+$vsSSS06   =   $scalSS*$iB:SSS06[$slot]  ;  =>           0
+$vsSXL07   =   $scalSX*$iB:SXL07[$slot]  ;  =>           0
+$vsSSL07   =   $scalSS*$iB:SSL07[$slot]  ;  =>           0
+$vsSXS07   =   $scalSX*$iB:SXS07[$slot]  ;  =>           0
+$vsSSS07   =   $scalSS*$iB:SSS07[$slot]  ;  =>           0
+$vsSXL08   =   $scalSX*$iB:SXL08[$slot]  ;  =>           0
+$vsSSL08   =   $scalSS*$iB:SSL08[$slot]  ;  =>           0
+$vsSXS08   =   $scalSX*$iB:SXS08[$slot]  ;  =>           0
+$vsSSS08   =   $scalSS*$iB:SSS08[$slot]  ;  =>           0
+$vsSXL09   =   $scalSX*$iB:SXL09 [$slot] ;  =>           0
+$vsSSL09   =   $scalSS*$iB:SSL09[$slot]  ;  =>           0
+$vsSXS09   =   $scalSX*$iB:SXS09[$slot]  ;  =>           0
+$vsSSS09   =   $scalSS*$iB:SSS09[$slot]  ;  =>           0
+$vsSXL10   =   $scalSX*$iB:SXL10[$slot]  ;  =>           0
+$vsSSL10   =   $scalSS*$iB:SSL10[$slot]  ;  =>           0
+$vsSXS10   =   $scalSX*$iB:SXS10[$slot]  ;  =>           0
+$vsSSS10   =   $scalSS*$iB:SSS10[$slot]  ;  =>           0
+$vsSXL11   =   $scalSX*$iB:SXL11[$slot]  ;  =>           0
+$vsSSL11   =   $scalSS*$iB:SSL11[$slot]  ;  =>           0
+$vsSXS11   =   $scalSX*$iB:SXS11[$slot]  ;  =>           0
+$vsSSS11   =   $scalSS*$iB:SSS11[$slot]  ;  =>           0
+$vsSXL12   =   $scalSX*$iB:SXL12[$slot]  ;  =>           0
+$vsSSL12   =   $scalSS*$iB:SSL12[$slot]  ;  =>           0
+$vsSXS12   =   $scalSX*$iB:SXS12[$slot]  ;  =>           0
+$vsSSS12   =   $scalSS*$iB:SSS12[$slot]  ;  =>           0
+$vsSXL13   =   $scalSX*$iB:SXL13[$slot]  ;  =>           0
+$vsSSL13   =   $scalSS*$iB:SSL13[$slot]  ;  =>           0
+$vsSXS13   =   $scalSX*$iB:SXS13[$slot]  ;  =>           0
+$vsSSS13   =   $scalSS*$iB:SSS13[$slot]  ;  =>           0
+$vsSXL14   =   $scalSX*$iB:SXL14[$slot]  ;  =>           0
+$vsSSL14   =   $scalSS*$iB:SSL14[$slot]  ;  =>           0
+$vsSXS14   =   $scalSX*$iB:SXS14[$slot]  ;  =>           0
+$vsSSS14   =   $scalSS*$iB:SSS14[$slot]  ;  =>           0
+$vsSXL15   =   $scalSX*$iB:SXL15[$slot]  ;  =>           0
+$vsSSL15   =   $scalSS*$iB:SSL15[$slot]  ;  =>           0
+$vsSXS15   =   $scalSX*$iB:SXS15[$slot]  ;  =>           0
+$vsSSS15   =   $scalSS*$iB:SSS15[$slot]  ;  =>           0
+$vsSXL16   =   $scalSX*$iB:SXL16[$slot]  ;  =>           0
+$vsSSL16   =   $scalSS*$iB:SSL16[$slot]  ;  =>           0
+$vsSXS16   =   $scalSX*$iB:SXS16[$slot]  ;  =>           0
+$vsSSS16   =   $scalSS*$iB:SSS16[$slot]  ;  =>           0
+$vsSXL17   =   $scalSX*$iB:SXL17[$slot]  ;  =>           0
+$vsSSL17   =   $scalSS*$iB:SSL17[$slot]  ;  =>           0
+$vsSXS17   =   $scalSX*$iB:SXS17[$slot]  ;  =>           0
+$vsSSS17   =   $scalSS*$iB:SSS17[$slot]  ;  =>           0
+$vsSXL18   =   $scalSX*$iB:SXL18[$slot]  ;  =>           0
+$vsSSL18   =   $scalSS*$iB:SSL18[$slot]  ;  =>           0
+$vsSXS18   =   $scalSX*$iB:SXS18[$slot]  ;  =>           0
+$vsSSS18   =   $scalSS*$iB:SSS18[$slot]  ;  =>           0
+$vsSXL19   =   $scalSX*$iB:SXL19[$slot]  ;  =>           0
+$vsSSL19   =   $scalSS*$iB:SSL19[$slot]  ;  =>           0
+$vsSXS19   =   $scalSX*$iB:SXS19[$slot]  ;  =>           0
+$vsSSS19   =   $scalSS*$iB:SSS19[$slot]  ;  =>           0
+$vsSXL20   =   $scalSX*$iB:SXL20[$slot]  ;  =>           0
+$vsSSL20   =   $scalSS*$iB:SSL20[$slot]  ;  =>           0
+$vsSXS20   =   $scalSX*$iB:SXS20[$slot]  ;  =>           0
+$vsSSS20   =   $scalSS*$iB:SSS20[$slot]  ;  =>           0
+$vsSXL21   =   $scalSX*$iB:SXL21[$slot]  ;  =>           0
+$vsSSL21   =   $scalSS*$iB:SSL21[$slot]  ;  =>           0
+$vsSXS21   =   $scalSX*$iB:SXS21[$slot]  ;  =>           0
+$vsSSS21   =   $scalSS*$iB:SSS21[$slot]  ;  =>           0
+$vsSXL22   =   $scalSX*$iB:SXL22[$slot]  ;  =>           0
+$vsSSL22   =   $scalSS*$iB:SSL22[$slot]  ;  =>           0
+$vsSXS22   =   $scalSX*$iB:SXS22[$slot]  ;  =>           0
+$vsSSS22   =   $scalSS*$iB:SSS22[$slot]  ;  =>           0
+$vsSXL23   =   $scalSX*$iB:SXL23[$slot]  ;  =>           0
+$vsSSL23   =   $scalSS*$iB:SSL23[$slot]  ;  =>           0
+$vsSXS23   =   $scalSX*$iB:SXS23[$slot]  ;  =>           0
+$vsSSS23   =   $scalSS*$iB:SSS23[$slot]  ;  =>           0
+$vsSXL24   =   $scalSX*$iB:SXL24[$slot]  ;  =>           0
+$vsSSL24   =   $scalSS*$iB:SSL24[$slot]  ;  =>           0
+#
+$vsSEXL4 = $scalHarSX* $iB:SEXL4;  =>           0
+$vsSEXL5 =$scalHarSX* $iB:SEXL5;  =>           0
+$vsSEXL6 =$scalHarSSX* $iB:SEXL6;  =>           0
+$vsSEXL7 =$scalHarSSX* $iB:SEXL7;  =>           0
+#
+#========================================
+# initial values for CS parameters
+$vBetaX0=        3270;  =>        3270
+$vBetaY0=         488;  =>         488
+$vAlphaX0=         -60;  =>         -60
+$vAlphaY0=           6;  =>           6
+$vDispX0=        -296;  =>        -296
+$vDispY0=           2;  =>           2
+$vDispPrimeX0=           5;  =>           5
+$vDispPrimeY0=         -11;  =>         -11
+#
+#===================================================
+#Initial:	BetaX[cm]= $vBetaX0	BetaY[cm]= $vBetaY0
+#	AlfaX= $vAlphaX0 	AlfaY= $vAlphaY0
+#	DispersX[cm]= $vDispX0 	DispersY[cm]= $vDispY0
+#	Dsp_PrimeX= $vDispPrimeX0	DspPrimeY= $vDispPrimeY0
+OptiM
+Energy[MeV]=$E0   Mass[MeV]=938.2796 
+Emittance: ex[cm]=$Accept  ey[cm]=$Accept  DP/P=0.01 
+Initial:	BetaX[cm]=3366.19 	BetaY[cm]=527.538 
+	AlfaX=-0.00328586 	AlfaY=-0.0208502 
+	DispersX[cm]=-319.443 	DispersY[cm]=-0.00260174 
+	Dsp_PrimeX=0.000172538 	DspPrimeY=2.17472e-05 
+	tetaX[deg]=0        	tetaY[deg]=0        
+	X[cm]= 0   	Y[cm]=0.0000   	Z[cm]=0.0000   	S[cm]=0.0000   
+#===================================================
+begin lattice. Number of periods= 1
+odrift9 kHS24 kVS24 qQS24 qSQS24 ipB:&VP24S ipB:&HP24S  oBPM&S24 qQSerr24  qSQSerr24 sSXS24 sSSS24  odrift9 
+oDRCP   $bFMAG&U01  oSPACE   $bDMAG&U01   oL01A1 ipB:&VPL1U ipB:&HPL1U oL01A2  $bORBUMPm&1 oL01B  $bORBUMPp&2  
+# The above elements were at the file end in the Meghan's file
+oL01C IFOIL oL01D1 ipB:&VPFOIL ipB:&HPFOIL oL01D2 
+odrift9 kHL01 kVL01   qQL01 qSQL01 ipB:&VP01L ipB:&HP01L  oBPM&L01 qQLerr01 qSQLerr01 sSXL01 sSSL01 odrift9 
+oL01E1  ipB:&HPL1D ipB:&VPL1D oL01E2 $bORBUMPm&3 oL01F   $bDMAG&D01   
+oSPACE   $bFMAG&D01  oDRSEXTS oSEXTS   oDRBPML  ipB:&VPS01 ipB:&HPS01  oDRBPMR 
+odrift9 kHS01 kVS01   qQS01 qSQS01 ipB:&VP01S ipB:&HP01S   oBPM&S01 qQSerr01 qSQSerr01 sSXS01 sSSS01 odrift9  
+oDRCP   $bFMAG&U02   oSPACE   $bDMAG&U02    oL02A kMKS02&_ oL02B kMKS02&_ oL02C kBEX2 oL02D kMKS02&_ oL02E kMKS02&_  oL02F 
+odrift9 kHL02 kVL02 qQL02 qSQL02   ipB:&VP02L  ipB:&HP02L oBPM&L02 qQLerr02  qSQLerr02 sSXL02 sSSL02 odrift9  
+oL02G    $bDMAG&D02   oSPACE   $bFMAG&D02   oDRQGD oQGD oDRBPMD oDRBPMR 
+odrift9 kHS02 kVS02 qQS02 qSQS02 ipB:&VP02S ipB:&HP02S   oBPM&S02 qQSerr02 qSQSerr02 sSXS02 sSSS02  odrift9 
+oDRCP   $bFMAG&U03   oSPACE   $bDMAG&U03   oL03A $bDOGm&1 oL03B 
+odrift9 kHL03 kVL03 qQL03 qSQL03 ipB:&VPU3L ipB:&HPU3L  oBPM&L03 qQLerr03  qSQLerr03 sSXL03 sSSL03 odrift9  
+oL03C   $bDOGp&2 oL03D bSEPT03  oL03E  $bDOGp&3 oL03F $bDOGm&4 oL03G kBEX3 oL03H  ipB:&VP03L ipB:&HP03L  $bDMAG&D03   oSPACE    
+$bFMAG&D03  oDRSEXTS oSEXTS   oDRBPML oDRBPMR 
+odrift9 kHS03 kVS03 qQS03 qSQS03  ipB:&VP03S  ipB:&HP03S   oBPM&S03 qQSerr03 qSQSerr03 sSXS03 sSSS03  odrift9 
+oDRCP   $bFMAG&U04   oSPACE   $bDMAG&U04   oL04A  oSEXTL  oL04B oSEXTL  oL04C sSEXL6 oL04D sSEXL4 oL04E oSEXTL  oL04F kBEX4 oL04G obpmOld oL04H 
+odrift9 kHL04 kVL04 qQL04 qSQL04 ipB:&VP04L ipB:&HP04L  oBPM&L04 qQLerr04  qSQLerr04 sSXL04 sSSL04  odrift9 
+oL04I   $bDMAG&D04   oSPACE   $bFMAG&D04  oDRQGF oQGF oDRBPMF oDRBPMR 
+odrift9 kHS04 kVS04 qQS04 qSQS04  ipB:&VP04S ipB:&HP04S oBPM&S04 qQSerr04 qSQSerr04 sSXS04 sSSS04  odrift9 
+oDRCP   $bFMAG&U05   oSPACE   $bDMAG&U05   oL05A sSEXL7 oL05B sSEXL5 oL05C oIPMH oL05D oIPMV oL05E1 kNOTCHER oL05E2 kHPINGER oL05F 
+odrift9 kHL05 kVL05 qQL05 qSQL05  ipB:&VP05L ipB:&HP05L  oBPM&L05 qQLerr05  qSQLerr05 sSXL05 sSSL05  odrift9 
+oL05G   $bDMAG&D05   oHALF_SP IPRIM_H oHALF_SP $bFMAG&D05 oDRSEXTS oSEXTS   oDRBPML oDRBPMR 
+odrift9 kHS05 kVS05 qQS05 qSQS05 ipB:&VP05S ipB:&HP05S  oBPM&S05 qQSerr05 qSQSerr05 sSXS05 sSSS05 odrift9  
+oDRCP  $bFMAG&U06  oHALF_SP IPRIM_V oHALF_SP  $bDMAG&U06   ipB:&VPU6L ipB:&HPU6L oL06A oSHCOL1 oL06B oSVCOL1 
+oL06C oSHVCOL oL06D obpmOld   oL06E 
+odrift9 kHL06 kVL06 qQL06 qSQL06 ipB:&VP06L ipB:&HP06L oBPM&L06 qQLerr06  qSQLerr06 sSXL06 sSSL06 odrift9  
+oL06F  $bDMAG&D06  oSPACE   $bFMAG&D06   oDRQGD oQGD oDRBPMD oDRBPMR 
+odrift9 kHS06 kVS06 qQS06 qSQS06 ipB:&VP06S ipB:&HP06S   oBPM&S06 qQSerr06 qSQSerr06 sSXS06 sSSS06 odrift9  
+oDRCP   $bFMAG&U07   oSPACE  $bDMAG&U07    ipB:&VPU7L ipB:&HPU7L oL07A oSHCOL2 oL07B oSVCOL2 oL07C sSEXL6 
+oL07D sSEXL4 oL07E obpmOld  oL07F 
+odrift9 kHL07 kVL07 qQL07 qSQL07  ipB:&VP07L ipB:&HP07L  oBPM&L07 qQLerr07  qSQLerr07 sSXL07 sSSL07  odrift9 
+oL07G  $bDMAG&D07   oSPACE  $bFMAG&D07  oDRSEXTS oSEXTS   oDRBPML oDRBPMR 
+odrift9 kHS07 kVS07 qQS07 qSQS07  ipB:&VP07S ipB:&HP07S oBPM&S07 qQSerr07 qSQSerr07 sSXS07 sSSS07 odrift9  
+oDRCP  $bFMAG&U08   oSPACE   $bDMAG&U08   oL08A   oSEXTL oL08B   oSEXTL oL08C sSEXL7 oL08D sSEXL5 oL08E   oSEXTL oL08F 
+oOCT oL08G oOCT oL08H oOCT oL08I oOCT oL08J obpmOld  oL08K 
+odrift9 kHL08 kVL08 qQL08 qSQL08 ipB:&VP08L ipB:&HP08L  oBPM&L08 qQLerr08  qSQLerr08 sSXL08 sSSL08 odrift9  
+oL08L   $bDMAG&D08   oSPACE  $bFMAG&D08  oDRQGF oQGF oDRBPMF oDRBPMR 
+odrift9 kHS08 kVS08 qQS08 qSQS08 ipB:&VP08S ipB:&HP08S  oBPM&S08 qQSerr08 qSQSerr08 sSXS08 sSSS08 odrift9  
+oDRCP   $bFMAG&U09   oSPACE   $bDMAG&U09   oL09A oL09A1 oL09B oL09B1 oL09C  kHOR_DAMP oL09D obpmOld  oL09E 
+odrift9 kHL09 kVL09 qQL09 qSQL09  ipB:&VP09L ipB:&HP09L  oBPM&L09 qQLerr09  qSQLerr09 sSXL09 sSSL09  odrift9 
+oL09F   $bDMAG&D09   oSPACE  $bFMAG&D09  oDRSEXTS oSEXTS   oDRBPML  oDRBPMR 
+odrift9 kHS09 kVS09 qQS09 qSQS09 ipB:&VP09S ipB:&HP09S  oBPM&S09 qQSerr09 qSQSerr09 sSXS09 sSSS09 odrift9  
+oDRCP  $bFMAG&U10  oSPACE  $bDMAG&U10  oL10A sSEX_DISC oL10B sSEX_DISC oL10C sSEX_DISC oL10D obpmOld   oL10E 
+odrift9 kHL10 kVL10 qQL10 qSQL10 ipB:&VP10L ipB:&HP10L oBPM&L10 qQLerr10  qSQLerr10 sSXL10 sSSL10  odrift9 
+oL10F $bDMAG&D10  oSPACE   $bFMAG&D10   oDRQGD oQGD oDRBPMD oDRBPMR 
+odrift9 kHS10 kVS10 qQS10 qSQS10   ipB:&VP10S ipB:&HP10S oBPM&S10 qQSerr10 qSQSerr10 sSXS10 sSSS10 odrift9  
+oDRCP   $bFMAG&U11   oSPACE   $bDMAG&U11   oL11A kVER_DAMP oL11B kPICK_UP oL11C obpmOld oL11D 
+odrift9 kHL11 kVL11 qQL11 qSQL11   ipB:&VP11L  ipB:&HP11L oBPM&L11 qQLerr11  qSQLerr11 sSXL11 sSSL11 odrift9  
+oL11E   $bDMAG&D11   oSPACE   $bFMAG&D11   oDRSEXTS oSEXTS   oDRBPML  oDRBPMR 
+odrift9 kHS11 kVS11 qQS11 qSQS11 ipB:&VP11S ipB:&HP11S  oBPM&S11 qQSerr11 qSQSerr11 sSXS11 sSSS11  odrift9 
+oDRCP   $bFMAG&U12   oSPACE   $bDMAG&U12   oL12A oMKS12 oL12B kVPINGER oL12C oIBEX12 oL12D kNOKKER oL12E kMKS12_4 oL12F obpmOld  
+odrift9 kHL12 kVL12 qQL12 qSQL12  ipB:&VP12L ipB:&HP12L oBPM&L12 qQLerr12  qSQLerr12 sSXL12 sSSL12 odrift9  
+oL12G   $bDMAG&D12   oSPACE   $bFMAG&D12   oDRQGF oQGF oDRBPMF  oDRBPMR 
+odrift9 kHS12 kVS12 qQS12 qSQS12  ipB:&VP12S ipB:&HP12S oBPM&S12 qQSerr12 qSQSerr12 sSXS12 sSSS12  odrift9 
+oDRCP   $bFMAG&U13   oSPACE   $bDMAG&U13   oL13A oDOG13  oL13B  oDOG13  oL13C bSEPT13 oL13D oDOG13   oL13E oDOG13 oL13F oIBEX13 oL13G  
+odrift9 kHL13 kVL13 qQL13 qSQL13 ipB:&VP13L ipB:&HP13L  oBPM&L13 qQLerr13  qSQLerr13 sSXL13 sSSL13  odrift9  
+oL13H   $bDMAG&D13   oSPACE   $bFMAG&D13   oDRSEXTS oSEXTS   oDRBPML oDRBPMR 
+odrift9 kHS13 kVS13 qQS13 qSQS13 ipB:&VP13S ipB:&HP13S   oBPM&S13 qQSerr13  qSQSerr13 sSXS13 sSSS13  odrift9 
+oDRCP   $bFMAG&U14   oSPACE   $bDMAG&U14   oL14A hRF aRF hRF oL14B hRF aRF hRF oL14C oIBEX14 oL14D obpmOld  oL14E 
+odrift9 kHL14 kVL14 qQL14 qSQL14  ipB:&VP14L ipB:&HP14L  oBPM&L14 qQLerr14  qSQLerr14 sSXL14 sSSL14 odrift9  
+oL14F   $bDMAG&D14  oSPACE   $bFMAG&D14   oDRQGD oQGD oDRBPMD  oDRBPMR 
+odrift9 kHS14 kVS14 qQS14 qSQS14  ipB:&VP14S ipB:&HP14S oBPM&S14 qQSerr14  qSQSerr14 sSXS14 sSSS14  odrift9 
+oDRCP   $bFMAG&U15   oSPACE  $bDMAG&U15   oL15A hRF aRF hRF oL15B hRF aRF hRF oL15C obpmOld oL15D 
+odrift9 kHL15 kVL15 qQL15 qSQL15  ipB:&VP15L ipB:&HP15L  oBPM&L15 qQLerr15  qSQLerr15 sSXL15 sSSL15  odrift9 
+oL15E   $bDMAG&D15   oSPACE   $bFMAG&D15   oDRSEXTS oSEXTS   oDRBPML  oDRBPMR 
+odrift9 kHS15 kVS15 qQS15 qSQS15 ipB:&VP15S ipB:&HP15S  oBPM&S15 qQSerr15  qSQSerr15 sSXS15 sSSS15 odrift9  
+oDRCP   $bFMAG&U16   oSPACE   $bDMAG&U16   oL16A hRF aRF hRF oL16B hRF aRF hRF oL16C obpmOld   oL16D 
+odrift9 kHL16 kVL16 qQL16 qSQL16 ipB:&VP16L ipB:&HP16L oBPM&L16 qQLerr16  qSQLerr16 sSXL16 sSSL16  odrift9 
+oL16E   $bDMAG&D16   oSPACE   $bFMAG&D16   oDRQGF oQGF oDRBPMF oDRBPMR 
+odrift9 kHS16 kVS16 qQS16 qSQS16  ipB:&VP16S ipB:&HP16S   oBPM&S16 qQSerr16  qSQSerr16 sSXS16 sSSS16  odrift9 
+oDRCP   $bFMAG&U17   oSPACE   $bDMAG&U17   oL17A hRF aRF hRF oL17B hRF aRF hRF oL17C obpmOld  oL17D 
+odrift9 kHL17 kVL17 qQL17 qSQL17   ipB:&VP17L ipB:&HP17L oBPM&L17 qQLerr17  qSQLerr17 sSXL17 sSSL17 odrift9  
+oL17E   $bDMAG&D17   oSPACE   $bFMAG&D17   oDRSEXTS oSEXTS   oDRBPML oDRBPMR 
+odrift9 kHS17 kVS17 qQS17 qSQS17  ipB:&VP17S ipB:&HP17S  oBPM&S17 qQSerr17  qSQSerr17 sSXS17 sSSS17 odrift9  
+oDRCP   $bFMAG&U18   oSPACE   $bDMAG&U18   oL18A iRAD_POS_MON1 oL18B iRAD_POS_MON2 oL18C  oSEXTL oL18D  oSEXTL oL18E   
+oSEXTL oL18F iPHASE_DET oL18G iLONG_DAMPER oL18H iiWALL_MON oL18I obpmOld oL18J 
+odrift9 kHL18 kVL18 qQL18 qSQL18  ipB:&VP18L ipB:&HP18L  oBPM&L18 qQLerr18  qSQLerr18 sSXL18 sSSL18 odrift9  
+oL18K   $bDMAG&D18  oSPACE   $bFMAG&D18   oDRQGD oQGD oDRBPMD oDRBPMR 
+odrift9 kHS18 kVS18 qQS18 qSQS18  ipB:&VP18S ipB:&HP18S  oBPM&S18 qQSerr18  qSQSerr18 sSXS18 sSSS18 odrift9 
+oDRCP   $bFMAG&U19   oSPACE   $bDMAG&U19   oL19A hRF aRF hRF oL19B hRF aRF hRF oL19C obpmOld  oL19D 
+odrift9 kHL19 kVL19 qQL19 qSQL19  ipB:&VP19L ipB:&HP19L  oBPM&L19 qQLerr19  qSQLerr19 sSXL19 sSSL19  odrift9 
+oL19E   $bDMAG&D19   oSPACE   $bFMAG&D19   oDRSEXTS oSEXTS   oDRBPML oDRBPMR 
+odrift9 kHS19 kVS19 qQS19 qSQS19   ipB:&VP19S ipB:&HP19S  oBPM&S19 qQSerr19  qSQSerr19 sSXS19 sSSS19 odrift9  
+oDRCP  $bFMAG&U20   oSPACE $bDMAG&U20 oL20A oOCT oL20B oOCT oL20C oOCT oL20D oOCT oL20E obpmOld  oL20F 
+odrift9 kHL20 kVL20 qQL20 qSQL20  ipB:&VP20L ipB:&HP20L oBPM&L20 qQLerr20  qSQLerr20 sSXL20 sSSL20  odrift9 
+oL20G $bDMAG&D20  oSPACE   $bFMAG&D20   oDRQGF oQGF oDRBPMF oDRBPMR 
+odrift9 kHS20 kVS20 qQS20 qSQS20  ipB:&VP20S ipB:&HP20S  oBPM&S20 qQSerr20  qSQSerr20 sSXS20 sSSS20 odrift9  
+oDRCP   $bFMAG&U21   oSPACE   $bDMAG&U21   oL21A hRF aRF hRF oL21B hRF aRF hRF oL21C obpmOld  oL21D
+odrift9 kHL21 kVL21 qQL21 qSQL21  ipB:&VP21L ipB:&HP21L oBPM&L21 qQLerr21  qSQLerr21 sSXL21 sSSL21  odrift9 
+oL21E   $bDMAG&D21   oSPACE  $bFMAG&D21   oDRSEXTS oSEXTS   oDRBPML oDRBPMR 
+odrift9 kHS21 kVS21 qQS21 qSQS21  ipB:&VP21S ipB:&HP21S oBPM&S21 qQSerr21  qSQSerr21 sSXS21 sSSS21 odrift9  
+oDRCP   $bFMAG&U22   oSPACE   $bDMAG&U22   oL22A hRF aRF hRF oL22B hRF aRF hRF oL22C obpmOld  oL22D 
+odrift9 kHL22 kVL22 qQL22 qSQL22  ipB:&VP22L ipB:&HP22L oBPM&L22 qQLerr22  qSQLerr22 sSXL22 sSSL22  odrift9 
+oL22E   $bDMAG&D22   oSPACE   $bFMAG&D22   oDRQGD oQGD oDRBPMD oDRBPMR 
+odrift9 kHS22 kVS22 qQS22 qSQS22  ipB:&VP22S ipB:&HP22S oBPM&S22 qQSerr22  qSQSerr22 sSXS22 sSSS22  odrift9 
+oDRCP   $bFMAG&U23  oSPACE   $bDMAG&U23   oL23A hRF aRF hRF oL23B hRF aRF hRF oL23C obpmOld   oL23D 
+odrift9 kHL23 kVL23 qQL23 qSQL23 ipB:&VP23L ipB:&HP23L  oBPM&L23 qQLerr23  qSQLerr23 sSXL23 sSSL23  odrift9 
+oL23E   $bDMAG&D23   oSPACE  $bFMAG&D23   oDRSEXTS oSEXTS   oDRBPML  oDRBPMR 
+odrift9 kHS23 kVS23 qQS23 qSQS23 ipB:&VP23S ipB:&HP23S oBPM&S23 qQSerr23 qSQSerr23 sSXS23 sSSS23  odrift9 
+oDRCP   $bFMAG&U24   oSPACE   $bDMAG&U24   oL24A hRF aRF hRF oL24B hRF aRF hRF oL24C obpmOld  oL24D 
+odrift9 kHL24 kVL24 qQL24 qSQL24  ipB:&VP24L ipB:&HP24L oBPM&L24 qQLerr24 qSQLerr24 sSXL24 sSSL24 odrift9  
+oL24E   $bDMAG&D24   oSPACE   $bFMAG&D24   oDRQGF oQGF oDRBPMF ipB:&VPS24 ipB:&HPS24 oDRBPMR 
+end lattice 
+#===================================================
+begin list
+#
+# Main dipoles
+bFMAG 	L[cm]=$Ldip   		B[kG]= $B_F  		G[kG/cm]= $G_F  	Tilt[deg]=0
+gFMAG 	B[kG]= $B_F   		Angle[deg]= $AngF	EffLen[cm]=0  		Tilt[deg]=0  
+mFMAG 	Order:m=2		Bm*L[kG/cm^(m-1)]=$S_F   			Tilt[deg]=0
+#hmagF 	Ax[cm]=200		Ay[cm]=200 	Shape=0 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+hmagF 	Ax[cm]=5.461 		Ay[cm]=2.0828 	Shape=0 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+#
+bDMAG 	L[cm]=$Ldip   		B[kG]= $B_D  		G[kG/cm]= $G_D  	Tilt[deg]=0
+gDMAG 	B[kG]= $B_D   		Angle[deg]= $AngD	EffLen[cm]=0  		Tilt[deg]=0  
+mDMAG 	Order:m=2		Bm*L[kG/cm^(m-1)]=$S_D   			Tilt[deg]=0
+#hmagD 	Ax[cm]=200 		Ay[cm]=200	Shape=0 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+hmagD 	Ax[cm]=3.81 		Ay[cm]=2.8575 	Shape=0 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+#
+# Injection dipoles
+bORBUMPp 	L[cm]=$LORBUMP   	B[kG]=$bORBUMP      	G[kG/cm]=$gORBUMP        	Tilt[deg]=180
+gORBUMPp 	B[kG]=$bORBUMP      	Angle[deg]=$vaORBUMP/2	EffLen[cm]=0  		Tilt[deg]=180  
+bORBUMPm 	L[cm]=$LORBUMP   	B[kG]=$bORBUMP/2     	G[kG/cm]=$gORBUMP/2        	Tilt[deg]=0
+gORBUMPm 	B[kG]=$bORBUMP/2    	Angle[deg]=$vaORBUMP/4  	EffLen[cm]=0	  	Tilt[deg]=0  
+#
+## Extraction dipoles to MI8-line
+bDOGp 	L[cm]=$lenDOG03  	B[kG]=$vbDOG03     	G[kG/cm]=0	      	Tilt[deg]=-90
+gDOGp 	B[kG]=$vbDOG03      	Angle[deg]=$vaDOG03/2	EffLen[cm]=0  		Tilt[deg]=-90  
+mDOGp 	Order:m=2		Bm*L[kG/cm^(m-1)]=$S_DOG   			Tilt[deg]=-90
+bDOGm 	L[cm]=$lenDOG03  	B[kG]=$vbDOG03    	G[kG/cm]=0		Tilt[deg]=90
+gDOGm 	B[kG]=$vbDOG03      	Angle[deg]=$vaDOG03/2	EffLen[cm]=0		Tilt[deg]=90  
+#mDOGm 	Order:m=2		Bm*L[kG/cm^(m-1)]=$S_DOG   			Tilt[deg]=90  # It was redundant, I commented it at Dec.2, 2013
+#
+bSEPT03 	L[cm]=152.358    		B[kG]=0          		G[kG/cm]=0        		Tilt[deg]=90
+bSEPT13 	L[cm]=152.372    		B[kG]=0          		G[kG/cm]=0        		Tilt[deg]=90
+#  
+# quads
+qQL01	L[cm]=2.4	G[kG/cm]=$vqQL01	Tilt[deg]=0
+qSQL01	L[cm]=2.4	G[kG/cm]=$vqSQL01	Tilt[deg]=45
+qQS01	L[cm]=2.4	G[kG/cm]=$vqQS01	Tilt[deg]=0
+qSQS01	L[cm]=2.4	G[kG/cm]=$vqSQS01	Tilt[deg]=45
+qQL02	L[cm]=2.4	G[kG/cm]=$vqQL02	Tilt[deg]=0
+qSQL02	L[cm]=2.4	G[kG/cm]=$vqSQL02	Tilt[deg]=45
+qQS02	L[cm]=2.4	G[kG/cm]=$vqQS02	Tilt[deg]=0
+qSQS02	L[cm]=2.4	G[kG/cm]=$vqSQS02	Tilt[deg]=45
+qQL03	L[cm]=2.4	G[kG/cm]=$vqQL03	Tilt[deg]=0
+qSQL03	L[cm]=2.4	G[kG/cm]=$vqSQL03	Tilt[deg]=45
+qQS03	L[cm]=2.4	G[kG/cm]=$vqQS03	Tilt[deg]=0
+qSQS03	L[cm]=2.4	G[kG/cm]=$vqSQS03	Tilt[deg]=45
+qQL04	L[cm]=2.4	G[kG/cm]=$vqQL04	Tilt[deg]=0
+qSQL04	L[cm]=2.4	G[kG/cm]=$vqSQL04	Tilt[deg]=45
+qQS04	L[cm]=2.4	G[kG/cm]=$vqQS04	Tilt[deg]=0
+qSQS04	L[cm]=2.4	G[kG/cm]=$vqSQS04	Tilt[deg]=45
+qQL05	L[cm]=2.4	G[kG/cm]=$vqQL05	Tilt[deg]=0
+qSQL05	L[cm]=2.4	G[kG/cm]=$vqSQL05	Tilt[deg]=45
+qQS05	L[cm]=2.4	G[kG/cm]=$vqQS05	Tilt[deg]=0
+qSQS05	L[cm]=2.4	G[kG/cm]=$vqSQS05	Tilt[deg]=45
+qQL06	L[cm]=2.4	G[kG/cm]=$vqQL06	Tilt[deg]=0
+qSQL06	L[cm]=2.4	G[kG/cm]=$vqSQL06	Tilt[deg]=45
+qQS06	L[cm]=2.4	G[kG/cm]=$vqQS06	Tilt[deg]=0
+qSQS06	L[cm]=2.4	G[kG/cm]=$vqSQS06	Tilt[deg]=45
+qQL07	L[cm]=2.4	G[kG/cm]=$vqQL07	Tilt[deg]=0
+qSQL07	L[cm]=2.4	G[kG/cm]=$vqSQL07	Tilt[deg]=45
+qQS07	L[cm]=2.4	G[kG/cm]=$vqQS07	Tilt[deg]=0
+qSQS07	L[cm]=2.4	G[kG/cm]=$vqSQS07	Tilt[deg]=45
+qQL08	L[cm]=2.4	G[kG/cm]=$vqQL08	Tilt[deg]=0
+qSQL08	L[cm]=2.4	G[kG/cm]=$vqSQL08	Tilt[deg]=45
+qQS08	L[cm]=2.4	G[kG/cm]=$vqQS08	Tilt[deg]=0
+qSQS08	L[cm]=2.4	G[kG/cm]=$vqSQS08	Tilt[deg]=45
+qQL09	L[cm]=2.4	G[kG/cm]=$vqQL09	Tilt[deg]=0
+qSQL09	L[cm]=2.4	G[kG/cm]=$vqSQL09	Tilt[deg]=45
+qQS09	L[cm]=2.4	G[kG/cm]=$vqQS09	Tilt[deg]=0
+qSQS09	L[cm]=2.4	G[kG/cm]=$vqSQS09	Tilt[deg]=45
+qQL10	L[cm]=2.4	G[kG/cm]=$vqQL10	Tilt[deg]=0
+qSQL10	L[cm]=2.4	G[kG/cm]=$vqSQL10	Tilt[deg]=45
+qQL11	L[cm]=2.4	G[kG/cm]=$vqQL11	Tilt[deg]=0
+qSQL11	L[cm]=2.4	G[kG/cm]=$vqSQL11	Tilt[deg]=45
+qQS10	L[cm]=2.4	G[kG/cm]=$vqQS10	Tilt[deg]=0
+qSQS10	L[cm]=2.4	G[kG/cm]=$vqSQS10	Tilt[deg]=45
+qQS11	L[cm]=2.4	G[kG/cm]=$vqQS11	Tilt[deg]=0
+qSQS11	L[cm]=2.4	G[kG/cm]=$vqSQS11	Tilt[deg]=45
+qQL12	L[cm]=2.4	G[kG/cm]=$vqQL12	Tilt[deg]=0
+qSQL12	L[cm]=2.4	G[kG/cm]=$vqSQL12	Tilt[deg]=45
+qQS12	L[cm]=2.4	G[kG/cm]=$vqQS12	Tilt[deg]=0
+qSQS12	L[cm]=2.4	G[kG/cm]=$vqSQS12	Tilt[deg]=45
+qQL13	L[cm]=2.4	G[kG/cm]=$vqQL13	Tilt[deg]=0
+qSQL13	L[cm]=2.4	G[kG/cm]=$vqSQL13	Tilt[deg]=45
+qQS13	L[cm]=2.4	G[kG/cm]=$vqQS13	Tilt[deg]=0
+qSQS13	L[cm]=2.4	G[kG/cm]=$vqSQS13	Tilt[deg]=45
+qQL14	L[cm]=2.4	G[kG/cm]=$vqQL14	Tilt[deg]=0
+qSQL14	L[cm]=2.4	G[kG/cm]=$vqSQL14	Tilt[deg]=45
+qQS14	L[cm]=2.4	G[kG/cm]=$vqQS14	Tilt[deg]=0
+qSQS14	L[cm]=2.4	G[kG/cm]=$vqSQS14	Tilt[deg]=45
+qQL15	L[cm]=2.4	G[kG/cm]=$vqQL15	Tilt[deg]=0
+qSQL15	L[cm]=2.4	G[kG/cm]=$vqSQL15	Tilt[deg]=45
+qQS15	L[cm]=2.4	G[kG/cm]=$vqQS15	Tilt[deg]=0
+qSQS15	L[cm]=2.4	G[kG/cm]=$vqSQS15	Tilt[deg]=45
+qQL16	L[cm]=2.4	G[kG/cm]=$vqQL16	Tilt[deg]=0
+qSQL16	L[cm]=2.4	G[kG/cm]=$vqSQL16	Tilt[deg]=45
+qQS16	L[cm]=2.4	G[kG/cm]=$vqQS16	Tilt[deg]=0
+qSQS16	L[cm]=2.4	G[kG/cm]=$vqSQS16	Tilt[deg]=45
+qQL17	L[cm]=2.4	G[kG/cm]=$vqQL17	Tilt[deg]=0
+qSQL17	L[cm]=2.4	G[kG/cm]=$vqSQL17	Tilt[deg]=45
+qQS17	L[cm]=2.4	G[kG/cm]=$vqQS17	Tilt[deg]=0
+qSQS17	L[cm]=2.4	G[kG/cm]=$vqSQS17	Tilt[deg]=45
+qQL18	L[cm]=2.4	G[kG/cm]=$vqQL18	Tilt[deg]=0
+qSQL18	L[cm]=2.4	G[kG/cm]=$vqSQL18	Tilt[deg]=45
+qQS18	L[cm]=2.4	G[kG/cm]=$vqQS18	Tilt[deg]=0
+qSQS18	L[cm]=2.4	G[kG/cm]=$vqSQS18	Tilt[deg]=45
+qQL19	L[cm]=2.4	G[kG/cm]=$vqQL19	Tilt[deg]=0
+qSQL19	L[cm]=2.4	G[kG/cm]=$vqSQL19	Tilt[deg]=45
+qQS19	L[cm]=2.4	G[kG/cm]=$vqQS19	Tilt[deg]=0
+qSQS19	L[cm]=2.4	G[kG/cm]=$vqSQS19	Tilt[deg]=45
+qQL20	L[cm]=2.4	G[kG/cm]=$vqQL20	Tilt[deg]=0
+qSQL20	L[cm]=2.4	G[kG/cm]=$vqSQL20	Tilt[deg]=45
+qQS20	L[cm]=2.4	G[kG/cm]=$vqQS20	Tilt[deg]=0
+qSQS20	L[cm]=2.4	G[kG/cm]=$vqSQS20	Tilt[deg]=45
+qQL21	L[cm]=2.4	G[kG/cm]=$vqQL21	Tilt[deg]=0
+qSQL21	L[cm]=2.4	G[kG/cm]=$vqSQL21	Tilt[deg]=45
+qQS21	L[cm]=2.4	G[kG/cm]=$vqQS21	Tilt[deg]=0
+qSQS21	L[cm]=2.4	G[kG/cm]=$vqSQS21	Tilt[deg]=45
+qQL22	L[cm]=2.4	G[kG/cm]=$vqQL22	Tilt[deg]=0
+qSQL22	L[cm]=2.4	G[kG/cm]=$vqSQL22	Tilt[deg]=45
+qQS22	L[cm]=2.4	G[kG/cm]=$vqQS22	Tilt[deg]=0
+qSQS22	L[cm]=2.4	G[kG/cm]=$vqSQS22	Tilt[deg]=45
+qQL23	L[cm]=2.4	G[kG/cm]=$vqQL23	Tilt[deg]=0
+qSQL23	L[cm]=2.4	G[kG/cm]=$vqSQL23	Tilt[deg]=45
+qQS23	L[cm]=2.4	G[kG/cm]=$vqQS23	Tilt[deg]=0
+qSQS23	L[cm]=2.4	G[kG/cm]=$vqSQS23	Tilt[deg]=45
+qQL24	L[cm]=2.4	G[kG/cm]=$vqQL24	Tilt[deg]=0
+qSQL24	L[cm]=2.4	G[kG/cm]=$vqSQL24	Tilt[deg]=45
+qQS24	L[cm]=2.4	G[kG/cm]=$vqQS24	Tilt[deg]=0
+qSQS24	L[cm]=2.4	G[kG/cm]=$vqSQS24	Tilt[deg]=45
+# quad errors
+qQLerr01	L[cm]=0.0001	G[kG/cm]=$vqQLerr01	Tilt[deg]=0
+qSQLerr01	L[cm]=0.0001	G[kG/cm]=$vqSQLerr01	Tilt[deg]=45
+qQSerr01	L[cm]=0.0001	G[kG/cm]=$vqQSerr01	Tilt[deg]=0
+qSQSerr01	L[cm]=0.0001	G[kG/cm]=$vqSQSerr01	Tilt[deg]=45
+qQLerr02	L[cm]=0.0001	G[kG/cm]=$vqQLerr02	Tilt[deg]=0
+qSQLerr02	L[cm]=0.0001	G[kG/cm]=$vqSQLerr02	Tilt[deg]=45
+qQSerr02	L[cm]=0.0001	G[kG/cm]=$vqQSerr02	Tilt[deg]=0
+qSQSerr02	L[cm]=0.0001	G[kG/cm]=$vqSQSerr02	Tilt[deg]=45
+qQLerr03	L[cm]=0.0001	G[kG/cm]=$vqQLerr03	Tilt[deg]=0
+qSQLerr03	L[cm]=0.0001	G[kG/cm]=$vqSQLerr03	Tilt[deg]=45
+qQSerr03	L[cm]=0.0001	G[kG/cm]=$vqQSerr03	Tilt[deg]=0
+qSQSerr03	L[cm]=0.0001	G[kG/cm]=$vqSQSerr03	Tilt[deg]=45
+qQLerr04	L[cm]=0.0001	G[kG/cm]=$vqQLerr04	Tilt[deg]=0
+qSQLerr04	L[cm]=0.0001	G[kG/cm]=$vqSQLerr04	Tilt[deg]=45
+qQSerr04	L[cm]=0.0001	G[kG/cm]=$vqQSerr04	Tilt[deg]=0
+qSQSerr04	L[cm]=0.0001	G[kG/cm]=$vqSQSerr04	Tilt[deg]=45
+qQLerr05	L[cm]=0.0001	G[kG/cm]=$vqQLerr05	Tilt[deg]=0
+qSQLerr05	L[cm]=0.0001	G[kG/cm]=$vqSQLerr05	Tilt[deg]=45
+qQSerr05	L[cm]=0.0001	G[kG/cm]=$vqQSerr05	Tilt[deg]=0
+qSQSerr05	L[cm]=0.0001	G[kG/cm]=$vqSQSerr05	Tilt[deg]=45
+qQLerr06	L[cm]=0.0001	G[kG/cm]=$vqQLerr06	Tilt[deg]=0
+qSQLerr06	L[cm]=0.0001	G[kG/cm]=$vqSQLerr06	Tilt[deg]=45
+qQSerr06	L[cm]=0.0001	G[kG/cm]=$vqQSerr06	Tilt[deg]=0
+qSQSerr06	L[cm]=0.0001	G[kG/cm]=$vqSQSerr06	Tilt[deg]=45
+qQLerr07	L[cm]=0.0001	G[kG/cm]=$vqQLerr07	Tilt[deg]=0
+qSQLerr07	L[cm]=0.0001	G[kG/cm]=$vqSQLerr07	Tilt[deg]=45
+qQSerr07	L[cm]=0.0001	G[kG/cm]=$vqQSerr07	Tilt[deg]=0
+qSQSerr07	L[cm]=0.0001	G[kG/cm]=$vqSQSerr07	Tilt[deg]=45
+qQLerr08	L[cm]=0.0001	G[kG/cm]=$vqQLerr08	Tilt[deg]=0
+qSQLerr08	L[cm]=0.0001	G[kG/cm]=$vqSQLerr08	Tilt[deg]=45
+qQSerr08	L[cm]=0.0001	G[kG/cm]=$vqQSerr08	Tilt[deg]=0
+qSQSerr08	L[cm]=0.0001	G[kG/cm]=$vqSQSerr08	Tilt[deg]=45
+qQLerr09	L[cm]=0.0001	G[kG/cm]=$vqQLerr09	Tilt[deg]=0
+qSQLerr09	L[cm]=0.0001	G[kG/cm]=$vqSQLerr09	Tilt[deg]=45
+qQSerr09	L[cm]=0.0001	G[kG/cm]=$vqQSerr09	Tilt[deg]=0
+qSQSerr09	L[cm]=0.0001	G[kG/cm]=$vqSQSerr09	Tilt[deg]=45
+qQLerr10	L[cm]=0.0001	G[kG/cm]=$vqQLerr10	Tilt[deg]=0
+qSQLerr10	L[cm]=0.0001	G[kG/cm]=$vqSQLerr10	Tilt[deg]=45
+qQLerr11	L[cm]=0.0001	G[kG/cm]=$vqQLerr11	Tilt[deg]=0
+qSQLerr11	L[cm]=0.0001	G[kG/cm]=$vqSQLerr11	Tilt[deg]=45
+qQSerr10	L[cm]=0.0001	G[kG/cm]=$vqQSerr10	Tilt[deg]=0
+qSQSerr10	L[cm]=0.0001	G[kG/cm]=$vqSQSerr10	Tilt[deg]=45
+qQSerr11	L[cm]=0.0001	G[kG/cm]=$vqQSerr11	Tilt[deg]=0
+qSQSerr11	L[cm]=0.0001	G[kG/cm]=$vqSQSerr11	Tilt[deg]=45
+qQLerr12	L[cm]=0.0001	G[kG/cm]=$vqQLerr12	Tilt[deg]=0
+qSQLerr12	L[cm]=0.0001	G[kG/cm]=$vqSQLerr12	Tilt[deg]=45
+qQSerr12	L[cm]=0.0001	G[kG/cm]=$vqQSerr12	Tilt[deg]=0
+qSQSerr12	L[cm]=0.0001	G[kG/cm]=$vqSQSerr12	Tilt[deg]=45
+qQLerr13	L[cm]=0.0001	G[kG/cm]=$vqQLerr13	Tilt[deg]=0
+qSQLerr13	L[cm]=0.0001	G[kG/cm]=$vqSQLerr13	Tilt[deg]=45
+qQSerr13	L[cm]=0.0001	G[kG/cm]=$vqQSerr13	Tilt[deg]=0
+qSQSerr13	L[cm]=0.0001	G[kG/cm]=$vqSQSerr13	Tilt[deg]=45
+qQLerr14	L[cm]=0.0001	G[kG/cm]=$vqQLerr14	Tilt[deg]=0
+qSQLerr14	L[cm]=0.0001	G[kG/cm]=$vqSQLerr14	Tilt[deg]=45
+qQSerr14	L[cm]=0.0001	G[kG/cm]=$vqQSerr14	Tilt[deg]=0
+qSQSerr14	L[cm]=0.0001	G[kG/cm]=$vqSQSerr14	Tilt[deg]=45
+qQLerr15	L[cm]=0.0001	G[kG/cm]=$vqQLerr15	Tilt[deg]=0
+qSQLerr15	L[cm]=0.0001	G[kG/cm]=$vqSQLerr15	Tilt[deg]=45
+qQSerr15	L[cm]=0.0001	G[kG/cm]=$vqQSerr15	Tilt[deg]=0
+qSQSerr15	L[cm]=0.0001	G[kG/cm]=$vqSQSerr15	Tilt[deg]=45
+qQLerr16	L[cm]=0.0001	G[kG/cm]=$vqQLerr16	Tilt[deg]=0
+qSQLerr16	L[cm]=0.0001	G[kG/cm]=$vqSQLerr16	Tilt[deg]=45
+qQSerr16	L[cm]=0.0001	G[kG/cm]=$vqQSerr16	Tilt[deg]=0
+qSQSerr16	L[cm]=0.0001	G[kG/cm]=$vqSQSerr16	Tilt[deg]=45
+qQLerr17	L[cm]=0.0001	G[kG/cm]=$vqQLerr17	Tilt[deg]=0
+qSQLerr17	L[cm]=0.0001	G[kG/cm]=$vqSQLerr17	Tilt[deg]=45
+qQSerr17	L[cm]=0.0001	G[kG/cm]=$vqQSerr17	Tilt[deg]=0
+qSQSerr17	L[cm]=0.0001	G[kG/cm]=$vqSQSerr17	Tilt[deg]=45
+qQLerr18	L[cm]=0.0001	G[kG/cm]=$vqQLerr18	Tilt[deg]=0
+qSQLerr18	L[cm]=0.0001	G[kG/cm]=$vqSQLerr18	Tilt[deg]=45
+qQSerr18	L[cm]=0.0001	G[kG/cm]=$vqQSerr18	Tilt[deg]=0
+qSQSerr18	L[cm]=0.0001	G[kG/cm]=$vqSQSerr18	Tilt[deg]=45
+qQLerr19	L[cm]=0.0001	G[kG/cm]=$vqQLerr19	Tilt[deg]=0
+qSQLerr19	L[cm]=0.0001	G[kG/cm]=$vqSQLerr19	Tilt[deg]=45
+qQSerr19	L[cm]=0.0001	G[kG/cm]=$vqQSerr19	Tilt[deg]=0
+qSQSerr19	L[cm]=0.0001	G[kG/cm]=$vqSQSerr19	Tilt[deg]=45
+qQLerr20	L[cm]=0.0001	G[kG/cm]=$vqQLerr20	Tilt[deg]=0
+qSQLerr20	L[cm]=0.0001	G[kG/cm]=$vqSQLerr20	Tilt[deg]=45
+qQSerr20	L[cm]=0.0001	G[kG/cm]=$vqQSerr20	Tilt[deg]=0
+qSQSerr20	L[cm]=0.0001	G[kG/cm]=$vqSQSerr20	Tilt[deg]=45
+qQLerr21	L[cm]=0.0001	G[kG/cm]=$vqQLerr21	Tilt[deg]=0
+qSQLerr21	L[cm]=0.0001	G[kG/cm]=$vqSQLerr21	Tilt[deg]=45
+qQSerr21	L[cm]=0.0001	G[kG/cm]=$vqQSerr21	Tilt[deg]=0
+qSQSerr21	L[cm]=0.0001	G[kG/cm]=$vqSQSerr21	Tilt[deg]=45
+qQLerr22	L[cm]=0.0001	G[kG/cm]=$vqQLerr22	Tilt[deg]=0
+qSQLerr22	L[cm]=0.0001	G[kG/cm]=$vqSQLerr22	Tilt[deg]=45
+qQSerr22	L[cm]=0.0001	G[kG/cm]=$vqQSerr22	Tilt[deg]=0
+qSQSerr22	L[cm]=0.0001	G[kG/cm]=$vqSQSerr22	Tilt[deg]=45
+qQLerr23	L[cm]=0.0001	G[kG/cm]=$vqQLerr23	Tilt[deg]=0
+qSQLerr23	L[cm]=0.0001	G[kG/cm]=$vqSQLerr23	Tilt[deg]=45
+qQSerr23	L[cm]=0.0001	G[kG/cm]=$vqQSerr23	Tilt[deg]=0
+qSQSerr23	L[cm]=0.0001	G[kG/cm]=$vqSQSerr23	Tilt[deg]=45
+qQLerr24	L[cm]=0.0001	G[kG/cm]=$vqQLerr24	Tilt[deg]=0
+qSQLerr24	L[cm]=0.0001	G[kG/cm]=$vqSQLerr24	Tilt[deg]=45
+qQSerr24	L[cm]=0.0001	G[kG/cm]=$vqQSerr24	Tilt[deg]=0
+qSQSerr24	L[cm]=0.0001	G[kG/cm]=$vqSQSerr24	Tilt[deg]=45
+# sextupoles
+sSXL01	L[cm]=2.4	S[kG/cm/cm]=$vsSXL01	Tilt[deg]=0
+sSSL01	L[cm]=2.4	S[kG/cm/cm]=$vsSSL01	Tilt[deg]=30
+sSXS01	L[cm]=2.4	S[kG/cm/cm]=$vsSXS01	Tilt[deg]=0
+sSSS01	L[cm]=2.4	S[kG/cm/cm]=$vsSSS01	Tilt[deg]=30
+sSXL02	L[cm]=2.4	S[kG/cm/cm]=$vsSXL02	Tilt[deg]=0
+sSSL02	L[cm]=2.4	S[kG/cm/cm]=$vsSSL02	Tilt[deg]=30
+sSXS02	L[cm]=2.4	S[kG/cm/cm]=$vsSXS02	Tilt[deg]=0
+sSSS02	L[cm]=2.4	S[kG/cm/cm]=$vsSSS02	Tilt[deg]=30
+sSXL03	L[cm]=2.4	S[kG/cm/cm]=$vsSXL03	Tilt[deg]=0
+sSSL03	L[cm]=2.4	S[kG/cm/cm]=$vsSSL03	Tilt[deg]=30
+sSXS03	L[cm]=2.4	S[kG/cm/cm]=$vsSXS03	Tilt[deg]=0
+sSSS03	L[cm]=2.4	S[kG/cm/cm]=$vsSSS03	Tilt[deg]=30
+sSXL04	L[cm]=2.4	S[kG/cm/cm]=$vsSXL04	Tilt[deg]=0
+sSSL04	L[cm]=2.4	S[kG/cm/cm]=$vsSSL04	Tilt[deg]=30
+sSXS04	L[cm]=2.4	S[kG/cm/cm]=$vsSXS04	Tilt[deg]=0
+sSSS04	L[cm]=2.4	S[kG/cm/cm]=$vsSSS04	Tilt[deg]=30
+sSXL05	L[cm]=2.4	S[kG/cm/cm]=$vsSXL05	Tilt[deg]=0
+sSSL05	L[cm]=2.4	S[kG/cm/cm]=$vsSSL05	Tilt[deg]=30
+sSXS05	L[cm]=2.4	S[kG/cm/cm]=$vsSXS05	Tilt[deg]=0
+sSSS05	L[cm]=2.4	S[kG/cm/cm]=$vsSSS05	Tilt[deg]=30
+sSXL06	L[cm]=2.4	S[kG/cm/cm]=$vsSXL06	Tilt[deg]=0
+sSSL06	L[cm]=2.4	S[kG/cm/cm]=$vsSSL06	Tilt[deg]=30
+sSXS06	L[cm]=2.4	S[kG/cm/cm]=$vsSXS06	Tilt[deg]=0
+sSSS06	L[cm]=2.4	S[kG/cm/cm]=$vsSSS06	Tilt[deg]=30
+sSXL07	L[cm]=2.4	S[kG/cm/cm]=$vsSXL07	Tilt[deg]=0
+sSSL07	L[cm]=2.4	S[kG/cm/cm]=$vsSSL07	Tilt[deg]=30
+sSXS07	L[cm]=2.4	S[kG/cm/cm]=$vsSXS07	Tilt[deg]=0
+sSSS07	L[cm]=2.4	S[kG/cm/cm]=$vsSSS07	Tilt[deg]=30
+sSXL08	L[cm]=2.4	S[kG/cm/cm]=$vsSXL08	Tilt[deg]=0
+sSSL08	L[cm]=2.4	S[kG/cm/cm]=$vsSSL08	Tilt[deg]=30
+sSXS08	L[cm]=2.4	S[kG/cm/cm]=$vsSXS08	Tilt[deg]=0
+sSSS08	L[cm]=2.4	S[kG/cm/cm]=$vsSSS08	Tilt[deg]=30
+sSXL09	L[cm]=2.4	S[kG/cm/cm]=$vsSXL09	Tilt[deg]=0
+sSSL09	L[cm]=2.4	S[kG/cm/cm]=$vsSSL09	Tilt[deg]=30
+sSXS09	L[cm]=2.4	S[kG/cm/cm]=$vsSXS09	Tilt[deg]=0
+sSSS09	L[cm]=2.4	S[kG/cm/cm]=$vsSSS09	Tilt[deg]=30
+sSXL10	L[cm]=2.4	S[kG/cm/cm]=$vsSXL10	Tilt[deg]=0
+sSSL10	L[cm]=2.4	S[kG/cm/cm]=$vsSSL10	Tilt[deg]=30
+sSXL11	L[cm]=2.4	S[kG/cm/cm]=$vsSXL11	Tilt[deg]=0
+sSSL11	L[cm]=2.4	S[kG/cm/cm]=$vsSSL11	Tilt[deg]=30
+sSXS10	L[cm]=2.4	S[kG/cm/cm]=$vsSXS10	Tilt[deg]=0
+sSSS10	L[cm]=2.4	S[kG/cm/cm]=$vsSSS10	Tilt[deg]=30
+sSXS11	L[cm]=2.4	S[kG/cm/cm]=$vsSXS11	Tilt[deg]=0
+sSSS11	L[cm]=2.4	S[kG/cm/cm]=$vsSSS11	Tilt[deg]=30
+sSXL12	L[cm]=2.4	S[kG/cm/cm]=$vsSXL12	Tilt[deg]=0
+sSSL12	L[cm]=2.4	S[kG/cm/cm]=$vsSSL12	Tilt[deg]=30
+sSXS12	L[cm]=2.4	S[kG/cm/cm]=$vsSXS12	Tilt[deg]=0
+sSSS12	L[cm]=2.4	S[kG/cm/cm]=$vsSSS12	Tilt[deg]=30
+sSXL13	L[cm]=2.4	S[kG/cm/cm]=$vsSXL13	Tilt[deg]=0
+sSSL13	L[cm]=2.4	S[kG/cm/cm]=$vsSSL13	Tilt[deg]=30
+sSXS13	L[cm]=2.4	S[kG/cm/cm]=$vsSXS13	Tilt[deg]=0
+sSSS13	L[cm]=2.4	S[kG/cm/cm]=$vsSSS13	Tilt[deg]=30
+sSXL14	L[cm]=2.4	S[kG/cm/cm]=$vsSXL14	Tilt[deg]=0
+sSSL14	L[cm]=2.4	S[kG/cm/cm]=$vsSSL14	Tilt[deg]=30
+sSXS14	L[cm]=2.4	S[kG/cm/cm]=$vsSXS14	Tilt[deg]=0
+sSSS14	L[cm]=2.4	S[kG/cm/cm]=$vsSSS14	Tilt[deg]=30
+sSXL15	L[cm]=2.4	S[kG/cm/cm]=$vsSXL15	Tilt[deg]=0
+sSSL15	L[cm]=2.4	S[kG/cm/cm]=$vsSSL15	Tilt[deg]=30
+sSXS15	L[cm]=2.4	S[kG/cm/cm]=$vsSXS15	Tilt[deg]=0
+sSSS15	L[cm]=2.4	S[kG/cm/cm]=$vsSSS15	Tilt[deg]=30
+sSXL16	L[cm]=2.4	S[kG/cm/cm]=$vsSXL16	Tilt[deg]=0
+sSSL16	L[cm]=2.4	S[kG/cm/cm]=$vsSSL16	Tilt[deg]=30
+sSXS16	L[cm]=2.4	S[kG/cm/cm]=$vsSXS16	Tilt[deg]=0
+sSSS16	L[cm]=2.4	S[kG/cm/cm]=$vsSSS16	Tilt[deg]=30
+sSXL17	L[cm]=2.4	S[kG/cm/cm]=$vsSXL17	Tilt[deg]=0
+sSSL17	L[cm]=2.4	S[kG/cm/cm]=$vsSSL17	Tilt[deg]=30
+sSXS17	L[cm]=2.4	S[kG/cm/cm]=$vsSXS17	Tilt[deg]=0
+sSSS17	L[cm]=2.4	S[kG/cm/cm]=$vsSSS17	Tilt[deg]=30
+sSXL18	L[cm]=2.4	S[kG/cm/cm]=$vsSXL18	Tilt[deg]=0
+sSSL18	L[cm]=2.4	S[kG/cm/cm]=$vsSSL18	Tilt[deg]=30
+sSXS18	L[cm]=2.4	S[kG/cm/cm]=$vsSXS18	Tilt[deg]=0
+sSSS18	L[cm]=2.4	S[kG/cm/cm]=$vsSSS18	Tilt[deg]=30
+sSXL19	L[cm]=2.4	S[kG/cm/cm]=$vsSXL19	Tilt[deg]=0
+sSSL19	L[cm]=2.4	S[kG/cm/cm]=$vsSSL19	Tilt[deg]=30
+sSXS19	L[cm]=2.4	S[kG/cm/cm]=$vsSXS19	Tilt[deg]=0
+sSSS19	L[cm]=2.4	S[kG/cm/cm]=$vsSSS19	Tilt[deg]=30
+sSXL20	L[cm]=2.4	S[kG/cm/cm]=$vsSXL20	Tilt[deg]=0
+sSSL20	L[cm]=2.4	S[kG/cm/cm]=$vsSSL20	Tilt[deg]=30
+sSXS20	L[cm]=2.4	S[kG/cm/cm]=$vsSXS20	Tilt[deg]=0
+sSSS20	L[cm]=2.4	S[kG/cm/cm]=$vsSSS20	Tilt[deg]=30
+sSXL21	L[cm]=2.4	S[kG/cm/cm]=$vsSXL21	Tilt[deg]=0
+sSSL21	L[cm]=2.4	S[kG/cm/cm]=$vsSSL21	Tilt[deg]=30
+sSXS21	L[cm]=2.4	S[kG/cm/cm]=$vsSXS21	Tilt[deg]=0
+sSSS21	L[cm]=2.4	S[kG/cm/cm]=$vsSSS21	Tilt[deg]=30
+sSXL22	L[cm]=2.4	S[kG/cm/cm]=$vsSXL22	Tilt[deg]=0
+sSSL22	L[cm]=2.4	S[kG/cm/cm]=$vsSSL22	Tilt[deg]=30
+sSXS22	L[cm]=2.4	S[kG/cm/cm]=$vsSXS22	Tilt[deg]=0
+sSSS22	L[cm]=2.4	S[kG/cm/cm]=$vsSSS22	Tilt[deg]=30
+sSXL23	L[cm]=2.4	S[kG/cm/cm]=$vsSXL23	Tilt[deg]=0
+sSSL23	L[cm]=2.4	S[kG/cm/cm]=$vsSSL23	Tilt[deg]=30
+sSXS23	L[cm]=2.4	S[kG/cm/cm]=$vsSXS23	Tilt[deg]=0
+sSSS23	L[cm]=2.4	S[kG/cm/cm]=$vsSSS23	Tilt[deg]=30
+sSXL24	L[cm]=2.4	S[kG/cm/cm]=$vsSXL24	Tilt[deg]=0
+sSSL24	L[cm]=2.4	S[kG/cm/cm]=$vsSSL24	Tilt[deg]=30
+sSXS24	L[cm]=2.4	S[kG/cm/cm]=$vsSXS24	Tilt[deg]=0
+sSSS24	L[cm]=2.4	S[kG/cm/cm]=$vsSSS24	Tilt[deg]=30
+#
+sSEXL4	L[cm]=30	S[kG/cm/cm)]=$vsSEXL4	Tilt[deg]=0
+sSEXL5	L[cm]=30	S[kG/cm/cm)]=$vsSEXL5	Tilt[deg]=0
+sSEXL6	L[cm]=30	S[kG/cm/cm)]=$vsSEXL6	Tilt[deg]=30
+sSEXL7	L[cm]=30	S[kG/cm/cm)]=$vsSEXL7	Tilt[deg]=30
+sSEX_DISC	L[cm]=42	S[kG/cm/cm)]=0		Tilt[deg]=0
+#	octupoles
+oOCT	L[cm]=42
+# vertical extraction kickers and bumps
+kMKS02	L[cm]=108	B[kG]=0		Tilt[deg]=90
+kMKS12_4	L[cm]=108	B[kG]=0		Tilt[deg]=90
+kBEX2	L[cm]=26.5	B[kG]=$vkBEX2		Tilt[deg]=90
+kBEX3	L[cm]=26.5	B[kG]=$vkBEX3		Tilt[deg]=-90
+kBEX4	L[cm]=26.5	B[kG]=$vkBEX4		Tilt[deg]=90
+kHPINGER	L[cm]=108	B[kG]=0		Tilt[deg]=0
+kNOTCHER	L[cm]=108	B[kG]=0		Tilt[deg]=0
+kVPINGER	L[cm]=108	B[kG]=0		Tilt[deg]=90
+kNOKKER	L[cm]=108	B[kG]=0		Tilt[deg]=0
+kHOR_DAMP	L[cm]=127	B[kG]=0		Tilt[deg]=0
+kVER_DAMP	L[cm]=127	B[kG]=0		Tilt[deg]=90
+kPICK_UP	L[cm]=50	B[kG]=0		Tilt[deg]=0
+# correctors
+#kHL01 	L[cm]=2.4        	B[kG]=-0.547034   	Tilt[deg]=0
+kHL01	L[cm]=2.4	B[kG]=$vkHL01		Tilt[deg]=0
+#
+kVL01	L[cm]=2.4	B[kG]=$vkVL01		Tilt[deg]=90
+kHS01	L[cm]=2.4	B[kG]=$vkHS01		Tilt[deg]=0
+kVS01	L[cm]=2.4	B[kG]=$vkVS01		Tilt[deg]=90
+kHL02	L[cm]=2.4	B[kG]=$vkHL02		Tilt[deg]=0
+kVL02	L[cm]=2.4	B[kG]=$vkVL02		Tilt[deg]=90
+kHS02	L[cm]=2.4	B[kG]=$vkHS02		Tilt[deg]=0
+kVS02	L[cm]=2.4	B[kG]=$vkVS02		Tilt[deg]=90
+kHL03	L[cm]=2.4	B[kG]=$vkHL03		Tilt[deg]=0
+kVL03	L[cm]=2.4	B[kG]=$vkVL03		Tilt[deg]=90
+kHS03	L[cm]=2.4	B[kG]=$vkHS03		Tilt[deg]=0
+kVS03	L[cm]=2.4	B[kG]=$vkVS03		Tilt[deg]=90
+kHL04	L[cm]=2.4	B[kG]=$vkHL04		Tilt[deg]=0
+kVL04	L[cm]=2.4	B[kG]=$vkVL04		Tilt[deg]=90
+kHS04	L[cm]=2.4	B[kG]=$vkHS04		Tilt[deg]=0
+kVS04	L[cm]=2.4	B[kG]=$vkVS04		Tilt[deg]=90
+kHL05	L[cm]=2.4	B[kG]=$vkHL05		Tilt[deg]=0
+kVL05	L[cm]=2.4	B[kG]=$vkVL05		Tilt[deg]=90
+kHS05	L[cm]=2.4	B[kG]=$vkHS05		Tilt[deg]=0
+kVS05	L[cm]=2.4	B[kG]=$vkVS05		Tilt[deg]=90
+kHL06	L[cm]=2.4	B[kG]=$vkHL06		Tilt[deg]=0
+kVL06	L[cm]=2.4	B[kG]=$vkVL06		Tilt[deg]=90
+kHS06	L[cm]=2.4	B[kG]=$vkHS06		Tilt[deg]=0
+kVS06	L[cm]=2.4	B[kG]=$vkVS06		Tilt[deg]=90
+kHL07	L[cm]=2.4	B[kG]=$vkHL07		Tilt[deg]=0
+kVL07	L[cm]=2.4	B[kG]=$vkVL07		Tilt[deg]=90
+kHS07	L[cm]=2.4	B[kG]=$vkHS07		Tilt[deg]=0
+kVS07	L[cm]=2.4	B[kG]=$vkVS07		Tilt[deg]=90
+kHL08	L[cm]=2.4	B[kG]=$vkHL08		Tilt[deg]=0
+kVL08	L[cm]=2.4	B[kG]=$vkVL08		Tilt[deg]=90
+kHS08	L[cm]=2.4	B[kG]=$vkHS08		Tilt[deg]=0
+kVS08	L[cm]=2.4	B[kG]=$vkVS08		Tilt[deg]=90
+kHL09	L[cm]=2.4	B[kG]=$vkHL09		Tilt[deg]=0
+kVL09	L[cm]=2.4	B[kG]=$vkVL09		Tilt[deg]=90
+kHS09	L[cm]=2.4	B[kG]=$vkHS09		Tilt[deg]=0
+kVS09	L[cm]=2.4	B[kG]=$vkVS09		Tilt[deg]=90
+kHL10	L[cm]=2.4	B[kG]=$vkHL10		Tilt[deg]=0
+kVL10	L[cm]=2.4	B[kG]=$vkVL10		Tilt[deg]=90
+kHS10	L[cm]=2.4	B[kG]=$vkHS10		Tilt[deg]=0
+kVS10	L[cm]=2.4	B[kG]=$vkVS10		Tilt[deg]=90
+kHL11	L[cm]=2.4	B[kG]=$vkHL11		Tilt[deg]=0
+kVL11	L[cm]=2.4	B[kG]=$vkVL11		Tilt[deg]=90
+kHS11	L[cm]=2.4	B[kG]=$vkHS11		Tilt[deg]=0
+kVS11	L[cm]=2.4	B[kG]=$vkVS11		Tilt[deg]=90
+kHL12	L[cm]=2.4	B[kG]=$vkHL12		Tilt[deg]=0
+kVL12	L[cm]=2.4	B[kG]=$vkVL12		Tilt[deg]=90
+kHS12	L[cm]=2.4	B[kG]=$vkHS12		Tilt[deg]=0
+kVS12	L[cm]=2.4	B[kG]=$vkVS12		Tilt[deg]=90
+kHL13	L[cm]=2.4	B[kG]=$vkHL13		Tilt[deg]=0
+kVL13	L[cm]=2.4	B[kG]=$vkVL13		Tilt[deg]=90
+kHS13	L[cm]=2.4	B[kG]=$vkHS13		Tilt[deg]=0
+kVS13	L[cm]=2.4	B[kG]=$vkVS13		Tilt[deg]=90
+kHL14	L[cm]=2.4	B[kG]=$vkHL14		Tilt[deg]=0
+kVL14	L[cm]=2.4	B[kG]=$vkVL14		Tilt[deg]=90
+kHS14	L[cm]=2.4	B[kG]=$vkHS14		Tilt[deg]=0
+kVS14	L[cm]=2.4	B[kG]=$vkVS14		Tilt[deg]=90
+kHL15	L[cm]=2.4	B[kG]=$vkHL15		Tilt[deg]=0
+kVL15	L[cm]=2.4	B[kG]=$vkVL15		Tilt[deg]=90
+kHS15	L[cm]=2.4	B[kG]=$vkHS15		Tilt[deg]=0
+kVS15	L[cm]=2.4	B[kG]=$vkVS15		Tilt[deg]=90
+kHL16	L[cm]=2.4	B[kG]=$vkHL16		Tilt[deg]=0
+kVL16	L[cm]=2.4	B[kG]=$vkVL16		Tilt[deg]=90
+kHS16	L[cm]=2.4	B[kG]=$vkHS16		Tilt[deg]=0
+kVS16	L[cm]=2.4	B[kG]=$vkVS16		Tilt[deg]=90
+kHL17	L[cm]=2.4	B[kG]=$vkHL17		Tilt[deg]=0
+kVL17	L[cm]=2.4	B[kG]=$vkVL17		Tilt[deg]=90
+kHS17	L[cm]=2.4	B[kG]=$vkHS17		Tilt[deg]=0
+kVS17	L[cm]=2.4	B[kG]=$vkVS17		Tilt[deg]=90
+kHL18	L[cm]=2.4	B[kG]=$vkHL18		Tilt[deg]=0
+kVL18	L[cm]=2.4	B[kG]=$vkVL18		Tilt[deg]=90
+kHS18	L[cm]=2.4	B[kG]=$vkHS18		Tilt[deg]=0
+kVS18	L[cm]=2.4	B[kG]=$vkVS18		Tilt[deg]=90
+kHL19	L[cm]=2.4	B[kG]=$vkHL19		Tilt[deg]=0
+kVL19	L[cm]=2.4	B[kG]=$vkVL19		Tilt[deg]=90
+kHS19	L[cm]=2.4	B[kG]=$vkHS19		Tilt[deg]=0
+kVS19	L[cm]=2.4	B[kG]=$vkVS19		Tilt[deg]=90
+kHL20	L[cm]=2.4	B[kG]=$vkHL20		Tilt[deg]=0
+kVL20	L[cm]=2.4	B[kG]=$vkVL20		Tilt[deg]=90
+kHS20	L[cm]=2.4	B[kG]=$vkHS20		Tilt[deg]=0
+kVS20	L[cm]=2.4	B[kG]=$vkVS20		Tilt[deg]=90
+kHL21	L[cm]=2.4	B[kG]=$vkHL21		Tilt[deg]=0
+kVL21	L[cm]=2.4	B[kG]=$vkVL21		Tilt[deg]=90
+kHS21	L[cm]=2.4	B[kG]=$vkHS21		Tilt[deg]=0
+kVS21	L[cm]=2.4	B[kG]=$vkVS21		Tilt[deg]=90
+kHL22	L[cm]=2.4	B[kG]=$vkHL22		Tilt[deg]=0
+kVL22	L[cm]=2.4	B[kG]=$vkVL22		Tilt[deg]=90
+kHS22	L[cm]=2.4	B[kG]=$vkHS22		Tilt[deg]=0
+kVS22	L[cm]=2.4	B[kG]=$vkVS22		Tilt[deg]=90
+kHL23	L[cm]=2.4	B[kG]=$vkHL23		Tilt[deg]=0
+kVL23	L[cm]=2.4	B[kG]=$vkVL23		Tilt[deg]=90
+kHS23	L[cm]=2.4	B[kG]=$vkHS23		Tilt[deg]=0
+kVS23	L[cm]=2.4	B[kG]=$vkVS23		Tilt[deg]=90
+kHL24	L[cm]=2.4	B[kG]=$vkHL24		Tilt[deg]=0
+kVL24	L[cm]=2.4	B[kG]=$vkVL24		Tilt[deg]=90
+kHS24	L[cm]=2.4	B[kG]=$vkHS24		Tilt[deg]=0
+kVS24	L[cm]=2.4	B[kG]=$vkVS24		Tilt[deg]=90
+# Instrumentation
+iRAD_POS_MON1 	L[cm]=19       		Tilt[deg]=0  
+iRAD_POS_MON2 	L[cm]=19       		Tilt[deg]=0  
+iPHASE_DET 		L[cm]=50       		Tilt[deg]=0  
+iLONG_DAMPER 	L[cm]=50       		Tilt[deg]=0  
+iiWALL_MON 		L[cm]=50       		Tilt[deg]=0  
+IFOIL 		L[cm]=0        		Tilt[deg]=0  
+IPRIM_H 		L[cm]=0        		Tilt[deg]=0  
+IPRIM_V 		L[cm]=0        		Tilt[deg]=0  
+oBPM 		L[cm]=2.4      
+obpmOld 		L[cm]=19       
+ipB: 		L[cm]=0        		Tilt[deg]=0  
+# RF cavities 
+aRF 	L[cm]=235       Ncell=1  Eff_L[cm]=211.5  A[MeV]=0         Phase[deg]=0  WaveL[cm]=$LambdaRF
+#hRF 	Ax[cm]=200	Ay[cm]=200 	Shape=0 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+hRF 	Ax[cm]=2.8575 	Ay[cm]=2.8575 	Shape=0 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+#
+# Drifts
+oMKS12	L[cm]=108
+oQGD 	L[cm]=24.6       	
+oQGF 	L[cm]=21.6       	
+oDOG13	L[cm]=24.722  	
+oIBEX12 	L[cm]=26.5       	
+oIBEX13 	L[cm]=26.5       	
+oIBEX14	L[cm]=26.5       	
+oSEXTL 	L[cm]=42       
+oSEXTS 	L[cm]=30       
+odrift9 	L[cm]=6.6      
+oDRBPMR 	L[cm]=11       
+oDRCP 	L[cm]=19       
+oSPACE 	L[cm]=50       
+oL01A1 	L[cm]=3.376
+oL01A2 	L[cm]=2.25       
+oL01B 	L[cm]=200.66   
+oL01C 	L[cm]=17.9
+oL01D1 	L[cm]=9.48
+oL01D2 	L[cm]=80   
+oL01E1 	L[cm]=6.375  
+oL01E2 	L[cm]=70  
+oL01F 	L[cm]=35.3
+oDRSEXTS 	L[cm]=17       
+oDRBPML 	L[cm]=13       
+oL02A 	L[cm]=30.8     
+oL02B 	L[cm]=11.4     
+oL02C 	L[cm]=11.5     
+oL02D 	L[cm]=11.5     
+oL02E 	L[cm]=11.4     
+oL02F 	L[cm]=19.5     
+oL02G 	L[cm]=15.4     
+oDRQGD 	L[cm]=20.7     
+oDRBPMD 	L[cm]=14.7     
+oL03A 	L[cm]=31.505   
+oL03B 	L[cm]=16.878
+oL03C 	L[cm]=30.0  
+oL03D 	L[cm]=47.4
+oL03E 	L[cm]=47.4
+oL03F 	L[cm]=76.878   
+oL03G 	L[cm]=20
+oL03H 	L[cm]=22.105   
+oL04A 	L[cm]=64       
+oL04B 	L[cm]=1        
+oL04C 	L[cm]=11       
+oL04D 	L[cm]=22       
+oL04E 	L[cm]=102      
+oL04F 	L[cm]=40       
+oL04G 	L[cm]=48.5     
+oL04H 	L[cm]=31.5     
+oL04I 	L[cm]=18.5     
+oDRQGF 	L[cm]=22.2     
+oDRBPMF 	L[cm]=16.2     
+oL05A 	L[cm]=43       
+oL05B 	L[cm]=4        
+oL05C 	L[cm]=100      
+oIPMH 	L[cm]=30       
+oL05D 	L[cm]=30       
+oIPMV 	L[cm]=30       
+oL05E1 	L[cm]=17.5     
+oL05E2 	L[cm]=15.07     
+oL05F 	L[cm]=6     
+oL05G 	L[cm]=18.5     
+oHALF_SP 	L[cm]=25       
+oL06A 	L[cm]=20       
+oSHCOL1 	L[cm]=60       
+oL06B 	L[cm]=220      
+oSVCOL1 	L[cm]=60       
+oL06C 	L[cm]=30       
+oSHVCOL 	L[cm]=60       
+oL06D 	L[cm]=51       
+oL06E 	L[cm]=31.5     
+oL06F 	L[cm]=18.5     
+oL07A 	L[cm]=100      
+oSHCOL2 	L[cm]=60       
+oL07B 	L[cm]=140      
+oSVCOL2 	L[cm]=60       
+oL07C 	L[cm]=51       
+oL07D 	L[cm]=15       
+oL07E 	L[cm]=15       
+oL07F 	L[cm]=31.5     
+oL07G 	L[cm]=18.5     
+oL08A 	L[cm]=46       
+oL08B 	L[cm]=2        
+oL08C 	L[cm]=2        
+oL08D 	L[cm]=31       
+oL08E 	L[cm]=12       
+oL08F 	L[cm]=10       
+oL08G 	L[cm]=4        
+oL08H 	L[cm]=4        
+oL08I 	L[cm]=7        
+oL08J 	L[cm]=29       
+oL08K 	L[cm]=31.5     
+oL08L 	L[cm]=18.5     
+oL09A 	L[cm]=125.1    
+oL09A1	L[cm]=108 
+oL09B 	L[cm]=9.3      
+oL09B1 	L[cm]=108    
+oL09C 	L[cm]=35.6     
+oL09D 	L[cm]=12       
+oL09E 	L[cm]=10.8     
+oL09F 	L[cm]=15.2     
+oL10A 	L[cm]=30       
+oL10B 	L[cm]=30       
+oL10C 	L[cm]=30       
+oL10D 	L[cm]=285      
+oL10E 	L[cm]=31.5     
+oL10F 	L[cm]=18.5     
+oL11A 	L[cm]=200      
+oL11B 	L[cm]=50       
+oL11C 	L[cm]=74       
+oL11D 	L[cm]=31.5     
+oL11E 	L[cm]=18.5     
+oL12A 	L[cm]=30.8     
+oL12B 	L[cm]=11.4     
+oL12C 	L[cm]=11.5     
+oL12D 	L[cm]=11.5     
+oL12E 	L[cm]=11.4     
+oL12F 	L[cm]=0.5      
+oL12G 	L[cm]=15.4     
+oL13A 	L[cm]=31.505   
+oL13B 	L[cm]=76.9
+oL13C 	L[cm]=21.614   
+oL13D 	L[cm]=62.462   
+oL13E 	L[cm]=76.9
+oL13F 	L[cm]=20       
+oL13G 	L[cm]=0        
+oL13H 	L[cm]=2.86     
+oL14A 	L[cm]=10       
+oL14B 	L[cm]=5        
+oL14C 	L[cm]=6        
+oL14D 	L[cm]=5        
+oL14E 	L[cm]=10       
+oL14F 	L[cm]=18.5     
+oL15A 	L[cm]=21       
+oL15B 	L[cm]=12       
+oL15C 	L[cm]=25       
+oL15D 	L[cm]=4.5      
+oL15E 	L[cm]=18.5     
+oL16A 	L[cm]=21       
+oL16B 	L[cm]=12       
+oL16C 	L[cm]=25       
+oL16D 	L[cm]=4.5      
+oL16E 	L[cm]=18.5     
+oL17A 	L[cm]=21       
+oL17B 	L[cm]=12       
+oL17C 	L[cm]=25       
+oL17D 	L[cm]=4.5      
+oL17E 	L[cm]=18.5     
+oL18A 	L[cm]=18       
+oL18B 	L[cm]=18       
+oL18C 	L[cm]=18       
+oL18D 	L[cm]=4        
+oL18E 	L[cm]=4        
+oL18F 	L[cm]=30       
+oL18G 	L[cm]=30       
+oL18H 	L[cm]=35       
+oL18I 	L[cm]=30       
+oL18J 	L[cm]=31.5     
+oL18K 	L[cm]=18.5     
+oL19A 	L[cm]=21       
+oL19B 	L[cm]=12       
+oL19C 	L[cm]=25       
+oL19D 	L[cm]=4.5      
+oL19E 	L[cm]=18.5     
+oL20A 	L[cm]=20    
+oL20B 	L[cm]=1   
+oL20C 	L[cm]=1   
+oL20D 	L[cm]=1    
+oL20E 	L[cm]=310   
+oL20F 	L[cm]=31.5     
+oL20G 	L[cm]=18.5     
+oL21A 	L[cm]=21       
+oL21B 	L[cm]=12       
+oL21C 	L[cm]=25       
+oL21D 	L[cm]=4.5      
+oL21E 	L[cm]=18.5     
+oL22A 	L[cm]=21       
+oL22B 	L[cm]=12       
+oL22C 	L[cm]=25       
+oL22D 	L[cm]=4.5      
+oL22E 	L[cm]=18.5     
+oL23A 	L[cm]=21       
+oL23B 	L[cm]=12       
+oL23C 	L[cm]=25       
+oL23D 	L[cm]=4.5      
+oL23E 	L[cm]=18.5     
+oL24A 	L[cm]=21       
+oL24B 	L[cm]=12       
+oL24C 	L[cm]=25       
+oL24D 	L[cm]=4.5      
+oL24E 	L[cm]=18.5     
+end list 
+#
+#
+#
+TrajParamBlock
+	X[cm]=0 	Teta_X[rad]=0
+	Y[cm]=0 	Teta_Y[rad]=0
+	s[cm]=0. 	DeltaP/P=0.00001
+EndTrajParamBlock
+
+BetaFitBlock dL[cm]=0.01 dB[kG]=0.01 dG[kG/cm]=0.00000001
+#Required parameters and their accuracy listed below(dPARM<=0. - no fitting)
+#Maximum Betas[cm] and MomentumCompaction are on the next line
+BtXmax=3550.  dBtXmax=50  BtYmax=5000.  dBtYmax=0.  Alfa=0.  dAlfa=0.
+#Fitting parameters at the end of the lattice
+Beta_X[cm]=3366.18  dBeta_X[cm]=1   Alfa_X=-0.00326312        dAlfa_X=0.001
+Beta_Y[cm]=527.572  dBeta_Y[cm]=1   Alfa_Y=-0.0208604        dAlfa_Y=0.001
+Disp_X[cm]=-318.908    dDisp_X[cm]=1   D_prime_X=0.     dD_prime_X=0.001
+Disp_Y[cm]=0.     dDisp_Y[cm]=0.   D_prime_Y=0.     dD_prime_Y=0.
+Qx=0.             dQx=0.
+Qy=0.             dQy=0.
+#Fit at element with number =2 
+#To create a Fitting at intermidiate element: uncomment the line above, 
+# write the correct element number and insert six lines describing the
+# fit parameters. You can use up to 4 intermidiate points
+#Each point has to be determined as described above
+#
+#Insert groups of elements below. Each group has to be located on one line.
+#Start from the letter describing the type of changable parameter such as: L:, B:, G: 
+#G: qQL02 
+G: qQS24 
+G: qQS01 
+G: qQS02 
+G: qQL03 
+G: qQS03 
+G: qQL04  
+G: qQS04  
+G: qQS05  
+G: qQS06  
+EndBetaFitBlock
+
+4D_BetaBlock
+	Beta_X_1[cm]=3409.96      	Beta_X_2[cm]=0.000126128 
+	Alfa_X_1=0.0320596     	Alfa_X_2=5.28153e-008
+	Beta_Y_1[cm]=4.82956e-006 	Beta_Y_2[cm]=531.41      
+	Alfa_Y_1=3.44081e-009  	Alfa_Y_2=-0.00113028 
+	Teta_1[deg]=-141.924     	Teta_2[deg]=96.6241      	U=-1.1356e-008
+	Emit1[cm]=$Emit 	Emit2[cm]=$Emit
+	DispX[cm]=-76.11       	DispY[cm]=-0.0219362  
+	DispXpr[cm]=0.00670242   	DispYpr[cm]=4.42499e-005
+End4DBetaBlock 
+
+SpaceChargeBlock
+  BeamCurrent[A]=1.21
+  BunchLength[cm]=1.0   dP/P=0.0012   Alpha[-1,1]=0.   S_Offset[cm]=0.
+EndSpaceChargeBlock

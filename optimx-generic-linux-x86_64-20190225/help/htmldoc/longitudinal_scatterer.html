@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="header.js"></script>
+<title> OptiMX Help: Longitudinal Scatterer </title>
+</head>
+<body>
+<h4>U-Longitudinal random particle scattering</h4>
+
+<table id="element">
+  <tr>
+    <th>Parameter Description</th>
+    <th>Argument Order</th>
+    <th>Argument Mnemonic </th>
+    <th>Units </th>
+    <th>Default Value</th>
+  </tr>
+  <tr>
+    <td>RMS Energy Loss </td>
+    <td>  1    </td>
+    <td> Rms loss    </td>
+    <td> MeV    </td>
+    <td> 0.0   </td>
+  </tr>
+  <tr class="alt">
+    <td>Thickness gradient </td>
+    <td>  2    </td>
+    <td> dL/dx/L    </td>
+    <td> [1/cm]  </td>
+    <td> 0.0     </td>
+  </tr>
+  <tr>
+    <td>Tilt     </td>
+     <td>  3     </td>
+    <td>  Tilt     </td>
+    <td>  deg </td>
+    <td>  0.0 </td>
+  </tr>
+</table>
+<p>
+This element simulates random scattering in the longitudinal plane. The first parameter is the rms.energy loss due to scattering.
+The second parameter is a relative transverse thickness gradient and is meaningful when simulating a wedge-shape absorber (for ionization cooling).
+The third parameter is the wedge tilt (roll).  
+</P>
+<p>
+Each particle receives an independent random kick; the kick strength probability density distribution is assumed to be Gaussian.
+Note that this implies that  positive and negative energy changes are equally probabable.
+The average energy loss in the medium may be accounted for by using a longitudinal corrector element.
+</p>
+<pre>
+u1 	Rms loss[MeV]=0.1  	dL/dx/L[1/cm]=0 	Tilt[deg]=0
+</pre>
+</body>
+</html>
+  

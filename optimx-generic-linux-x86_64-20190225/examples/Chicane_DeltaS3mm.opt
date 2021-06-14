@@ -1,0 +1,149 @@
+# Corrections
+#    Added OSC section
+#      oq -> oqd downstream of q15
+#     quads q11,12,15 &16 are decoupled from corresponding quads in visinity of OSC section
+$E=100;  =>         100
+   $P=sqrt(($E+$Me)^2-$Me^2);  =>  100.509704
+   $gamma=1+$E/$Me;  =>  196.693414
+   $beta=sqrt(1-1/$gamma^2);  => 0.999987076
+   $Bro=1.e11/$c*$P;  =>  335.264286
+  $Rdip=70;  =>          70
+  $Bdip=$Bro/$Rdip;  =>   4.7894898
+  $Ldip60=60/180*$PI*$Rdip;  =>  73.3038286
+  $Ldip30=30/180*$PI*$Rdip;  =>  36.6519143
+#---------------
+# OSC
+$BdipCh=4.144;  =>           4
+$LdipCh=10;  =>          18  # 12.9 cm = 0.6 cm
+  $PhiCh=180/$PI*$BdipCh*$LdipCh/$Bro;  =>  12.3046095
+# Wiggler parameters
+$Bwgl=0;  =>           0
+$Lwgl=8 / 4;  =>           2
+  $PhiWgl=180/$PI*$Bwgl*$Lwgl/$Bro/2;  =>           0
+#chicane center:
+$BetaX=4
+$BetaY=157
+$DispX=66	
+#-----------------
+OptiM
+Energy[MeV]=$E  Mass[MeV]=$Me
+Emittance: ex[cm]=5^2*5.88e-06  ey[cm]= 5^2*5.88e-06  DP/P=5*0.00013
+Initial:	BetaX[cm]=$BetaX	BetaY[cm]=$BetaY	
+	AlfaX=0     	AlfaY=0 
+	DispX[cm]=$DispX 	DispY[cm]=0
+	Dsp_PrimeX=0 	DspPrimeY=0 
+	X=0.	Y=0.	Z=0.
+	tetaX=0.     tetaY=0.
+begin lattice. Number of periods=1
+# OSC half
+qChF oqo bChm gChm obs sOSC obs gChp bChp
+oqb  qChD oqb qChF1 oL oWend
+#
+bWGLhp gWGLp oW1 
+gWGLm bWGLm gWGLm oW  gWGLp bWGLp gWGLp oW
+gWGLm bWGLm gWGLm oW  gWGLp bWGLp gWGLp oW
+gWGLm bWGLm gWGLm oW  gWGLp bWGLp gWGLp oW
+gWGLm bWGLm gWGLm oW  gWGLp bWGLp gWGLp oW
+gWGLm bWGLm gWGLm oW  gWGLp bWGLp gWGLp oW
+gWGLm bWGLm gWGLm oW  gWGLp bWGLp gWGLp oW
+gWGLm bWGLm gWGLm oW  gWGLp bWGLp gWGLp oW
+gWGLm bWGLm gWGLm oW  gWGLp bWGLp gWGLp oW1 
+gWGLm bWGLhm 
+#
+oow  
+end lattice
+#======================================
+begin list: dL=1.  dB=.1  dG=0.01  dS=0.01
+oqo 	L[cm]=7       
+obs 	L[cm]=5       
+sOSC 	L[cm]=3          	S[kG/cm/cm)]=-2.88   Tilt[deg]=0
+oqb 	L[cm]=15       
+oL 	L[cm]=20.65       
+oow	L[cm]=42.25
+bChp 	L[cm]=$LdipCh         	B[kG]=$BdipCh         	G[kG/cm]=0        	Tilt[deg]=0
+gChp 	B[kG]=$BdipCh         Angle[deg]=$PhiCh  EffLen[cm]=0  Tilt[deg]=0  
+bChm 	L[cm]=$LdipCh         	B[kG]=-$BdipCh         G[kG/cm]=0        	Tilt[deg]=0
+gChm 	B[kG]=-$BdipCh         Angle[deg]=$PhiCh  EffLen[cm]=0  Tilt[deg]=0  
+# wigler 
+bWGLp 	L[cm]=$Lwgl          	B[kG]=$Bwgl          	G[kG/cm]=0        	Tilt[deg]=0
+gWGLp 	B[kG]=$Bwgl          	Angle[deg]=$PhiWgl   	EffLen[cm]=0  	Tilt[deg]=0  
+bWGLm 	L[cm]=$Lwgl          	B[kG]=-$Bwgl          	G[kG/cm]=0        	Tilt[deg]=0
+gWGLm 	B[kG]=-$Bwgl          	Angle[deg]=$PhiWgl   	EffLen[cm]=0  	Tilt[deg]=0  
+bWGLhp 	L[cm]=$Lwgl/2          	B[kG]=$Bwgl          	G[kG/cm]=0        	Tilt[deg]=0
+bWGLhm 	L[cm]=$Lwgl/2          	B[kG]=-$Bwgl          	G[kG/cm]=0        	Tilt[deg]=0
+#
+oW 	L[cm]=$Lwgl          
+oW1 	L[cm]=0.626    
+oWend 	L[cm]=10.998    
+
+ibpm	L[cm]=9
+od22       	L[cm]=23              
+oq 	L[cm]=6.25
+ob 	L[cm]=31       
+o1 	L[cm]=90      
+oqd	L[cm]=12.5
+   
+o1a 	L[cm]=75          
+oq2	L[cm]=10     
+
+oq0	L[cm]=29.5			
+oq1        	L[cm]=0.5        
+oq3        	L[cm]=20        
+
+oq1a       	L[cm]=1   
+oq2a       	L[cm]=61       
+oq3a	L[cm]=1
+oq4a       	L[cm]=85       
+#			
+b30 	L[cm]=$Ldip30       B[kG]=$Bdip
+gb30	B[kG]=$Bdip          Angle[deg]=0   	EffLen[cm]=1  	Tilt[deg]=0  
+Gb30       	B[kG]=$Bdip	   Angle[deg]=0  	EffLen[cm]=1  	Tilt[deg]=0  
+#
+b60 	L[cm]=$Ldip60       B[kG]=$Bdip
+gb60	B[kG]=$Bdip          Angle[deg]=0   	EffLen[cm]=1  	Tilt[deg]=0  
+Gb60	B[kG]=$Bdip          Angle[deg]=0   	EffLen[cm]=1  	Tilt[deg]=0  
+#
+qChF 	L[cm]=3          	G[kG/cm]=-0.120  	Tilt[deg]=0
+qChD 	L[cm]=15         	G[kG/cm]=0.6939768 	Tilt[deg]=0
+qChF1 	L[cm]=15         	G[kG/cm]=-0.572  	Tilt[deg]=0
+q11c 	L[cm]=21         	G[kG/cm]=0       	Tilt[deg]=0
+q10 	L[cm]=21         	G[kG/cm]=-0.23   	Tilt[deg]=0
+q9 	L[cm]=21         	G[kG/cm]=0.23    	Tilt[deg]=0
+q8 	L[cm]=21         	G[kG/cm]=0.455   	Tilt[deg]=0
+q7 	L[cm]=21         	G[kG/cm]=-0.29   	Tilt[deg]=0
+q6 	L[cm]=21         	G[kG/cm]=0.32    	Tilt[deg]=0
+q5 	L[cm]=21         	G[kG/cm]=-0.43   	Tilt[deg]=0
+q4 	L[cm]=21         	G[kG/cm]=0.405   	Tilt[deg]=0
+q3 	L[cm]=21         	G[kG/cm]=0.4404501 	Tilt[deg]=0
+q2 	L[cm]=21         	G[kG/cm]=-0.5293225 	Tilt[deg]=0
+q1 	L[cm]=21         	G[kG/cm]=0.2129649 	Tilt[deg]=0
+q20 	L[cm]=21         	G[kG/cm]=0.2512792 	Tilt[deg]=0
+q19 	L[cm]=21         	G[kG/cm]=-0.4229292 	Tilt[deg]=0
+q18 	L[cm]=21         	G[kG/cm]=0.2512792 	Tilt[deg]=0
+q17 	L[cm]=21         	G[kG/cm]=-0.1366687 	Tilt[deg]=0
+q16 	L[cm]=21         	G[kG/cm]=0.213753 	Tilt[deg]=0
+q15 	L[cm]=21         	G[kG/cm]=-0.2219317 	Tilt[deg]=0
+q14 	L[cm]=21         	G[kG/cm]=0.1604115 	Tilt[deg]=0
+end list of elements
+#======================================
+BetaFitBlock  dL[cm]=0.01  dB[kGs]=0.001  dG[kGs/cm]=1e-06
+#Required parameters and their accuracy listed below(dPARM<=0. - no fitting)
+#Maximum Betas[cm] and MomentumCompaction are on the next line
+BtXmax=1700  dBtXmax=50  BtYmax=1700  dBtYmax=50  Alfa=0  dAlfa=0
+#Fitting parameters at the end of the lattice
+Beta_X[cm]=0 	dBeta_X[cm]=0 	Alfa_X=0  	dAlfa_X=0.0001
+Beta_Y[cm]=0 	dBeta_Y[cm]=0 	Alfa_Y=0  	dAlfa_Y=0.0001
+Disp_X[cm]=0 	dDisp_X[cm]=0 	D_prime_X=0 	dD_prime_X=0.0001 
+Disp_Y[cm]=0 	dDisp_Y[cm]=0 	D_prime_Y=0 	dD_prime_Y=0 
+Qx=2.732 	dQx=0.00001 
+Qy=2.227	dQy=0.00001 
+#Start from the letter describing the type of changable parameter such as: L:, B:, G: 
+G: q14
+G: q15
+G: q16
+G: q17
+G: q20 q18
+G: q19
+G: q2
+G: q3 q1
+EndBetaFitBlock

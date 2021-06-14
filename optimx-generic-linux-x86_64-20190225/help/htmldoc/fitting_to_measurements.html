@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="header.js"> </script>  
+<title>OptiMX HELP</title>
+</head>
+<body>
+<h2>Fitting to Measurements</h2>
+<p>
+External data can be plotted on any standard plot. The external data can be measurement results 
+(measured beta-functions, differential orbits, etc.) or desired values for certain parameters. By comparing external data with model 
+predictions one can attempt to interactively fit (use Edit|Increment and Edit|Decrement) the model to the data.
+This mechanism is often sufficient and while it cannot not replace more specialized programs it is of great help
+for preliminary data analysis when experimental uncertainties (like wrong sign of BPM measurement) can cloud the fitting results. 
+To read data into a graphical window click the right mouse button in the top part of the window (see Graphical Window). 
+That pops up a dialog box.
+</p>
+<p>
+Each external data file is a plain text file with space or tabs separated columns. The length of every line should not exceed 255 characters. 
+The dialog box allows one to chose columns for x and y coordinates, and, if necessary, for error bars. A Column number equal 
+to zero implies that this column is not used. Therefor, if the index  of at least one of two error-bar columns is zero, error bars
+will not be plotted. 
+Lines starting with the character # are considered as comments and are ignored.
+There are two different methods to set the longitudinal coordinates of the plotted points.
+<ul>
+  <li> The longitudinal coordinates are taken from the optics file itself. In this case the check box Determine S coordinate
+    from element name has to be checked while "Column number for element names" has to point to the index of the column
+    with element names.
+The program assigns longitudinal coordinate for every point to be equal the longitudinal 
+coordinate at exit of corresponding element. If names in the file do not have OptiM prefix it can be appended from the field 
+ Name prefix. If necessary only the lines with desired names can be filtered in using the field Filter for names (See Filtering). </li> 
+<li> In the second method the numerical value for longitudinal coordinate is taken from the column pointed by the field Column number for S coordinate. 
+  The values have to be expressed in cm. </li>
+</ul>
+<p>
+  If the check box Reference S coordinate to S0 is checked the initial path length (s-coordinate from the line 8 of OptiM file;
+see Input language description) is subtracted from the longitudinal coordinates kept in the file. This mechanism allows one to use the same
+data files for plotting data inside different short pieces of long machine.
+</p>
+<p>
+ Plotting of experimental data (or any other information) allows one to perform a wide range of machine studies. For example: the plotting of BPM measurements (or differential BPM measurements) inside Tools|Trajectory window allows one to understand errors in bending angles of dipoles (or focusing strength of quadrupoles) and determine required values for correctors (or quadrupole corrections); the plotting of beta-function measurements inside View|Betas window allows one to understand errors in focusing strength of quadrupoles. Similar procedure can be performed with other graphical windows. The use of Edit|Increment and Edit|Decrement commands allows interactively perform optics adjustments which accelerates finding out errors of machine optics.
+<pre>
+External file example:
+# s[m]  dx1[cm] dxm[cm]  dxp[cm]  name  alarm
+-9620.2803  0.0000  0.0000  0.0000 IPM0L01 
+-9263.3896 -0.0001 -0.0028  0.0027 IPM0L02 
+-8673.1797  0.0000  0.0000  0.0000 IPM0L03 
+-8358.1797  0.0003 -0.0008  0.0013 IPM0L04 
+-7376.7598  0.0000  0.0000  0.0000 IPM0L05 
+...
+</pre>
+</body>
+</html>

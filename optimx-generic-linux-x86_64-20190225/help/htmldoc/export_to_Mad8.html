@@ -1,0 +1,43 @@
+<h4>File|Import from MAD</h4>
+<p>
+  The program can convert a MAD8 output TWISS file to OptiM format. The user is prompted for a MAD output file (the default file extension is assumed to be *.twiss or *.tws but other extensions
+  can be used as well) and outputs a file with the same base name and extension *.opt. The user is also prompted to input the particle type/ rest mass and the energy (note that MAD uses the total energy of the particle, gmc**2, while OptiM uses the kinetic energy, (g-1)mc**2). The correct value of (total)  initial energy will appear in the dialog box. Note that this value is not critical
+  when there is no acceleration in the line. In this case, the magnetic field will be scaled but the Twiss parameters will remain unchanged. 
+</p>
+<p>
+  The following example illustrates how a MAD8 TWISS output file which can subsequently be imported by OptiM,
+  may be  created. 
+</p>
+<pre>
+
+TWSS0 : BETA0, ENERGY=E0, BETX=TBETX, ALFX=TALFX, DX=TDX, DPX=TDPX,  BETY=TBETY, ALFY=TALFY
+TWISS, BETA0=TWSS0, MUX=0, MUY=0, SAVE, TAPE="elin1_twiss.twiss"
+
+The above produces a MAD8 Twiss with contents similar to the example below:
+
+Windows    TWISS08/10/0121.08.01Windows        1       F    2452
+NLC e- Main Linac Section 1 [CD1] (08-SEP-1998)                                 
+  INITIAL  0.000000 0.0000000E+00 0.0000000E+00 0.0000000E+00 0.0000000E+00 1.00000E+01
+ 0.0000000E+00 0.0000000E+00 0.0000000E+00 0.0000000E+00 0.0000000E+00
+-1.759698614E+00 1.940651185E+01 0.0000000E+00 0.0000000E+00 0.0000000E+00
+ 4.462273347E-01 5.680578813E+00 0.0000000E+00 0.0000000E+00 0.0000000E+00
+ 0.0000000E+00 0.0000000E+00 0.0000000E+00 0.0000000E+00 0.0000000E+00
+MARKBEGELIN1 0.000000 0.0000000E+00 0.0000000E+00 0.0000000E+00 0.0000000E+00 1.00000E+01
+ 0.0000000E+00 0.0000000E+00 0.0000000E+00 0.0000000E+00 0.0000000E+00
+-1.759698614E+00 1.940651185E+01 0.0000000E+00 0.0000000E+00 0.0000000E+00
+ 4.462273347E-01 5.680578813E+00 0.0000000E+00 0.0000000E+00 0.0000000E+00
+ 0.0000000E+00 0.0000000E+00 0.0000000E+00 0.0000000E+00 0.0000000E+00
+MARKLI01BEG 0.000000 0.0000000E+00 0.0000000E+00 0.0000000E+00 0.0000000E+00 1.00000E+01
+ 0.0000000E+00 0.0000000E+00 0.0000000E+00 0.0000000E+00 0.0000000E+00
+-1.759698614E+00 1.940651185E+01 0.0000000E+00 0.0000000E+00 0.0000000E+00
+ 4.462273347E-01 5.680578813E+00 0.0000000E+00 0.0000000E+00 0.0000000E+00
+ 0.0000000E+00 0.0000000E+00 0.0000000E+00 0.0000000E+00 0.0000000E+00
+QUADQQ0101 0.16510 0.0000E+00 6.016028194E-01 0.0000E+00 6.35000E-03 0.5Q12.75 1.000E+01
+ 0.0000000E+00 0.0000000E+00 0.0000000E+00 0.0000000E+00 0.0000000E+00
+ 1.697690371E-01 1.967045355E+01 1.341231688E-03 0.0000000E+00 0.0000000E+00
+-1.447008314E-01 5.631067131E+00 4.659334708E-03 0.0000000E+00 0.0000000E+00
+ 0.0000000E+00 0.0000000E+00 0.0000000E+00 0.0000000E+00 1.651000000E-01
+</pre>
+<p>
+Every element is described over 5 lines. For more details, please refer to the MAD8 user manual.
+</p>

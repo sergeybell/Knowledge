@@ -1,0 +1,38 @@
+# Starage ring Astrid in Aarhus University, Denmark.
+# This file demonstrates a lattice without coupling.
+# Edge focusing is modeled by short combine function dipoles
+$R=120.8;  =>       120.8 
+$L=$PI*$R/4-12.8;  =>  82.0760981
+$E=579.467;  =>     579.467
+$Hr=sqrt(($E+$Me)*($E+$Me)-$Me*$Me)*1e11/$c;  =>  1934.59737
+$B=$Hr/$R;  =>  16.0148789
+$Bh=$B/2;  =>  8.00743943 
+OptiM
+#  ASTRID general lattice
+Energy[MeV]=579.467    Mass[MeV]=0.511006 
+Emittance: ex[cm]=1.3e-05  ey[cm]=1e-06  DP/P=0.0007 
+Initial:	BetaX[cm]=1575.31 	BetaY[cm]=355.667 
+	AlfaX=-2.73291e-16 	AlfaY=-3.37375e-16 
+	DispersX[cm]=269.3 	DispersY[cm]=0 
+	Dsp_PrimeX=1.43637e-16 	DspPrimeY=0 
+	X[cm]=0.000    	Y[cm]=0.000    	Z[cm]=0.000    	S[cm]=0.000    
+	tetaX[deg]=0        	tetaY[deg]=0        
+#  Elementss: O-free space, D-dipole, Q-quad, S-sextipole
+#  Elements: B-dipole with gradient
+begin lattice. Number of periods=4 
+oD0 qQf oD1 qQd oD2 bB bBc bB oD3 
+bB bBc bB oD2 qQd oD1 qQf oD4 qQf 
+oD1 qQd oD2 bB bBc bB oD3 bB bBc 
+bB oD2 qQd oD1 qQf oD0  
+end lattice
+begin list
+qQf        	L[cm]=45         	G[kG/cm]=0.277565 	Tilt[deg]=0
+qQd        	L[cm]=45         	G[kG/cm]=-0.445846 	Tilt[deg]=0
+bB         	L[cm]=12.8       	B[kG]=8.0074394   	G[kG/cm]=0.033144  	Tilt[deg]=0
+bBc        	L[cm]=82.076098   	B[kG]=16.014879   	G[kG/cm]=0        	Tilt[deg]=0
+oD0 	 L[cm]=181.90133 
+oD1 	 L[cm]=55.80266 
+oD2 	 L[cm]=57.46    
+oD3 	 L[cm]=14.32    
+oD4 	 L[cm]=363.80266 
+end list

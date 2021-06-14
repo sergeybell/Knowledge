@@ -1,0 +1,212 @@
+# PIP-II Transfer Line.  
+# This line starts right at the end of the 4th HB 650 MHz Cryomodule of the linac.  
+# and ends with the foil for electron stripping in the Booster  
+$MASS_Hminus=939.294;  =>     939.294
+$E0=800;  =>         800
+$P0= sqrt(($E0+$MASS_Hminus)^2-$MASS_Hminus^2);  =>  1463.85464  # MeV/c   
+$gamma=sqrt(($P0^2/$MASS_Hminus^2) + 1);  =>  1.85170351
+$beta=sqrt(1-1/$gamma/$gamma);  => 0.841637261
+$Brho=$P0/$c*1e11;  =>  4882.89348  # kG*cm      
+#-------------------------     
+# dipoles     
+$Ndip = 32;  =>          32
+$Bdip_1 = 2.35911566;  =>  2.35911566  # kG    
+$Angle_1 = 217.0018536566120/ $Ndip;  =>  6.78130793  # deg    
+$x_1 = 360-217.0018536566120;  =>  142.998146  #deg     
+$Ldip_1 = $PI*$Angle_1/180*$Brho/$Bdip_1;  =>  244.973355  # cm     
+$Bdip = 2.6689319807;  =>  2.66893198  # kG    
+$Angle = 2.0*asin($Bdip/$Bdip_1*sin($Angle_1*$PI/360));  => 0.133921462
+$Ldip = $Angle*$Brho/$Bdip;  =>   245.01345
+$Angle = 180/$PI/$Brho*$Bdip*$Ldip;  =>  7.67313455
+# dipole parameters     
+$J=3 ;  =>           3  # A/mm^2     
+$gap_dip=4 ;  =>           4  # cm     
+$Itot= $Bdip * $gap_dip/ (0.4*$PI)*1000;  =>  8495.47435  # A   
+$Nturns=10;  =>          10
+$Lturns=$Nturns*4*(20+$Ldip)/100;  =>   106.00538  # m     
+$Sturn=$Itot/$Nturns/$J;  =>  283.182478  # mm^2     
+$Rcoil = 0.02*$Lturns/$Sturn;  =>0.00748671886  # Ohm    
+$I=$Itot/$Nturns;  =>  849.547435  # A     
+$U=$Rcoil*$I;  =>   6.3603228  # V    
+$P=$Rcoil*$I^2;  =>  5403.39592  # W      
+$Scoil=$Sturn*$Nturns*0.01/0.5;  =>  56.6364957  # cm^2    
+$P_tot=$P*$Ndip;  =>   172908.67
+#----------------------     
+# Quadrupole Field      
+$GF=0.6670326148 ;  => 0.667032615  #kG/cm    ;    
+$GD=-0.7838559465 ;  =>-0.783855947  #kG/cm    ;    
+$Lq=20;  =>          20
+$FIqf=$GF*$Lq/$Brho*100;  => 0.273212028  #1/m     
+$FIqf=$GF / $Brho*1e4;  =>  1.36606014  # 1/m^2     
+$FIqd=$GD*$Lq/$Brho*100;  =>-0.321062071  #1/m     
+$FIqd=$GD / $Brho*1e4;  => -1.60531036  # 1/m^2     
+#----------------------     
+# Dipoles for switch to d line        
+# Fast switch for energy measurement      
+$swdf=1;  =>           1  # (1-ON, 0-OFF)    
+$Angle_DFK=0.0070593631;  =>0.0070593631  # rad 
+$L_DFK=150*(1+$swdf*($Angle_DFK/sin($Angle_DFK)-1));  =>  150.001246  # cm    
+$Angle_DFK=$Angle_DFK*$swdf;  =>0.0070593631  # rad    
+$B_DFK=$Brho/$L_DFK*$Angle_DFK;  => 0.229798878  # kG    
+$Angle_DFK=$Angle_DFK/$PI*180;  => 0.404471712  # deg    
+$swds=0;  =>           0  # (1-ON, 0-OFF)    
+$Angle_DSK=0.0156451265;  =>0.0156451265  # rad 
+$L_DSK=100*(1+$swds*($Angle_DSK/sin($Angle_DSK)-1));  =>         100  # cm    
+$Angle_DSK=$Angle_DSK*$swds;  =>           0  # rad    
+$B_DSK=$Brho/$L_DSK*$Angle_DSK;  =>           0  # kG    
+$Angle_DSK=$Angle_DSK/$PI*180;  =>           0  # deg    
+$Angle_DSC=-0.0085887089;  =>-0.0085887089  # rad 
+$L_DSC=50*(1+$swds*($Angle_DSC/sin($Angle_DSC)-1));  =>          50  # cm    
+$Angle_DSC=$Angle_DSC*$swds;  =>          -0  # rad    
+$B_DSC=$Brho/$L_DSC*$Angle_DSC;  =>          -0  # kG    
+$Angle_DSC=$Angle_DSC/$PI*180;  =>          -0  # deg    
+# Quadrupole of the d switch section   
+$B_qFd=$GF*3.1639999995*($swdf+$swds);  =>  2.11049119  # kG      
+$Angle_bqFd=$B_qFd/$Brho*$Lq/$PI*180;  => 0.495289273  #deg    
+# Lertson magnet for d line  
+$Angle_Ld=0.15;  =>        0.15  # rad   
+$L_Ld=270*(1+($Angle_Ld/sin($Angle_Ld)-1)*($swdf+$swds));  =>  271.015164  # cm   
+$Angle_Ld=$Angle_Ld*($swdf+$swds);  =>        0.15  # rad   
+$B_Ld=$Brho/$L_Ld*$Angle_Ld;  =>  2.70255734  # kG   
+$Angle_Ld=$Angle_Ld/$PI*180;  =>  8.59436693  # deg   
+#sweeping dipole       
+$Anglesweep=0.07/3;  =>0.0233333333  # rad       
+$Lsweep=50*$Anglesweep/sin($Anglesweep);  =>  50.0045373  # cm      
+$Bsweep=$Brho/$Lsweep*$Anglesweep;  =>  2.27847686  # kG     
+$Anglesweep=$Anglesweep/$PI*180;  =>  1.33690152  # deg
+# Correctors
+$swk=0;  =>           0  # (1-ON, 0-OFF)    
+#------------------   
+# Emittance   
+$AcceptN=10^2*0.25e-4;  =>      0.0025
+$Accept=$AcceptN/($gamma*$beta);  =>0.00160414493
+$DPoverPtot=0.0002;  =>      0.0002
+#========================================    
+OptiM      
+Energy[MeV]=$E0   Mass[MeV]=$MASS_Hminus    
+Emittance: ex[cm]=$Accept  ey[cm]=$Accept  DP/P=$DPoverPtot    
+Initial:	BetaX[cm]=1324.44	BetaY[cm]=2075.65   
+	AlfaX=-0.4335	AlfaY=-1.6085    
+	DispersX[cm]=0 	DispersY[cm]=0    
+	Dsp_PrimeX=0 	DspPrimeY=0 	  
+	X[cm]=3030668.162 Y[cm]=22143.19354  Z[cm]=3057544.409   S[cm]=0    
+                tetaX[deg]=-83.02072818202521       tetaY[deg]=0          
+#===================================================   
+begin lattice. Number of periods= 1    
+# Linac end    
+hq qLF1 hq h oLq h hq qLD1 hq h oCM h    
+hq qLF2 hq h oLq h hq qLD2 hq h oCM h   
+hq qLF3 hq h oLq h hq qLD3 hq h oCM h   
+hq qLF4 hq h oLq h hq qLD4 hq h oCM h   
+hq qLF5 hq h oLq2 h     
+#Arc 1    
+# First cell    
+hq qLD5 hq h o1a h hkh kh hkh h o1b h hb gA bA gA hb h o2a h ibpm h o2a h hq qD hq h o1a h hkv kv hkv 
+h o1b h hb gA bA gA hb h o2a h ion_pump h o2a h  
+# Second cell 
+hq qF hq h o1a h hkh kh hkh h o1b h hb gA bA gA hb h o2a h ibpm h o2a h hq qD hq h o1a h hkv kv hkv 
+h o1b h hb gA bA gA hb h o2a h ion_pump h o2a h 
+# Third cell   
+hq qF hq h o1a h hkh kh hkh h o1b h hb gA bA gA hb h o2a h ibpm h o2a h hq qD hq h o1a h hkv kv hkv 
+h o1b h hb gA bA gA hb h o2a h ion_pump h o2a h 
+# Fourth cell   
+hq qF hq h o1a h hkh kh hkh h o1b h hb gA bA gA hb h o2a h ibpm h o2a h hq qD hq h o1a h hkv kv hkv 
+h o1b h hb gA bA gA hb h o2a h ion_pump h o2a h 
+# straight   
+# First cell    
+hq qF hq h o1a h hkh kh hkh h o1b oS1 o2a h ibpm h o2a h hq qD hq h o1a h hb_DFK 
+gb_DFK1 b_DFK gb_DFK2 hb_DFK h oS1e o2a h 
+hb_DSK gb_DSK1 b_DSK gb_DSK2 hb_DSK 
+h o1b3 h hb_DSC gb_DSC1 b_DSC gb_DSC2 hb_DSC h o2ab h    
+# Second cell    
+hb_b_qFd gb_qF1d bqFd gb_qF2d hb_b_qFd h o1a okh oS1b hb_Ld gb_L1d 
+bLd gb_L2d hb_Ld h oS1d h     
+# d Line 
+hq qD hq h odl1 h hb gA bA gA hb h odl1 h hb gA bA gA hb h odl1 h hq qF hq h odl1 h hb gA bA gA hb h 
+odl1 h hq qD hq h odl1 h hb gA bA gA hb h odl1 h hq qF hq h odl1 odl1 odl1 h hq qD hq h odl2 h 
+hbsweep gbsweep bsweep gbsweep hbsweep h odl3 h od 
+end lattice    
+#===================================================  
+begin list     
+# Linac end     
+h 	Ax[cm]=2.54*0.75 Ay[cm]=2.54*0.75 Shape=1 OffsetX[cm]=0 OffsetY[cm]=0 Tilt[deg]=0   
+hq	Ax[cm]=2.54*0.75+0.3 Ay[cm]=2.54*0.75+0.3 Shape=1 OffsetX[cm]=0 OffsetY[cm]=0 Tilt[deg]=0  
+oLq 	L[cm]=40  
+oCM 	L[cm]=980        
+oLq2 	L[cm]=120 
+qLF1 	L[cm]=$Lq         	G[kG/cm]=-1.0645779026 	Tilt[deg]=0   
+qLD1 	L[cm]=$Lq         	G[kG/cm]=1.1049396626 	Tilt[deg]=0   
+qLF2 	L[cm]=$Lq         	G[kG/cm]=-0.7511455501 	Tilt[deg]=0   
+qLD2 	L[cm]=$Lq         	G[kG/cm]=0.7126996400 	Tilt[deg]=0   
+qLF3 	L[cm]=$Lq         	G[kG/cm]=-0.5878871350  	Tilt[deg]=0   
+qLD3 	L[cm]=$Lq         	G[kG/cm]=0.7452003637	Tilt[deg]=0   
+qLF4 	L[cm]=$Lq         	G[kG/cm]=-1.1104634555	Tilt[deg]=0   
+qLD4 	L[cm]=$Lq        	G[kG/cm]=1.0331356881	Tilt[deg]=0   
+qLF5 	L[cm]=$Lq         	G[kG/cm]=-1.0462142692	Tilt[deg]=0   
+qLD5 	L[cm]=$Lq         	G[kG/cm]=1.0341093040	Tilt[deg]=0   
+#Arcs 1 & 2    
+hkh Ax[cm]=2.54*0.75+0.3 Ay[cm]=2.54*0.75+0.3 Shape=1 OffsetX[cm]=0 OffsetY[cm]=0 Tilt[deg]=0   
+hkv	Ax[cm]=2.54*0.75+0.3 Ay[cm]=2.54*0.75+0.3 Shape=1 OffsetX[cm]=0 OffsetY[cm]=0 Tilt[deg]=0  
+hb	Ax[cm]=5 Ay[cm]=$gap_dip/2                Shape=0 OffsetX[cm]=0 OffsetY[cm]=0 Tilt[deg]=0  
+o1a	L[cm]=35.0  
+o1b     	L[cm]=74.3250310882  
+o2a     	L[cm]=69.3250310882  
+qF 	L[cm]=$Lq         	G[kG/cm]=$GF       	Tilt[deg]=0  
+qD 	L[cm]=$Lq         	G[kG/cm]=$GD       	Tilt[deg]=0  
+gA 	B[kG]=$Bdip       Angle[deg]=0.5*$Angle  	EffLen[cm]=0    Tilt[deg]=0   
+bA 	L[cm]=$Ldip       B[kG]=$Bdip   G[kG/cm]=0        	Tilt[deg]=0   
+kh 	L[cm]=10 		B[kG]=0.01*$swk 	Tilt[deg]=0      
+kv 	L[cm]=10 		B[kG]=0.01*$swk 	Tilt[deg]=-90      
+ibpm	L[cm]=20      
+ion_pump	L[cm]=20      
+# Straight section    
+h2	Ax[cm]=2.54*0.75 Ay[cm]=2.54*0.75+2.5 Shape=1 OffsetX[cm]=0 OffsetY[cm]=0 Tilt[deg]=0   
+h3	Ax[cm]=2.54*0.75 Ay[cm]=2.54*0.75+8 Shape=1 OffsetX[cm]=0 OffsetY[cm]=0 Tilt[deg]=0   
+oS1	L[cm]=$Ldip   
+oS1b	L[cm]= 96.4951216685    
+oS1d	L[cm]= 164.9760  
+okh	L[cm]=10        
+obpm 	L[cm]=20      
+o1b2	L[cm]=74.3250324053+19.1245  
+oS2a 	L[cm]=25.1966+86.315        
+o1b3	L[cm]= 100.0052060503  
+o2ab	L[cm]= 19.3265425302  
+oS1e	L[cm]= 18.5045845914  
+b_DFK	L[cm]=$L_DFK	B[kG]=$B_DFK	G[kG/cm]=0	Tilt[deg]=-90   
+gb_DFK1	B[kG]=$B_DFK  Angle[deg]=0 	EffLen[cm]=0 	Tilt[deg]=-90   
+gb_DFK2	B[kG]=$B_DFK  Angle[deg]=$Angle_DFK	EffLen[cm]=0 Tilt[deg]=-90  
+hb_DFK	Ax[cm]=2.54*0.75+0.3 Ay[cm]=2.54*0.75+0.3 	Shape=0 OffsetX[cm]=0 OffsetY[cm]=0 Tilt[deg]=0      
+b_DSK	L[cm]=$L_DSK	B[kG]=$B_DSK	G[kG/cm]=0	Tilt[deg]=-90   
+gb_DSK1	B[kG]=$B_DSK  Angle[deg]=0 	EffLen[cm]=0 	Tilt[deg]=-90   
+gb_DSK2	B[kG]=$B_DSK  Angle[deg]=$Angle_DSK	EffLen[cm]=0 Tilt[deg]=-90  
+hb_DSK	Ax[cm]=2.54*0.75+0.3 Ay[cm]=2.54*0.75+0.3 	Shape=0 OffsetX[cm]=0 OffsetY[cm]=0 Tilt[deg]=0      
+b_DSC	L[cm]=$L_DSC	B[kG]=$B_DSC	G[kG/cm]=0	Tilt[deg]=-90   
+gb_DSC1	B[kG]=$B_DSC  	Angle[deg]=0 	EffLen[cm]=0 	Tilt[deg]=-90   
+gb_DSC2	B[kG]=$B_DSC  	Angle[deg]=$Angle_DSC	EffLen[cm]=0 Tilt[deg]=-90  
+hb_DSC	Ax[cm]=2.54*0.75+0.3 Ay[cm]=2.54*0.75+0.3 	Shape=0 OffsetX[cm]=0 OffsetY[cm]=0 Tilt[deg]=0      
+bqFd		L[cm]=$Lq	B[kG]=$B_qFd	G[kG/cm]=-$GF	Tilt=-90   
+gb_qF1d		B[kG]=$B_qFd	Angle[deg]=$Angle_DFK		EffLen[cm]=0 	Tilt[deg]=-90   
+gb_qF2d		B[kG]=$B_qFd	Angle[deg]=($Angle_DFK+$Angle_bqFd) 	EffLen[cm]=0 	Tilt[deg]=-90   
+hb_b_qFd		Ax[cm]=2.54*0.75+0.3 Ay[cm]=2.54*0.75+2.5+0.3 Shape=1 OffsetX[cm]=0 OffsetY[cm]=0 Tilt[deg]=0  
+bLd		L[cm]=$L_Ld	B[kG]=$B_Ld	G[kG/cm]=0	Tilt=10       
+gb_L1d		B[kG]=$B_Ld	Angle[deg]=0		EffLen[cm]=0	Tilt[deg]=10    
+gb_L2d		B[kG]=$B_Ld	Angle[deg]=$Angle_Ld	EffLen[cm]=0	Tilt[deg]=10  
+hb_Ld  		Ax[cm]=2.54*0.75+0.3 Ay[cm]=2.54*0.75+0.3 Shape=1 OffsetX[cm]=0 OffsetY[cm]=0 Tilt[deg]=10  
+# d line    
+odl1	L[cm]=35.0     
+odl2	L[cm]=300.0     
+odl3	L[cm]=500.0     
+od	L[cm]=1.0     
+hbsweep 	Ax[cm]=2.54*0.75+0.3 Ay[cm]=2.54*0.75+0.3 Shape=0 OffsetX[cm]=0 OffsetY[cm]=0 	Tilt[deg]=0     
+gbsweep 	B[kG]=$Bsweep       Angle[deg]=0.5*$Anglesweep  	EffLen[cm]=0    Tilt[deg]=0   
+bsweep	L[cm]=$Lsweep	    B[kG]=$Bsweep		G[kG/cm]=0	Tilt[deg]=0   
+end list    
+#   
+#   
+#  
+TrajParamBlock   
+	X[cm]=0 	Teta_X[rad]=0   
+	Y[cm]=0 	Teta_Y[rad]=0   
+	s[cm]=0 	DeltaP/P=0.0001   
+EndTrajParamBlock   
+  

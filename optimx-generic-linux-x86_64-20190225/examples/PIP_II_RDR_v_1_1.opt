@@ -1,0 +1,915 @@
+
+#Lattice Version PIP_II RDR_v_1_0.opt May 31st 2015 : Arun(asaini@fnal.gov)
+#Lattice is used for RDR preparation. 
+#
+# PIP-II  optics File (starts fom the RFQ vanes and goes to SC Linac Ends)
+# Conversion from TRACEWIN file PIP_II_RDR_v_1_0.dat and  + 139 mm correction in MEBT 
+# 
+# Possibility of future chages:
+#  1. SSR2 Cryomodule design does not exists and period is preliminary.
+#		a. Distances between CM to CM may change
+#  2. LB 650 MHz cryomodule design does not exists  
+#  3. Period and Length of HB 650 MHz Cryomodule may change as design work progress.   
+#      
+# Effective length in LB and HB cavity are changed : 5 June 2015
+
+$E=2.1;  =>         2.1
+  $P=sqrt(($E+$Mp)^2-$Mp^2);  =>  62.8107023
+  $gamma=1+$E/$Mp;  =>  1.00223814
+  $beta=sqrt(1-1/$gamma^2);  =>0.0667929231
+$EmitN=0.25e-4;  =>     2.5e-05  # cm, rms
+$EmitNL=$EmitN;  =>     2.5e-05
+  $Emit=$EmitN/$gamma/$beta;  =>0.000373455305
+  $Accept=3^2 * $Emit ;  =>0.00336109775
+  $EmitL_n=$Mp*$EmitNL/$c*1e6;  =>7.82440965e-07  # eV s; Long. emittance is equal to the the transverse one
+#
+#========= MEBT quads================================
+
+# ------First Doublet----------
+$GQ1f=   -1.15413;  =>   -1.15413
+$GQ1d=    1.06488;  =>    1.06488
+
+# ------Second Doublet----------
+
+$GQ2f=      -0.779872;  =>  -0.779872
+$GQ2d=       0.53663;  =>  0.53663
+
+#------------Triplet 1--------------------
+
+$Gd3  =      -1.02106;  =>     -1.02106
+$Gf3=      0.955955;  =>       0.955955
+#-----------Triplet 2--------------------
+$Gd4=      -1.27019;  =>       -1.27019
+$Gf4=       1.14342;  =>        1.14342
+#-----------Triplet 3--------------------
+$Gd5=      -1.36942;  =>      -1.36942
+$Gf5=       1.22226;  =>       1.22226
+#-----------Triplet 4--------------------
+$Gd6=      -1.14075;  =>     -1.14075;
+$Gf6=       1.07261;  =>     1.07261
+#-----------Triplet 5--------------------
+$Gd7=      -1.41556;  =>     -1.41556
+$Gf7=       1.27454;  =>      1.27454
+#-----------Triplet 6--------------------
+$Gd8=      -1.08466;  =>   -1.08466
+$Gf8=       1.00388
+.#-----------Triplet 7-------------------
+$Gd9=     -1.22613
+$Gf9=  1.13075
+#
+# Chopper
+$kSW=-1;  =>          -1
+$U=     $kSW*200;  =>        -200  # V
+$gap=       0.646;  =>       0.646
+$Bkick=$U/$gap/300/$beta*0.001;  =>-0.0154506151
+#
+#  Afeter chopper correctors
+$K6_BdL=      -1.874;  =>      -1.874  # kG cm
+$K7_BdL=       1.314;  =>       1.314  # kG cm
+$K8_BdL=      0;  =>           0
+$K9_BdL=       0;  =>           0
+#
+#
+#========== RF CAVITIES===================================
+#
+$f_RF=162.5e6;  =>   162500000
+$WaveLen=$c/$f_RF;  =>  184.487666
+ARRAY $Ecav[132] ;
+ARRAY $GdLCav[131] ;
+$Ecav[0]=$E;  =>         2.1
+$n=           0;  =>           0
+
+# ---- HWR Section 
+
+ARRAY  $aHW[8] = {0.34,  0.52,  0.73, 0.95, 1.5, 2.0, 2.0, 2.0}         ;
+ARRAY $phiHW[8]={ -49,   -42,   -37,  -33,  -28, -23, -20, -25}   ;
+
+do{
+     $DeltaE=$aHW[$n]*cos($PI*$phiHW[$n]/180);  =>  1.23333064
+     $Pcav=sqrt(($Ecav[$n]+$Mp)^2-$Mp^2);  =>  138.274131
+     $GammaCav=1+$Ecav[$n]/$Mp;  =>  1.01080061
+     $BetaCav=sqrt(1-1/$GammaCav^2);  =>  0.14579518
+     $PHIcavFoc=$PI*$f_RF/$c * $aHW[$n] *sin($PI*$phiHW[$n]/180) / ( $Mp * $GammaCav^3 * $BetaCav^3);  =>-0.00566334478
+     $GdLCav[$n]=$PHIcavFoc*$Pcav*1e11/$c * (1.1*($BetaCav-0.1145)  + 1e5*($BetaCav-0.1145) ^5);  =>-0.0488813152
+     $Ecav[$n+1]=$Ecav[$n]+$DeltaE;  =>  11.3673235
+     $n=$n+1;  =>           8
+}while 8-$n
+#====SSR1===============
+ARRAY  $aSSR1[16] = {1.2,  0.8,  1.1, 1.5, 1.6, 1.8, 1.7, 2.05, 2.05, 1.9, 1.95, 2.05, 2.05, 2.05, 2.05, 2.05 }         ;
+ARRAY $phiSSR1[16]={ -34,  -31,  -28, -25, -24, -21, -20, -26,  -26,   -20, -19, -20,  -18,   -18,  -15, -34.0}   ;
+
+do{
+     $DeltaE=$aSSR1[$n-8]*cos($PI*$phiSSR1[$n-8]/180);  =>   1.8400892
+     $Pcav=sqrt(($Ecav[$n]+$Mp)^2-$Mp^2);  =>   210.87487
+     $GammaCav=1+$Ecav[$n]/$Mp;  =>  1.02494434
+     $BetaCav=sqrt(1-1/$GammaCav^2);  => 0.219276592
+     $PHIcavFoc=$PI*(2*$f_RF)/$c * $aSSR1[$n-8] * sin($PI*$phiSSR1[$n-8]/180) / ( $Mp * $GammaCav^3 * $BetaCav^3);  =>-0.00249743043
+     $GdLCav[$n]=$PHIcavFoc*$Pcav*1e11/$c * (31.4066*$BetaCav^3 - 21.2329*$BetaCav^2 + 5.5378*$BetaCav - 0.54386 );  =>0.0169923268  # kG/cm
+     $Ecav[$n+1]=$Ecav[$n]+$DeltaE;  =>  25.2448546
+     $n=$n+1;  =>          24
+}while 24-$n
+ 
+#======= SSR2===================
+ARRAY  $aSSR2[35] = {5.0,5.0, 5.0, 5.0, 5.0,   5.0, 5.0, 4.9, 4.0,5.0,  5.0, 5.0, 5.0,4.8,5.0, 5.0, 5.0,5.0,5.0,5.0,  5.0, 5.0, 5.0,5.0,5.0,  5.0,5.0,5.0,5.0,5.0,  5,  5, 5, 5, 5 }         ;
+ARRAY $phiSSR2[35]={-25,-19,-17,-18,-30,       -20,-18,-16,-15,-28,    -20,-16,-16,-14,-25,    -23,-16,-18,-13,-28,   -20,-18,-14,-14,-21.0, -20, -18,-18,-18,-18, -18, -17, -16, -16, -23}   ;
+
+
+#======= LB650===================
+ARRAY  $aLB650[33] = {6.5,6.5,6.0, 7.5,7.5,11.46, 11.79,11.79,11.79,  11.79,11.79,11.79, 11.79,11.79,11.79, 11.79,11.79,11.79, 11.79,11.79,11.79, 11.79,11.79,11.79,  11.79,11.79,11.79,  11.79,11.79,11.79,  11.79,11.79,11.79 }         ;
+ARRAY $phiLB650[33]={-20,-20,-20,  -15,-13,-17,  -16,-16,-16,         -14,-14,-14,     -13,-13,-15,         -16,-15,-16,        -14,-14,-14,         -13,-13,-14,       -13,-13,-13,       -13,-13,-12,       -12,-12,-12}   ;
+
+
+#========HB650====================
+
+ARRAY  $aHB650[24] = {19.81,19.81,19.81,19.81,19.81,19.81,  19.81,19.81,19.81,19.81,19.81,19.81, 19.81,19.81,19.81,19.81,19.81,19.81,  19.81,19.81,19.81,19.81,19.81,19.81 }         ;
+ARRAY $phiHB650[24]={-10,-12,-11,-11,-11,-15,               -15, -12,-11,-11,-11,-11,           -15, -12,-11,-11,-11,-11,             -11, -12,-11,-11,-11,-11}   ;
+
+# Bunch current
+$Ibeam=0.005  ;  =>       0.005  # A
+  $f_bunch=$f_RF/2;  =>    81250000
+  $N_bunch=$Ibeam/(1.6e-19*$f_bunch);  =>   384615385
+# Initial Twiss parameters 
+$BetaX=      23;  =>          23
+$AlphaX=         0.175;  =>       0.175
+$BetaY=         11.73;  =>       11.73
+$AlphaY=       -0.095;  =>      -0.095
+$BetaZ=         95;  =>          95
+$AlphaZ=       0.05;  =>        0.05
+#
+# Longitudinal phase spase
+$SigmaS=sqrt($BetaZ*$EmitNL/$gamma/$beta);  =>  0.18835672
+$SigmaP=sqrt($EmitNL/$gamma/$beta/$BetaZ*(1+$AlphaZ*$AlphaZ));  =>0.00198517915
+$AlphaPS=$AlphaZ*sqrt(1+$AlphaZ*$AlphaZ);  => 0.050062461
+#
+
+#
+OptiM
+Energy[MeV]=$E  Mass[MeV]=$Mp
+Emittance: ex[cm]=$Accept  ey[cm]=$Accept  DP/P=3*$SigmaP
+Initial:	BetaX[cm]=$BetaX 	BetaY[cm]=$BetaY 
+	AlfaX=$AlphaX 	AlfaY=$AlphaY 
+	DispersX[cm]=0 	DispersY[cm]=0 
+	Dsp_PrimeX=0 	DspPrimeY=0 
+         X=274.32	Y=130	Z=838.866  S[cm]=0
+         tetaX=0.     tetaY=0.
+#
+begin lattice. Number of periods=1
+#MEBT
+		o1 hAper 
+	# --first doublet---
+		q1f  hAper oqh ipBPM&1 oqh hAper q1d hAper o2a hcol01 o2a o2ad1
+	# - Buncher cavity
+	# -- second doublet
+		aMEBT1 o2b o2ad2 hAper  
+                              # --second doublet---
+		q2f hAper oqh ipBPM&2 oqh hAper q2d hAper o2a o2ad3 hcol02 o2c hAper
+	# first triplet
+		qD3 hAper  oq hAper qF3 hAper oqh ipBPM&3  oqh hAper qD3 hAper o4  
+		
+#===== -- kicker/chopper section
+	#- first kicker pair 
+		hkick kick1 hkick oke  hAper 
+	#- triplet- 2
+		qD4  hAper oq  hAper qF4 hAper oqh ipBPM&4  oqh  hAper qD4 hAper o5a  
+	# -- Bunching cavity 2
+		aMEBT2 o5b  hAper 
+	# triplet 3
+		qD5  hAper oq  hAper qF5  hAper oqh ipBPM&5  oqh  hAper qD5 hAper o4 
+		hkick kick2 hkick oke hAper 
+	# triplet 4 
+		qD6  hAper oq ky6 hAper qF6  hAper ky6 oqh ipBPM&6  oqh  hAper qD6  hAper
+#===== -- dump section
+		o6  hbd iBDump hbd o6 hAper 
+	# triplet 5
+		qD7 hAper  oq  ky7 hAper qF7  hAper ky7 oqh ipBPM&7 oqh  hAper qD7  hAper 
+		o8a hcol08 o8b hcol08 o8a  hAper 
+	# triplet 6
+		qD8 hAper  oq  ky8 hAper qF8  hAper ky8 oqh ipBPM&8  oqh  hAper qD8  hAper
+		o7a hcol03  o7b aMEBT3 o5b  hAper 
+		# triplet 7
+		qD9  hAper oq ky9  hAper qF9  hAper ky9 oqh ipBPM&9  oqh  hAper qD9  hAper
+		o7a hcol04  o8 
+		ohw1a
+#
+#====HWR CM======
+i&HWRInterfaceUS
+oValve
+i&HWstart 
+ohw1b kHW1 cHW1 kHW1 ohw2sd
+ipBPM_CM&11 ohw2sa hHW qaHW1 aHW1 qaHW1 hHW ohw2sb kHW2 cHW2 kHW2   ohw2sd 
+ipBPM_CM&12 ohw2sa  hHW qaHW2 aHW2 qaHW2 hHW ohw2sb kHW3 cHW3 kHW3  ohw2sd 
+ipBPM_CM&13 ohw2sa  hHW qaHW3 aHW3 qaHW3  hHW ohw2sb kHW4 cHW4 kHW4 ohw2sd 
+ipBPM_CM&14 ohw2sa  hHW qaHW4 aHW4 qaHW4 hHW ohw2sb kHW5 cHW5 kHW5  ohw2sd 
+ipBPM_CM&15 ohw2sa hHW qaHW5 aHW5 qaHW5 hHW ohw2sb kHW6 cHW6 kHW6   ohw2sd 
+ipBPM_CM&16 ohw2sa  hHW qaHW6 aHW6 qaHW6 hHW ohw2sb kHW7 cHW7 kHW7  ohw2sd  
+ipBPM_CM&17 ohw2sa  hHW qaHW7 aHW7 qaHW7 hHW ohw2sb kHW8 cHW8 kHW8  ohw2sd 
+ipBPM_CM&18 ohw2sa  hHW qaHW8 aHW8 qaHW8 hHW  ohw1c i&HWend  
+
+# Interface box
+oValve
+i&HWRInterfaceDS
+oSSR1a1 hSSRcol  oSSR1a2 i&sLW9 oSSR1b
+#
+#===== SSR1-CM1=========  
+i&SSR1-CM1-InterfaceUS
+oValve
+i&SSR1-CM1-start 
+oSSR1c  
+hSSR qaSSR1 aSSR1 qaSSR1 hSSR oSSR2s kSSR1 qSQ1 cSSR1 qSQ1 kSSR1 oSSR2sd ipBPM_CM&21  oSSR2sa hSSR qaSSR2 aSSR2 qaSSR2  
+hSSR  oSSR3 hSSR qaSSR3 aSSR3 qaSSR3 hSSR oSSR2s kSSR2 qSQ2 cSSR2 qSQ2 kSSR2 oSSR2sd ipBPM_CM&22 oSSR2sa hSSR qaSSR4 aSSR4 qaSSR4 
+hSSR  oSSR3 hSSR qaSSR5 aSSR5 qaSSR5 hSSR oSSR2s kSSR3 qSQ3 cSSR3 qSQ3 kSSR3  oSSR2sd  ipBPM_CM&23 oSSR2sa hSSR qaSSR6 aSSR6 qaSSR6
+hSSR  oSSR3 hSSR qaSSR7 aSSR7 qaSSR7 hSSR oSSR2s kSSR4 qSQ4 cSSR4 qSQ4 kSSR4  oSSR2sd  ipBPM_CM&24 oSSR2sa hSSR qaSSR8 aSSR8 qaSSR8 
+hSSR oSSR1c i&SSR1-CM1-end
+
+# Interface box
+oValve
+i&SSR1-CM1-InterfaceDS
+oSSR1CM12 hSSRcol  i&sLW9 
+
+#===== SSR1-CM2=========  
+
+i&SSR1-CM2-InterfaceUS
+oValve
+i&SSR1-CM2-start 
+oSSR1c  
+hSSR aSSR9  hSSR oSSR2s cSSR5 oSSR2sd ipBPM_CM&21 oSSR2sa hSSR aSSR10 hSSR oSSR3 
+hSSR aSSR11 hSSR oSSR2s cSSR6 oSSR2sd ipBPM_CM&22 oSSR2sa hSSR aSSR12 hSSR oSSR3 
+hSSR aSSR13 hSSR oSSR2s cSSR7 oSSR2sd ipBPM_CM&23 oSSR2sa hSSR aSSR14 hSSR oSSR3 
+hSSR aSSR15 hSSR oSSR2s cSSR8 oSSR2sd ipBPM_CM&24 oSSR2sa hSSR aSSR16 
+hSSR oSSR1c i&SSR1-CM2-end
+# Interface box
+oValve
+i&SSR1-CM2-InterfaceDS
+oSSR1SSR2 hSSRcol i&sLW9 
+
+
+#====== SSR2-CM1======
+
+i&SSR2-CM1-InterfaceUS
+oValve
+i&SSR2-CM1-start 
+oSSR2CM oSSR2CM2Sol 
+cSSR2_1 oSSR2Sol2Cav hSSR2 aSSR2_1 hSSR2 oSSR2Cav2Cav hSSR2 aSSR2_2 hSSR2 oSSR2Cav2Sol 
+cSSR2_2 oSSR2Sol2Cav hSSR2 aSSR2_3 hSSR2 oSSR2Cav2Cav hSSR2 aSSR2_4 hSSR2 oSSR2Cav2Sol 		
+cSSR2_3 oSSR2Sol2Cav hSSR2 aSSR2_5 hSSR2 oSSR2Cav2Cav
+oSSR2Cav2CM  i&SSR2-CM1-end
+oValve
+i&SSR2-CM2-InterfaceDS
+oSSR2CM  hSSRcol i&sLW9	
+#-----------End CM1--------------
+
+#====== SSR2-CM2======
+i&SSR2-CM2-InterfaceUS
+oValve
+i&SSR2-CM2-start 
+oSSR2CM oSSR2CM2Sol 
+cSSR2_4 oSSR2Sol2Cav hSSR2 aSSR2_6 hSSR2 oSSR2Cav2Cav hSSR2 aSSR2_7 hSSR2 oSSR2Cav2Sol 
+cSSR2_5 oSSR2Sol2Cav hSSR2 aSSR2_8 hSSR2 oSSR2Cav2Cav hSSR2 aSSR2_9 hSSR2 oSSR2Cav2Sol 		
+cSSR2_6 oSSR2Sol2Cav hSSR2 aSSR2_10 hSSR2 oSSR2Cav2Cav
+oSSR2Cav2CM  i&SSR2-CM2-end
+oValve
+i&SSR2-CM2-InterfaceDS
+oSSR2CM  hSSRcol i&sLW9	
+#-----------End CM2--------------
+
+#====== SSR2-CM3======
+i&SSR2-CM3-InterfaceUS
+oValve
+i&SSR2-CM3-start 
+oSSR2CM oSSR2CM2Sol 
+cSSR2_7 oSSR2Sol2Cav hSSR2 aSSR2_11 hSSR2 oSSR2Cav2Cav hSSR2 aSSR2_12 hSSR2 oSSR2Cav2Sol 
+cSSR2_8 oSSR2Sol2Cav hSSR2 aSSR2_13 hSSR2 oSSR2Cav2Cav hSSR2 aSSR2_14 hSSR2 oSSR2Cav2Sol 		
+cSSR2_9 oSSR2Sol2Cav hSSR2 aSSR2_15 hSSR2 oSSR2Cav2Cav
+oSSR2Cav2CM  i&SSR2-CM3-end
+oValve
+i&SSR2-CM3-InterfaceDS
+oSSR2CM  hSSRcol i&sLW9	
+#-----------End CM3--------------
+
+
+#====== SSR2-CM4======
+i&SSR2-CM4-InterfaceUS
+oValve
+i&SSR2-CM4-start 
+oSSR2CM oSSR2CM2Sol 
+cSSR2_10 oSSR2Sol2Cav hSSR2 aSSR2_16 hSSR2 oSSR2Cav2Cav hSSR2 aSSR2_17 hSSR2 oSSR2Cav2Sol 
+cSSR2_11 oSSR2Sol2Cav hSSR2 aSSR2_18 hSSR2 oSSR2Cav2Cav hSSR2 aSSR2_19 hSSR2 oSSR2Cav2Sol 		
+cSSR2_12 oSSR2Sol2Cav hSSR2 aSSR2_20 hSSR2 oSSR2Cav2Cav
+oSSR2Cav2CM  i&SSR2-CM4-end
+oValve
+i&SSR2-CM4-InterfaceDS
+oSSR2CM  hSSRcol i&sLW9	
+#-----------End CM4--------------
+
+#====== SSR2-CM5======
+i&SSR2-CM5-InterfaceUS
+oValve
+i&SSR2-CM5-start 
+oSSR2CM oSSR2CM2Sol 
+cSSR2_13 oSSR2Sol2Cav hSSR2 aSSR2_21 hSSR2 oSSR2Cav2Cav hSSR2 aSSR2_22 hSSR2 oSSR2Cav2Sol 
+cSSR2_14 oSSR2Sol2Cav hSSR2 aSSR2_23 hSSR2 oSSR2Cav2Cav hSSR2 aSSR2_24 hSSR2 oSSR2Cav2Sol 		
+cSSR2_15 oSSR2Sol2Cav hSSR2 aSSR2_25 hSSR2 oSSR2Cav2Cav
+oSSR2Cav2CM  i&SSR2-CM5-end
+oValve
+i&SSR2-CM5-InterfaceDS
+oSSR2CM  hSSRcol i&sLW9	
+#-----------End CM5--------------
+
+#====== SSR2-CM6======
+i&SSR2-CM6-InterfaceUS
+oValve
+i&SSR2-CM6-start 
+oSSR2CM oSSR2CM2Sol 
+cSSR2_16 oSSR2Sol2Cav hSSR2 aSSR2_26 hSSR2 oSSR2Cav2Cav hSSR2 aSSR2_27 hSSR2 oSSR2Cav2Sol 
+cSSR2_17 oSSR2Sol2Cav hSSR2 aSSR2_28 hSSR2 oSSR2Cav2Cav hSSR2 aSSR2_29 hSSR2 oSSR2Cav2Sol 		
+cSSR2_18 oSSR2Sol2Cav hSSR2 aSSR2_30 hSSR2 oSSR2Cav2Cav
+oSSR2Cav2CM  i&SSR2-CM6-end
+oValve
+i&SSR2-CM6-InterfaceDS
+oSSR2CM  hSSRcol i&sLW9	
+#-----------End CM6--------------
+
+#====== SSR2-CM7======
+i&SSR2-CM7-InterfaceUS
+oValve
+i&SSR2-CM7-start 
+oSSR2CM oSSR2CM2Sol 
+cSSR2_19 oSSR2Sol2Cav hSSR2 aSSR2_31 hSSR2 oSSR2Cav2Cav hSSR2 aSSR2_32 hSSR2 oSSR2Cav2Sol 
+cSSR2_20 oSSR2Sol2Cav hSSR2 aSSR2_33 hSSR2 oSSR2Cav2Cav hSSR2 aSSR2_34 hSSR2 oSSR2Cav2Sol 		
+cSSR2_21 oSSR2Sol2Cav hSSR2 aSSR2_35 hSSR2 oSSR2Cav2Cav
+oSSR2Cav2CM  i&SSR2-CM7-end
+oValve
+i&SSR2-CM7-InterfaceDS
+oSSR2CM  hSSRcol i&sLW9	
+#-----------End CM7--------------
+# Total Length is Benchmarked After SSR2 section with TRACEWIN lattice======
+
+#==== LB section ====================
+
+#----- Quadrupole Package I--------
+oLBCM2Quad	
+hQuad650  quadLB650_d1 hQuad650  oQuad2Quad hQuad650 quadLB650_f1 hQuad650 
+#--------LB CM1----------------
+oLBQuad2Cav	hLB650 aLB650cav_1 hLB650 	oLBcav2cav hLB650 aLB650cav_2 hLB650 oLBcav2cav hLB650 aLB650cav_3 hLB650 oLBcav2CM		
+
+#----- Quadrupole Package 2--------
+oLBCM2Quad	
+hQuad650  quadLB650_d2 hQuad650  oQuad2Quad hQuad650 quadLB650_f2 hQuad650 
+#--------LB CM2----------------
+oLBQuad2Cav	hLB650 aLB650cav_4 hLB650 	oLBcav2cav hLB650 aLB650cav_5 hLB650 oLBcav2cav hLB650 aLB650cav_6  hLB650 oLBcav2CM		
+
+#----- Quadrupole Package 3--------
+oLBCM2Quad	
+hQuad650  quadLB650_d3 hQuad650  oQuad2Quad hQuad650 quadLB650_f3 hQuad650 
+#--------LB CM3----------------
+oLBQuad2Cav	hLB650 aLB650cav_7 hLB650 	oLBcav2cav hLB650 aLB650cav_8 hLB650 oLBcav2cav hLB650 aLB650cav_9 hLB650 oLBcav2CM		
+
+
+#----- Quadrupole Package 4--------
+oLBCM2Quad	
+hQuad650  quadLB650_d4 hQuad650  oQuad2Quad hQuad650 quadLB650_f4 hQuad650 
+#--------LB CM4----------------
+oLBQuad2Cav	hLB650 aLB650cav_10 hLB650 	oLBcav2cav hLB650 aLB650cav_11 hLB650 oLBcav2cav hLB650 aLB650cav_12 hLB650 oLBcav2CM		
+
+#----- Quadrupole Package 5--------
+oLBCM2Quad	
+hQuad650  quadLB650_d5 hQuad650  oQuad2Quad hQuad650 quadLB650_f5 hQuad650 
+#--------LB CM5----------------
+oLBQuad2Cav	hLB650 aLB650cav_13 hLB650 	oLBcav2cav hLB650 aLB650cav_14 hLB650 oLBcav2cav hLB650 aLB650cav_15 hLB650 oLBcav2CM		
+
+#----- Quadrupole Package 6--------
+oLBCM2Quad	
+hQuad650  quadLB650_d6 hQuad650  oQuad2Quad hQuad650 quadLB650_f6 hQuad650 
+#--------LB CM6----------------
+oLBQuad2Cav	hLB650 aLB650cav_16 hLB650 	oLBcav2cav hLB650 aLB650cav_17 hLB650 oLBcav2cav hLB650 aLB650cav_18 hLB650 oLBcav2CM		
+
+
+#----- Quadrupole Package 7--------
+oLBCM2Quad	
+hQuad650  quadLB650_d7 hQuad650  oQuad2Quad hQuad650 quadLB650_f7 hQuad650 
+#--------LB CM7----------------
+oLBQuad2Cav	hLB650 aLB650cav_19 hLB650 	oLBcav2cav hLB650 aLB650cav_20 hLB650 oLBcav2cav hLB650 aLB650cav_21 hLB650 oLBcav2CM		
+
+#----- Quadrupole Package 8--------
+oLBCM2Quad	
+hQuad650  quadLB650_d8 hQuad650  oQuad2Quad hQuad650 quadLB650_f8 hQuad650 
+#--------LB CM8----------------
+oLBQuad2Cav	hLB650 aLB650cav_22 hLB650 	oLBcav2cav hLB650 aLB650cav_23 hLB650 oLBcav2cav hLB650 aLB650cav_24 hLB650 oLBcav2CM		
+
+#----- Quadrupole Package 9--------
+oLBCM2Quad	
+hQuad650  quadLB650_d9 hQuad650  oQuad2Quad hQuad650 quadLB650_f9 hQuad650 
+#--------LB CM9----------------
+oLBQuad2Cav	hLB650 aLB650cav_25 hLB650 	oLBcav2cav hLB650 aLB650cav_26 hLB650 oLBcav2cav hLB650 aLB650cav_27 hLB650 oLBcav2CM		
+
+#----- Quadrupole Package 10--------
+oLBCM2Quad	
+hQuad650  quadLB650_d10 hQuad650  oQuad2Quad hQuad650 quadLB650_f10 hQuad650 
+#--------LB CM10----------------
+oLBQuad2Cav	hLB650 aLB650cav_28 hLB650 	oLBcav2cav hLB650 aLB650cav_29 hLB650 oLBcav2cav hLB650 aLB650cav_30 hLB650 oLBcav2CM		
+
+#----- Quadrupole Package 11--------
+oLBCM2Quad	
+hQuad650  quadLB650_d11 hQuad650  oQuad2Quad hQuad650 quadLB650_f11 hQuad650 
+#--------LB CM11----------------
+oLBQuad2Cav	 hLB650 aLB650cav_31 hLB650 	oLBcav2cav hLB650 aLB650cav_32 hLB650 oLBcav2cav hLB650 aLB650cav_33 hLB650 oLBcav2CM		
+
+#============== HB 650 MHz  Section ========================================
+
+#-----HB Quadrupole Package 1--------
+oHBCM2Quad	
+hQuad650  quadHB650_d1 hQuad650  oQuad2Quad hQuad650 quadHB650_f1 hQuad650 
+
+#---------------- HB CM1----------------------------
+oHBQuad2Cav
+hHB650 aHB650cav_1 hHB650 oHBcav2cav	 hHB650 aHB650cav_2 hHB650 oHBcav2cav hHB650 aHB650cav_3 hHB650 oHBcav2cav
+hHB650 aHB650cav_4 hHB650 oHBcav2cav	 hHB650 aHB650cav_5 hHB650 oHBcav2cav hHB650 aHB650cav_6 hHB650
+oHBcav2CM
+
+#----- HB Quadrupole Package 2--------
+oHBCM2Quad	
+hQuad650  quadHB650_d2 hQuad650  oQuad2Quad hQuad650 quadHB650_f2 hQuad650 
+
+#---------------- HB CM2----------------------------
+oHBQuad2Cav
+hHB650 aHB650cav_7 hHB650 oHBcav2cav	 hHB650 aHB650cav_8 hHB650 oHBcav2cav hHB650 aHB650cav_9 hHB650 oHBcav2cav
+hHB650 aHB650cav_10 hHB650 oHBcav2cav	 hHB650 aHB650cav_11 hHB650 oHBcav2cav hHB650 aHB650cav_12 hHB650
+oHBcav2CM
+
+#----- Quadrupole Package 3--------
+oHBCM2Quad	
+hQuad650  quadHB650_d3 hQuad650  oQuad2Quad hQuad650 quadHB650_f3 hQuad650 
+
+#---------------- HB CM3----------------------------
+oHBQuad2Cav
+hHB650 aHB650cav_13 hHB650 oHBcav2cav	 hHB650 aHB650cav_14 hHB650 oHBcav2cav hHB650 aHB650cav_15 hHB650 oHBcav2cav
+hHB650 aHB650cav_16 hHB650 oHBcav2cav	 hHB650 aHB650cav_17 hHB650 oHBcav2cav hHB650 aHB650cav_18 hHB650
+oHBcav2CM
+
+#----- Quadrupole Package 4--------
+oHBCM2Quad	
+hQuad650  quadHB650_d4 hQuad650  oQuad2Quad hQuad650 quadHB650_f4 hQuad650 
+
+#---------------- HB CM4----------------------------
+oHBQuad2Cav
+hHB650 aHB650cav_19 hHB650 oHBcav2cav	 hHB650 aHB650cav_20 hHB650 oHBcav2cav hHB650 aHB650cav_21 hHB650 oHBcav2cav
+hHB650 aHB650cav_22 hHB650 oHBcav2cav	 hHB650 aHB650cav_23 hHB650 oHBcav2cav hHB650 aHB650cav_24 hHB650
+oHBcav2CM
+#------
+oHBCM2Quad	
+#
+# ===============End of 800 MeV Linac================================================================
+#
+end lattice
+#
+#
+begin list: dL=1.  dB=.1  dG=0.01  dS=0.01
+ipBPM 	L[cm]=0  
+i 	L[cm]=0  
+# MEBT 
+o1 	L[cm]=30      
+oq 	L[cm]=7   
+oqh 	L[cm]=3.5   
+o2a 	L[cm]=10 
+#Additional Drift For Ring Pick up
+o2ad1 	L[cm]=12.86 
+o2b 	L[cm]=10      
+o2ad2 	L[cm]=0.14
+o2ad3 	L[cm]=0.9
+o2c 	L[cm]=70      
+o4 	L[cm]=15      
+o5a 	L[cm]=45      
+o5b 	L[cm]=15      
+o6 	L[cm]=15      
+o7a 	L[cm]=25      
+o7b 	L[cm]=20      
+o8a 	L[cm]=30      
+o8b 	L[cm]=20      
+o8 	L[cm]=55      
+iBDump 	L[cm]=50      
+oke 	L[cm]=15   
+kick1 	L[cm]=50          	B[kG]=$Bkick   	Tilt[deg]=90
+kick2 	L[cm]=50          	B[kG]=-$Bkick   	Tilt[deg]=90
+hkick 	Ax[cm]=2 	Ay[cm]=$gap 	Shape=0 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+ky6 	L[cm]=1e-6      	B[kG]=$K6_BdL/2e-6   	Tilt[deg]=90
+ky7 	L[cm]=1e-6      	B[kG]=$K7_BdL/2e-6   	Tilt[deg]=90
+ky8 	L[cm]=1e-6      	B[kG]=$K8_BdL/2e-6   	Tilt[deg]=90
+ky9 	L[cm]=1e-6      	B[kG]=$K9_BdL/2e-6   	Tilt[deg]=90
+hAper	Ax[cm]=1.5 	Ay[cm]=1.5 	Shape=1 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+hcol01	Ax[cm]=0.9 	Ay[cm]=0.9 	Shape=0 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+hcol02	Ax[cm]=0.9	Ay[cm]=0.9 	Shape=0 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+hcol03	Ax[cm]=0.9 	Ay[cm]=1.1 	Shape=0	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+hcol04	Ax[cm]=0.9 	Ay[cm]=0.9 	Shape=0 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+hcol08	Ax[cm]=0.5	Ay[cm]=0.5 	Shape=1 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+hbd	Ax[cm]=1. 	Ay[cm]=1. 	Shape=0 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+
+q1f 	L[cm]=10         	G[kG/cm]=$GQ1f 	Tilt[deg]=0
+q1d 	L[cm]=10         	G[kG/cm]=$GQ1d 	Tilt[deg]=0
+q2f 	L[cm]=10          	G[kG/cm]=$GQ2f 	Tilt[deg]=0
+q2d 	L[cm]=10         	G[kG/cm]=$GQ2d 	Tilt[deg]=0
+qF3 	L[cm]=10         	G[kG/cm]=$Gf3	Tilt[deg]=0
+qF4 	L[cm]=10         	G[kG/cm]=$Gf4	Tilt[deg]=0
+qF5 	L[cm]=10         	G[kG/cm]=$Gf5 	Tilt[deg]=0
+qF6 	L[cm]=10         	G[kG/cm]=$Gf6 	Tilt[deg]=0
+qF7 	L[cm]=10         	G[kG/cm]=$Gf7 	Tilt[deg]=0
+qF8 	L[cm]=10         	G[kG/cm]=$Gf8 	Tilt[deg]=0
+qF9 	L[cm]=10         	G[kG/cm]=$Gf9 	Tilt[deg]=0
+qD3 	L[cm]=5         	G[kG/cm]=$Gd3 	Tilt[deg]=0
+qD4 	L[cm]=5         	G[kG/cm]=$Gd4 	Tilt[deg]=0
+qD5 	L[cm]=5         	G[kG/cm]=$Gd5 	Tilt[deg]=0
+qD6 	L[cm]=5         	G[kG/cm]=$Gd6 	Tilt[deg]=0
+qD7 	L[cm]=5         	G[kG/cm]=$Gd7 	Tilt[deg]=0
+qD8 	L[cm]=5         	G[kG/cm]=$Gd8 	Tilt[deg]=0
+qD9 	L[cm]=5         	G[kG/cm]=$Gd9 	Tilt[deg]=0
+aMEBT1 	L[cm]=20         Ncell=2  Eff_L[cm]=4  A[MeV]=0.0649         Phase[deg]=-90  WaveL[cm]=$WaveLen
+aMEBT2 	L[cm]=20         Ncell=2  Eff_L[cm]=4  A[MeV]=0.02953        Phase[deg]=-90  WaveL[cm]=$WaveLen
+aMEBT3 	L[cm]=20         Ncell=2  Eff_L[cm]=4  A[MeV]=0.04593        Phase[deg]=-90  WaveL[cm]=$WaveLen
+#
+#===================== SC CRyomodule Section =======================================
+
+
+ipBPM_CM  	   	L[cm]=4.31150
+
+#Half waves
+ohw1a 	L[cm]=20      
+ohw1b 	L[cm]=23.12376
+ohw1c 	L[cm]=29.05672  
+
+ # Arun changed this to insert BPM length. Original 17.56 cm 
+
+ohw2sd 	L[cm]=5.312 
+ohw2sa 	L[cm]=7.9364 
+#ohw2sa 	L[cm]=13.2485  
+
+ohw2sb 	L[cm]=15.02      
+aHW1 	L[cm]=24         Ncell=2  Eff_L[cm]=6  A[MeV]=$aHW[0]         Phase[deg]=$phiHW[0]  WaveL[cm]=$WaveLen
+aHW2 	L[cm]=24         Ncell=2  Eff_L[cm]=6  A[MeV]=$aHW[1]         Phase[deg]=$phiHW[1]  WaveL[cm]=$WaveLen
+aHW3 	L[cm]=24         Ncell=2  Eff_L[cm]=6  A[MeV]=$aHW[2]         Phase[deg]=$phiHW[2]  WaveL[cm]=$WaveLen
+aHW4 	L[cm]=24         Ncell=2  Eff_L[cm]=6  A[MeV]=$aHW[3]         Phase[deg]=$phiHW[3]  WaveL[cm]=$WaveLen
+aHW5 	L[cm]=24         Ncell=2  Eff_L[cm]=6  A[MeV]=$aHW[4]         Phase[deg]=$phiHW[4]  WaveL[cm]=$WaveLen
+aHW6 	L[cm]=24         Ncell=2  Eff_L[cm]=6  A[MeV]=$aHW[5]         Phase[deg]=$phiHW[5]  WaveL[cm]=$WaveLen
+aHW7 	L[cm]=24         Ncell=2  Eff_L[cm]=6  A[MeV]=$aHW[6]         Phase[deg]=$phiHW[6]  WaveL[cm]=$WaveLen
+aHW8 	L[cm]=24         Ncell=2  Eff_L[cm]=6  A[MeV]=$aHW[7]         Phase[deg]=$phiHW[7]  WaveL[cm]=$WaveLen
+hHW	Ax[cm]=1.65 	Ay[cm]=1.65 	Shape=1 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+
+cHW1 	L[cm]=12         	B[kG]= 19.0      	Aperture[cm]=3       
+cHW2 	L[cm]=12         	B[kG]=-22.5      	Aperture[cm]=3       
+cHW3 	L[cm]=12         	B[kG]= 23.6       	Aperture[cm]=3       
+cHW4 	L[cm]=12         	B[kG]=-25.0      	Aperture[cm]=3       
+cHW5 	L[cm]=12         	B[kG]= 25.6      	Aperture[cm]=3       
+cHW6 	L[cm]=12         	B[kG]=-25.0      	Aperture[cm]=3       
+cHW7 	L[cm]=12         	B[kG]= 22.2      	Aperture[cm]=3       
+cHW8 	L[cm]=12         	B[kG]=-31.5      	Aperture[cm]=3       
+
+qaHW1 	L[cm]=1e-06      	G[kG/cm]=$GdLCav[0]/2e-6       	Tilt[deg]=0
+qaHW2 	L[cm]=1e-06      	G[kG/cm]=$GdLCav[1]/2e-6       	Tilt[deg]=0
+qaHW3 	L[cm]=1e-06      	G[kG/cm]=$GdLCav[2]/2e-6       	Tilt[deg]=0
+qaHW4 	L[cm]=1e-06      	G[kG/cm]=$GdLCav[3]/2e-6       	Tilt[deg]=0
+qaHW5 	L[cm]=1e-06      	G[kG/cm]=$GdLCav[4]/2e-6       	Tilt[deg]=0
+qaHW6 	L[cm]=1e-06      	G[kG/cm]=$GdLCav[5]/2e-6       	Tilt[deg]=0
+qaHW7 	L[cm]=1e-06      	G[kG/cm]=$GdLCav[6]/2e-6       	Tilt[deg]=0
+qaHW8 	L[cm]=1e-06      	G[kG/cm]=$GdLCav[7]/2e-6       	Tilt[deg]=0
+# Maximum corrector strength 5 kG cm (each actual corrector is presented by two thin correctors - before and after solenoid)    
+kHW1 	L[cm]=1e-06      	B[kG]=0.e6   	Tilt[deg]=90
+kHW2 	L[cm]=1e-06      	B[kG]=0.e6  	Tilt[deg]=0
+kHW3 	L[cm]=1e-06      	B[kG]=0.e6  	Tilt[deg]=90
+kHW4 	L[cm]=1e-06      	B[kG]=0.e6   	Tilt[deg]=0
+kHW5 	L[cm]=1e-06      	B[kG]=0.e6   	Tilt[deg]=90
+kHW6 	L[cm]=1e-06      	B[kG]=0.e6   	Tilt[deg]=0
+kHW7 	L[cm]=1e-06      	B[kG]=0.e6   	Tilt[deg]=90
+kHW8 	L[cm]=1e-06      	B[kG]=0.e6   	Tilt[deg]=0
+
+
+#
+#========SSR1 Section==========================================================================================
+oValve 	L[cm]=3.5      
+oSSR1a1 	L[cm]=8.535274 
+oSSR1CM12 	L[cm]=17.5
+   
+oSSR1a2 	L[cm]=5.3335
+oSSR1b 	L[cm]=11.12699
+oSSR1c 	L[cm]=19.15     
+
+# ! Arun changed this drift downstream to Solenoid to insert BPM length: Original 19 cm 
+oSSR2sa	L[cm]=12.0189899 
+oSSR2sd L[cm]=2.66951 
+oSSR2s 	L[cm]=19.0
+
+oSSR3 	L[cm]=15      
+aSSR1 	L[cm]=30         Ncell=2  Eff_L[cm]=7.5  A[MeV]=$aSSR1[0]         Phase[deg]=$phiSSR1[0]  WaveL[cm]=$WaveLen/2
+aSSR2 	L[cm]=30         Ncell=2  Eff_L[cm]=7.5  A[MeV]=$aSSR1[1]         Phase[deg]=$phiSSR1[1]  WaveL[cm]=$WaveLen/2
+aSSR3 	L[cm]=30         Ncell=2  Eff_L[cm]=7.5  A[MeV]=$aSSR1[2]         Phase[deg]=$phiSSR1[2]  WaveL[cm]=$WaveLen/2
+aSSR4 	L[cm]=30         Ncell=2  Eff_L[cm]=7.5  A[MeV]=$aSSR1[3]         Phase[deg]=$phiSSR1[3]  WaveL[cm]=$WaveLen/2
+aSSR5 	L[cm]=30         Ncell=2  Eff_L[cm]=7.5  A[MeV]=$aSSR1[4]         Phase[deg]=$phiSSR1[4]  WaveL[cm]=$WaveLen/2
+aSSR6 	L[cm]=30         Ncell=2  Eff_L[cm]=7.5  A[MeV]=$aSSR1[5]         Phase[deg]=$phiSSR1[5]  WaveL[cm]=$WaveLen/2
+aSSR7 	L[cm]=30         Ncell=2  Eff_L[cm]=7.5  A[MeV]=$aSSR1[6]         Phase[deg]=$phiSSR1[6]  WaveL[cm]=$WaveLen/2
+aSSR8 	L[cm]=30         Ncell=2  Eff_L[cm]=7.5  A[MeV]=$aSSR1[7]         Phase[deg]=$phiSSR1[7]  WaveL[cm]=$WaveLen/2
+     
+aSSR9 	L[cm]=30         Ncell=2  Eff_L[cm]=7.5  A[MeV]=$aSSR1[8]         Phase[deg]=$phiSSR1[8]   WaveL[cm]=$WaveLen/2
+aSSR10 	L[cm]=30         Ncell=2  Eff_L[cm]=7.5  A[MeV]=$aSSR1[9]         Phase[deg]=$phiSSR1[9]   WaveL[cm]=$WaveLen/2
+aSSR11 	L[cm]=30         Ncell=2  Eff_L[cm]=7.5  A[MeV]=$aSSR1[10]        Phase[deg]=$phiSSR1[10]  WaveL[cm]=$WaveLen/2
+aSSR12 	L[cm]=30         Ncell=2  Eff_L[cm]=7.5  A[MeV]=$aSSR1[11]        Phase[deg]=$phiSSR1[11]  WaveL[cm]=$WaveLen/2
+aSSR13 	L[cm]=30         Ncell=2  Eff_L[cm]=7.5  A[MeV]=$aSSR1[12]        Phase[deg]=$phiSSR1[12]  WaveL[cm]=$WaveLen/2
+aSSR14 	L[cm]=30         Ncell=2  Eff_L[cm]=7.5  A[MeV]=$aSSR1[13]        Phase[deg]=$phiSSR1[13]  WaveL[cm]=$WaveLen/2
+aSSR15 	L[cm]=30         Ncell=2  Eff_L[cm]=7.5  A[MeV]=$aSSR1[14]        Phase[deg]=$phiSSR1[14]  WaveL[cm]=$WaveLen/2
+aSSR16 	L[cm]=30         Ncell=2  Eff_L[cm]=7.5  A[MeV]=$aSSR1[15]        Phase[deg]=$phiSSR1[15]  WaveL[cm]=$WaveLen/2
+
+hSSR	Ax[cm]=1.5 	Ay[cm]=1.5 	Shape=1 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+hSSRcol	Ax[cm]=1.2 	Ay[cm]=1.2 	Shape=1 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+
+
+cSSR1 	L[cm]=12         	B[kG]= -35.5      	Aperture[cm]=3       
+cSSR2 	L[cm]=12         	B[kG]= -33.4      	Aperture[cm]=3       
+cSSR3 	L[cm]=12         	B[kG]=  36.8     	Aperture[cm]=3       
+cSSR4 	L[cm]=12         	B[kG]= -41.5       	Aperture[cm]=3   
+
+
+cSSR5 	L[cm]=12         	B[kG]=  41.5      	Aperture[cm]=3       
+cSSR6 	L[cm]=12         	B[kG]= -36.1      	Aperture[cm]=3       
+cSSR7 	L[cm]=12         	B[kG]=  35.1      	Aperture[cm]=3       
+cSSR8 	L[cm]=12         	B[kG]= -37.6      	Aperture[cm]=3   
+
+
+#
+qSQ1 	L[cm]=1e-06      	G[kG/cm]=-87000   	Tilt[deg]=45
+qSQ2 	L[cm]=1e-06      	G[kG/cm]=51000   	Tilt[deg]=45
+#qSQ2 	L[cm]=1e-06      	G[kG/cm]=0*367000  	Tilt[deg]=45
+qSQ3 	L[cm]=1e-06      	G[kG/cm]=0000    	Tilt[deg]=45
+qSQ4 	L[cm]=1e-06      	G[kG/cm]=0*384000  	Tilt[deg]=45
+#
+qaSSR1 	L[cm]=1e-06      	G[kG/cm]=$GdLCav[8]/2e-6       		Tilt[deg]=45
+qaSSR2 	L[cm]=1e-06      	G[kG/cm]=$GdLCav[9]/2e-6       		Tilt[deg]=45
+qaSSR3 	L[cm]=1e-06      	G[kG/cm]=$GdLCav[10]/2e-6       	Tilt[deg]=45
+qaSSR4 	L[cm]=1e-06      	G[kG/cm]=$GdLCav[11]/2e-6       	Tilt[deg]=45
+qaSSR5 	L[cm]=1e-06      	G[kG/cm]=$GdLCav[12]/2e-6       	Tilt[deg]=45
+qaSSR6 	L[cm]=1e-06      	G[kG/cm]=$GdLCav[13]/2e-6       	Tilt[deg]=45
+qaSSR7 	L[cm]=1e-06      	G[kG/cm]=$GdLCav[14]/2e-6       	Tilt[deg]=45
+qaSSR8 	L[cm]=1e-06      	G[kG/cm]=$GdLCav[15]/2e-6       	Tilt[deg]=45
+# Maximum corrector strength 5 kG cm (each actual corrector is presented by two thin correctors - before and after solenoid)    
+kSSR1 	L[cm]=1e-06      	B[kG]=0.e6   	Tilt[deg]=90
+kSSR2 	L[cm]=1e-06      	B[kG]=0.e6  	Tilt[deg]=0
+kSSR3 	L[cm]=1e-06      	B[kG]=0.e6  	Tilt[deg]=90
+kSSR4 	L[cm]=1e-06      	B[kG]=0.e6   	Tilt[deg]=0
+#
+#====================SSR2 Section============================================================================ 
+
+hSSR2	Ax[cm]=2.0 	Ay[cm]=2.0 	Shape=1 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+
+oSSR1SSR2		L[cm]=24.95 
+oSSR2CM  		L[cm]=8.7 
+oSSR2CM2Sol  	L[cm]=17.8
+oSSR2Sol2Cav 	L[cm]=45.6
+oSSR2Cav2Cav 	L[cm]=31.2
+oSSR2Cav2Sol 	L[cm]=45.6
+oSSR2Cav2CM 	L[cm]=47.2
+
+#---------------------------SSR2 Cavities----------------------------------------------------------------------------- 
+aSSR2_1 	L[cm]=43.8        Ncell=2  Eff_L[cm]=15  A[MeV]=$aSSR2[0]       Phase[deg]=$phiSSR2[0]  WaveL[cm]=$WaveLen/2
+aSSR2_2 	L[cm]=43.8        Ncell=2  Eff_L[cm]=15  A[MeV]=$aSSR2[1]       Phase[deg]=$phiSSR2[1]  WaveL[cm]=$WaveLen/2
+aSSR2_3 	L[cm]=43.8        Ncell=2  Eff_L[cm]=15  A[MeV]=$aSSR2[2]       Phase[deg]=$phiSSR2[2]  WaveL[cm]=$WaveLen/2
+aSSR2_4 	L[cm]=43.8        Ncell=2  Eff_L[cm]=15  A[MeV]=$aSSR2[3]       Phase[deg]=$phiSSR2[3]  WaveL[cm]=$WaveLen/2
+aSSR2_5 	L[cm]=43.8        Ncell=2  Eff_L[cm]=15  A[MeV]=$aSSR2[4]       Phase[deg]=$phiSSR2[4]  WaveL[cm]=$WaveLen/2
+
+aSSR2_6 	L[cm]=43.8        Ncell=2  Eff_L[cm]=15  A[MeV]=$aSSR2[5]       Phase[deg]=$phiSSR2[5]  WaveL[cm]=$WaveLen/2
+aSSR2_7 	L[cm]=43.8        Ncell=2  Eff_L[cm]=15  A[MeV]=$aSSR2[6]       Phase[deg]=$phiSSR2[6]  WaveL[cm]=$WaveLen/2
+aSSR2_8 	L[cm]=43.8        Ncell=2  Eff_L[cm]=15  A[MeV]=$aSSR2[7]       Phase[deg]=$phiSSR2[7]  WaveL[cm]=$WaveLen/2
+aSSR2_9 	L[cm]=43.8        Ncell=2  Eff_L[cm]=15  A[MeV]=$aSSR2[8]       Phase[deg]=$phiSSR2[8]  WaveL[cm]=$WaveLen/2
+aSSR2_10 	L[cm]=43.8        Ncell=2  Eff_L[cm]=15  A[MeV]=$aSSR2[9]       Phase[deg]=$phiSSR2[9]  WaveL[cm]=$WaveLen/2
+
+aSSR2_11 	L[cm]=43.8        Ncell=2  Eff_L[cm]=15  A[MeV]=$aSSR2[10]       Phase[deg]=$phiSSR2[10]  WaveL[cm]=$WaveLen/2
+aSSR2_12 	L[cm]=43.8        Ncell=2  Eff_L[cm]=15  A[MeV]=$aSSR2[11]       Phase[deg]=$phiSSR2[11]  WaveL[cm]=$WaveLen/2
+aSSR2_13	L[cm]=43.8        Ncell=2  Eff_L[cm]=15  A[MeV]=$aSSR2[12]       Phase[deg]=$phiSSR2[12]  WaveL[cm]=$WaveLen/2
+aSSR2_14 	L[cm]=43.8        Ncell=2  Eff_L[cm]=15  A[MeV]=$aSSR2[13]       Phase[deg]=$phiSSR2[13]  WaveL[cm]=$WaveLen/2
+aSSR2_15 	L[cm]=43.8        Ncell=2  Eff_L[cm]=15  A[MeV]=$aSSR2[14]       Phase[deg]=$phiSSR2[14]  WaveL[cm]=$WaveLen/2
+
+
+aSSR2_16 	L[cm]=43.8        Ncell=2  Eff_L[cm]=15  A[MeV]=$aSSR2[15]       Phase[deg]=$phiSSR2[15]  WaveL[cm]=$WaveLen/2
+aSSR2_17 	L[cm]=43.8        Ncell=2  Eff_L[cm]=15  A[MeV]=$aSSR2[16]       Phase[deg]=$phiSSR2[16]  WaveL[cm]=$WaveLen/2
+aSSR2_18	L[cm]=43.8        Ncell=2  Eff_L[cm]=15  A[MeV]=$aSSR2[17]       Phase[deg]=$phiSSR2[17]  WaveL[cm]=$WaveLen/2
+aSSR2_19 	L[cm]=43.8        Ncell=2  Eff_L[cm]=15  A[MeV]=$aSSR2[18]       Phase[deg]=$phiSSR2[18]  WaveL[cm]=$WaveLen/2
+aSSR2_20 	L[cm]=43.8        Ncell=2  Eff_L[cm]=15  A[MeV]=$aSSR2[19]       Phase[deg]=$phiSSR2[19]  WaveL[cm]=$WaveLen/2
+
+aSSR2_21 	L[cm]=43.8        Ncell=2  Eff_L[cm]=15  A[MeV]=$aSSR2[20]       Phase[deg]=$phiSSR2[20]  WaveL[cm]=$WaveLen/2
+aSSR2_22 	L[cm]=43.8        Ncell=2  Eff_L[cm]=15  A[MeV]=$aSSR2[21]       Phase[deg]=$phiSSR2[21]  WaveL[cm]=$WaveLen/2
+aSSR2_23	L[cm]=43.8        Ncell=2  Eff_L[cm]=15  A[MeV]=$aSSR2[22]       Phase[deg]=$phiSSR2[22]  WaveL[cm]=$WaveLen/2
+aSSR2_24 	L[cm]=43.8        Ncell=2  Eff_L[cm]=15  A[MeV]=$aSSR2[23]       Phase[deg]=$phiSSR2[23]  WaveL[cm]=$WaveLen/2
+aSSR2_25 	L[cm]=43.8        Ncell=2  Eff_L[cm]=15  A[MeV]=$aSSR2[24]       Phase[deg]=$phiSSR2[24]  WaveL[cm]=$WaveLen/2
+
+aSSR2_26 	L[cm]=43.8        Ncell=2  Eff_L[cm]=15  A[MeV]=$aSSR2[25]       Phase[deg]=$phiSSR2[25]  WaveL[cm]=$WaveLen/2
+aSSR2_27 	L[cm]=43.8        Ncell=2  Eff_L[cm]=15  A[MeV]=$aSSR2[26]       Phase[deg]=$phiSSR2[26]  WaveL[cm]=$WaveLen/2
+aSSR2_28	L[cm]=43.8        Ncell=2  Eff_L[cm]=15  A[MeV]=$aSSR2[27]       Phase[deg]=$phiSSR2[27]  WaveL[cm]=$WaveLen/2
+aSSR2_29 	L[cm]=43.8        Ncell=2  Eff_L[cm]=15  A[MeV]=$aSSR2[28]       Phase[deg]=$phiSSR2[28]  WaveL[cm]=$WaveLen/2
+aSSR2_30 	L[cm]=43.8        Ncell=2  Eff_L[cm]=15  A[MeV]=$aSSR2[29]       Phase[deg]=$phiSSR2[29]  WaveL[cm]=$WaveLen/2
+
+aSSR2_31 	L[cm]=43.8        Ncell=2  Eff_L[cm]=15  A[MeV]=$aSSR2[30]       Phase[deg]=$phiSSR2[30]  WaveL[cm]=$WaveLen/2
+aSSR2_32 	L[cm]=43.8        Ncell=2  Eff_L[cm]=15  A[MeV]=$aSSR2[31]       Phase[deg]=$phiSSR2[31]  WaveL[cm]=$WaveLen/2
+aSSR2_33	L[cm]=43.8        Ncell=2  Eff_L[cm]=15  A[MeV]=$aSSR2[32]       Phase[deg]=$phiSSR2[32]  WaveL[cm]=$WaveLen/2
+aSSR2_34 	L[cm]=43.8        Ncell=2  Eff_L[cm]=15  A[MeV]=$aSSR2[33]       Phase[deg]=$phiSSR2[33]  WaveL[cm]=$WaveLen/2
+aSSR2_35 	L[cm]=43.8        Ncell=2  Eff_L[cm]=15  A[MeV]=$aSSR2[34]       Phase[deg]=$phiSSR2[34]  WaveL[cm]=$WaveLen/2
+
+#--------SSR2 Solenoids-------------------------------------------------
+
+cSSR2_1 	L[cm]=15         	B[kG]= 33.4       	Aperture[cm]=4       
+cSSR2_2 	L[cm]=15         	B[kG]=-39.5      	Aperture[cm]=4       
+cSSR2_3 	L[cm]=15         	B[kG]= 40.0       	Aperture[cm]=4  
+
+cSSR2_4 	L[cm]=15         	B[kG]=-40.3       	Aperture[cm]=4       
+cSSR2_5 	L[cm]=15         	B[kG]= 41.0      	Aperture[cm]=4       
+cSSR2_6 	L[cm]=15         	B[kG]=-40.3       	Aperture[cm]=4  
+
+cSSR2_7 	L[cm]=15         	B[kG]= 39.3       	Aperture[cm]=4       
+cSSR2_8 	L[cm]=15         	B[kG]=-39.8      	Aperture[cm]=4       
+cSSR2_9 	L[cm]=15         	B[kG]= 40.0       	Aperture[cm]=4  
+
+cSSR2_10 	L[cm]=15         	B[kG]=-39.0       	Aperture[cm]=4       
+cSSR2_11 	L[cm]=15         	B[kG]= 41.0      	Aperture[cm]=4       
+cSSR2_12	L[cm]=15         	B[kG]=-40.0       	Aperture[cm]=4  
+
+cSSR2_13 	L[cm]=15         	B[kG]= 40.5       	Aperture[cm]=4       
+cSSR2_14 	L[cm]=15         	B[kG]=-41.5      	Aperture[cm]=4       
+cSSR2_15	L[cm]=15         	B[kG]= 41.5       	Aperture[cm]=4  
+
+cSSR2_16 	L[cm]=15         	B[kG]=-41.5       	Aperture[cm]=4       
+cSSR2_17 	L[cm]=15         	B[kG]= 42.9598     	Aperture[cm]=4       
+cSSR2_18	L[cm]=15         	B[kG]=-42.0203       	Aperture[cm]=4  
+
+cSSR2_19 	L[cm]=15         	B[kG]= 39.0       	Aperture[cm]=4       
+cSSR2_20 	L[cm]=15         	B[kG]=-39.0      	Aperture[cm]=4       
+cSSR2_21	L[cm]=15         	B[kG]= 38.0       	Aperture[cm]=4  
+
+#==================== LB 650 MHz section================================================================
+
+
+hLB650	  Ax[cm]=4.15 	Ay[cm]=4.15 	Shape=1 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+hQuad650  Ax[cm]=2.2 	Ay[cm]=2.2 	    Shape=1 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+oLBCM2Quad		L[cm]=40.0
+oQuad2Quad		L[cm]=40.0
+oLBQuad2Cav		L[cm]=52.225 
+oLBcav2cav		L[cm]=24.450
+oLBcav2CM		L[cm]=12.225
+
+#-----------LB 650 MHz Quadrupoles-----------------------------------------------------------------------
+ 
+quadLB650_d1 	L[cm]=20         	G[kG/cm]=-0.732 	Tilt[deg]=0
+quadLB650_f1	L[cm]=20         	G[kG/cm]= 0.797 	Tilt[deg]=0
+
+quadLB650_d2 	L[cm]=20         	G[kG/cm]=-0.901 	Tilt[deg]=0
+quadLB650_f2	L[cm]=20         	G[kG/cm]= 0.843 	Tilt[deg]=0
+
+quadLB650_d3 	L[cm]=20         	G[kG/cm]=-0.893 	Tilt[deg]=0
+quadLB650_f3	L[cm]=20         	G[kG/cm]= 0.892 	Tilt[deg]=0
+
+quadLB650_d4 	L[cm]=20         	G[kG/cm]=-0.916 	Tilt[deg]=0
+quadLB650_f4	L[cm]=20         	G[kG/cm]= 0.895 	Tilt[deg]=0
+
+quadLB650_d5 	L[cm]=20         	G[kG/cm]=-0.905 	Tilt[deg]=0
+quadLB650_f5	L[cm]=20         	G[kG/cm]= 0.885 	Tilt[deg]=0
+
+quadLB650_d6 	L[cm]=20         	G[kG/cm]=-0.910 	Tilt[deg]=0
+quadLB650_f6	L[cm]=20         	G[kG/cm]= 0.895 	Tilt[deg]=0
+
+quadLB650_d7 	L[cm]=20         	G[kG/cm]=-0.925 	Tilt[deg]=0
+quadLB650_f7	L[cm]=20         	G[kG/cm]= 0.900 	Tilt[deg]=0
+
+quadLB650_d8 	L[cm]=20         	G[kG/cm]=-0.920 	Tilt[deg]=0
+quadLB650_f8	L[cm]=20         	G[kG/cm]= 0.900 	Tilt[deg]=0
+
+quadLB650_d9 	L[cm]=20         	G[kG/cm]=-0.885 	Tilt[deg]=0
+quadLB650_f9	L[cm]=20         	G[kG/cm]= 0.865 	Tilt[deg]=0
+
+quadLB650_d10 	L[cm]=20         	G[kG/cm]=-0.870 	Tilt[deg]=0
+quadLB650_f10	L[cm]=20         	G[kG/cm]= 0.850 	Tilt[deg]=0
+
+quadLB650_d11 	L[cm]=20         	G[kG/cm]=-0.680 	Tilt[deg]=0
+quadLB650_f11	L[cm]=20         	G[kG/cm]= 0.680 	Tilt[deg]=0
+
+#----------------------------- LB 650 MHz Cavities-------------------------------------------------------------------------
+
+#- Length of LB 650 is chosen from iris to iris
+aLB650cav_1 	L[cm]=70.55   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aLB650[0]       Phase[deg]=$phiLB650[0]  WaveL[cm]=$WaveLen/4
+aLB650cav_2 	L[cm]=70.55   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aLB650[1]       Phase[deg]=$phiLB650[1]  WaveL[cm]=$WaveLen/4
+aLB650cav_3 	L[cm]=70.55   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aLB650[2]       Phase[deg]=$phiLB650[2]  WaveL[cm]=$WaveLen/4
+
+aLB650cav_4 	L[cm]=70.55   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aLB650[3]       Phase[deg]=$phiLB650[3]  WaveL[cm]=$WaveLen/4
+aLB650cav_5 	L[cm]=70.55   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aLB650[4]       Phase[deg]=$phiLB650[4]  WaveL[cm]=$WaveLen/4
+aLB650cav_6 	L[cm]=70.55   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aLB650[5]       Phase[deg]=$phiLB650[5]  WaveL[cm]=$WaveLen/4
+
+aLB650cav_7 	L[cm]=70.55   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aLB650[6]       Phase[deg]=$phiLB650[6]  WaveL[cm]=$WaveLen/4
+aLB650cav_8 	L[cm]=70.55   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aLB650[7]       Phase[deg]=$phiLB650[7]  WaveL[cm]=$WaveLen/4
+aLB650cav_9 	L[cm]=70.55   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aLB650[8]       Phase[deg]=$phiLB650[8]  WaveL[cm]=$WaveLen/4
+
+aLB650cav_10 	L[cm]=70.55   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aLB650[9]       Phase[deg]=$phiLB650[9]    WaveL[cm]=$WaveLen/4
+aLB650cav_11	L[cm]=70.55   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aLB650[10]      Phase[deg]=$phiLB650[10]   WaveL[cm]=$WaveLen/4
+aLB650cav_12 	L[cm]=70.55   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aLB650[11]      Phase[deg]=$phiLB650[11]   WaveL[cm]=$WaveLen/4
+
+
+aLB650cav_13 	L[cm]=70.55   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aLB650[12]      Phase[deg]=$phiLB650[12]   WaveL[cm]=$WaveLen/4
+aLB650cav_14	L[cm]=70.55   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aLB650[13]      Phase[deg]=$phiLB650[13]   WaveL[cm]=$WaveLen/4
+aLB650cav_15 	L[cm]=70.55   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aLB650[14]      Phase[deg]=$phiLB650[14]   WaveL[cm]=$WaveLen/4
+
+aLB650cav_16 	L[cm]=70.55   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aLB650[15]      Phase[deg]=$phiLB650[15]   WaveL[cm]=$WaveLen/4
+aLB650cav_17	L[cm]=70.55   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aLB650[16]      Phase[deg]=$phiLB650[16]   WaveL[cm]=$WaveLen/4
+aLB650cav_18 	L[cm]=70.55   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aLB650[17]      Phase[deg]=$phiLB650[17]   WaveL[cm]=$WaveLen/4
+
+aLB650cav_19 	L[cm]=70.55   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aLB650[18]      Phase[deg]=$phiLB650[18]   WaveL[cm]=$WaveLen/4
+aLB650cav_20	L[cm]=70.55   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aLB650[19]      Phase[deg]=$phiLB650[19]   WaveL[cm]=$WaveLen/4
+aLB650cav_21 	L[cm]=70.55   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aLB650[20]      Phase[deg]=$phiLB650[20]   WaveL[cm]=$WaveLen/4
+
+
+aLB650cav_22 	L[cm]=70.55   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aLB650[21]      Phase[deg]=$phiLB650[21]   WaveL[cm]=$WaveLen/4
+aLB650cav_23 	L[cm]=70.55   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aLB650[22]      Phase[deg]=$phiLB650[22]   WaveL[cm]=$WaveLen/4
+aLB650cav_24	L[cm]=70.55   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aLB650[23]      Phase[deg]=$phiLB650[23]   WaveL[cm]=$WaveLen/4
+
+aLB650cav_25 	L[cm]=70.55   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aLB650[24]      Phase[deg]=$phiLB650[24]   WaveL[cm]=$WaveLen/4
+aLB650cav_26 	L[cm]=70.55   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aLB650[25]      Phase[deg]=$phiLB650[25]   WaveL[cm]=$WaveLen/4
+aLB650cav_27	L[cm]=70.55   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aLB650[26]      Phase[deg]=$phiLB650[26]   WaveL[cm]=$WaveLen/4
+
+aLB650cav_28 	L[cm]=70.55   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aLB650[27]      Phase[deg]=$phiLB650[27]   WaveL[cm]=$WaveLen/4
+aLB650cav_29 	L[cm]=70.55   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aLB650[28]      Phase[deg]=$phiLB650[28]   WaveL[cm]=$WaveLen/4
+aLB650cav_30	L[cm]=70.55   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aLB650[29]      Phase[deg]=$phiLB650[29]   WaveL[cm]=$WaveLen/4
+
+aLB650cav_31 	L[cm]=70.55   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aLB650[30]      Phase[deg]=$phiLB650[30]   WaveL[cm]=$WaveLen/4
+aLB650cav_32 	L[cm]=70.55   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aLB650[31]      Phase[deg]=$phiLB650[31]   WaveL[cm]=$WaveLen/4
+aLB650cav_33	L[cm]=70.55   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aLB650[32]      Phase[deg]=$phiLB650[32]   WaveL[cm]=$WaveLen/4
+
+# ===============HB 650 MHz Section=====================================================================
+
+hHB650	  Ax[cm]=5.9 	Ay[cm]=5.9 	Shape=1 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+
+oHBCM2Quad		L[cm]=40.0
+oQuad2Quad		L[cm]=40.0
+oHBQuad2Cav		L[cm]=62.81 
+oHBcav2cav		L[cm]=45.62
+oHBcav2CM		L[cm]=22.81
+
+#------- HB 650 MHz Quadrupoles------------------------------------
+quadHB650_d1 	L[cm]=20         	G[kG/cm]=-1.140 	Tilt[deg]=0
+quadHB650_f1	L[cm]=20         	G[kG/cm]= 1.080 	Tilt[deg]=0
+
+quadHB650_d2 	L[cm]=20         	G[kG/cm]=-1.140 	Tilt[deg]=0
+quadHB650_f2	L[cm]=20         	G[kG/cm]= 1.120 	Tilt[deg]=0
+
+
+quadHB650_d3 	L[cm]=20         	G[kG/cm]=-1.140 	Tilt[deg]=0
+quadHB650_f3	L[cm]=20         	G[kG/cm]= 1.120 	Tilt[deg]=0
+
+
+quadHB650_d4 	L[cm]=20         	G[kG/cm]=-1.140 	Tilt[deg]=0
+quadHB650_f4	L[cm]=20         	G[kG/cm]= 1.120 	Tilt[deg]=0
+
+
+#-----------HM 650 MHz cavity---------------------------------------------
+
+aHB650cav_1 	L[cm]=104.38   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aHB650[0]      Phase[deg]=$phiHB650[0]   WaveL[cm]=$WaveLen/4
+aHB650cav_2 	L[cm]=104.38   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aHB650[1]      Phase[deg]=$phiHB650[1]   WaveL[cm]=$WaveLen/4
+aHB650cav_3 	L[cm]=104.38   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aHB650[2]      Phase[deg]=$phiHB650[2]   WaveL[cm]=$WaveLen/4
+aHB650cav_4 	L[cm]=104.38   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aHB650[3]      Phase[deg]=$phiHB650[3]   WaveL[cm]=$WaveLen/4
+aHB650cav_5 	L[cm]=104.38   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aHB650[4]      Phase[deg]=$phiHB650[4]   WaveL[cm]=$WaveLen/4
+aHB650cav_6 	L[cm]=104.38   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aHB650[5]      Phase[deg]=$phiHB650[5]   WaveL[cm]=$WaveLen/4
+
+
+aHB650cav_7 	L[cm]=104.38   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aHB650[6]      Phase[deg]=$phiHB650[6]   WaveL[cm]=$WaveLen/4
+aHB650cav_8 	L[cm]=104.38   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aHB650[7]      Phase[deg]=$phiHB650[7]   WaveL[cm]=$WaveLen/4
+aHB650cav_9 	L[cm]=104.38   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aHB650[8]      Phase[deg]=$phiHB650[8]   WaveL[cm]=$WaveLen/4
+aHB650cav_10 	L[cm]=104.38   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aHB650[9]      Phase[deg]=$phiHB650[9]   WaveL[cm]=$WaveLen/4
+aHB650cav_11	L[cm]=104.38   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aHB650[10]      Phase[deg]=$phiHB650[10]   WaveL[cm]=$WaveLen/4
+aHB650cav_12 	L[cm]=104.38   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aHB650[11]      Phase[deg]=$phiHB650[11]   WaveL[cm]=$WaveLen/4
+
+
+aHB650cav_13 	L[cm]=104.38   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aHB650[12]      Phase[deg]=$phiHB650[12]   WaveL[cm]=$WaveLen/4
+aHB650cav_14 	L[cm]=104.38   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aHB650[13]      Phase[deg]=$phiHB650[13]   WaveL[cm]=$WaveLen/4
+aHB650cav_15 	L[cm]=104.38   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aHB650[14]      Phase[deg]=$phiHB650[14]   WaveL[cm]=$WaveLen/4
+aHB650cav_16 	L[cm]=104.38   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aHB650[15]      Phase[deg]=$phiHB650[15]   WaveL[cm]=$WaveLen/4
+aHB650cav_17	L[cm]=104.38   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aHB650[16]      Phase[deg]=$phiHB650[16]   WaveL[cm]=$WaveLen/4
+aHB650cav_18 	L[cm]=104.38   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aHB650[17]      Phase[deg]=$phiHB650[17]   WaveL[cm]=$WaveLen/4
+
+
+aHB650cav_19 	L[cm]=104.38   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aHB650[18]      Phase[deg]=$phiHB650[18]   WaveL[cm]=$WaveLen/4
+aHB650cav_20 	L[cm]=104.38   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aHB650[19]      Phase[deg]=$phiHB650[19]   WaveL[cm]=$WaveLen/4
+aHB650cav_21 	L[cm]=104.38   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aHB650[20]      Phase[deg]=$phiHB650[20]   WaveL[cm]=$WaveLen/4
+aHB650cav_22 	L[cm]=104.38   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aHB650[21]      Phase[deg]=$phiHB650[21]   WaveL[cm]=$WaveLen/4
+aHB650cav_23	L[cm]=104.38   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aHB650[22]      Phase[deg]=$phiHB650[22]   WaveL[cm]=$WaveLen/4
+aHB650cav_24 	L[cm]=104.38   Ncell=5  Eff_L[cm]=$WaveLen/16  A[MeV]=$aHB650[23]      Phase[deg]=$phiHB650[23]   WaveL[cm]=$WaveLen/4
+
+end list of elements
+
+TrajParamBlock
+	X[cm]=0.2 	Teta_X[rad]=0.
+	Y[cm]=0. 	Teta_Y[rad]=0.
+	s[cm]=0 	DeltaP/P=0
+EndTrajParamBlock
+
+4D_BetaBlock
+	Beta_X_1[cm]=$BetaX 	Beta_X_2[cm]=0
+	Alfa_X_1=$AlphaX  	Alfa_X_2=0
+	Beta_Y_1[cm]=0 		Beta_Y_2[cm]=$BetaY
+	Alfa_Y_1=0  		Alfa_Y_2=$AlphaY
+	Nu_1[deg]=0 		Nu_2[deg]=0 	U=0
+	Emit1[cm]=$Emit  	Emit2[cm]=$Emit
+	DispX[cm]=0 	DispY[cm]=0
+	DispXpr[cm]=0 	DispYpr[cm]=0
+End4DBetaBlock
+SpaceChargeBlock
+  BeamCurrent[A]=0.01
+  BunchLength[cm]= $SigmaS   dP/P=$SigmaP   Alpha[-1,1]=$AlphaPS   S_Offset[cm]=0.
+EndSpaceChargeBlock

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="header.js"></script>
+</head>
+<body>
+<h4>C-Solenoid</h4>
+
+<table id="element">
+   <tr>
+    <th>Parameter Description</th>
+    <th>Argument Order</th>
+    <th>Argument Name </th>
+    <th>Units </th>
+    <th>Default Value</th>
+  </tr>
+  <tr>
+    <td>Length </td>
+    <td>  1    </td>
+    <td>  L    </td>
+    <td> cm    </td>
+    <td> 0.0   </td>
+  </tr>
+  <tr class="alt">
+    <td> Axial Field </td>
+    <td>  2   </td>
+    <td>  B    </td>
+    <td>  kG   </td>
+    <td>  0.0   </td>
+  </tr>
+  <tr>
+    <td> Effective Aperture </td>
+    <td>   3  </td>
+    <td>   a  </td>
+    <td>  degrees </td>
+    <td>  0.0     </td>
+  </tr>
+</table>
+
+<p>
+  The letters "C" and "c" denote a solenoid. The first parameter ($L$) is the effective length of the magnet in cm. It is
+  defined as follows:
+</p>
+$$
+L = \frac{1}{B_0} \int_{-\infty}^{\infty} B_s(s) ds
+$$
+<p>
+The second parameter is the magnetic field in kG. The third parameter, $a$ is the effective aperture radius of the solenoid.
+When  $a=0$ - or equivalently, is simply omitted- $L$ is the same as the physical length and the transfer matrix is that
+of a hard edge solenoid i.e.
+</p>
+$$ M = \left[ 
+\begin{array}{cccc}
+\frac{1+c}{2} & \frac{s}{k} & \frac{s}{2} & \frac{1-c}{k} \\
+-\frac{ks}{4} & \frac{1+c}{2} & -k\frac{1-c}{4} & \frac{s}{2} \\
+-\frac{s}{2} & -\frac{1-c}{k} & \frac{1+c}{2} & \frac{s}{k} \\
+k\frac{1-c}{4} & -\frac{s}{2} & -\frac{ks}{4} & \frac{1+c}{2} 
+\end{array}
+\right] \;\;
+\begin{eqnarray}
+s   & = & \sin{kL} \\
+c   & = & \cos{kL} \\
+k  & = & \frac{eB_0}{2p_0}
+\end{eqnarray}
+$$ 
+<p>
+with $B_0$ representing the magnetic field amplitude at the center of the solenoid.
+When $a$ is non-zero, a correction related the extent of the solenoid edge field region is introduced.
+This correction results in a decrease of the total focusing compared to the ideal hard-edge case.
+OptiM assumes the following analytical form to model the on-axis magnetic field:
+</p>
+$$
+\begin{eqnarray}
+B_z(s) & = &  \frac{1}{2}B_0 [ 1 + \tanh{( (s+ L/2)/a )} ] \; s < 0  \\
+       & = &  \frac{1}{2}B_0 [ 1 - \tanh{( (s- L/2)/a )} ] \; s > 0
+\end{eqnarray}
+$$  
+<p>
+Using this form, the resulting strength of the focusing correction kicks at each edge is:
+$$
+\Phi_{\hbox{edge}} = -\frac{1}{2} \left[\frac{e}{p}\right]^2 \left[ \int_{-\infty}^{\infty} B_s^2(s) ds - B_0^2L \right] = -\frac{k^2 a}{2}
+$$
+where $k$ is the cyclotron wavenumber. Since
+$$
+k^2 = \left[\frac{e}{2p}\right]^2 B_0^2
+$$
+one has 
+$$
+a =  \frac{1}{B_0^2} \int B_s^2(s) ds - L 
+$$
+In practice, given a measured on-axis field profile, one would use the later to determine $a$ from the above.  
+Note that the position of the edge focusing kick  is determined by the effective length. This means
+that the edge kick corrections are applied at positions that are slightly shifted with respect with those of the physical edges. 
+In tracking simulations, the program takes into account the first nonlinear focusing term $(\Delta\Phi r^3)$.
+<pre>
+Examples: 
+C1		L[cm]=10	B[kG]=20
+c1		L[cm]=1100	B[kG]=1
+</pre>
+</body>
+</html>
+  

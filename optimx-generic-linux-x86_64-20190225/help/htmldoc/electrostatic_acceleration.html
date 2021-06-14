@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="header.js"> </script>
+</head>
+<body>
+<h4>E-Electrostatic Accelerating Section</h4>
+
+<table id="element">
+   <tr>
+    <th>Parameter Description</th>
+    <th>Argument Order</th>
+    <th>Argument Name </th>
+    <th>Units </th>
+    <th>Default Value</th>
+   </tr>
+   <tr>
+    <td>  Length </td>
+    <td>  1  </td>
+    <td>  L  </td>
+    <td>  cm </td>
+    <td>  0.0     </td>
+  </tr>
+  <tr>
+    <td>  Energy Gain </td>
+    <td>  2  </td>
+    <td>  Delta_E  </td>
+    <td>  MeV     </td>
+    <td>  0.0     </td>
+  </tr>
+</table>
+<p>
+The letters "E" and "e" denote a section with electrostatic acceleration in the uniform electrostatic field. 
+The first argument is the total length of the accelerating field. 
+The second argument is the total energy change in the section. 
+The program takes into account the effect of the beam focusing and defocusing at the entrance and exit 
+of the section but does not include any beam space charge effect.
+</p>
+<pre>
+Example: 
+Eacc          	L[cm]=0   	Delta_E[MeV]=20
+</pre>
+</body>
+</html>
+  

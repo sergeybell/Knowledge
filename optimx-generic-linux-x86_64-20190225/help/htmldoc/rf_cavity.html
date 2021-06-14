@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="header.js"></script>
+<title> OptiMX : RF Cavity </title>
+</head>
+<body>
+<h4>W-RF cavity (pi-mode standing wave)</h4>
+<p>
+<table id="element">
+   <tr>
+    <th>Parameter Description</th>
+    <th>Argument Order</th>
+    <th>Argument Name </th>
+    <th>Units </th>
+    <th>Default Value</th>
+  </tr>
+  <tr>
+    <td> Total Length </td>
+    <td>  1    </td>
+    <td>  cm    </td>
+    <td>       </td>
+    <td>       </td>
+  </tr>
+  <tr class="alt">
+    <td>  Voltage </td>
+    <td>  2  </td>
+    <td>  A  </td>
+    <td>  MV </td>
+    <td>  0.0     </td>
+  </tr>
+  <tr>
+    <td>  Phase </td>
+    <td>  3  </td>
+    <td>  phase  </td>
+    <td>  deg </td>
+    <td>  0.0     </td>
+  </tr>
+  <tr class="alt">
+    <td>  Wavelength </td>
+    <td>  4  </td>
+    <td>  WaveL  </td>
+    <td>  cm  </td>
+    <td>  0.0     </td>
+  </tr>
+  <tr>
+    <td>  Field Data </td>
+    <td>  5  </td>
+    <td>  FileRef  </td>
+    <td>          </td>
+    <td>          </td>
+  </tr>
+</table>
+<p>
+The letters "W" and "w" denote an axial symmetric accelerating cavity. The first parameter is the total length of the cavity. 
+The second parameter is the total accelerating voltage of the cavity for on-crest acceleration. The phase is expressed with repect to the
+accelerating phase relative to the on-crest acceleration phase; a the positive phase implies that a particle goes through the cavity 
+after the voltage reaches its maximum. WaveL determines the wave length of the accelerating voltage in vacuum $(\lambda=c/f)$. 
+FileRef is the reference number to an external file which must be determined in the file reference section 
+(see Input language description). The external file consists of two columns determining the amplitude of the standing wave 
+accelerating field along cavity axis. The first column is the longitudinal coordinate and the second one the longitudinal 
+electric field value (with sign). The program interpolates the field at intermediate points using cubic splines. 
+Usually 10-15 points per cell is sufficient to get decent accuracy. The relative dependence of the field is only important, 
+the program chooses required amplitude itself. The coordinate must be monotonically increasing. The difference between the 
+coordinates of the last and first point must be equal to the cavity length. 
+The program finds the transfer matrix using the third order Runge-Kutta method. 
+Accuracy and number of steps are determined by View|Control menu. 
+The accuracy is determined by a difference of the transfer matrix determinant from one. 
+If accuracy is not achieved the program pops-up a message window. To keep the transfer matrix M symplectic,
+M21 and M43 are corrected to make each of the $2\times 2$ sub-determinants equal to unity.
+</p>
+<pre>
+Example: 
+# cavity with total length of 70 cm and accelerating voltage of 2.5 MeV. The cavity field is determined in the external file C:\OPTIM\CAVITY\cav2.DAT. Accelerating phase is equal to zero (on crest acceleration).
+file reference start
+1 C:\OPTIM\CAVITY\cav1.DAT 
+3 C:\OPTIM\CAVITY\cav2.DAT 
+file reference end
+...
+wAq2       	L[cm]=70        A[MeV]=2.5       Phase[deg]=0  WaveL[cm]=20 FileRef=3
+</pre>
+  
+</body>
+</html>
+  

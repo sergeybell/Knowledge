@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="header.js"> </script>
+</head>
+<body>
+<h4>M: Thin Multipole / Axially symmetric multipole (radial focusing) </h4>
+<table id="element">
+   <tr>
+    <th>Parameter Description</th>
+    <th>Argument Order</th>
+    <th>Argument Name </th>
+    <th>Units </th>
+    <th>Default Value</th>
+  </tr>
+  <tr>
+    <tdorder </td>
+    <td>  1    </td>
+    <td>  m    </td>
+    <td>       </td>
+    <td> 0.0   </td>
+  </tr>
+  <tr class="alt">
+    <td> Integrated Strength </td>
+    <td>  2   </td>
+    <td>  s_m    </td>
+    <td>  kG/cm**(m-1)   </td>
+    <td>  0.0   </td>
+  </tr>
+  <tr>
+    <td> Tilt </td>
+    <td>  3  </td>
+    <td>  Tilt[deg]  </td>
+    <td>  degrees </td>
+    <td>  0.0     </td>
+  </tr>
+</table>
+<p>
+The letter "M" (or "m") denotes a thin (zero length) multipole. The first parameter is the multipole 
+harmonic order (m=1 - quadrupole, m=2 - sextupole, ...).  The second parameter is the integrated multipole strength in kG/cm**(m-1). 
+The third parameter is the roll angle (tilt) of the multipole in degrees in the local beam frame. 
+The rotation axis is tangential to the beam trajectory. For tilt=0 the coordinate dependence of
+the horizontal and vertical magnetic kicks is given by the following equations:
+$$
+\begin{eqnarray}
+	\Delta\theta_x & = & - \frac{B_mL}{B\rho} \frac{r^m}{m!} \cos mq  \\
+	\Delta\theta_y & = &   \frac{B_mL}{B\rho} \frac{r^m}{m!} \sin mq  
+\end{eqnarray}
+$$
+where $r$ and $q$ are polar coordinates with  $x = r \cos q$ and $y = r \sin q$ . 
+First order focusing $(m=1)$ is taken into account in all calculations; in particular, it affects the linear Twiss functions.
+Second order focusing (m=2) is taken into account for chromaticity calculations. Multipoles of higher orders
+affect particle tracking only (see Tools|Trajectory, Tools|Type trajectory). 
+If the multipole parameter is set to a negative value, the element is interpreted
+as axially symmetric; in that case the kicks experienced by the particle case are as follows
+$$
+\begin{eqnarray}
+	\Delta\theta_x & = & - \frac{B_m L}{B\rho}  \frac{r^m}{m!} \\
+	\Delta\theta_y & = &   \frac{B_m L}{B\rho}  \frac{r^m}{m!} 
+\end{eqnarray}
+$$
+This may be used to describe nonlinear focusing in axially symmetric elements such as a lithium lens or a solenoid. 
+Note that the tilt parameter does not have any effect if the element describes radial focusing. 
+
+Linear axially symmetric multipoles $(m=-1)$ are taken into account in all calculations. 
+Higher order multipoles $(m < -1)$ are taken into account only for particle tracking (see Tools|Trajectory, Tools|Type trajectory). 
+</p>
+<pre>
+Example: 
+m21		Order:m=3  Bm*L[kG/cm**(m-1)]=0.01  Tilt[deg]=0
+m          	Order:m=10   Bm*L[kG/cm**(m-1)]=0.01   Tilt[deg]=45
+maxi         	Order:m=-4   Bm*L[kG/cm**(m-1)]=0.21   
+</pre>
+</body>
+</html>
+  

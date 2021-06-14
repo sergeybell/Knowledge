@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="header.js"> </script>
+<title> OptiMX Help: Tools Menu </title> 
+</head>
+<body>
+<h2>Tools Menu</h2>
+
+<p> The Tools menu provides tools for lattice studies. </p>
+<table class=sansserif>
+<tr><td> Close Lattice	</td><td> <a href=""> Close the lattice. </a> </td></tr>
+<tr><td> Close Symmetric 	</td><td><a href=""> Close the lattice symmetrically. </a> </td></tr>
+<tr><td> Track		</td><td> <a href=""> Perform multiparticle tracking. </a> </td></tr>
+<tr><td> Trajectory		</td><td><a href=""> Plot a betatron motion trajectory into a graphical window. </a> </td></tr>
+<tr><td> Type Trajectory		</td><td><a href=""> Type a betatron motion trajectory into a text window. </a> </td></tr>
+<tr><td> Close Trajectory	</td><td><a href=""> Closes the closed orbit for circular machine. </a> </td></tr>
+<tr><td> Tune Diagram		</td><td><a href=""> Plots the tune diagram. </a> </td></tr>
+<tr><td> Show External File	</td><td><a href=""> Plots an external file. </a> </td></tr>
+<tr><td> Control 	</td><td> <a href=""> Controls behavior of Tools|Trajectory and Tools|Close Trajectory menus). </a> </td></tr>
+</table>
+
+<h4>Tools|Close Lattice</h4>
+<p>
+  Closes the lattice (finds a periodic solution for beta-functions and dispersions). The initial Twiss parameters
+  in the main window are automatically updated, assuming that the periodic solution can be found.
+</p>
+<h4>Tools|Close Symmetric</h4>
+<p>
+  Closes the lattice symmetrically i.e. force the alpha-functions and dispersion derivatives to be zero both at the lattice entrance and exit.
+  If a solution can be found, the initial Twiss parameters in the main window are overwritten.
+</p>
+<h4>Tools|Track</h4>
+<p>
+Performs multi-particle, multiturn tracking. 
+Invoking Tools|Tracker menu opens a Tracker window. This window provides its own menu to control the tracking object behavior.
+Before tracking can be performed, general tracking parameters as well as an initial particle distribution must be specified. 
+</p>
+<p>
+  To set the general tracking parameters, from the tracjing window menu invoke Setup|Parameters. The dialog allows one to specify the number of turns
+  and the element index (the location) for the which tracking results will be reported. A negative or zero index implies the last element of the lattice.
+  A checkbox determines whether the program should use a fast tracking algorithm (the default is the most accurate one) and whether
+  Tracking results (normalized beam emittances, maximum particle coordinates, and survival fraction) are shown.
+  The output window is fully editable: arbitrary text e.g. comments may be added.  
+</p>
+<p>
+  Once general tracking parameters are set, the menu items Setup|Distribution and File|Read are enabled;
+  either one may be invoked to specify an initial particle distribution.
+  Use Setup|Distribution to generate a Gaussian particle in 6D phase space. The following parameters can be specified in the dialog window: RMAX, RMIN and the number of particles.
+  RMAX and RMIN specify the inner and outer truncation radii in 6D phase space; particles with coordinates larger than RMAX*SIGMA or less than RMIN*SIGMA
+  will be excluded. By setting RMAX close to RMIN, a spherical "shell" particle distribution in 6D space may be generated. The defaults are RMAX=6, RMIN=0.
+  Other parameters for the transverse and longitudinal distributions (bunch length, energy spread and alpha) are prescribed in the 4D Beta-functions block
+  and the space charge block (see Space Charge Menu).
+  The 4D Beta-function block entries determine the transverse particle distribution, which is, in general, considered to be X-Y coupled
+  (see 4D Beta-functions block and Input language description). If the 4D block does not exist, the program, after prompting the user, creates a template.
+  The correct initial 4D Twiss functions and emittances must then be explicilty specified. Alternatively, one may use View 4D|Close 4D from the menu to
+  automatically obtain periodic Twiss functions for a circular machine.
+  Entries from the the space charge block are used to determine the equation of ellipse in  longitudinal phase space (projection of 6D ellipsoid to the longitudinal plane):
+  $$
+  \frac{\Delta p^2}{\sigma_p^2} - 2\tilde{\alpha} \frac{\Delta p \Delta s}{\sigma_p\sigma_s} + \frac{\Delta_s^2}{\sigma_s^2} = 1 - \tilde{\alpha^2}
+  $$
+  where $\sigma_p$ and $\sigma_s$ are the energy spread and the bunch length (for definition of $\tilde{\alpha}$ see also Size4D).
+  As it follows from the definition, the total longitudinal emittance is 
+  $$
+  \sqrt{1-\tilde{\alpha^2}} \sigma_p \sigma_s
+  $$
+  If the initial dispersions in the 4D Beta-function block are not zero, an additional particle displacement proportional to its momentum deviation is assigned. 
+  If a special initial distribution is needed, the initial distribution can be read from a file by invoking File|Read from the Traker menu.
+  The file format is as follows:
+  The first line is the string "OptiM Track Data". Subsequent lines are (one line per particle) the 6 phase space coordinates: x[cm], dx/ds, y[cm], dy/ds, z[cm], Dp/p.
+  The example below illustrates the required format: 
+</p>
+<pre>
+OptiM Track Data
+-0.281148  	-2.20735e-05  	0.0973784  	0.000123752  	-0.0444716  	0.000138878
+....  	
+-0.19935  	4.71474e-05  	-0.00284839  	-8.62216e-05  	0.199689  	0.000104129  	
+</pre>
+<p>
+  Two additional columns may be present. Column 7 is a particle ID.  If none is assigned, it is automatically set to the particle index used internally.
+  Column 8 is the statistical weight of the particle. If it is not assigned, it is set to 1.0
+</p>
+
+Once an initial particle distribution is established, tracking can be initiated. Upon completion, the initial and final phase
+space distributions are available from the Views menu. Any one of the  X-Y, X-X', Y-Y', and S-dP/P  projections may be selected.
+Plots of the normalized emittance, energy spread and beam intensity evolutions are available from the Plot menu.
+The initial and the final particle distributions may be saved by invoking File|Save from the Tracker menu.
+</p>
+<h4>Tools|Trajectory</h4>
+<p>
+  Plots betatron motion trajectory, i.e. plots a particle trajectory relative to the reference orbit. The program uses the initial particle positions angles
+  and momentum deviation specified in the trajectory parameter block, whose format is shown below:
+</p>
+<pre>
+TrajParamBlock
+	X[cm]=0. 	Teta_X[rad]=0.
+	Y[cm]=0. 	Teta_Y[rad]=0.
+	s[cm]=0. 	DeltaP/P=0.
+EndTrajParamBlock
+</pre>
+<p>
+If no trajectory parameter block is present, a template will automatically be created. 	
+The Tools|Control menu provides some control on how the trajectory is plotted.
+</p>
+<h4>Tools|Type Trajectory</h4>
+<p>
+Analogeous to Tools|Trajectory, but provides numerical output. 
+The program prompts for initial betatron amplitudes and angles, and then propagates betatron trajectory along the lattice.
+Correctors kicks are accounted for. The Step parameter determines the spacing between samples. Each element
+is subdivided into a finite number of equal slices. The number of slices is selected to match the step parameter as closely as possible.
+A zero or negative step parameter causes the output to be produced only at the dowstream ends of elements. A filter allows one to include/exclude
+specific elements from the table (See Filtering). Output can also be limited to elements from a specified range.
+Setting the element indices for the start and end opf the range to zero implies that the entire lattice range is selected. 
+</p>
+<h4>Tools|Close Trajectory</h4>
+<p>
+  Determines the closed orbit for a ring where the closed orbit differs from the design orbit due to the presence of transverse and/or longitudinal correctors
+  and momentum offset. This command updates the trajectory parameter block which is used by the Trajectory and Type trajectory commands.
+  Tools|Control provides some control on how the trajectory closure is performed.
+</p>
+<h4>Tools|Tune Diagram </h4>
+<p>
+  Plots a tune diagram. This is another type of graphical window but its functionality is similar to the general graphical window (see Graphical Window).
+  A dialog allows the used to specify the extent of the tune space (where the tune diagram has to be build), the maximum order of resonances
+  (for which resonance lines are shown) and the types of resonances (sum or coupling resonances).
+</p>
+<h4>Tools|Show External File</h4>
+<p>
+  Plots numerical values from an external text file. The file must be in tabular format. Any number of spaces and tabs delimits columns. Up to four curves can be
+  shown simultaneously. The dialog box is self explanatory. One needs to assign:  column for abscissa and ordinates and ordinate axis (left or right).
+  If a column number is less than or equal to zero,  the corresponding curve will not be shown.  
+</p>
+<h4>Tools|Control</h4>
+<p>
+Controls the behavior of Tools|Trajectory and Tools|Close Trajectory menus. 
+The first two-way radio button allows one to choose how the orbit closure in a ring will be performed. If Use single plane closure for each plane is chosen,
+then only the entries of a 2-by-2 horizontal and vertical transfer matrices are used for closure; non-linear terms are ignored.
+In this case, the orbit can be excited by transverse correctors only (see K-transverse corrector). If Use general 6D closure is chosen,
+all non-linearities and plane-to-plane coupling are taken into account when the closed orbit is determined. In this case both transverse and longitudinal
+correctors, as well as electrostatic acceleration and RF cavities affect the beam motion. If no accelerating cavities are present in a ring,
+the longitudinal degree of freedom cannot be closed and one needs to check the 4D closure box. In this case only transverse coordinates are used for
+the closure and one additionally needs to write down a desired momentum offset in TrajParamBlock (see Trajectory).
+Three numeric parameters below Use general 6D closure button determine the iteration parameters for the 6D (or 4D) orbit closure.
+The second three-way radio button allows one to choose how the trajectory is plotted. If Normal plot is chosen then the vertical and horizontal
+beam displacements are plotted. If Plot beam displacement normalized by beam size is chosen then the program plots the beam
+displacements normalized by the beam sizes (x/Ax and y/Ay). And if Plot beam displacement together with beam boundaries is chosen the program, in addition to the beam centroids,
+plots the beam boundaries (x, x+Ax, x-Ax, and y, y+Ay, y-Ay). For the last two choices the beam size is computed the same way as for View| Sizes menu,
+i.e. the eighth check box of View|Control menu determines either the betatron beam size or the total beam size should be used. 
+</p>
+</body>
+</html>

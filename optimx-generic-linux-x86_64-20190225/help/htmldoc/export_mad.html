@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="header.js"></script>
+<title> OptiMX Help: File | Export to MAD</title>
+</head>
+<body>
+<h4>File|Export ... to MAD</h4>
+
+<p>
+  Convert an OptiM file displayed  in the main editor window into a MAD8 input file.
+  Convert an OptiM file located in the main window into a DIMAD input file with name conversions necessary to support the CEBAF Model Server. The following element renaming takes place:
+</p>
+<pre>
+oM...   removed magnet 	converted into 	drift	M
+oI...   removed instrumentation 	converted into 	drift	I
+kM...   corrector with BdL	converted into 	corrector	M 
+KM...   corrector disconnected from power 
+        supply  	converted into 	drift	M
+kaM...  special corrector
+        (no BdL like: 30 Hz, fast, feedback system, Hall A parity experiment)
+        converted into 	monitor	M
+kyM...  auxiliary corrector
+        (no BdL like: 30 Hz, fast, feedback system, Hall A  parity experiment)
+        converted into 	monitor	M 
+krR...  RF separator, raster 	converted into 	sbend	R
+iI...   instrumentation (must have zero length) 	
+			converted into 	monitor	I
+II...   currently disconnected instrumentation	
+			converted into 	drift	I 
+qMQ...  quad 		converted into 	quad	MQ
+QMQ...  disconnected from power supply quad  	
+			converted into 	drift	MQ..
+bM...   dipole		converted into 	dipole	M
+beMQ... extraction line quad (listed as dipole) 	
+			converted into 	quad	MQ
+</pre>
+<p>
+For other elements the first letter of name is cut and element type is assigned in accordance with the first letter. Elements which name starts from a capital letter will be converted into drifts. Note that elements which are converted to MONITORs (kaM, kyM and iI) have to have zero or sufficiently small length because element MONITOR has zero length in DIMAD.
+</p>

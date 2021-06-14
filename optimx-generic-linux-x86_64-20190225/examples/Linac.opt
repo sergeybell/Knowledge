@@ -1,0 +1,458 @@
+# Main machine parameters
+$P0=210;  =>         210
+$m=105.658;  =>     105.658
+  $E0=sqrt($P0*$P0+$m*$m)-$m;  =>  129.424141
+  $gamma=1+$E0/$m;  =>  2.22493461
+  $beta=sqrt(1-1/$gamma/$gamma);  => 0.893304779
+$AcSceptN=1.5;  =>         1.5
+  $EmitN=$AcSceptN/2.5/2.5;  =>        0.24
+  $Emit=$EmitN/$gamma/$beta;  =>    0.120752
+  $AcScept=$AcSceptN/$gamma/$beta;  =>      0.7547
+# Main cavity parameters
+$F=201.25e6;  =>   201250000
+  $Lambda=$c/$F;  =>  148.965217
+  $LCav=2*$Lambda;  =>  297.930435
+  $DE=10*$LCav/100;  =>  29.7930435
+  $LCavL=$Lambda;  =>  148.965217
+  $DEL=15*$LCavL/100;  =>  22.3447826
+  $LCavL=$Lambda;  =>  148.965217
+$TotalVoltage=26*$DE+23*4*$DEL;  =>  2830.33913
+# Cavity phases in radians
+$FI1= -1.3304208049219217;  =>  -1.3304208
+$FI2= -1.2929917233071322;  => -1.29299172
+$FI3= -1.2572921767226288;  => -1.25729218
+$FI4= -1.2232508441362349;  => -1.22325084
+$FI5= -1.1907993455892651;  => -1.19079935
+$FI6= -1.1598722421965268;  => -1.15987224
+$FI7= -1.1304070361463185;  => -1.13040704
+$FI8= -1.1023441707004307;  => -1.10234417
+$FI9= -1.075627030194146;  => -1.07562703
+$FI10= -1.0502019400362381;  => -1.05020194
+$FI11= -1.0260181667089738;  => -1.02601817
+$FI12= -1.0030279177681105;  => -1.00302792
+$FI13= -.9811863418428978;  =>-0.981186342
+$FI14= -.9604515286360772;  =>-0.960451529
+$FI15= -.9407845089238822;  =>-0.940784509
+$FI16= -.922149254556038;  =>-0.922149255
+$FI17= -.9045126784557613;  =>-0.904512678
+$FI18= -.8878446346197613;  =>-0.887844635
+$FI19= -.8721179181182381;  =>-0.872117918
+$FI20= -.8573082650948847;  =>-0.857308265
+$FI21= -.843394352766885;  =>-0.843394353
+$FI22= -.8303577994249152;  =>-0.830357799
+$FI23= -.8181831644331432;  =>-0.818183164
+$FI24= -.8068579482292287;  =>-0.806857948
+$FI25= -.7963725923243234;  =>-0.796372592
+$FI26= -.7867204793030707;  =>-0.786720479
+#
+$FIL1= -.7779720557415863;  =>-0.777972056
+$FIL2= -.768738437365437;  =>-0.768738437
+$FIL3= -.7534493812585763;  =>-0.753449381
+$FIL4= -.7328114672288237;  =>-0.732811467
+$FIL5= -.7074978275191315;  =>-0.707497828
+$FIL6= -.6781481468075845;  =>-0.678148147
+$FIL7= -.6453686622074009;  =>-0.645368662
+$FIL8= -.6097321632669311;  =>-0.609732163
+$FIL9= -.5717779919696586;  =>-0.571777992
+$FIL10= -.5320120427342;  =>-0.532012043
+$FIL11= -.490906762414304;  =>-0.490906762
+$FIL12= -.4489011502988528;  => -0.44890115
+$FIL13= -.4064007581118608;  =>-0.406400758
+$FIL14= -.36377769001247584;  => -0.36377769
+$FIL15= -.321370602594978;  =>-0.321370603
+$FIL16= -.27948470488878063;  =>-0.279484705
+$FIL17= -.23839175835842946;  =>-0.238391758
+$FIL18= -.1983300769036033;  =>-0.198330077
+$FIL19= -.15950452685911376;  =>-0.159504527
+$FIL20= -.12208652699490515;  =>-0.122086527
+$FIL21= -.08621404851605466;  =>-0.0862140485
+$FIL22= -.05199161506277226;  =>-0.0519916151
+$FIL23= -.019490302710400736;  =>-0.0194903027
+#
+# Energy along machine
+$E1  =$E0  +$DE*cos($FI1);  =>  136.516892
+$E2  =$E1  +$DE*cos($FI2);  =>  144.687488
+$E3  =$E2  +$DE*cos($FI3);  =>   153.87548
+$E4  =$E3  +$DE*cos($FI4);  =>  164.022725
+$E5  =$E4  +$DE*cos($FI5);  =>  175.073491
+$E6  =$E5  +$DE*cos($FI6);  =>   186.97452
+$E7  =$E6  +$DE*cos($FI7);  =>  199.675046
+$E8  =$E7  +$DE*cos($FI8);  =>  213.126776
+$E9  =$E8  +$DE*cos($FI9);  =>  227.283853
+$E10=$E9  +$DE*cos($FI10);  =>   242.10279
+$E11 =$E10+$DE*cos($FI11);  =>   257.54239
+$E12 =$E11 +$DE*cos($FI12);  =>  273.563657
+$E13 =$E12 +$DE*cos($FI13);  =>  290.129688
+$E14 =$E13 +$DE*cos($FI14);  =>  307.205572
+$E15 =$E14 +$DE*cos($FI15);  =>  324.758272
+$E16 =$E15 +$DE*cos($FI16);  =>  342.756512
+$E17 =$E16  +$DE*cos($FI17);  =>  361.170661
+$E18 =$E17  +$DE*cos($FI18);  =>  379.972617
+$E19 =$E18  +$DE*cos($FI19);  =>  399.135691
+$E20 =$E19  +$DE*cos($FI20);  =>  418.634493
+$E21  =$E20  +$DE*cos($FI21);  =>  438.444824
+$E22  =$E21  +$DE*cos($FI22);  =>  458.543559
+$E23  =$E22  +$DE*cos($FI23);  =>  478.908548
+$E24  =$E23  +$DE*cos($FI24);  =>  499.518504
+$E25  =$E24  +$DE*cos($FI25);  =>  520.352907
+$E26  =$E25  +$DE*cos($FI26);  =>  541.391894
+#
+$EL1  =$E26  +4*$DEL*cos($FIL1);  =>  605.060071
+$EL2  =$EL1  +4*$DEL*cos($FIL2);  =>  669.304746
+$EL3  =$EL2  +4*$DEL*cos($FIL3);  =>  734.491921
+$EL4  =$EL3  +4*$DEL*cos($FIL4);  =>  800.927123
+$EL5  =$EL4  +4*$DEL*cos($FIL5);  =>  868.854413
+$EL6  =$EL5  +4*$DEL*cos($FIL6);  =>  938.457143
+$EL7  =$EL6  +4*$DEL*cos($FIL7);  =>  1009.86017
+$EL8  =$EL7  +4*$DEL*cos($FIL8);  =>  1083.13331
+$EL9  =$EL8  +4*$DEL*cos($FIL9);  =>  1158.29581
+$EL10=$EL9  +4*$DEL*cos($FIL10);  =>  1235.32169
+$EL11 =$EL10+4*$DEL*cos($FIL11);  =>  1314.14566
+$EL12 =$EL11 +4*$DEL*cos($FIL12);  =>  1394.66951
+$EL13 =$EL12 +4*$DEL*cos($FIL13);  =>  1476.76867
+$EL14  =$EL13 +4*$DEL*cos($FIL14);  =>  1560.29877
+$EL15  =$EL14 +4*$DEL*cos($FIL15);  =>  1645.10199
+$EL16  =$EL15 +4*$DEL*cos($FIL16);  =>  1731.01301
+$EL17  =$EL16 +4*$DEL*cos($FIL17);  =>  1817.86441
+$EL18  =$EL17 +4*$DEL*cos($FIL18);  =>  1905.49144
+$EL19  =$EL18 +4*$DEL*cos($FIL19);  =>    1993.736
+$EL20  =$EL19 +4*$DEL*cos($FIL20);  =>  2082.44985
+$EL21  =$EL20 +4*$DEL*cos($FIL21);  =>  2171.49702
+$EL22  =$EL21 +4*$DEL*cos($FIL22);  =>  2260.75537
+$EL23  =$EL22 +4*$DEL*cos($FIL23);  =>  2350.11753
+#  Cavity phases in degrees
+$FD1=180/$PI*$FI1;  => -76.2274971
+$FD2=180/$PI*$FI2;  => -74.0829687
+$FD3=180/$PI*$FI3;  => -72.0375353
+$FD4=180/$PI*$FI4;  => -70.0871107
+$FD5=180/$PI*$FI5;  => -68.2277767
+$FD6=180/$PI*$FI6;  => -66.4557843
+$FD7=180/$PI*$FI7;  => -64.7675523
+$FD8=180/$PI*$FI8;  => -63.1596686
+$FD9=180/$PI*$FI9;  => -61.6288892
+$FD10=180/$PI*$FI10;  => -60.1721388
+$FD11=180/$PI*$FI11;  => -58.7865107
+$FD12=180/$PI*$FI12;  => -57.4692664
+$FD13=180/$PI*$FI13;  => -56.2178363
+$FD14=180/$PI*$FI14;  =>  -55.029819
+$FD15=180/$PI*$FI15;  => -53.9029818
+$FD16=180/$PI*$FI16;  => -52.8352604
+$FD17=180/$PI*$FI17;  =>  -51.824759
+$FD18=180/$PI*$FI18;  => -50.8697504
+$FD19=180/$PI*$FI19;  => -49.9686759
+$FD20=180/$PI*$FI20;  => -49.1201453
+$FD21=180/$PI*$FI21;  => -48.3229369
+$FD22=180/$PI*$FI22;  => -47.5759974
+$FD23=180/$PI*$FI23;  => -46.8784422
+$FD24=180/$PI*$FI24;  => -46.2295551
+$FD25=180/$PI*$FI25;  => -45.6287885
+$FD26=180/$PI*$FI26;  => -45.0757631
+#
+$FDL1=180/$PI*$FIL1;  => -44.5745154
+$FDL2=180/$PI*$FIL2;  =>  -44.045468
+$FDL3=180/$PI*$FIL3;  => -43.1694696
+$FDL4=180/$PI*$FIL4;  => -41.9870043
+$FDL5=180/$PI*$FIL5;  => -40.5366395
+$FDL6=180/$PI*$FIL6;  => -38.8550267
+$FDL7=180/$PI*$FIL7;  => -36.9769006
+$FDL8=180/$PI*$FIL8;  => -34.9350796
+$FDL9=180/$PI*$FIL9;  => -32.7604658
+$FDL10=180/$PI*$FIL10;  => -30.4820447
+$FDL11=180/$PI*$FIL11;  => -28.1268856
+$FDL12=180/$PI*$FIL12;  => -25.7201413
+$FDL13=180/$PI*$FIL13;  => -23.2850482
+$FDL14=180/$PI*$FIL14;  => -20.8429263
+$FDL15=180/$PI*$FIL15;  => -18.4131792
+$FDL16=180/$PI*$FIL16;  =>  -16.013294
+$FDL17=180/$PI*$FIL17;  => -13.6588416
+$FDL18=180/$PI*$FIL18;  => -11.3634764
+$FDL19=180/$PI*$FIL19;  =>  -9.1389362
+$FDL20=180/$PI*$FIL20;  => -6.99504273
+$FDL21=180/$PI*$FIL21;  => -4.93970111
+$FDL22=180/$PI*$FIL22;  => -2.97890011
+$FDL23=180/$PI*$FIL23;  => -1.11671209
+# Short solenoid parameters
+$P00=200;  =>         200
+#   Qx=Qy=0.175
+   $B00=6.4123652;  =>   6.4123652
+# Qx=Qy=0.25
+#   $B00=8.7594166
+$L1=(600-100-2*$Lambda)/2;  =>  101.034783
+$B0  =-$B00*sqrt($E0*($E0+2.*$m))/$P00;  => -6.73298346
+$B1  = $B00*sqrt($E1*($E1+2.*$m))/$P00;  =>  6.98661438
+$B2  =-$B00*sqrt($E2*($E2+2.*$m))/$P00;  => -7.27663964
+$B3  = $B00*sqrt($E3*($E3+2.*$m))/$P00;  =>  7.60034457
+$B4  =-$B00*sqrt($E4*($E4+2.*$m))/$P00;  => -7.95521554
+$B5  = $B00*sqrt($E5*($E5+2.*$m))/$P00;  =>  8.33894485
+$B6  =-$B00*sqrt($E6*($E6+2.*$m))/$P00;  => -8.74942378
+$B7  = $B00*sqrt($E7*($E7+2.*$m))/$P00;  =>  9.18472864
+$B8  =-$B00*sqrt($E8*($E8+2.*$m))/$P00;  => -9.64310362
+$B9  = $B00*sqrt($E9*($E9+2.*$m))/$P00;  =>  10.1229429
+$B10  =-$B00*sqrt($E10*($E10+2.*$m))/$P00;  => -10.6227731
+$B11  = $B00*sqrt($E11*($E11+2.*$m))/$P00;  =>  11.1412382
+$B12  =-$B00*sqrt($E12*($E12+2.*$m))/$P00;  => -11.6770848
+$B13  = $B00*sqrt($E13*($E13+2.*$m))/$P00;  =>  12.2291505
+$B14  =-$B00*sqrt($E14*($E14+2.*$m))/$P00;  =>  -12.796353
+$B15  = $B00*sqrt($E15*($E15+2.*$m))/$P00;  =>  13.3776813
+$B16  =-$B00*sqrt($E16*($E16+2.*$m))/$P00;  => -13.9721878
+$B17  = $B00*sqrt($E17*($E17+2.*$m))/$P00;  =>   14.578981
+$B18  =-$B00*sqrt($E18*($E18+2.*$m))/$P00;  => -15.1972204
+$B19  = $B00*sqrt($E19*($E19+2.*$m))/$P00;  =>  15.8261102
+$B20  =-$B00*sqrt($E20*($E20+2.*$m))/$P00;  => -16.4648951
+$B21  = $B00*sqrt($E21*($E21+2.*$m))/$P00;  =>  17.1128557
+$B22  =-$B00*sqrt($E22*($E22+2.*$m))/$P00;  => -17.7693046
+$B23  = $B00*sqrt($E23*($E23+2.*$m))/$P00;  =>  18.4335825
+$B24  =-$B00*sqrt($E24*($E24+2.*$m))/$P00;  => -19.1050551
+$B25  = $B00*sqrt($E25*($E25+2.*$m))/$P00;  =>  19.7831091
+$B26  =-$B00*sqrt($E26*($E26+2.*$m))/$P00;  => -20.4671496
+#
+#   Qx=Qy=0.175
+   $B00=3.425999;  =>    3.425999
+# Qx=Qy=0.25
+#   $B00=4.6741673
+$BL1  = $B00*sqrt($EL1*($EL1+2.*$m))/$P00;  =>  12.0393105
+$BL2  =-$B00*sqrt($EL2*($EL2+2.*$m))/$P00;  => -13.1511474
+$BL3  = $B00*sqrt($EL3*($EL3+2.*$m))/$P00;  =>  14.2775017
+$BL4  =-$B00*sqrt($EL4*($EL4+2.*$m))/$P00;  => -15.4239694
+$BL5  = $B00*sqrt($EL5*($EL5+2.*$m))/$P00;  =>  16.5949856
+$BL6  =-$B00*sqrt($EL6*($EL6+2.*$m))/$P00;  => -17.7938751
+$BL7  = $B00*sqrt($EL7*($EL7+2.*$m))/$P00;  =>  19.0229129
+$BL8  =-$B00*sqrt($EL8*($EL8+2.*$m))/$P00;  => -20.2833982
+$BL9  = $B00*sqrt($EL9*($EL9+2.*$m))/$P00;  =>  21.5757413
+$BL10  =-$B00*sqrt($EL10*($EL10+2.*$m))/$P00;  =>  -22.899561
+$BL11  = $B00*sqrt($EL11*($EL11+2.*$m))/$P00;  =>  24.2537913
+$BL12  =-$B00*sqrt($EL12*($EL12+2.*$m))/$P00;  => -25.6367932
+$BL13  = $B00*sqrt($EL13*($EL13+2.*$m))/$P00;  =>  27.0464696
+$BL14  =-$B00*sqrt($EL14*($EL14+2.*$m))/$P00;  => -28.4803791
+$BL15  = $B00*sqrt($EL15*($EL15+2.*$m))/$P00;  =>   29.935846
+$BL16  =-$B00*sqrt($EL16*($EL16+2.*$m))/$P00;  => -31.4100625
+$BL17  = $B00*sqrt($EL17*($EL17+2.*$m))/$P00;  =>  32.9001827
+$BL18  =-$B00*sqrt($EL18*($EL18+2.*$m))/$P00;  => -34.4034039
+$BL19  = $B00*sqrt($EL19*($EL19+2.*$m))/$P00;  =>  35.9170351
+$BL20  =-$B00*sqrt($EL20*($EL20+2.*$m))/$P00;  => -37.4385529
+$BL21  = $B00*sqrt($EL21*($EL21+2.*$m))/$P00;  =>  38.9656421
+$BL22  =-$B00*sqrt($EL22*($EL22+2.*$m))/$P00;  => -40.4962235
+$BL23  = $B00*sqrt($EL23*($EL23+2.*$m))/$P00;  =>  42.0284692
+$L2=(1250-350-4*$Lambda)/3;  =>   101.37971
+#
+#Initial Twiss
+$Beta=         689;  =>         689
+$Alpha=    -828.527;  =>    -828.527
+   $Alp=$Alpha*0.001;  =>   -0.828527
+   $Beta4=0.5*$Beta;  =>       344.5
+   $Alpha4=0.5*$Alp;  =>  -0.4142635
+# Longitudinal space parameters
+$DPoverP=0.11;  =>        0.11
+$BunchLength0=14.9;  =>        14.9
+$DeltaL=00;  =>           0
+  $DeltaLB=$DeltaL*$DPoverP/$gamma/$gamma;  =>           0
+  $BunchLength=sqrt($BunchLength0*$BunchLength0+$DeltaLB*$DeltaLB);  =>        14.9
+  $AlphaLong=-$DeltaLB/$BunchLength;  =>           0
+  $AcSceptP=$DPoverP*2.5;  =>       0.275
+  $AcSceptL= $BunchLength0*2.5;  =>       37.25
+  $AcSceptLtot= $BunchLength0*2.5*$DPoverP*2.5*$P0/$m;  =>  20.3599112
+$Apert1=27;  =>          27
+$Apert2=20;  =>          20
+# Energy scaling
+$Scale=1;  =>           1
+  $E0=$E0*$Scale;  =>  129.424141
+  $DE=$DE*$Scale;  =>  29.7930435
+OptiM
+Energy[MeV]=$E0   Mass[MeV]=$m  
+Emittance: ex[cm]=$AcScept  ey[cm]=$AcScept  DP/P=$AcSceptP 
+Initial:	BetaX[cm]=$Beta 	BetaY[cm]=$Beta 
+	AlfaX=$Alp 	AlfaY=$Alp  Qx=0  Qy=0
+	DispersX[cm]=0 	DispersY[cm]=0 
+	Dsp_PrimeX=0 	DspPrimeY=0 
+	X[cm]=0.000    	Y[cm]=0.000    	Z[cm]=0.000    	S[cm]=0.000    
+	tetaX[deg]=0        	tetaY[deg]=0        
+#
+begin lattice. Number of periods=1 
+h0 cSc0 o1 
+A1 o1 h1 cSc1 o1           A2 o1 h2 cSc2 o1           A3 o1 h3 cSc3 o1           A4 o1 h4 cSc4 o1           
+A5 o1 h5 cSc5 o1           A6 o1 h6 cSc6 o1           A7 o1 h7 cSc7 o1           A8 o1 h8 cSc8 o1           
+A9 o1 h9 cSc9 o1           A10 o1 h10 cSc10 o1     A11 o1 h11 cSc11 o1     A12 o1 h12 cSc12 o1     
+A13 o1 h13 cSc13 o1     A14 o1 h14 cSc14 o1     A15 o1 h15 cSc15 o1     A16 o1 h16 cSc16 o1    
+A17 o1 h17 cSc17 o1     A18 o1 h18 cSc18 o1     A19 o1 h19 cSc19 o1     A20 o1 h20 cSc20 o1    
+A21 o1 h21 cSc21 o1     A22 o1 h22 cSc22 o1     A23 o1 h23 cSc23 o1     A24 o1 h24 cSc24 o1           
+A25 o1 h25 cSc25 o1     A26 o1 h26 cSc26 o2
+#
+AL1 o1L  AL1 o1L AL1 o1L AL1 o2 hL1 cScL1 o2                      
+AL2 o1L  AL2 o1L AL2 o1L AL2 o2 hL1 cScL2 o2                      
+AL3 o1L  AL3 o1L AL3 o1L AL3 o2 hL1 cScL3 o2                      
+AL4 o1L  AL4 o1L AL4 o1L AL4 o2 hL1 cScL4 o2                      
+AL5 o1L  AL5 o1L AL5 o1L AL5 o2 hL1 cScL5 o2                      
+AL6 o1L  AL6 o1L AL6 o1L AL6 o2 hL1 cScL6 o2                      
+AL7 o1L  AL7 o1L AL7 o1L AL7 o2 hL1 cScL7 o2                      
+AL8 o1L  AL8 o1L AL8 o1L AL8 o2 hL1 cScL8 o2                      
+AL9 o1L  AL9 o1L AL9 o1L AL9 o2 hL1 cScL9 o2                      
+AL10 o1L  AL10 o1L AL10 o1L AL10 o2 hL1 cScL10 o2                      
+AL11 o1L  AL11 o1L AL11 o1L AL11 o2 hL1 cScL11 o2                      
+AL12 o1L  AL12 o1L AL12 o1L AL12 o2 hL1 cScL12 o2                      
+AL13 o1L  AL13 o1L AL13 o1L AL13 o2 hL1 cScL13 o2                      
+AL14 o1L  AL14 o1L AL14 o1L AL14 o2 hL1 cScL14 o2                      
+AL15 o1L  AL15 o1L AL15 o1L AL15 o2 hL1 cScL15 o2                      
+AL16 o1L  AL16 o1L AL16 o1L AL16 o2 hL1 cScL16 o2                      
+AL17 o1L  AL17 o1L AL17 o1L AL17 o2 hL1 cScL17 o2                      
+AL18 o1L  AL18 o1L AL18 o1L AL18 o2 hL1 cScL18 o2                      
+AL19 o1L  AL19 o1L AL19 o1L AL19 o2 hL1 cScL19 o2                      
+AL20 o1L  AL20 o1L AL20 o1L AL20 o2 hL20 cScL20 o2                      
+AL21 o1L  AL21 o1L AL21 o1L AL21 o2 hL21 cScL21 o2                      
+AL22 o1L  AL22 o1L AL22 o1L AL22 o2 hL22 cScL22 o2                      
+AL23 o1L  AL23 o1L AL23 o1L AL23 o2 hL23 cScL23 o2                      
+end lattice
+#
+begin list
+o1         	L[cm]=$L1      
+cSc0        	L[cm]=100        	B[kG]=-7.5341522   	Aperture[cm]=19.5    
+cSc1        	L[cm]=100        	B[kG]=7.3453474   	Aperture[cm]=19.5    
+cSc2        	L[cm]=100        	B[kG]=-7.4478201   	Aperture[cm]=19.5    
+cSc3        	L[cm]=100        	B[kG]=7.6471578   	Aperture[cm]=19.5    
+cSc4        	L[cm]=100        	B[kG]=-7.9340639   	Aperture[cm]=19.5    
+cSc5        	L[cm]=100        	B[kG]=$B5   		Aperture[cm]=19.5 
+cSc6        	L[cm]=100        	B[kG]=$B6   		Aperture[cm]=19.5 
+cSc7        	L[cm]=100        	B[kG]=$B7   		Aperture[cm]=19.5 
+cSc8        	L[cm]=100        	B[kG]=$B8   		Aperture[cm]=19.5 
+cSc9        	L[cm]=100        	B[kG]=$B9   		Aperture[cm]=19.5 
+cSc10       	L[cm]=100        	B[kG]=$B10   		Aperture[cm]=19.5 
+cSc11       	L[cm]=100        	B[kG]=$B11   		Aperture[cm]=19.5 
+cSc12       	L[cm]=100        	B[kG]=$B12   		Aperture[cm]=19.5 
+cSc13       	L[cm]=100        	B[kG]=$B13   		Aperture[cm]=19.5 
+cSc14       	L[cm]=100        	B[kG]=$B14   		Aperture[cm]=19.5 
+cSc15       	L[cm]=100        	B[kG]=$B15   		Aperture[cm]=19.5 
+cSc16       	L[cm]=100        	B[kG]=$B16   		Aperture[cm]=19.5 
+cSc17        	L[cm]=100        	B[kG]=$B17   		Aperture[cm]=19.5 
+cSc18        	L[cm]=100        	B[kG]=$B18   		Aperture[cm]=19.5 
+cSc19        	L[cm]=100        	B[kG]=$B19   		Aperture[cm]=19.5 
+cSc20       	L[cm]=100        	B[kG]=$B20   		Aperture[cm]=19.5 
+cSc21       	L[cm]=100        	B[kG]=$B21   		Aperture[cm]=19.5 
+cSc22       	L[cm]=100        	B[kG]=$B22   		Aperture[cm]=19.5 
+cSc23       	L[cm]=100        	B[kG]=$B23   		Aperture[cm]=19.5 
+cSc24       	L[cm]=100        	B[kG]=$B24   		Aperture[cm]=19.5 
+A1         	L[cm]=$LCav  Ncell=4  Eff_L[cm]=50  A[MeV]=$DE  Phase[deg]=$FD1  WaveL[cm]=$Lambda
+A2         	L[cm]=$LCav  Ncell=4  Eff_L[cm]=50  A[MeV]=$DE  Phase[deg]=$FD2  WaveL[cm]=$Lambda
+A3         	L[cm]=$LCav  Ncell=4  Eff_L[cm]=50  A[MeV]=$DE  Phase[deg]=$FD3  WaveL[cm]=$Lambda
+A4         	L[cm]=$LCav  Ncell=4  Eff_L[cm]=50  A[MeV]=$DE  Phase[deg]=$FD4  WaveL[cm]=$Lambda
+A5         	L[cm]=$LCav  Ncell=4  Eff_L[cm]=50  A[MeV]=$DE  Phase[deg]=$FD5  WaveL[cm]=$Lambda
+A6         	L[cm]=$LCav  Ncell=4  Eff_L[cm]=50  A[MeV]=$DE  Phase[deg]=$FD6  WaveL[cm]=$Lambda
+A7         	L[cm]=$LCav  Ncell=4  Eff_L[cm]=50  A[MeV]=$DE  Phase[deg]=$FD7  WaveL[cm]=$Lambda
+A8         	L[cm]=$LCav  Ncell=4  Eff_L[cm]=50  A[MeV]=$DE  Phase[deg]=$FD8  WaveL[cm]=$Lambda
+A9         	L[cm]=$LCav  Ncell=4  Eff_L[cm]=50  A[MeV]=$DE  Phase[deg]=$FD9  WaveL[cm]=$Lambda
+A10        	L[cm]=$LCav  Ncell=4  Eff_L[cm]=50  A[MeV]=$DE  Phase[deg]=$FD10  WaveL[cm]=$Lambda
+A11        	L[cm]=$LCav  Ncell=4  Eff_L[cm]=50  A[MeV]=$DE  Phase[deg]=$FD11  WaveL[cm]=$Lambda
+A12        	L[cm]=$LCav  Ncell=4  Eff_L[cm]=50  A[MeV]=$DE  Phase[deg]=$FD12  WaveL[cm]=$Lambda
+A13        	L[cm]=$LCav  Ncell=4  Eff_L[cm]=50  A[MeV]=$DE  Phase[deg]=$FD13  WaveL[cm]=$Lambda
+A14        	L[cm]=$LCav  Ncell=4  Eff_L[cm]=50  A[MeV]=$DE  Phase[deg]=$FD14  WaveL[cm]=$Lambda
+A15        	L[cm]=$LCav  Ncell=4  Eff_L[cm]=50  A[MeV]=$DE  Phase[deg]=$FD15  WaveL[cm]=$Lambda
+A16        	L[cm]=$LCav  Ncell=4  Eff_L[cm]=50  A[MeV]=$DE  Phase[deg]=$FD16  WaveL[cm]=$Lambda
+A17         	L[cm]=$LCav  Ncell=4  Eff_L[cm]=50  A[MeV]=$DE  Phase[deg]=$FD17  WaveL[cm]=$Lambda
+A18         	L[cm]=$LCav  Ncell=4  Eff_L[cm]=50  A[MeV]=$DE  Phase[deg]=$FD18  WaveL[cm]=$Lambda
+A19         	L[cm]=$LCav  Ncell=4  Eff_L[cm]=50  A[MeV]=$DE  Phase[deg]=$FD19  WaveL[cm]=$Lambda
+A20        	L[cm]=$LCav  Ncell=4  Eff_L[cm]=50  A[MeV]=$DE  Phase[deg]=$FD20  WaveL[cm]=$Lambda
+A21         	L[cm]=$LCav  Ncell=4  Eff_L[cm]=50  A[MeV]=$DE  Phase[deg]=$FD21  WaveL[cm]=$Lambda
+A22         	L[cm]=$LCav  Ncell=4  Eff_L[cm]=50  A[MeV]=$DE  Phase[deg]=$FD22  WaveL[cm]=$Lambda
+A23         	L[cm]=$LCav  Ncell=4  Eff_L[cm]=50  A[MeV]=$DE  Phase[deg]=$FD23  WaveL[cm]=$Lambda
+A24         	L[cm]=$LCav  Ncell=4  Eff_L[cm]=50  A[MeV]=$DE  Phase[deg]=$FD24  WaveL[cm]=$Lambda
+A25         	L[cm]=$LCav  Ncell=4  Eff_L[cm]=50  A[MeV]=$DE  Phase[deg]=$FD25  WaveL[cm]=$Lambda
+A26         	L[cm]=$LCav  Ncell=4  Eff_L[cm]=50  A[MeV]=$DE  Phase[deg]=$FD26  WaveL[cm]=$Lambda
+h0         	Ax[cm]=$Apert1 	Ay[cm]=$Apert1 	Ellipse=1 	OffsetX[cm]=0 	OffsetY[cm]=0
+h1         	Ax[cm]=$Apert1 	Ay[cm]=$Apert1 	Ellipse=1 	OffsetX[cm]=0 	OffsetY[cm]=0
+h2         	Ax[cm]=$Apert1 	Ay[cm]=$Apert1 	Ellipse=1 	OffsetX[cm]=0 	OffsetY[cm]=0
+h3         	Ax[cm]=$Apert1 	Ay[cm]=$Apert1 	Ellipse=1 	OffsetX[cm]=0 	OffsetY[cm]=0
+h4         	Ax[cm]=$Apert1 	Ay[cm]=$Apert1 	Ellipse=1 	OffsetX[cm]=0 	OffsetY[cm]=0
+h5         	Ax[cm]=$Apert1 	Ay[cm]=$Apert1 	Ellipse=1 	OffsetX[cm]=0 	OffsetY[cm]=0
+h6         	Ax[cm]=$Apert1 	Ay[cm]=$Apert1 	Ellipse=1 	OffsetX[cm]=0 	OffsetY[cm]=0
+h7         	Ax[cm]=$Apert1 	Ay[cm]=$Apert1 	Ellipse=1 	OffsetX[cm]=0 	OffsetY[cm]=0
+h8         	Ax[cm]=$Apert1 	Ay[cm]=$Apert1 	Ellipse=1 	OffsetX[cm]=0 	OffsetY[cm]=0
+h9         	Ax[cm]=$Apert1 	Ay[cm]=$Apert1 	Ellipse=1 	OffsetX[cm]=0 	OffsetY[cm]=0
+h10        	Ax[cm]=$Apert1 	Ay[cm]=$Apert1 	Ellipse=1 	OffsetX[cm]=0 	OffsetY[cm]=0
+h11        	Ax[cm]=$Apert1 	Ay[cm]=$Apert1 	Ellipse=1 	OffsetX[cm]=0 	OffsetY[cm]=0
+h12        	Ax[cm]=$Apert1 	Ay[cm]=$Apert1 	Ellipse=1 	OffsetX[cm]=0 	OffsetY[cm]=0
+h13        	Ax[cm]=$Apert1 	Ay[cm]=$Apert1 	Ellipse=1 	OffsetX[cm]=0 	OffsetY[cm]=0
+h14        	Ax[cm]=$Apert1 	Ay[cm]=$Apert1 	Ellipse=1 	OffsetX[cm]=0 	OffsetY[cm]=0
+h15        	Ax[cm]=$Apert1 	Ay[cm]=$Apert1 	Ellipse=1 	OffsetX[cm]=0 	OffsetY[cm]=0
+h16        	Ax[cm]=$Apert1 	Ay[cm]=$Apert1 	Ellipse=1 	OffsetX[cm]=0 	OffsetY[cm]=0
+h17         	Ax[cm]=$Apert1 	Ay[cm]=$Apert1 	Ellipse=1 	OffsetX[cm]=0 	OffsetY[cm]=0
+h18         	Ax[cm]=$Apert1 	Ay[cm]=$Apert1 	Ellipse=1 	OffsetX[cm]=0 	OffsetY[cm]=0
+h19         	Ax[cm]=$Apert1 	Ay[cm]=$Apert1 	Ellipse=1 	OffsetX[cm]=0 	OffsetY[cm]=0
+h20         	Ax[cm]=$Apert1 	Ay[cm]=$Apert1 	Ellipse=1 	OffsetX[cm]=0 	OffsetY[cm]=0
+h21         	Ax[cm]=$Apert1 	Ay[cm]=$Apert1 	Ellipse=1 	OffsetX[cm]=0 	OffsetY[cm]=0
+h22         	Ax[cm]=$Apert1 	Ay[cm]=$Apert1 	Ellipse=1 	OffsetX[cm]=0 	OffsetY[cm]=0
+h23         	Ax[cm]=$Apert1 	Ay[cm]=$Apert1 	Ellipse=1 	OffsetX[cm]=0 	OffsetY[cm]=0
+h24         	Ax[cm]=$Apert1 	Ay[cm]=$Apert1 	Ellipse=1 	OffsetX[cm]=0 	OffsetY[cm]=0
+h25         	Ax[cm]=$Apert1 	Ay[cm]=$Apert1 	Ellipse=1 	OffsetX[cm]=0 	OffsetY[cm]=0
+h26         	Ax[cm]=$Apert1 	Ay[cm]=$Apert1 	Ellipse=1 	OffsetX[cm]=0 	OffsetY[cm]=0
+#
+o1L         	L[cm]=$L2      
+o2         	L[cm]=100      
+cSc25       	L[cm]=100        	B[kG]=13.997306   	Aperture[cm]=15      
+cSc26       	L[cm]=100        	B[kG]=-17.964412   	Aperture[cm]=15      
+cScL1       	L[cm]=150        	B[kG]=14.715074   	Aperture[cm]=15      
+cScL2       	L[cm]=150        	B[kG]=-14.171109   	Aperture[cm]=15      
+cScL3       	L[cm]=150        	B[kG]=14.660933   	Aperture[cm]=15      
+cScL4       	L[cm]=150        	B[kG]=$BL4	   	Aperture[cm]=15 
+cScL5       	L[cm]=150        	B[kG]=$BL5	   	Aperture[cm]=15 
+cScL6        	L[cm]=150        	B[kG]=$BL6   		Aperture[cm]=15 
+cScL7        	L[cm]=150        	B[kG]=$BL7   		Aperture[cm]=15
+cScL8        	L[cm]=150        	B[kG]=$BL8   		Aperture[cm]=15
+cScL9        	L[cm]=150        	B[kG]=$BL9   		Aperture[cm]=15
+cScL10       	L[cm]=150        	B[kG]=$BL10   	Aperture[cm]=15
+cScL11       	L[cm]=150        	B[kG]=$BL11   	Aperture[cm]=15
+cScL12       	L[cm]=150        	B[kG]=$BL12   	Aperture[cm]=15
+cScL13       	L[cm]=150        	B[kG]=$BL13   	Aperture[cm]=15
+cScL14       	L[cm]=150        	B[kG]=$BL14   	Aperture[cm]=15
+cScL15       	L[cm]=150        	B[kG]=$BL15   	Aperture[cm]=15
+cScL16       	L[cm]=150        	B[kG]=$BL16   	Aperture[cm]=15
+cScL17        	L[cm]=150        	B[kG]=$BL17   	Aperture[cm]=15
+cScL18        	L[cm]=150        	B[kG]=$BL18   	Aperture[cm]=15
+cScL19        	L[cm]=150        	B[kG]=$BL19   	Aperture[cm]=15
+cScL20       	L[cm]=150        	B[kG]=$BL20   	Aperture[cm]=15
+cScL21       	L[cm]=150        	B[kG]=$BL21   	Aperture[cm]=15
+cScL22       	L[cm]=150        	B[kG]=$BL22   	Aperture[cm]=15
+cScL23       	L[cm]=150        	B[kG]=$BL23   	Aperture[cm]=15
+AL1         	L[cm]=$LCavL  Ncell=2  Eff_L[cm]=50  A[MeV]=$DEL  Phase[deg]=$FDL1  WaveL[cm]=$Lambda
+AL2         	L[cm]=$LCavL  Ncell=2  Eff_L[cm]=50  A[MeV]=$DEL  Phase[deg]=$FDL2  WaveL[cm]=$Lambda
+AL3         	L[cm]=$LCavL  Ncell=2  Eff_L[cm]=50  A[MeV]=$DEL  Phase[deg]=$FDL3  WaveL[cm]=$Lambda
+AL4         	L[cm]=$LCavL  Ncell=2  Eff_L[cm]=50  A[MeV]=$DEL  Phase[deg]=$FDL4  WaveL[cm]=$Lambda
+AL5         	L[cm]=$LCavL  Ncell=2  Eff_L[cm]=50  A[MeV]=$DEL  Phase[deg]=$FDL5  WaveL[cm]=$Lambda
+AL6         	L[cm]=$LCavL  Ncell=2  Eff_L[cm]=50  A[MeV]=$DEL  Phase[deg]=$FDL6  WaveL[cm]=$Lambda
+AL7         	L[cm]=$LCavL  Ncell=2  Eff_L[cm]=50  A[MeV]=$DEL  Phase[deg]=$FDL7  WaveL[cm]=$Lambda
+AL8         	L[cm]=$LCavL  Ncell=2  Eff_L[cm]=50  A[MeV]=$DEL  Phase[deg]=$FDL8  WaveL[cm]=$Lambda
+AL9         	L[cm]=$LCavL  Ncell=2  Eff_L[cm]=50  A[MeV]=$DEL  Phase[deg]=$FDL9  WaveL[cm]=$Lambda
+AL10        	L[cm]=$LCavL  Ncell=2  Eff_L[cm]=50  A[MeV]=$DEL  Phase[deg]=$FDL10  WaveL[cm]=$Lambda
+AL11        	L[cm]=$LCavL  Ncell=2  Eff_L[cm]=50  A[MeV]=$DEL  Phase[deg]=$FDL11  WaveL[cm]=$Lambda
+AL12        	L[cm]=$LCavL  Ncell=2  Eff_L[cm]=50  A[MeV]=$DEL  Phase[deg]=$FDL12  WaveL[cm]=$Lambda
+AL13        	L[cm]=$LCavL  Ncell=2  Eff_L[cm]=50  A[MeV]=$DEL  Phase[deg]=$FDL13  WaveL[cm]=$Lambda
+AL14        	L[cm]=$LCavL  Ncell=2  Eff_L[cm]=50  A[MeV]=$DEL  Phase[deg]=$FDL14  WaveL[cm]=$Lambda
+AL15        	L[cm]=$LCavL  Ncell=2  Eff_L[cm]=50  A[MeV]=$DEL  Phase[deg]=$FDL15  WaveL[cm]=$Lambda
+AL16        	L[cm]=$LCavL  Ncell=2  Eff_L[cm]=50  A[MeV]=$DEL  Phase[deg]=$FDL16  WaveL[cm]=$Lambda
+AL17         	L[cm]=$LCavL  Ncell=2  Eff_L[cm]=50  A[MeV]=$DEL  Phase[deg]=$FDL17  WaveL[cm]=$Lambda
+AL18         	L[cm]=$LCavL  Ncell=2  Eff_L[cm]=50  A[MeV]=$DEL  Phase[deg]=$FDL18  WaveL[cm]=$Lambda
+AL19         	L[cm]=$LCavL  Ncell=2  Eff_L[cm]=50  A[MeV]=$DEL  Phase[deg]=$FDL19  WaveL[cm]=$Lambda 
+AL20        	L[cm]=$LCavL  Ncell=2  Eff_L[cm]=50  A[MeV]=$DEL  Phase[deg]=$FDL20  WaveL[cm]=$Lambda
+AL21         	L[cm]=$LCavL  Ncell=2  Eff_L[cm]=50  A[MeV]=$DEL  Phase[deg]=$FDL21  WaveL[cm]=$Lambda
+AL22         	L[cm]=$LCavL  Ncell=2  Eff_L[cm]=50  A[MeV]=$DEL  Phase[deg]=$FDL22  WaveL[cm]=$Lambda
+AL23         	L[cm]=$LCavL  Ncell=2  Eff_L[cm]=50  A[MeV]=$DEL  Phase[deg]=$FDL23  WaveL[cm]=$Lambda
+hL1         	Ax[cm]=$Apert2 	Ay[cm]=$Apert2 	Ellipse=1 	OffsetX[cm]=0 	OffsetY[cm]=0
+hL20         	Ax[cm]=10.6 	Ay[cm]=10.6 	Ellipse=1 	OffsetX[cm]=0 	OffsetY[cm]=0
+hL21         	Ax[cm]=10.4 	Ay[cm]=10.4 	Ellipse=1 	OffsetX[cm]=0 	OffsetY[cm]=0
+hL22         	Ax[cm]=10.2 	Ay[cm]=10.2 	Ellipse=1 	OffsetX[cm]=0 	OffsetY[cm]=0
+hL23         	Ax[cm]=10 	Ay[cm]=10 	Ellipse=1 	OffsetX[cm]=0 	OffsetY[cm]=0
+end list of elements
+
+4D_BetaBlock
+	Beta_X_1[cm]=$Beta4	Beta_X_2[cm]=$Beta4
+	Alfa_X_1=$Alpha4      	Alfa_X_2=$Alpha4
+	Beta_Y_1[cm]=$Beta4  	Beta_Y_2[cm]=$Beta4
+	Alfa_Y_1=$Alpha4      	Alfa_Y_2=$Alpha4 
+	Teta_1[deg]=90   	Teta_2[deg]=90    U=0.5
+	Emit1[cm]=$Emit 	Emit2[cm]=$Emit
+	DispX[cm]=0.     	DispY[cm]=0
+	DispXpr[cm]=0.   	DispYpr[cm]=0
+End4DBetaBlock
+
+SpaceChargeBlock
+  BeamCurrent[A]=0.0
+  BunchLength[cm]=$BunchLength   dP/P=$DPoverP   Alpha[-1,1]=$AlphaLong   X_offset=-3    
+EndSpaceChargeBlock
+

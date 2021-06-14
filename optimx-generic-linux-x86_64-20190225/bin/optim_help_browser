@@ -1,0 +1,9 @@
+#!/bin/bash
+#--------------------------------------------------
+# Browser override for optim help
+# normally, no enviroment or locale changes 
+# should be needed. 
+#--------------------------------------------------
+unset LD_LIBRARY_PATH
+exec firefox "$@" > /dev/null
+

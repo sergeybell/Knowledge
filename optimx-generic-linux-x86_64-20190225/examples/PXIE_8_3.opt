@@ -1,0 +1,367 @@
+# PXIE opticx (starts fom the RFQ vanes and goes to the beam dump)
+# Corrected by V. Lebedev, April 1, 2012
+#
+# Issues to be clarified in the future:
+#  1. Lengths of elements for HW cryomodule are taken from M Kelly presentation of  Feb. 17, 2012.
+#      It needs to be updated when the final drawings will be available.
+#      Presently the total length of cryomodule is 577.43 cm including vacuum valves at the ends.
+#  2. Lengths of elements for SSR1 are from T. Nicol presentation of March 30, 2012. 
+#      It needs to be updated when final drawings will be available.
+#      Presently the total length of cryomodule is 523.3 cm not including two vacuum valves at the ends (each 3.4 cm long) .
+#  3. Transition from MEBT to SSR1. Length is  from T. Nicol presentation of March 30, 2012.
+#  4. Beam dunp needs to be updated when its conceptual design is finished
+#  
+$E=2.1;  =>         2.1
+  $P=sqrt(($E+$Mp)^2-$Mp^2);  =>  62.8107023
+  $gamma=1+$E/$Mp;  =>  1.00223814
+  $beta=sqrt(1-1/$gamma^2);  =>0.0667929231
+$EmitN=0.25e-4;  =>     2.5e-05  # cm, rms
+$EmitNL=$EmitN;  =>     2.5e-05
+  $Emit=$EmitN/$gamma/$beta;  =>0.000373455305
+  $Accept=3^2 * $Emit ;  =>0.00336109775
+  $EmitL_n=$Mp*$EmitNL/$c*1e6;  =>7.82440965e-07  # eV s; Long. emittance is equal to the the transverse one
+#
+# MEBT quads 
+$GQ1f=   -1.098814;  =>   -1.098814
+$GQ1d=    0.994314;  =>    0.994314
+$GQ2f=      -0.654;  =>      -0.654
+$GQ2d=       0.412;  =>       0.412
+$Gd3=      -0.803;  =>      -0.803
+$Gf3=      0.7364;  =>      0.7364
+$Gd4=      -1.125;  =>      -1.125
+$Gf4=  0.97047338;  =>  0.97047338
+$Gd5=      -1.304;  =>      -1.304
+$Gf5=  1.06847338;  =>  1.06847338
+$Gd6=      -0.994;  =>      -0.994
+$Gf6=  0.89947338;  =>  0.89947338
+$Gd7=      -1.476;  =>      -1.476
+$Gf7=  1.28147338;  =>  1.28147338
+$Gd8=      -1.402;  =>      -1.402
+$Gf8=  1.24687338
+$Gd9=     -1.0094
+$Gf9=  0.95587338
+#
+# Chopper
+$kSW=-1;  =>          -1
+$U=     $kSW*200;  =>        -200  # V
+$gap=       0.646;  =>       0.646
+$Bkick=$U/$gap/300/$beta*0.001;  =>-0.0154506151
+#
+#  Afeter chopper correctors
+$K6_BdL=      -1.874;  =>      -1.874  # kG cm
+$K7_BdL=       1.314;  =>       1.314  # kG cm
+$K8_BdL=      0;  =>           0
+$K9_BdL=       0;  =>           0
+#
+#
+# RF cavities
+$f_RF=162.5e6;  =>   162500000
+  $WaveLen=$c/$f_RF;  =>  184.487666
+ARRAY  $aHW[8] = {0.28973,  0.68483,  1.12259, 1.635, 1.703, 1.687, 1.642, 1.587}         ;
+ARRAY $phiHW[8]={ -23,       -24,     -27,     -25,     -25,    -26,    -13,    -39}   ;
+ARRAY  $aSSR1[8] = {1.634,  1.756,  1.847, 1.911, 1.954, 1.980, 1.995, 1.999}         ;
+ARRAY $phiSSR1[8]={ -23,       -23,     -23,     -23,     -23,    -23,    -23,    -23}   ;
+ARRAY $Ecav[17] ;
+ARRAY $GdLCav[16] ;
+$Ecav[0]=$E;  =>         2.1
+$n=           0;  =>           0
+# HW
+do{
+     $DeltaE=$aHW[$n]*cos($PI*$phiHW[$n]/180);  =>  1.23333064
+     $Pcav=sqrt(($Ecav[$n]+$Mp)^2-$Mp^2);  =>  138.274131
+     $GammaCav=1+$Ecav[$n]/$Mp;  =>  1.01080061
+     $BetaCav=sqrt(1-1/$GammaCav^2);  =>  0.14579518
+     $PHIcavFoc=$PI*$f_RF/$c * $aHW[$n] *sin($PI*$phiHW[$n]/180) / ( $Mp * $GammaCav^3 * $BetaCav^3);  =>-0.00566334478
+     $GdLCav[$n]=$PHIcavFoc*$Pcav*1e11/$c * (1.1*($BetaCav-0.1145)  + 1e5*($BetaCav-0.1145) ^5);  =>-0.0488813152
+     $Ecav[$n+1]=$Ecav[$n]+$DeltaE;  =>  11.3673235
+     $n=$n+1;  =>           8
+}while 8-$n
+#SSR1
+do{
+     $DeltaE=$aSSR1[$n-8]*cos($PI*$phiSSR1[$n-8]/180);  =>   1.8400892
+     $Pcav=sqrt(($Ecav[$n]+$Mp)^2-$Mp^2);  =>   210.87487
+     $GammaCav=1+$Ecav[$n]/$Mp;  =>  1.02494434
+     $BetaCav=sqrt(1-1/$GammaCav^2);  => 0.219276592
+     $PHIcavFoc=$PI*(2*$f_RF)/$c * $aSSR1[$n-8] * sin($PI*$phiSSR1[$n-8]/180) / ( $Mp * $GammaCav^3 * $BetaCav^3);  =>-0.00249743043
+     $GdLCav[$n]=$PHIcavFoc*$Pcav*1e11/$c * (31.4066*$BetaCav^3 - 21.2329*$BetaCav^2 + 5.5378*$BetaCav - 0.54386 );  =>0.0169923268  # kG/cm
+     $Ecav[$n+1]=$Ecav[$n]+$DeltaE;  =>  25.2448546
+     $n=$n+1;  =>          16
+}while 16-$n
+     $Pcav=sqrt(($Ecav[$n]+$Mp)^2-$Mp^2);  =>  219.113594
+     $GammaCav=1+$Ecav[$n]/$Mp;  =>  1.02690547
+     $BetaCav=sqrt(1-1/$GammaCav^2);  =>  0.22740844
+#
+# RF deflector & RF xseparation
+$EdLsep= 294  ;  =>         294  # kV
+   $f_defl=1.5*$f_RF;  =>   243750000
+   $L_RF_Sep=$BetaCav*$c/(2*$f_defl);  =>  13.9846842
+   $BeffRFsep=$EdLsep/ $L_RF_Sep/ $BetaCav/300;  => 0.308153307
+   $P_defl_RF=2*($EdLsep/294)^2 ;  =>           2  # kW per cavity (for 20 mm aperture)
+#
+# Bunch current
+$Ibeam=0.005  ;  =>       0.005  # A
+  $f_bunch=$f_RF/2;  =>    81250000
+  $N_bunch=$Ibeam/(1.6e-19*$f_bunch);  =>   384615385
+# Initial Twiss parameters 
+$BetaX=      23;  =>          23
+$AlphaX=         0.175;  =>       0.175
+$BetaY=         11.73;  =>       11.73
+$AlphaY=       -0.095;  =>      -0.095
+$BetaZ=         95;  =>          95
+$AlphaZ=       0.05;  =>        0.05
+#
+# Longitudinal phase spase
+$SigmaS=sqrt($BetaZ*$EmitNL/$gamma/$beta);  =>  0.18835672
+$SigmaP=sqrt($EmitNL/$gamma/$beta/$BetaZ*(1+$AlphaZ*$AlphaZ));  =>0.00198517915
+$AlphaPS=$AlphaZ*sqrt(1+$AlphaZ*$AlphaZ);  => 0.050062461
+#
+# Beam dump dipole
+$Ldip=50;  =>          50
+$PhiDip=20;  =>          20
+  $Bro=1.e11/$c*$Pcav;  =>  730.884276
+  $Bdip=$Bro / $Ldip * $PhiDip/180*$PI;  =>  5.10253483
+#
+OptiM
+Energy[MeV]=$E  Mass[MeV]=$Mp
+Emittance: ex[cm]=$Accept  ey[cm]=$Accept  DP/P=3*$SigmaP
+Initial:	BetaX[cm]=$BetaX 	BetaY[cm]=$BetaY 
+	AlfaX=$AlphaX 	AlfaY=$AlphaY 
+	DispersX[cm]=0 	DispersY[cm]=0 
+	Dsp_PrimeX=0 	DspPrimeY=0 
+         X=274.32	Y=130	Z=838.866  S[cm]=0
+         tetaX=0.     tetaY=0.
+#
+begin lattice. Number of periods=1
+#MEBT
+o1 hAper q1f  hAper oqh ipBPM&1 oqh hAper q1d hAper o2a hcol01 o2a aMEBT1 o2b hAper q2f hAper oqh ipBPM&2 oqh hAper q2d hAper
+o2a hcol02 o2c hAper qD3 hAper  oq hAper qF3 hAper oqh ipBPM&3  oqh hAper qD3 hAper 
+o4 hkick kick1 hkick oke  hAper qD4  hAper oq  hAper qF4 hAper oqh ipBPM&4  oqh  hAper qD4 hAper
+o5a  aMEBT2 o5b  hAper qD5  hAper oq  hAper qF5  hAper oqh ipBPM&5  oqh  hAper qD5 hAper 
+o4  hkick kick2 hkick oke hAper qD6  hAper oq ky6 hAper qF6  hAper ky6 oqh ipBPM&6  oqh  hAper qD6  hAper
+o6  hbd iBDump hbd o6  hAper qD7 hAper  oq  ky7 hAper qF7  hAper ky7 oqh ipBPM&7  oqh  hAper qD7  hAper
+o8a hcol08 o8b hcol08 o8a  hAper qD8 hAper  oq  ky8 hAper qF8  hAper ky8 oqh ipBPM&8  oqh  hAper qD8  hAper
+o7a hcol03  o7b aMEBT3 o5b  hAper qD9  hAper oq ky9  hAper qF9  hAper ky9 oqh ipBPM&9  oqh  hAper qD9  hAper
+o7a hcol04  o8 
+ohw1a
+#
+#Half waves
+i&HWstart 
+ohw1b kHW1 cHW1 kHW1 ipBPM&11
+ohw2sa   hHW qaHW1 aHW1 qaHW1 hHW ohw2sb kHW2 cHW2 kHW2 ipBPM&12
+ohw2sa   hHW qaHW2 aHW2 qaHW2 hHW ohw2sb kHW3 cHW3 kHW3 ipBPM&13
+ohw2sa   hHW qaHW3 aHW3 qaHW3  hHW ohw2sb kHW4 cHW4 kHW4 ipBPM&14
+ohw2sa   hHW qaHW4 aHW4 qaHW4 hHW ohw2sb kHW5 cHW5 kHW5 ipBPM&15
+ohw2sa   hHW qaHW5 aHW5 qaHW5 hHW ohw2sb kHW6 cHW6 kHW6 ipBPM&16
+ohw2sa   hHW qaHW6 aHW6 qaHW6 hHW ohw2sb kHW7 cHW7 kHW7 ipBPM&17
+ohw2sa   hHW qaHW7 aHW7 qaHW7 hHW ohw2sb kHW8 cHW8 kHW8 ipBPM&18
+ohw2sa   hHW qaHW8 aHW8 qaHW8 hHW  ohw1c i&HWend  
+#
+# Interface box
+oSSR1a hSSRcol  oSSR1a i&sLW9 oSSR1b
+#
+# SSR1  
+oValve
+i&SSRstart 
+oSSR1c  hSSR qaSSR1 aSSR1 qaSSR1 hSSR oSSR2s kSSR1 qSQ1 cSSR1 qSQ1 kSSR1 ipBPM&21
+oSSR2s  hSSR qaSSR2 aSSR2 qaSSR2 hSSR  oSSR3 hSSR qaSSR3 aSSR3 qaSSR3 hSSR oSSR2s kSSR2 qSQ2 cSSR2 qSQ2 kSSR2  ipBPM&22
+oSSR2s  hSSR qaSSR4 aSSR4 qaSSR4 hSSR  oSSR3 hSSR qaSSR5 aSSR5 qaSSR5 hSSR oSSR2s kSSR3 qSQ3 cSSR3 qSQ3 kSSR3  ipBPM&23
+oSSR2s  hSSR qaSSR6 aSSR6 qaSSR6 hSSR  oSSR3 hSSR qaSSR7 aSSR7 qaSSR7 hSSR oSSR2s kSSR4 qSQ4 cSSR4 qSQ4 kSSR4  ipBPM&24
+oSSR2s  hSSR qaSSR8 aSSR8 qaSSR8 hSSR oSSR1c i&SSRend
+oValve
+#
+# Diagnostics line
+oT31a hAper q31f  hAper  ipBPM&31 oT31 hAper q31d hAper  oT31b hRFsep oRFsep kRFsep oRFsep hRFsep  oT31b kDL1xy oT33
+hAper q32f  hAper oT32 ipBPM&32 oT32   hAper q32d hAper oT34a kDL2xy oT34b hColimD oT34c   
+hAper gDump bDump gDump hAper oT35 i&sLW32 oT32 bSwipX oSwip bSwipY oDump i&Dump 
+end lattice
+#
+#
+begin list: dL=1.  dB=.1  dG=0.01  dS=0.01
+ipBPM 	L[cm]=0  
+i 	L[cm]=0  
+# MEBT 
+o1 	L[cm]=30      
+oq 	L[cm]=7   
+oqh 	L[cm]=3.5   
+o2a 	L[cm]=10      
+o2b 	L[cm]=10      
+o2c 	L[cm]=70      
+o4 	L[cm]=15      
+o5a 	L[cm]=45      
+o5b 	L[cm]=15      
+o6 	L[cm]=15      
+o7a 	L[cm]=25      
+o7b 	L[cm]=20      
+o8a 	L[cm]=30      
+o8b 	L[cm]=20      
+o8 	L[cm]=55      
+iBDump 	L[cm]=50      
+oke 	L[cm]=15   
+kick1 	L[cm]=50          	B[kG]=$Bkick   	Tilt[deg]=90
+kick2 	L[cm]=50          	B[kG]=-$Bkick   	Tilt[deg]=90
+hkick 	Ax[cm]=2 	Ay[cm]=$gap 	Shape=0 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+ky6 	L[cm]=1e-6      	B[kG]=$K6_BdL/2e-6   	Tilt[deg]=90
+ky7 	L[cm]=1e-6      	B[kG]=$K7_BdL/2e-6   	Tilt[deg]=90
+ky8 	L[cm]=1e-6      	B[kG]=$K8_BdL/2e-6   	Tilt[deg]=90
+ky9 	L[cm]=1e-6      	B[kG]=$K9_BdL/2e-6   	Tilt[deg]=90
+hAper	Ax[cm]=1.5 	Ay[cm]=1.5 	Shape=1 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+hcol01	Ax[cm]=0.9 	Ay[cm]=0.9 	Shape=0 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+hcol02	Ax[cm]=0.9	Ay[cm]=0.9 	Shape=0 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+hcol03	Ax[cm]=0.9 	Ay[cm]=1.1 	Shape=0	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+hcol04	Ax[cm]=0.9 	Ay[cm]=0.9 	Shape=0 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+hcol08	Ax[cm]=0.5	Ay[cm]=0.5 	Shape=1 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+hbd	Ax[cm]=1. 	Ay[cm]=1. 	Shape=0 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+q1f 	L[cm]=10         	G[kG/cm]=$GQ1f 	Tilt[deg]=0
+q1d 	L[cm]=10         	G[kG/cm]=$GQ1d 	Tilt[deg]=0
+q2f 	L[cm]=10          	G[kG/cm]=$GQ2f 	Tilt[deg]=0
+q2d 	L[cm]=10         	G[kG/cm]=$GQ2d 	Tilt[deg]=0
+qF3 	L[cm]=10         	G[kG/cm]=$Gf3	Tilt[deg]=0
+qF4 	L[cm]=10         	G[kG/cm]=$Gf4	Tilt[deg]=0
+qF5 	L[cm]=10         	G[kG/cm]=$Gf5 	Tilt[deg]=0
+qF6 	L[cm]=10         	G[kG/cm]=$Gf6 	Tilt[deg]=0
+qF7 	L[cm]=10         	G[kG/cm]=$Gf7 	Tilt[deg]=0
+qF8 	L[cm]=10         	G[kG/cm]=$Gf8 	Tilt[deg]=0
+qF9 	L[cm]=10         	G[kG/cm]=$Gf9 	Tilt[deg]=0
+qD3 	L[cm]=5         	G[kG/cm]=$Gd3 	Tilt[deg]=0
+qD4 	L[cm]=5         	G[kG/cm]=$Gd4 	Tilt[deg]=0
+qD5 	L[cm]=5         	G[kG/cm]=$Gd5 	Tilt[deg]=0
+qD6 	L[cm]=5         	G[kG/cm]=$Gd6 	Tilt[deg]=0
+qD7 	L[cm]=5         	G[kG/cm]=$Gd7 	Tilt[deg]=0
+qD8 	L[cm]=5         	G[kG/cm]=$Gd8 	Tilt[deg]=0
+qD9 	L[cm]=5         	G[kG/cm]=$Gd9 	Tilt[deg]=0
+aMEBT1 	L[cm]=20         Ncell=2  Eff_L[cm]=4  A[MeV]=0.0649        Phase[deg]=-90  WaveL[cm]=$WaveLen
+aMEBT2 	L[cm]=20         Ncell=2  Eff_L[cm]=4  A[MeV]=0.02953        Phase[deg]=-90  WaveL[cm]=$WaveLen
+aMEBT3 	L[cm]=20         Ncell=2  Eff_L[cm]=4  A[MeV]=0.04593         Phase[deg]=-90  WaveL[cm]=$WaveLen
+#
+#Half waves
+ohw1a 	L[cm]=20      
+ohw1b 	L[cm]=26.614      
+ohw1c 	L[cm]=23.001    
+ohw2sa 	L[cm]=17.56    
+ohw2sb 	L[cm]=15.02      
+aHW1 	L[cm]=24         Ncell=2  Eff_L[cm]=6  A[MeV]=$aHW[0]         Phase[deg]=$phiHW[0]  WaveL[cm]=$WaveLen
+aHW2 	L[cm]=24         Ncell=2  Eff_L[cm]=6  A[MeV]=$aHW[1]         Phase[deg]=$phiHW[1]  WaveL[cm]=$WaveLen
+aHW3 	L[cm]=24         Ncell=2  Eff_L[cm]=6  A[MeV]=$aHW[2]         Phase[deg]=$phiHW[2]  WaveL[cm]=$WaveLen
+aHW4 	L[cm]=24         Ncell=2  Eff_L[cm]=6  A[MeV]=$aHW[3]         Phase[deg]=$phiHW[3]  WaveL[cm]=$WaveLen
+aHW5 	L[cm]=24         Ncell=2  Eff_L[cm]=6  A[MeV]=$aHW[4]         Phase[deg]=$phiHW[4]  WaveL[cm]=$WaveLen
+aHW6 	L[cm]=24         Ncell=2  Eff_L[cm]=6  A[MeV]=$aHW[5]         Phase[deg]=$phiHW[5]  WaveL[cm]=$WaveLen
+aHW7 	L[cm]=24         Ncell=2  Eff_L[cm]=6  A[MeV]=$aHW[6]         Phase[deg]=$phiHW[6]  WaveL[cm]=$WaveLen
+aHW8 	L[cm]=24         Ncell=2  Eff_L[cm]=6  A[MeV]=$aHW[7]         Phase[deg]=$phiHW[7]  WaveL[cm]=$WaveLen
+hHW	Ax[cm]=1.65 	Ay[cm]=1.65 	Shape=1 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+cHW1 	L[cm]=12         	B[kG]=17.15      	Aperture[cm]=3       
+cHW2 	L[cm]=12         	B[kG]=-18.62      	Aperture[cm]=3       
+cHW3 	L[cm]=12         	B[kG]=24.1       	Aperture[cm]=3       
+cHW4 	L[cm]=12         	B[kG]=-27.12      	Aperture[cm]=3       
+cHW5 	L[cm]=12         	B[kG]=28.28      	Aperture[cm]=3       
+cHW6 	L[cm]=12         	B[kG]=-26.72      	Aperture[cm]=3       
+cHW7 	L[cm]=12         	B[kG]=20.55      	Aperture[cm]=3       
+cHW8 	L[cm]=12         	B[kG]=-35.68      	Aperture[cm]=3       
+qaHW1 	L[cm]=1e-06      	G[kG/cm]=$GdLCav[0]/2e-6       	Tilt[deg]=0
+qaHW2 	L[cm]=1e-06      	G[kG/cm]=$GdLCav[1]/2e-6       	Tilt[deg]=0
+qaHW3 	L[cm]=1e-06      	G[kG/cm]=$GdLCav[2]/2e-6       	Tilt[deg]=0
+qaHW4 	L[cm]=1e-06      	G[kG/cm]=$GdLCav[3]/2e-6       	Tilt[deg]=0
+qaHW5 	L[cm]=1e-06      	G[kG/cm]=$GdLCav[4]/2e-6       	Tilt[deg]=0
+qaHW6 	L[cm]=1e-06      	G[kG/cm]=$GdLCav[5]/2e-6       	Tilt[deg]=0
+qaHW7 	L[cm]=1e-06      	G[kG/cm]=$GdLCav[6]/2e-6       	Tilt[deg]=0
+qaHW8 	L[cm]=1e-06      	G[kG/cm]=$GdLCav[7]/2e-6       	Tilt[deg]=0
+# Maximum corrector strength 5 kG cm (each actual corrector is presented by two thin correctors - before and after solenoid)    
+kHW1 	L[cm]=1e-06      	B[kG]=0.e6   	Tilt[deg]=90
+kHW2 	L[cm]=1e-06      	B[kG]=0.e6  	Tilt[deg]=0
+kHW3 	L[cm]=1e-06      	B[kG]=0.e6  	Tilt[deg]=90
+kHW4 	L[cm]=1e-06      	B[kG]=0.e6   	Tilt[deg]=0
+kHW5 	L[cm]=1e-06      	B[kG]=0.e6   	Tilt[deg]=90
+kHW6 	L[cm]=1e-06      	B[kG]=0.e6   	Tilt[deg]=0
+kHW7 	L[cm]=1e-06      	B[kG]=0.e6   	Tilt[deg]=90
+kHW8 	L[cm]=1e-06      	B[kG]=0.e6   	Tilt[deg]=0
+#
+#SSR1 
+oValve 	L[cm]=3.5      
+oSSR1a 	L[cm]=4.5     
+oSSR1b 	L[cm]=8.5      
+oSSR1c 	L[cm]=19.15     
+oSSR2s 	L[cm]=19      
+oSSR3 	L[cm]=15      
+aSSR1 	L[cm]=30         Ncell=2  Eff_L[cm]=7.5  A[MeV]=$aSSR1[0]         Phase[deg]=$phiSSR1[0]  WaveL[cm]=$WaveLen/2
+aSSR2 	L[cm]=30         Ncell=2  Eff_L[cm]=7.5  A[MeV]=$aSSR1[1]         Phase[deg]=$phiSSR1[1] WaveL[cm]=$WaveLen/2
+aSSR3 	L[cm]=30         Ncell=2  Eff_L[cm]=7.5  A[MeV]=$aSSR1[2]         Phase[deg]=$phiSSR1[2]  WaveL[cm]=$WaveLen/2
+aSSR4 	L[cm]=30         Ncell=2  Eff_L[cm]=7.5  A[MeV]=$aSSR1[3]         Phase[deg]=$phiSSR1[3]  WaveL[cm]=$WaveLen/2
+aSSR5 	L[cm]=30         Ncell=2  Eff_L[cm]=7.5  A[MeV]=$aSSR1[4]         Phase[deg]=$phiSSR1[4]  WaveL[cm]=$WaveLen/2
+aSSR6 	L[cm]=30         Ncell=2  Eff_L[cm]=7.5  A[MeV]=$aSSR1[5]         Phase[deg]=$phiSSR1[5] WaveL[cm]=$WaveLen/2
+aSSR7 	L[cm]=30         Ncell=2  Eff_L[cm]=7.5  A[MeV]=$aSSR1[6]         Phase[deg]=$phiSSR1[6]  WaveL[cm]=$WaveLen/2
+aSSR8 	L[cm]=30         Ncell=2  Eff_L[cm]=7.5  A[MeV]=$aSSR1[7]         Phase[deg]=$phiSSR1[7]  WaveL[cm]=$WaveLen/2
+hSSR	Ax[cm]=1.5 	Ay[cm]=1.5 	Shape=1 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+hSSRcol	Ax[cm]=1.2 	Ay[cm]=1.2 	Shape=1 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+cSSR1 	L[cm]=12         	B[kG]=43.28      	Aperture[cm]=3       
+cSSR2 	L[cm]=12         	B[kG]=-42.43      	Aperture[cm]=3       
+cSSR3 	L[cm]=12         	B[kG]=43.18      	Aperture[cm]=3       
+cSSR4 	L[cm]=12         	B[kG]=-37.1       	Aperture[cm]=3   
+#
+qSQ1 	L[cm]=1e-06      	G[kG/cm]=-87000   	Tilt[deg]=45
+qSQ2 	L[cm]=1e-06      	G[kG/cm]=51000   	Tilt[deg]=45
+#qSQ2 	L[cm]=1e-06      	G[kG/cm]=0*367000  	Tilt[deg]=45
+qSQ3 	L[cm]=1e-06      	G[kG/cm]=0000    	Tilt[deg]=45
+qSQ4 	L[cm]=1e-06      	G[kG/cm]=0*384000  	Tilt[deg]=45
+#
+qaSSR1 	L[cm]=1e-06      	G[kG/cm]=$GdLCav[8]/2e-6       	Tilt[deg]=45
+qaSSR2 	L[cm]=1e-06      	G[kG/cm]=$GdLCav[9]/2e-6       	Tilt[deg]=45
+qaSSR3 	L[cm]=1e-06      	G[kG/cm]=$GdLCav[10]/2e-6       	Tilt[deg]=45
+qaSSR4 	L[cm]=1e-06      	G[kG/cm]=$GdLCav[11]/2e-6       	Tilt[deg]=45
+qaSSR5 	L[cm]=1e-06      	G[kG/cm]=$GdLCav[12]/2e-6       	Tilt[deg]=45
+qaSSR6 	L[cm]=1e-06      	G[kG/cm]=$GdLCav[13]/2e-6       	Tilt[deg]=45
+qaSSR7 	L[cm]=1e-06      	G[kG/cm]=$GdLCav[14]/2e-6       	Tilt[deg]=45
+qaSSR8 	L[cm]=1e-06      	G[kG/cm]=$GdLCav[15]/2e-6       	Tilt[deg]=45
+# Maximum corrector strength 5 kG cm (each actual corrector is presented by two thin correctors - before and after solenoid)    
+kSSR1 	L[cm]=1e-06      	B[kG]=0.e6   	Tilt[deg]=90
+kSSR2 	L[cm]=1e-06      	B[kG]=0.e6  	Tilt[deg]=0
+kSSR3 	L[cm]=1e-06      	B[kG]=0.e6  	Tilt[deg]=90
+kSSR4 	L[cm]=1e-06      	B[kG]=0.e6   	Tilt[deg]=0
+#
+# Transfer line and beam dump 
+oT31a 	L[cm]=25-3.4      
+oT31 	L[cm]=25      
+oT31b 	L[cm]=15      
+oT32 	L[cm]=15      
+oT33 	L[cm]=200      
+oT34a 	L[cm]=15      
+oT34b 	L[cm]=48      
+oT34c 	L[cm]=30      
+hT34 	Ax[cm]=1.5 	Ay[cm]=1.5 	Shape=1 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+oT35 	L[cm]=70 
+kRFsep 	L[cm]=$L_RF_Sep          	B[kG]=-$BeffRFsep   	Tilt[deg]=90
+oRFsep 	L[cm]=(35-$L_RF_Sep)/2   	      
+kDL1xy 	L[cm]=7          	B[kG]=1*1.2*$BeffRFsep /7*$L_RF_Sep   	Tilt[deg]=90
+kDL2xy 	L[cm]=7          	B[kG]=0   	Tilt[deg]=0
+hRFsep	Ax[cm]=1.5 	Ay[cm]=1.5 	Shape=0 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+q31f 	L[cm]=10         	G[kG/cm]=0.875   	Tilt[deg]=0
+q31d 	L[cm]=10         	G[kG/cm]=-1.02   	Tilt[deg]=0
+q32f 	L[cm]=10         	G[kG/cm]=1.045   	Tilt[deg]=0
+q32d 	L[cm]=10         	G[kG/cm]=-1.18   	Tilt[deg]=0
+hColimD	Ax[cm]=1.0 	Ay[cm]=1.0 	Shape=1 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+bDump 	L[cm]=$Ldip         	B[kG]=$Bdip         	G[kG/cm]=0        	Tilt[deg]=90
+gDump 	B[kG]=$Bdip          Angle[deg]=$PhiDip/2  EffLen[cm]=3  Tilt[deg]=90  
+bSwipX 	L[cm]=10         	B[kG]=0         	G[kG/cm]=0        	Tilt[deg]=0
+bSwipY 	L[cm]=10         	B[kG]=0         	G[kG/cm]=0        	Tilt[deg]=90
+oSwip 	L[cm]=10       
+oDump 	L[cm]=100       
+end list of elements
+
+TrajParamBlock
+	X[cm]=0.2 	Teta_X[rad]=0.
+	Y[cm]=0. 	Teta_Y[rad]=0.
+	s[cm]=0 	DeltaP/P=0
+EndTrajParamBlock
+
+4D_BetaBlock
+	Beta_X_1[cm]=$BetaX 	Beta_X_2[cm]=0
+	Alfa_X_1=$AlphaX  	Alfa_X_2=0
+	Beta_Y_1[cm]=0 		Beta_Y_2[cm]=$BetaY
+	Alfa_Y_1=0  		Alfa_Y_2=$AlphaY
+	Nu_1[deg]=0 		Nu_2[deg]=0 	U=0
+	Emit1[cm]=$Emit  	Emit2[cm]=$Emit
+	DispX[cm]=0 	DispY[cm]=0
+	DispXpr[cm]=0 	DispYpr[cm]=0
+End4DBetaBlock
+SpaceChargeBlock
+  BeamCurrent[A]=0.01
+  BunchLength[cm]= $SigmaS   dP/P=$SigmaP   Alpha[-1,1]=$AlphaPS   S_Offset[cm]=0.
+EndSpaceChargeBlock

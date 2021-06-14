@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="header.js"> </script>
+<title> OptiMX Help: View Menu </title>
+</head>
+<body>
+<h2>View Menu</h2>
+
+<p> The View menu provides a view of lattice properties </p> </td><td>
+<table class=sansserif>
+<tr><td> Betas	 </td><td>  <a href=""> Plot the beta-functions and dispersions. </a></td></tr>
+<tr><td> Sizes	 </td><td> <a href="">Plot the horizontal, vertical and synchrotron beam sizes. </a></td></tr>
+<tr><td> Phases	 </td><td> <a href="">Plot the betatron phases. </a></td></tr>
+<tr><td> Functions at Element	 </td><td> <a href=""> Print the beta-functions and dispersions in the text window. </a></td></tr>
+<tr><td> Integrals	 </td><td> <a href=""> Print integrals over lattice (Chromaticity, SR losses, etc.). </a></td></tr>
+<tr><td> Matrix	 </td><td>  <a href=""> Print a transfer matrix between to elements. </a></td></tr>
+<tr><td> Integration  </td><td> <a href=""> Set the integration step for Integrals menu item. </a></td></tr>
+<tr><td> Functions	 </td><td>  <a href=""> Print Twiss parameters into the text window. </a></td></tr>
+<tr><td> Lattice	 </td><td>  <a href=""> Print all elements of the lattice with their parameters. The print is performed in order of elements locations. </a></td></tr>
+<tr><td> Orbit	 </td><td>  <a href=""> Print the beam trajectory to the text window. </a></td></tr>
+<tr><td> Control	 </td><td>  <a href=""> Allow to change parameters which program uses during its operation. </a></td></tr>
+<tr><td> Detach	 </td><td>    <a href=""> Detach the text window. </a></td></tr>
+</table>
+
+</table>
+<h4>View|Betas</h4>
+<p>
+Plots the (uncoupled) beta-functions and dispersions.
+</p>
+<h4>View|Sizes</h4>
+<p>
+  Plots the horizontal, vertical rms sizes for both betatron and synchrotron motion (see also Graphical Window).
+  Alternatively, the total beam sizes may be displayed (betatron and synchrotron sizes are added in quadrature).
+  This option is controlled from the View| Control menu.
+</p>
+<h4>View|Phases</h4>
+<p>
+Plots the betatron phases.
+</p>
+<h4>View|Function at Element</h4>
+<p>
+ Prints the beta-functions and the dispersions at the downstream end of a specific element.
+</p>
+<h4>View|Integrals</h4>
+<p>
+Print integrals over the lattice into the text window. A sample calculation output is shown below.
+Values which are altered by beam acceleration (like emittance, energy spread, etc.) are provided at final energy.
+It is important to note that while the contribution of sextupoles to the machine chromaticity is taken into account, 
+the contributions of multipoles elements (e.g. thin a multipole) of the same order are ignored. 
+</p>
+<pre>
+N    L 	BetaX 	AlfaX 	BetaY 	AlfaY 	DspX 	DspXp 	DspY 	DspYp 	NuX 	NuY
+0    0.0	1575.9	0	355.6	-3.94e-16	269.305	-1.816e-17	0	0	0	0
+27  1000.0	1575.9	-5.13e-07	355.6	-2.46e-07	269.304	7.064e-08	0	0	0.5521	0.6599
+
+Transfer Matrix for Structure
+X[cm]	Px	Y[cm]	Py	dP/P	dL[cm]
+-0.946831	-507.037	0	0	0	524.291	
+0.000204147	-0.946831	0	0	0	-0.0549778	
+0	0	-0.535905	-300.252	0	0	
+0	0	0.00237403	-0.535905	0	0	
+-0.0549778	524.291	0	0	1	82.7826	
+0	0	0	0	0	1	
+
+Total Length=1000 	 Tunes: Qx=0.552132     Qy=0.659985 
+Momentum compaction=0.0679769 Chromaticity: nuxp=0.119024 	 nuyp=0.0595187
+Initial Energy = 579.467 MeV 		Final Energy = 579.467 MeV
+SR losses: VSR = 1.93167 keV 	RMS fluctuations of VSR = 0.939382 keV
+Relative: SR losses: VSR/E0 = 3.33354e-06 		RMS fluctuations of VSR/E0 = 1.62111e-06
+Emittance increase due to SR: ex = 5.50457e-11 cm 	ey = 0 cm
+Normalized Emittance Increase: exn = 6.24754e-08 cm 	eyn = 0 cm
+
+ Parameters below are given for 4 periods
+Total Length=4000 	 Tunes: Qx=2.20853    Qy=2.63994 
+Chromaticity: nuxp=0.476095 	 nuyp=0.238075
+SR losses: VSR = 7.7267 keV 	RMS fluctuations of VSR = 1.87876 keV
+Relative: SR losses: VSR/E0 = 1.33341e-05 		RMS fluctuations of VSR/V0 = 3.24223e-06
+
+Parameters below are for storage ring
+Damping parameters: gx = 0.629975 	gy = 1 	gz = 2.37003 
+Equilibrium rms emittances: ex = 1.31059e-05 cm 	ey = 0 cm
+Equilibrium relative rms momentum spread: = 0.000407821(Chromaticity, SR losses, etc.).
+</pre>
+
+<h4>View|Matrix</h4>
+<p>
+  Prints a transfer matrix between elements. Element indexing starts at one. For example, a request to calculate matrix from element 1 to element 1
+  will yield the matrix for the element 1. If indices outside of the valid range are specified, the closest valid range will be assumed. 
+</p>
+
+<h4>View|Integration Step</h4>
+<p>
+Sets the integration step for Integrals menu item.
+</p>
+
+<h4>View|Functions</h4>
+<p>
+Prints Twiss parameters into the text window. Filter allows one to leave the desired elements in the list (See FilteringWO8I_K). Negative or zero step causes an output at the ends of elements only. If you need you can print functions only for elements in the range from Start from Element to Stop at element. Zero for these parameters means the entire range of output. 
+</p>
+<h4>View|Lattice</h4>
+<p>
+Prints all elements of the lattice with their parameters. The print is performed in order of element locations. Program pops up a dialog window with choices. 
+Filter allows one to leave the desired elements in the list (See FilteringWO8I_K).
+Print BdL's choice causes a print of integral fields of the magnets. In this case, only the magnetic elements will be listed. The file is in the EPICS download format (used at CEBAF for downloading magnet parameters). To make a standard EPICS downloadable file a header must be inserted at the beginning of the file. This output file (with or without header) can be read back by the program with help of Edit|Read Field Integral4A8OXUP menu. It can be used for both an exchange of element parameters in between different files and a comparison of these parameters. Note that running OptiM from the command line (see Running OptiM from Command lineCommand_Line) allows one to create a standard EPICS downloadable file with the header.
+The first letter of the element name can be skipped if desired.
+</p>	
+<h4>View|Orbit</h4>
+<p>
+	Prints the beam orbit to the text window. If STEP is equal or less than zero only the positions at the end of each element are printed. 
+	The check box Start from coordinates & angles written in the file allows one to choose the initial coordinates independent from coordinates determined in the main window. At each next time Veiw|Orbit command is called the initial coordinates in the dialog box will be updated for the output coordinates of the previous call. That allows one to track orbit for a few periods if necessary. The value of initial vertical angle effects the machine optics and orbit shape. Therefore it is excluded from the dialog box. This value is always taken from the main window.
+	Filter allows one to leave the desired elements in the list (See Filtering).
+</p>
+
+<h4>View|Control</h4>
+<p>
+Allows to one to change parameters used during program operation. These parameters are listed below.
+The first parameter determines whether the lattice is a RING or a transfer LINE. If it is a ring, the program
+closes the lattice during manual or automatic fitting. The second parameter is a check box. It switches between calculations
+on the central orbit and on the reference orbit (see Optics Calculations at Reference Orbit).
+Then there are eight check boxes.
+If the first check box (Autostart for plotting lattice functions) is checked the program automatically renews graphical windows
+for beta-function and sizes each time when user increments or decrements a value of the element parameter (Edit|Increment or Edit|Decrement)
+If the second check box (Autostart for printing lattice functions) is checked the program automatically types Twiss parameters at the lattice
+end into open text window each time when user increments or decrements a value of the element parameter (Edit|Increment or Edit|Decrement)
+If the third check box (Clear plot before drawing into the window) is not checked the program does not erase the previous plot before drawing
+the next one. This option is useful to see small changes in functions. To clear a plot one needs to press the left mouse button at REFRESH green button in the graphical window.
+If the check box labeled "Clear text before typing into the window" is checked, the contents of
+the output text window is erased before the output is sent. 
+If the check box labeled "Rewrite main buffer at analysis" is checked, the contents of the main window is rewritten before any calculation is performed
+(see Edit|Analyse Lattice). 
+If the check box labeled "Draw lego plots" is checked a beamline lego plot is overlayed on the plots.
+The seventh check box controls plotting apertures in View|Size menu (see Element|H-aperture limitation).
+The eighth check box selects either the betatron beam size 
+$$
+\sqrt{\epsilon\beta}
+$$
+or the total beam size
+$$
+\sqrt{ \epsilon\beta + \eta^2 (\frac{\Delta p}{p})^2}  
+$$
+The next (11-th) parameter determines the number of points for plots. Changing the no of samples do not apply to existing plot windows;
+to see the effect, the plot window should be either detached or closed first a a new one should be opened.
+The twelfth parameter controls coupling threshold for View|Betas menu. If coupling is present and above threshhold, the user will be
+informed that the calculations are not sufficiently accurate. In that case, the View 4D|Beta menu should be used.
+The last two parameters are used to set integration accuracy and the integration step of used when numerically integrating the particle
+motion equations  through the W-RF cavity element (PI standing wave). 
+</p>
+
+<h4>View|Detach Command</h4>
+<p>
+  Detaches the window. When the program needs to send output to a window a new one will be opened if no attached window is present.
+  The detach command is applied to the window that has focus (highlighted).
+</p>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="css/optim.css" media="screen" />
+<script src="header.js"></script>
+</head>
+<body>
+<h2> Importing from MAD-X</h2>
+
+To avoid parsing the full MAD-X input language, conversion from MAD-X to OptiMX relies on
+files in MAD-X TWISS table format known as TFS (Twiss File Structure).
+The TFS table format is a flat (non-hierarchical) ascii format where all elements of
+a beamline and their attributes appear in sequential order. 
+
+Assuming that a SEQUENCE has been previously defined and selected with
+a USE statement, a MAD-X TWISS table in a format file suitable for
+conversion to OptiMX format, can be obtained using the following MAD-X
+command:
+<pre>
+  twiss, file=myline.tfs
+</pre>
+MAD-X should then output the file myline.tfs with contents similar to this:
+<pre>
+@ NAME             %05s "TWISS"
+@ TYPE             %05s "TWISS"
+@ SEQUENCE         %04s "FODO"
+@ PARTICLE         %06s "PROTON"
+@ MASS             %le         0.938272046
+@ CHARGE           %le                   1
+@ ENERGY           %le                7000
+@ PC               %le         6999.999937
+@ GAMMA            %le         7460.522809
+@ KBUNCH           %le                   1
+@ BCURRENT         %le                   0
+@ SIGE             %le               0.001
+@ SIGT             %le                   1
+@ NPART            %le                   0
+@ EX               %le                   1
+@ EY               %le                   1
+@ ET               %le               0.001
+@ LENGTH           %le                  20
+@ ALFA             %le       0.03935197182
+@ ORBIT5           %le                  -0
+@ GAMMATR          %le         5.041000619
+@ Q1               %le        0.3324778408
+@ Q2               %le          0.34039778
+@ DQ1              %le       -0.3359694135
+@ DQ2              %le        -0.347873262
+@ DXMAX            %le         2.507680273
+@ DYMAX            %le                   0
+@ XCOMAX           %le                   0
+@ YCOMAX           %le                   0
+@ BETXMAX          %le         17.29369244
+@ BETYMAX          %le         17.03290805
+@ XCORMS           %le                   0
+@ YCORMS           %le                   0
+@ DXRMS            %le         2.137064072
+@ DYRMS            %le                   0
+@ DELTAP           %le                   0
+@ SYNCH_1          %le                   0
+@ SYNCH_2          %le                   0
+@ SYNCH_3          %le                   0
+@ SYNCH_4          %le                   0
+@ SYNCH_5          %le                   0
+@ TITLE            %08s "no-title"
+@ ORIGIN           %16s "5.02.10 Linux 64"
+@ DATE             %08s "15/06/16"
+@ TIME             %08s "11.41.16"
+* NAME               KEYWORD                             S               BETX               ALFX                MUX               BETY               ALFY                MUY              
+    X                 PX                  Y                 PY                  T                 PT                 DX                DPX                 DY                DPY          
+       WX               PHIX               DMUX                 WY               PHIY               DMUY                DDX               DDPX                DDY               DDPY      
+          R11                R12                R21                R22             ENERGY                  L              ANGLE                K0L               K0SL                K1L  
+             K1SL                K2L               K2SL                K3L               K3SL                K4L               K4SL                K5L               K5SL                K
+6L               K6SL                K7L               K7SL                K8L               K8SL                K9L               K9SL               K10L              K10SL             
+  K11L              K11SL               K12L              K12SL               K13L              K13SL               K14L              K14SL               K15L              K15SL         
+      K16L              K16SL               K17L              K17SL               K18L              K18SL               K19L              K19SL               K20L              K20SL     
+           KSI              HKICK              VKICK               TILT                 E1                 E2                 H1                 H2               HGAP               FINT 
+             FINTX               VOLT                LAG               FREQ             HARMON    SLOT_ID ASSEMBLY_ID           MECH_SEP              V_POS               LRAD PARENT     
+                      RE11               RE12               RE13               RE14               RE15               RE16               RE21               RE22               RE23        
+</pre>
+<p>
+  The TFS format starts with a header that describes the global beamline parameters and the individual element attributes. Each global parameter is described
+  over a single line which starts with the character "@".
+  These descriptions are followed by a line starting with the character * which specifies the attribute name and format of the elements.     
+  Note that if the SELECT command has been used, only the specified subset of attributes will be saved; this may cause the translation to fail.   
+  Following the * line, all the elements in the beamline are saved in a single record where element is a simply a sequence of attribute values
+  appearing in the order specified on the * line.
+<p>
+Once a file in MAD-X TFS twiss table format has been created, from the top menu select File | Import | from MAD-X and
+pick the *.tfs file. The particle rest mass and initial energy are automatically extracted from the tfs file. 
+</p>
+
+</body>
+</html>
+  

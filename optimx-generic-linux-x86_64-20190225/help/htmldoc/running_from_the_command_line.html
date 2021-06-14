@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="header.js"> </script>
+<title>OptiMX : Rinng Optim from the Command Line</title>
+</head>
+<body>
+<h2>Running OptiM From the Command Line</h2>
+<p>
+OptiM can be run from the command line. This is useful when execution is initiated from a batch file or by an other program.
+Upon exit the program returns 0 for successful completion or 1 if an error has been encountered. Depending on the specified argument(s),
+the program will perform different actions which are described below. 
+
+<h4> To start the program in interactive (GUI) mode with a specific input (lattice description) file : </h4>
+</p>
+<pre>
+optim InputFileName
+</pre>
+The program reads the file InputFileName and the GUI is ready for interactive operation.
+On the MS Windows platform, this mechanism makes it possible to launch OptiM by double clicking on a file of type (*.opt)
+from Windows Explorer by associating the .opt extension with optim.exe (use View | Option | File types in Windows Explorer).
+
+</p>
+<h4> Non-interactive modes </h4>
+<p>
+All the modes described below are meant for non-interactive program execution, i.e. the program is used to generate output 
+files from input files. The command line arguments correspond to menu parameters in interactive program operation. 
+The following switches can be used:
+<pre>
+-f : save a table of Twiss  functions  (beta-functions, dispersions etc.) 
+-s : save a table of Twiss functions to a file with MAD like structure
+-c : save a table of coupled Twiss funtions 
+-i : save a table of Twiss functions computed with accounting beam space charge
+-t : save a table of beam centroid positions (trajectory)
+-o : save a table of orbit positions
+-r : read BdL from .snap file and create new OptiM file
+-w : create a .snap file
+-p : multi-particle tracking
+</pre>
+<p>
+<h5> To tabulate (uncoupled) Lattice Functions </h5>
+</p>
+<pre>
+optim -f InputOptimFileName OutputTwissFileName &lsaquo;filter&rsaquo; &lsaquo;MatchCase&rsaquo; &lsaquo;HideFirstLetter&rsaquo; &lsaquo;Comment&rsaquo; &lsaquo;step&rsaquo; &lsaquo;CloseLattice&rsaquo;
+The default values for unspecified arguments are:
+filter=*
+MatchCase=Y
+HideFirstLetter=Y
+Comment=#
+step=0
+CloseLattice=Y  (the periodic solution will be used) 
+</pre>
+&lsaquo;Comment&rsaquo; is added on a separate line, pre-pended to the output file.
+For the CEBAF recirculator, the comment is used to keep track of the pass number.  
+
+<h5> To tabulate (uncoupled) Lattice Functions together with element parameters (MAD8 TWISS format) </h5>
+
+<pre>
+optim -s InputOptimFileName OutputTwissFileName &lsaquo;filter&rsaquo; &lsaquo;MatchCase&rsaquo; &lsaquo;HideFirstLetter&rsaquo; &lsaquo;Comment&rsaquo; &lsaquo;step&rsaquo; &lsaquo;CloseLattice&rsaquo;
+The default values for unspecified arguments are:
+filter=*,  
+MatchCase=Y, 
+HideFirstLetter=Y, 
+Comment=#
+step=0,    
+CloseLattice=Y (the periodic solution will be used).
+</pre>
+<h5> Generate a list of coupled lattice functions: </h5>
+<pre>
+optim -c InputOptimFileName OutputTwiss4DFileName &lsaquo;filter&rsaquo; &lsaquo;MatchCase&rsaquo; &lsaquo;HideFirstLetter&rsaquo; &lsaquo;step&rsaquo; &lsaquo;CloseLattice&rsaquo;
+defaults:
+filter=*
+MatchCase=Y
+HideFirstLetter=Y
+step=0
+CloseLattice=N
+</pre>
+<h5>Generate a table of coupled beta-functions, taking into account linear space charge (de)focusing :</h>
+<pre>
+optim -i InputOptimFileName OutputTwiss4DFileName &lsaquo;filter&rsaquo; &lsaquo;MatchCase&rsaquo; &lsaquo;HideFirstLetter&rsaquo; &lsaquo;step&rsaquo; &lsaquo;CloseLattice&rsaquo;
+defaults:
+filter=*
+MatchCase=Y
+HideFirstLetter=Y
+step=0
+CloseLattice=N
+</pre>
+<h5> Generate a Table of Output Beam Centroid Positions (trajectory) (see Type Trajectoryx) : </h5>
+<pre>
+optim -t InputOptimFileName OutputTrajFileName  &lsaquo;filter&rsaquo;  &lsaquo;MatchCase&rsaquo;  &lsaquo;CloseLattice&rsaquo;  &lsaquo;OutputType&rsaquo;  &lsaquo;step&rsaquo;
+Defaults:
+filter=*
+MatchCase=Y
+HideFirstLetter=Y
+CloseLattice=Y (N - No closure, Y - linear closure, E - nonlinear closure
+OutputType=T (T - text, B - binary)
+step=0
+</pre>
+<h5> Generate a Table of Orbit Positions  : </h5>
+<pre>
+optim -o InputOptimFileName OutputTrajFileName  &lsaquo;filter&rsaquo;  &lsaquo;MatchCase&rsaquo;  &lsaquo;CloseLattice&rsaquo;  &lsaquo;OutputType&rsaquo;  &lsaquo;step&rsaquo;
+Defaults:
+filter=*
+MatchCase=Y
+HideFirstLetter=Y
+CloseLattice=Y (N - No closure, Y - linear closure, E - nonlinear closure
+OutputType=T (T - text, B - binary)
+step=0
+</pre>
+<h5>Read $\int B\; dL $  from a .snap File and Generate a New .opt File (see Read Field Integral) </h5>
+<pre>
+optim -r InputOptimFileName OutputOptimFileName InputSnapFile  &lsaquo;filter&rsaquo;  &lsaquo;MatchCase&rsaquo;  &lsaquo;NamePrefix&rsaquo;  &lsaquo;Scale&rsaquo;  &lsaquo;StartTwissFile&rsaquo;
+	Default values are:
+filter=*
+MatchCase=Y
+NamePrefix=""
+Scale=1
+If StartTwissFile is used, the initial Twiss parameters will be taken from the END line of this file, otherwise values from initial OptiM file will be used. 
+</pre>
+
+<h5>Create a .snap file (see Lattice)</h5>
+<pre>
+optim -w InputOptimFileName OutputSnapFileName &lsaquo;filter&rsaquo;  &lsaquo;MatchCase&rsaquo;  &lsaquo;HideFirstLetter&rsaquo; 
+Default values:
+filter=*
+MatchCase=Y
+HideFirstLetter=Y
+</pre>
+
+<h5> Multiparticle Tracking (see Track) </h5>
+<pre>
+optim -p InputOptimFileName OutputTrackingFileName InputPartPosFileName  &lsaquo;filter&rsaquo;  &lsaquo;MatchCase&rsaquo;  &lsaquo;Nturn&rsaquo;  &lsaquo;ring&rsaquo;
+Default are:
+filter=*
+MatchCase=Y
+Nturn=1
+ring=L (should be R or L) 
+</pre>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="header.js"> </script>  
+</head>
+<body>
+<h4>Element Type Q: Quadrupole </h4>
+<table id="element">
+   <tr>
+    <th>Parameter Description</th>
+    <th>Argument Order</th>
+    <th>Argument Name </th>
+    <th>Units </th>
+    <th>Default Value</th>
+  </tr>
+  <tr>
+    <td>Length </td>
+    <td>  1    </td>
+    <td>  L    </td>
+    <td> cm    </td>
+    <td> 0.0   </td>
+  </tr>
+  <tr class="alt">
+    <td> Gradient </td>
+    <td>   2  </td>
+    <td> G[kG/cm]  </td>
+    <td>  kG/cm   </td>
+    <td>  0.0     </td>
+  </tr>
+  <tr>
+    <td> Tilt </td>
+    <td>   3  </td>
+    <td>   T  </td>
+    <td>  degrees </td>
+    <td>  0.0 </td>
+  </tr>
+  <tr class="alt">
+    <td> Horizontal Offset </td>
+    <td>   4  </td>
+    <td>   OfsX[cm]  </td>
+    <td>  cm </td>
+    <td>  0.0 </td>
+  </tr>
+  <tr>
+    <td>  Vertical Offset </td>
+    <td>   5  </td>
+    <td>  OfsY[cm]   </td>
+    <td>  cm  </td>
+    <td>  0.0 </td>
+  </tr>
+</table>
+
+<p>
+  Rotations (e.g Tilt) are performed in the beam frame about an axis tangent to the beam trajectory.
+</p>
+<pre>
+Examples: 
+Qfs     	L[cm]=45  	G[kG/cm]=0.277565 	Tilt[deg]=45
+Qd     	        L[cm]=45  	G[kG/cm]=-0.445846 	
+</pre>
+<p>
+A quadrupole can have offsets in the horizontal and vertical planes. Such offsets, when present, cause beam kicks proportional 
+to quad displacements in the corresponding planes (for tilt=0).  Similarly to correctors, quadrupole displacements cause 
+excitation of the beam trajectory. They are accounted for in all trajectory related calculations, including optics
+calculations on a reference orbit.
+</p>
+<pre>
+Example: 
+QQf   L[cm]=45   G[kG/cm]=0.277    Tilt[deg]=0   OfsX[cm]=0.1   OfsY[cm]=0.01
+</pre>
+<p>
+In tracking mode, the quadrupole map includes edge aberrations due to the fringe field. The transfer map is computed
+in the hard-edge approximation. 
+
+For the upstream edge, the edge map in the horizontal and vertical planes are respectively 
+
+$$
+\Delta x   =  \frac{k_1}{12(1+\delta)} \left[ x^3  + 3xy^2 \right]
+$$
+$$
+\Delta x'  =  \frac{k_1}{4(1+\delta)} \left[ 2 xyy' - (x^2 + y^2) x' \right]
+$$
+$$
+\Delta y   =  -\frac{k_1}{12(1+\delta)} \left[ y^3  + 3x^2y \right]
+$$
+$$
+\Delta y'  =  -\frac{k_1}{4(1+\delta)} \left[ 2 yxx' - (x^2 + y^2) y' \right]
+$$
+</p>
+
+Here, $k_1 = eG/p = G/B\rho$ is the optical quadrupole strength and $\delta = \Delta p/p$ is the relative momentum deviation. 
+The signs of the edge aberrations are reversed at the downstream end. A switch is provided under the preferences
+menu to optionally turn the edge effects off. 
+</p>
+References:
+<ol>
+<li>G.E. Lee-Whiting, "Third Order Aberrations of a Magnetic Quadrupole Lens", NIM-83, pp.232-244
+(1970). </li>
+<li> E. Forest, "Beam Dynamics,  A New Attitude and Framework", Harwood Academic Publishers (1998), pp. 389-390. </li>
+</ol>
+</body>
+</html>
+  

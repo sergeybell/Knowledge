@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="header.js"></script>
+<title> OptiMX Help: File Menu </title>
+</head>
+<body>
+<h2> File Menu </h2>
+<p>
+The File menu provides commands for creating new files, opening existing files, saving files, printing files, export to and 
+import from other platforms, and exiting the application. It also allows recalling one of four recently used files.
+</p>
+<table class=sansserif>
+<tr><td>New 	</td><td> <a href=""> Create a new, untitled, template to begin a new lattice. </a> </td><tr>
+<tr><td>Open</td><td> 	<a href="">Open an existing OptiM file. </a> </td><tr>
+<tr><td>New Text	</td><td> <a href="">Creates empty text window.</a>  </td><tr>
+<tr><td>Open Text</td><td> 	<a href="">Open a Text file.</a>   </td><tr>
+<tr><td>Compress 	</td><td> <a href="">Compress the lattice description from an OptiM file to another OptiM file. </a>  </td><tr>
+<tr><td>Import from MAD8	</td><td><a href=""> Convert a MAD  twiss output file to OptiM format. </a>  </td><tr>
+<tr><td>Import from MADX	</td><td><a href=""> Convert a MADX twiss (TFS) output file to OptiM format. </a>  </td><tr>
+<tr><td>Import from DIMAD</td><td> 	<a href="">Convert a DIMAD output file to OptiM format.</a>   </td><tr>
+<tr><td>Import from Resolve</td><td> 	<a href="">Convert a RESOLVE format file to OptiM file. </a>  </td><tr>
+<tr><td>Export ... to MAD</td><td> 	<a href="">Convert an OptiM file to MAD input file </a>  </td><tr>
+<tr><td>Export ... to CEBAF DIMAD</td><td> 	<a href="">Convert an OptiM file into a DIMAD input file with name conversions necessary to support CEBAF Model Server</a>   </td><tr>
+<tr><td>Export ... to RESOLVE</td><td> 	<a href="">Convert an OptiM file into RESOLVE input file</a>   </td><tr>
+<tr><td>Save</td><td> 	<a href="">Save the current text window (works if the contents of the window have been changed).</a>   </td><tr>
+<tr><td>Save As	</td><td> <a href="">Save the current text window under a new name.</a>   </td><tr>
+<tr><td>Execute	</td><td><a href=""> Execute a list of commands located in current text window.</a>   </td><tr>
+<tr><td>Get File Name	</td><td> <a href="">Insert a file name into the current text window at cursor position.</a>   </td><tr>
+<tr><td>Print Preview	</td><td> <a href="">Show a print preview of selected window.</a>   </td><tr>
+<tr><td>Print...	</td><td> <a href="">Print a selected window. </a>  </td><tr>
+<tr><td>Print Setup	</td><td> <a href="">Setup of printing and a printer.</a>   </td><tr>
+<tr><td>Exit	</td><td> <a href=""> Exit OptiM application. </a>  </td><tr>
+</table>
+<h4>File|New</h4>
+<p>
+The File|New command creates the main, untitled window, makes it the active window, and inserts a simple template to begin a new lattice. 
+The application prompts you to name untitled documents when they are closed. Only one main window can be open in the program. 
+Therefore File|New and File|Open menus are grayed if the main window is already opened.
+</p>
+
+<h4>File|Open </h4>
+<p>
+The File|Open command displays the Open a File dialog box so you can select a file to load into a new document window. Only one main window can be open in the program. Therefore File|New and File|Open menus are grayed if the main window is already opened.<p>
+<h4>File|New Text</h4>
+<p>
+The File|New Text command creates empty text window. Arbitrary number of text windows can be created.</p>
+<h4>File|Open Text</h4>
+<p>
+Opens a text file and puts its contents into a text window. This window cannot be the main window. 
+This command should be used to open any text file for reference or editing. Arbitrary number of text windows can be created.
+</p>
+
+<h4> File|Import from DIMAD</h4>
+<p>
+To perform conversion from DIMAD file the program uses DIMAD output file to simplify parsing of the lattice. The program asks a name of the DIMAD output file (by default the file extension is .out but other extensions can be used as well) and writes a converted structure into a file with the same name and extension .opt. The program informs user about conversion results. To create a DIMAD output file which can be read by the program the following DIMAD commands should be used in the same sequence:
+</p>
+<pre>
+	use,machine
+	dimat
+	machine
+	1 2 1 0 1 1 1
+	BetaXin  AlfaXin  DispXin  DispPrimeXin
+	BetaYin  AlfaYin  DispYin  DispPrimeYin
+	0,
+	layout
+	s  x  y  z  tetaX  tetaY
+	1 0,
+	hardware
+	Energy  s  x  y  z  tetaX  tetaY
+	1 0;
+	stop
+</pre>
+<p>Here BetaXin,  AlfaXin,  DispXin,  DispPrimeXin,  BetaYin,  AlfaYin,  DispYin and  DispPrimeYin are beta-functions, dispersions and their derivatives at the beginning of lattice, Energy is the beam initial energy; s, x, y  and  z are the initial path length and the initial coordinates of the local coordinate frame in the global coordinate frame, tetaX and tetaY are the initial angles of the local coordinate frame relative to the global coordinate frame. Distances are measured in meters, and energy is measured in GeV (note that DIMAD uses the total energy of the particle, gmc**2 while OptiM uses the kinetic energy).
+Definitions of RF cavities in OptiM and DIMAD are different. There is no simple transformation from one kind of cavities to another and therefore OptiM does not convert DIMAD cavity to OptiM cavity. Accelerating cavities are substituted by drifts, and, consequently, the field values of all magnets located downstream of the first cavity will be calculated incorrectly and must be substituted manually together with cavity parameters. Search|Replace1MUS7LF menu is useful instrument for performing such edition.
+</p>
+
+<h4> File|Import from Resolve</h4>
+<p>
+	Converts a RESOLVE type file into OptiM format. The program asks name of the RESOLVE type file (by default the file extension is .res but other extensions can be used too) and writes a converted structure into a file with the same name and extension .opt. The program informs user about conversion results in a new opened text window.
+</p>
+<h4>File|Compress</h4>
+<p>Compresses the lattice description from a source OptiM file to a destination OptiM file. The output file will have the same name as the input file name but with extension .opc. 
+If a file with such a name does already exist the dialog box for determining a file name is popped-up. The program looks through the source OptiM file and rewrites it to the 
+destination file so that all adjusting drifts will be combined in one longer drift. 
+A higher degree of compression can be achieved if other non-focusing elements are requested to be removed. Corresponding dialog window appears after the file dialog window and 
+allows one to choose instrumentation, correctors and a few other elements to be removed if necessary. Chosen types of elements will be considered as drifts and, consequently, 
+will be eliminated. This dialog window sets also the offset which is used for naming of new drifts. The names of drifts will start from letters "oD" and then number of the 
+drift will follow. Enumeration of the drifts starts from the offset. Drifts of the same length will have the same name so that the name of the first encountered drift of given 
+length is used. Note that all text variables used to describe the element sequence will be explicitly replaced by corresponding sequence of element names. One can also choose 
+to remove all variables from definition of elements. While math header still will be present in the file it will not have any connection to the rest of the file and can be 
+safely removed if required. This option also copies all information from #include files into the main file and, consequently, removes all #include statements.
+Often such a procedure allows one to compress the source file significantly which, consequently, accelerates computations. If necessary the integral strengths of elements can be also updated in the source file using Read Field Integral command.
+</p>
+
+<h4>File|Export ... to MAD</h4>
+
+<p>
+Convert an OptiM file located in the main window into a MAD input file. Taking into account that MAD and DIMAD use very similar languages this command can be used to generate a DIMAD  file.
+</p>
+<h4>File|Export ... to CEBAF DIMAD</h4>
+<p>
+Convert an OptiM file located in the main window into a DIMAD input file with name conversions necessary to support the CEBAF Model Server. The following element renaming takes place:
+</p>
+<pre>
+oM...   removed magnet 	converted into 	drift	M
+oI...   removed instrumentation 	converted into 	drift	I
+kM...   corrector with BdL	converted into 	corrector	M 
+KM...   corrector disconnected from power 
+        supply  	converted into 	drift	M
+kaM...  special corrector
+        (no BdL like: 30 Hz, fast, feedback system, Hall A parity experiment)
+        converted into 	monitor	M
+kyM...  auxiliary corrector
+        (no BdL like: 30 Hz, fast, feedback system, Hall A  parity experiment)
+        converted into 	monitor	M 
+krR...  RF separator, raster 	converted into 	sbend	R
+iI...   instrumentation (must have zero length) 	
+			converted into 	monitor	I
+II...   currently disconnected instrumentation	
+			converted into 	drift	I 
+qMQ...  quad 		converted into 	quad	MQ
+QMQ...  disconnected from power supply quad  	
+			converted into 	drift	MQ..
+bM...   dipole		converted into 	dipole	M
+beMQ... extraction line quad (listed as dipole) 	
+			converted into 	quad	MQ
+</pre>
+<p>
+For other elements the first letter of name is cut and element type is assigned in accordance with the first letter. Elements which name starts from a capital letter will be converted into drifts. Note that elements which are converted to MONITORs (kaM, kyM and iI) have to have zero or sufficiently small length because element MONITOR has zero length in DIMAD.
+</p>
+
+<h4> File|EXPORT ... to RESOLVE</h4>
+
+<p>
+Convert an OptiM file located in the main window into RESOLVE input file
+</p>
+<h4>File|Save</h4>
+<p>
+The File|Save command saves the document in the active window to disk. If the document is unnamed, the Save File As dialog box is displayed so you can name the file, and choose where it is to be saved.
+</p>
+<h4>File|Save As</h4>
+<p>The File|Save As command allows you to save a document under a new name, or in a new location. The command displays the Save File As dialog box. You can enter the new file name, including the drive and directory. If you choose an existing file name, you are asked if you want to overwrite the existing file. 
+</p>
+<h4> File|Execute</h4>
+<p>
+The File|Execute command executes a list of commands located in the current (chosen) text window. Commands must be in a form of simple *.bat file. 
+Each parameter in the line can be put in quotation marks like an example in the following line starting MSWord with file Text.doc,
+C:\Program files\MSOffice\Winword\Winword.Exe E:\documents\Text.doc 
+Such format allows one to use spaces in file names.
+</p>
+<h4>File|Get File Name</h4>
+<p>
+The File|Get File Name command inserts a file name into the current text window at cursor position. To get a file name the 
+standard windows open file dialog box is used. This command is designed to obtain references to external files 
+(see Input language description) and making command files (see Execute).
+<h4>File|Print Preview</h4>
+<p>
+Shows a print preview of selected window. It works for both text and graphical windows. 
+To close File Preview, click the left mouse button at the close window button (a cross at the top left corner of the window).
+</p>
+<h4>File|Print</h4>
+Prints a selected window. It works for both text and graphical windows.
+</p>
+<h4>File|Print Setup</h4>
+<p>
+The standard Windows dialog to choose a setup of printing, the paper orientation and the printer.
+</p>
+<h4>File|Exit</h4>
+<p>
+The File|Exit command exits OptiM. If you have modified documents without saving, you'll be prompted to save before exiting.
+</p>
+</body>
+</html>

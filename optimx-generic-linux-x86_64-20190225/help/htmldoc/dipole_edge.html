@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="header.js"></script>
+<title OptiMX Help: Magnet Edge > </title>
+</head>
+
+<h4> Type G: Dipole Magnet Edge</h4>
+<table id="element">
+   <tr>
+    <th>Parameter Description</th>
+    <th>Argument Order</th>
+    <th>Argument Name </th>
+    <th>Units </th>
+    <th>Default Value</th>
+  </tr>
+  <tr>
+    <td> Bend Field </td>
+    <td>  1    </td>
+    <td>  B[kG]    </td>
+    <td> kG    </td>
+    <td> 0.0   </td>
+  </tr>
+  <tr class="alt">
+    <td> Pole Face Angle </td>
+    <td>   2  </td>
+    <td> Angle[deg]    </td>
+    <td>  deg   </td>
+    <td>  0.0     </td>
+  </tr>
+ <tr>
+    <td> Edge Field Eff Length </td>
+    <td>   3  </td>
+    <td>  EffLen[cm]  </td>
+    <td>  cm   </td>
+    <td>  0.0     </td>
+  </tr>
+  <tr class="alt">
+    <td> Tilt </td>
+    <td>   4  </td>
+    <td>  T[deg]  </td>
+    <td>  degree </td>
+    <td>  0.0 </td>
+  </tr>
+  <tr>
+    <td> Tilt Error </td>
+    <td>   5  </td>
+    <td>  TiltError[deg]  </td>
+    <td>  degree </td>
+    <td>  0.0 </td>
+  </tr>
+</table>
+<p>
+  This element models edge focusing. The first parameter is the bend field  "jump" at the magnet edge. Normally
+  this parameter is determined by the bending element that preceeds or follows. The second parameter is the edge face angle.
+  Edge face angles are zero for a pure sector bend. The angles signs are defined so that for a rectangular magnet (parallel edges),
+  the upstream and downstream angles (in degrees) are positive and equal to half the bending angle. The third parameter is the edge
+  field effective length in [cm].   The fourth parameter is the roll angle (tilt) of the entire magnet (in degrees) with respect
+  to the local beam frame.  The rotation is performed around the beam trajectory at the magnet entrance. Normally, the edge tilt angle
+  should be equal and identical to that of the corresponding dipole;  however, if the dipole tilt angle is not 0 or 90 deg.
+  differs from the bend magnet tilt angle (see B, D-combined function magnet).
+  The inverse focal lengths of the edge field are :
+</p>
+$$
+\begin{eqnarray}
+\frac{1}{f_x} & = & - \frac{1}{\rho}{\tan \,\alpha}  \\
+\frac{1}{f_y} & = &   \frac{1}{\rho}{\tan \,\alpha}  - \frac{a}{\rho^2}
+\end{eqnarray}
+$$
+<p>
+where $\alpha$ is the pole rotation angle, $\rho$ is the bending radius, and $a$ is the effective length of the edge. 
+The effective length of the edge, $a$, may be determined using the following equation:
+</p>
+$$
+		a = g K \frac{( 1+ \sin^2 \alpha )}{\cos \alpha}
+$$
+<p>
+  where $g$ the (full) gap, and  $0.5 < K <1$.  The numerical parameter $K$
+$$
+     K = \int_{-\infty}^{\infty} \frac {B_y(z) [ B_0 - B_y(z)]}{g B_0^2} \, dz
+$$
+characterizes the magnetic field profile in the edge region which in turn depends
+on details of the magnet pole face and coil geometries.
+</p>
+
+<p> Values of $K$ have been determined and tabulated for a few typical profiles. </p>
+<table id="element">
+<tr> <td>Linear drop-off    </td><td>       1/6  </td></tr>
+<tr> <td>Clamped Rogowski   </td><td>       0.4  </td></tr>
+<tr> <td>Unclamped Rogowski </td><td>       0.7  </td></tr>
+<tr> <td>Square edge        </td><td>       0.45 </td></tr>
+</table>
+<p>
+When the profile is unknown, $K=0.5$ is a good compromise. 
+</p>
+<p>
+Examples:
+</p>
+<pre>
+# Vertically bending rectangular magnet (beam momentum of 445 MeV). 
+#    The magnet edges and body have to be listed in the lattice description 
+#    			as gMAI1R01 bMAI1R01 gMAI1R01
+gMAI1R01  	B[kG]=-4.84581	 Angle[deg]= 9.3943	EffLen[cm]=1.39004 	Tilt[deg]=-90 
+bMAI1R01  	L[cm]=100.449  B[kG]=-4.84581  	G[kG/cm]=0 		Tilt[deg]=-90
+#This magnet can also be described in the following way
+#       Next 6 lines have to be in the math header
+$Pc=445
+$Hro=$Pc*1e11/$c;  =>     1484.36  ; $c is the build-in light velocity ~3e10 cm/c  
+$B=-4.84581;  =>    -4.84581
+$L=100.449;  =>     100.449
+$Fi=-180/$PI*$B*$L/$Hro;  =>  18.7886419
+$FiEdge=$Fi/2.;  =>  9.39432095
+$MAI1R01=" gMAI1R01 bMAI1R01 gMAI1R01 "
+# The magnet is refered in the lattice description as $MAI1R01 for shorteness.
+#Then in the describtion of elements it looks like this:
+gMAI1R01  	B[kG]=$B	Angle[deg]= $FiEdge	EffLen[cm]=1.39004 	Tilt[deg]=-90 
+bMAI1R01  	L[cm]=$L	B[kG]=$B  	G[kG/cm]=0 		Tilt[deg]=-90
+
+# Horizontally bending sector dipole. Lattice description: g b G
+g  	B[kG]=-4.84581  	Angle[deg]=0 		EffLen[cm]=1.39004 	Tilt[deg]=0 
+b  	L[cm]=100.449  	B[kG]=-4.84581  	G[kG/cm]=0 		Tilt[deg]=0
+G  	B[kG]=4.84581  	Angle[deg]=0  		EffLen[cm]=1.39004 	Tilt[deg]=0
+</pre>
+</body>
+</html>
+  

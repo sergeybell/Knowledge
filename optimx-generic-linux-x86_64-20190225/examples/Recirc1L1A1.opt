@@ -1,0 +1,244 @@
+$m=105.658;  =>     105.658
+$E0=2856;  =>        2856
+$gamma=1+$E0/$m;  =>  28.0306082
+$beta=sqrt(1-1/$gamma/$gamma);  => 0.999363434
+$EmitN=.15;  =>        0.15
+$Emit=2.5*2.5*$EmitN/$gamma/$beta;  =>0.0334668857
+$Acceptance=0.0400;  =>        0.04
+#
+# LINAC
+#
+# Main cavity parameters
+$F=201e6;  =>   201000000
+$Lambda=$c/$F;  =>  149.150498
+$FIlinac=-11;  =>         -11
+$DE=14.6585012*$Lambda/100;  =>  21.8632275
+# Cavity parameters
+$E1=$E0+4*$DE*cos($FIlinac/180*$PI);  =>  2941.84615
+$E2=$E1+4*$DE*cos($FIlinac/180*$PI);  =>  3027.69231
+$E3=$E2+4*$DE*cos($FIlinac/180*$PI);  =>  3113.53846
+$E4=$E3+4*$DE*cos($FIlinac/180*$PI);  =>  3199.38461
+$E5=$E4+4*$DE*cos($FIlinac/180*$PI);  =>  3285.23077
+$E6=$E5+4*$DE*cos($FIlinac/180*$PI);  =>  3371.07692
+$E7=$E6+4*$DE*cos($FIlinac/180*$PI);  =>  3456.92308
+$E8=$E7+4*$DE*cos($FIlinac/180*$PI);  =>  3542.76923
+$E9=$E8+4*$DE*cos($FIlinac/180*$PI);  =>  3628.61538
+$E10=$E9+4*$DE*cos($FIlinac/180*$PI);  =>  3714.46154
+$E11=$E10+4*$DE*cos($FIlinac/180*$PI);  =>  3800.30769
+$E12=$E11+4*$DE*cos($FIlinac/180*$PI);  =>  3886.15384
+$E13=$E12+4*$DE*cos($FIlinac/180*$PI);  =>        3972
+# Linac Quad parameters
+$P0=sqrt($E0*($E0+2.*$m));  =>  2959.77271
+$Gd0=  -0.4407814;  =>  -0.4407814
+$Gf0=0.477713515   	;  => 0.477713515
+$Gd1=$Gd0*sqrt($E1*($E1+2.*$m))/$P0;  =>-0.453573872
+$Gd2=$Gd0*sqrt($E2*($E2+2.*$m))/$P0;  =>-0.466365911
+$Gd3=$Gd0*sqrt($E3*($E3+2.*$m))/$P0;  => -0.47915755
+$Gd4=$Gd0*sqrt($E4*($E4+2.*$m))/$P0;  =>-0.491948821
+$Gd5=$Gd0*sqrt($E5*($E5+2.*$m))/$P0;  =>-0.504739752
+$Gd6=$Gd0*sqrt($E6*($E6+2.*$m))/$P0;  =>-0.517530368
+$Gd7=$Gd0*sqrt($E7*($E7+2.*$m))/$P0;  =>-0.530320692
+$Gd8=$Gd0*sqrt($E8*($E8+2.*$m))/$P0;  =>-0.543110744
+$Gd9=$Gd0*sqrt($E9*($E9+2.*$m))/$P0;  =>-0.555900544
+$Gd10=$Gd0*sqrt($E10*($E10+2.*$m))/$P0;  =>-0.568690108
+$Gd11=$Gd0*sqrt($E11*($E11+2.*$m))/$P0;  =>-0.581479452
+$Gd12=$Gd0*sqrt($E12*($E12+2.*$m))/$P0;  => -0.59426859
+$Gd13=$Gd0*sqrt($E13*($E13+2.*$m))/$P0;  =>-0.607057535
+$Gf1=$Gf0*sqrt($E1*($E1+2.*$m))/$P0;  => 0.491577841
+$Gf2=$Gf0*sqrt($E2*($E2+2.*$m))/$P0;  => 0.505441696
+$Gf3=$Gf0*sqrt($E3*($E3+2.*$m))/$P0;  => 0.519305119
+$Gf4=$Gf0*sqrt($E4*($E4+2.*$m))/$P0;  => 0.533168143
+$Gf5=$Gf0*sqrt($E5*($E5+2.*$m))/$P0;  => 0.547030798
+$Gf6=$Gf0*sqrt($E6*($E6+2.*$m))/$P0;  => 0.560893112
+$Gf7=$Gf0*sqrt($E7*($E7+2.*$m))/$P0;  => 0.574755109
+$Gf8=$Gf0*sqrt($E8*($E8+2.*$m))/$P0;  => 0.588616812
+$Gf9=$Gf0*sqrt($E9*($E9+2.*$m))/$P0;  => 0.602478242
+$Gf10=$Gf0*sqrt($E10*($E10+2.*$m))/$P0;  => 0.616339415
+$Gf11=$Gf0*sqrt($E11*($E11+2.*$m))/$P0;  =>  0.63020035
+$Gf12=$Gf0*sqrt($E12*($E12+2.*$m))/$P0;  => 0.644061062
+$Gf13=$Gf0*sqrt($E13*($E13+2.*$m))/$P0;  => 0.657921565
+#
+# SPREADER
+#
+# Spreader dipole parameters
+$Hr=sqrt($E13*($E13+2.*$m))/$c*1e11;  =>  13597.0343
+$Lbase=200;  =>         200
+$Bs1=14.1349119;  =>  14.1349119
+$Rs1=$Hr/$Bs1;  =>   961.94687
+$TetaS1=asin($Lbase/$Rs1);  =>  0.20943951
+$AngS1=$TetaS1*180/$PI;  =>          12
+$Ls1=$Rs1*$TetaS1;  =>  201.469681
+$Lso2=1125-80-$Ls1;  =>  843.530319
+#
+#Arc Dipole
+$bas2=   6.8249903;  =>   6.8249903
+$bas3=  4.10499027;  =>  4.10499027
+$Lb=200;  =>         200
+  $AngS2=$bas2*$Lb/$Hr/$PI*180;  =>  5.75188872
+  $AngS3=$bas3*$Lb/$Hr/$PI*180;  =>  3.45955762
+#
+$Ang=(180-2*$AngS1-4*$AngS2-4*$AngS3)/24;  =>  4.96475894
+$ba=$Hr*$Ang*$PI/180/$Lb;  =>   5.8910096
+$Angb=$Ang/2;  =>  2.48237947
+$AngbS2=$AngS2/2;  =>  2.87594436
+$AngbS3=$AngS3/2;  =>  1.72977881
+$Lspace=170+2*$Lb;  =>         570
+#
+$BetaX=     1096.72;  =>     1096.72
+$AlphaX=    -997.092;  =>    -997.092
+$AlpX=$AlphaX*0.001;  =>   -0.997092
+$BetaY=    1312.724;  =>    1312.724
+$AlphaY=    -548.865;  =>    -548.865
+$AlpY=$AlphaY*0.001;  =>   -0.548865
+OptiM
+#  Insert comment here
+Energy[MeV]=$E0   Mass[MeV]=$m  
+Emittance: ex[cm]=$Acceptance   ey[cm]=$Acceptance    DP/P=0.047 
+Initial:	BetaX[cm]=1101.27 	BetaY[cm]=1300.88
+	AlfaX=-0.991715     	AlfaY=-0.547521  Qx=12.2706  Qy=12.422 
+	DispersX[cm]=0 	DispersY[cm]=0 
+	Dsp_PrimeX=0 	DspPrimeY=0 
+	X[cm]=0.000    	Y[cm]=0.000    	Z[cm]=-16765    	S[cm]=0.000    
+	tetaX[deg]=0        	tetaY[deg]=0        
+#  Elements: O,I-drift, D,B-sector dipole, G-magnet edge 
+#       Q-quad, S-sextipole, C,CC-solenoid and its focusing part only
+#       M-multipole(length=0), K,Z-transverse and longitudinal correctors
+#       A,W-RF cavity(standing wave), E-electroctatic acc.section
+#       X-transfer matrix (next 6 lines have to hold the matrix itself)
+#       R-combined magneto-electrostatic bend, L - electrostatic quad
+#       F-Litium lens, H-Scraper or aperture
+#
+begin lattice. Number of periods=1 
+#linac
+qLD0  oLq  qLF0  oLq  qLD0   oL1  oCapl  AL1 oCapl AL1 oCapl  AL1 oCapl AL1 oL1 h0
+qLD1  oLq  qLF1  oLq  qLD1   oL1  oCapl  AL1 oCapl AL1 oCapl  AL1 oCapl AL1 oL1 h0
+qLD2  oLq  qLF2  oLq  qLD2   oL1  oCapl  AL1 oCapl AL1 oCapl  AL1 oCapl AL1 oL1 h0
+qLD3  oLq  qLF3  oLq  qLD3   oL1  oCapl  AL1 oCapl AL1 oCapl  AL1 oCapl AL1 oL1 h0
+qLD4  oLq  qLF4  oLq  qLD4   oL1  oCapl  AL1 oCapl AL1 oCapl  AL1 oCapl AL1 oL1 h0
+qLD5  oLq  qLF5  oLq  qLD5   oL1  oCapl  AL1 oCapl AL1 oCapl  AL1 oCapl AL1 oL1 h0
+qLD6  oLq  qLF6  oLq  qLD6   oL1  oCapl  AL1 oCapl AL1 oCapl  AL1 oCapl AL1 oL1 h0
+qLD7  oLq  qLF7  oLq  qLD7   oL1  oCapl  AL1 oCapl AL1 oCapl  AL1 oCapl AL1 oL1 h0
+qLD8  oLq  qLF8  oLq  qLD8   oL1  oCapl  AL1 oCapl AL1 oCapl  AL1 oCapl AL1 oL1 h0
+qLD9  oLq  qLF9  oLq  qLD9   oL1  oCapl  AL1 oCapl AL1 oCapl  AL1 oCapl AL1 oL1 h0
+qLD10 oLq qLF10 oLq qLD10 oL1  oCapl  AL1 oCapl AL1 oCapl  AL1 oCapl AL1 oL1 h0
+qLD11 oLq qLF11 oLq qLD11 oL1  oCapl  AL1 oCapl AL1 oCapl  AL1 oCapl AL1 oL1 h0
+qLD12 oLq qLF12 oLq qLD12 oL1  oCapl  AL1 oCapl AL1 oCapl  AL1 oCapl AL1 oL1 h0
+qLD13 oLq qLF13 oLq qLD13 
+#spreader
+#spreader
+oS1 gS1 bS1 GS1 oS2   qSD1 oAq sFS1 qSF1 sFS1 h1 oAq qSD1  h1
+oS3 
+qSD2 oAq qSF2 oAq qSD2 oA gAs2 bAs2 gAs2  ob gAs2 bAs2 gAs2  oA  h1
+qAD oAq sFS1 qAF sFS1 oAq qAD oSpace  h0
+qAD oAq sFAa qAF sFAa oAq qAD oSpace  h0
+qAD oAq          qAF          oAq qAD oA gAs3 bAs3 gAs3  ob gAs3 bAs3 gAs3  oA  h0
+#Arc     
+qAD oAq sFAa qAF sFAa oAq qAD oA gA bA gA  ob gA bA gA  oA  h0
+qAD oAq sFA   qAF sFA   oAq qAD oA gA bA gA  ob gA bA gA  oA  h0
+qAD oAq sFAa qAF sFAa oAq qAD oA gA bA gA  ob gA bA gA  oA  h0
+qAD oAq sFA   qAF sFA   oAq qAD oA gA bA gA  ob gA bA gA  oA  h0
+qAD oAq sFAa qAF sFAa oAq qAD oA gA bA gA  ob gA bA gA  oA  h0
+qAD oAq sFA   qAF sFA   oAq qAD oA gA bA gA  ob gA bA gA  oA  h0
+qAD oAq          qAF          oAq qAD oA gA bA gA  ob gA bA gA  oA  h0
+qAD oAq sFA   qAF sFA   oAq qAD oA gA bA gA ob gA bA gA oA  h0
+qAD oAq sFAa qAF sFAa oAq qAD oA gA bA gA ob gA bA gA oA h0
+qAD oAq sFA   qAF sFA   oAq qAD oA gA bA gA ob gA bA gA oA  h0
+qAD oAq sFAa qAF sFAa oAq qAD oA gA bA gA ob gA bA gA oA  h0
+qAD oAq sFA   qAF sFA   oAq qAD oA gA bA gA ob gA bA gA oA  h0
+qAD oAq sFAa qAF sFAa oAq qAD           
+#recombiner
+oA gAs3 bAs3 gAs3 ob gAs3 bAs3 gAs3 oA  h0
+qAD   oAq          qAF           oAq qAD oSpace  h0
+qAD   oAq sFAa qAF sFAa oAq qAD oSpace h0
+qAD   oAq sFS1 qAF sFS1  oAq qAD   oA gAs2 bAs2 gAs2 ob gAs2 bAs2 gAs2 oA h1
+qSD2 oAq          qSF2          oAq qSD2 oS3 h1
+qSD1 oAq sFS1 qSF1 sFS1 oAq qSD1 oS2 GS1 bS1 gS1 oS1  h0 
+# qLD13 oLq qLF13 oLq qLD13 oSpace 
+end lattice
+#
+begin list
+#linac
+oL1          	L[cm]=100     
+oCapl          	L[cm]=75     
+oLq          	L[cm]=60
+qLD0         	L[cm]=60         	G[kG/cm]=$Gd0  	Tilt[deg]=0
+qLD1         	L[cm]=60         	G[kG/cm]=$Gd1  	Tilt[deg]=0
+qLD2         	L[cm]=60         	G[kG/cm]=$Gd2  	Tilt[deg]=0
+qLD3         	L[cm]=60         	G[kG/cm]=$Gd3  	Tilt[deg]=0
+qLD4         	L[cm]=60         	G[kG/cm]=$Gd4  	Tilt[deg]=0
+qLD5         	L[cm]=60         	G[kG/cm]=$Gd5  	Tilt[deg]=0
+qLD6         	L[cm]=60         	G[kG/cm]=$Gd6  	Tilt[deg]=0
+qLD7         	L[cm]=60         	G[kG/cm]=$Gd7  	Tilt[deg]=0
+qLD8         	L[cm]=60         	G[kG/cm]=$Gd8  	Tilt[deg]=0
+qLD9         	L[cm]=60         	G[kG/cm]=$Gd9  	Tilt[deg]=0
+qLD10         	L[cm]=60         	G[kG/cm]=$Gd10  	Tilt[deg]=0
+qLD11         	L[cm]=60         	G[kG/cm]=$Gd11  	Tilt[deg]=0
+qLD12      	L[cm]=60         	G[kG/cm]=$Gd12 	Tilt[deg]=0
+qLD13      	L[cm]=60         	G[kG/cm]=$Gd13 	Tilt[deg]=0
+qLF0         	L[cm]=110         	G[kG/cm]=$Gf0   	Tilt[deg]=0
+qLF1         	L[cm]=110         	G[kG/cm]=$Gf1   	Tilt[deg]=0
+qLF2         	L[cm]=110         	G[kG/cm]=$Gf2   	Tilt[deg]=0
+qLF3         	L[cm]=110         	G[kG/cm]=$Gf3   	Tilt[deg]=0
+qLF4         	L[cm]=110         	G[kG/cm]=$Gf4   	Tilt[deg]=0
+qLF5         	L[cm]=110         	G[kG/cm]=$Gf5   	Tilt[deg]=0
+qLF6         	L[cm]=110         	G[kG/cm]=$Gf6   	Tilt[deg]=0
+qLF7         	L[cm]=110         	G[kG/cm]=$Gf7   	Tilt[deg]=0
+qLF8         	L[cm]=110         	G[kG/cm]=$Gf8   	Tilt[deg]=0
+qLF9         	L[cm]=110         	G[kG/cm]=$Gf9   	Tilt[deg]=0
+qLF10         	L[cm]=110         	G[kG/cm]=$Gf10   	Tilt[deg]=0
+qLF11         	L[cm]=110         	G[kG/cm]=$Gf11   	Tilt[deg]=0
+qLF12         	L[cm]=110         	G[kG/cm]=$Gf12   	Tilt[deg]=0
+qLF13         	L[cm]=110         	G[kG/cm]=$Gf13   	Tilt[deg]=0
+AL1        	L[cm]=150  Ncell=2  Eff_L[cm]=50  A[MeV]=$DE  Phase[deg]=$FIlinac  WaveL[cm]=$Lambda
+#spreader
+oS1          	L[cm]=80     
+oS2        	L[cm]=760      
+oS3        	L[cm]=610      
+gS1        	B[kG]=$Bs1   		Angle[deg]=0  	EffLen[cm]=7  Tilt[deg]=0 
+bS1        	L[cm]=$Ls1        	B[kG]=$Bs1          	G[kG/cm]=0        	Tilt[deg]=0
+GS1        	B[kG]=$Bs1   		Angle[deg]=$AngS1  	EffLen[cm]=7  Tilt[deg]=0 
+#
+qSF1       	L[cm]=110        	G[kG/cm]=0.6839216 	Tilt[deg]=0
+qSD1       	L[cm]=60         	G[kG/cm]=-0.6778745 	Tilt[deg]=0
+qSF2       	L[cm]=110        	G[kG/cm]=0.7279216 	Tilt[deg]=0
+qSD2       	L[cm]=60         	G[kG/cm]=-0.7583745 	Tilt[deg]=0
+#
+bAs2          	L[cm]=$Lb	   	B[kG]=$bas2   		G[kG/cm]=0        	Tilt[deg]=0
+gAs2          	B[kG]=$bas2	   	Angle[deg]=$AngbS2  	EffLen[cm]=7  Tilt[deg]=0  
+bAs3          	L[cm]=$Lb	   	B[kG]=$bas3   		G[kG/cm]=0        	Tilt[deg]=0
+gAs3          	B[kG]=$bas3	   	Angle[deg]=$AngbS3  	EffLen[cm]=7  Tilt[deg]=0  
+#Arc
+oA          	L[cm]=70       
+ob          	L[cm]=30       
+oAq         	L[cm]=60 
+oSpace         	L[cm]=$Lspace
+bA          	L[cm]=$Lb	   	B[kG]=$ba   		G[kG/cm]=0        	Tilt[deg]=0
+gA          	B[kG]=$ba	   	Angle[deg]=$Angb  	EffLen[cm]=7  Tilt[deg]=0  
+qAF        	L[cm]=110        	G[kG/cm]=0.8159035 	Tilt[deg]=0
+qAD        	L[cm]=60         	G[kG/cm]=-0.8191811 	Tilt[deg]=0
+#
+h0          	Ax[cm]=10 	Ay[cm]=10 	Ellipse=1 	OffsetX[cm]=0 	OffsetY[cm]=0
+h1          	Ax[cm]=22 	Ay[cm]=9 	Ellipse=1 	OffsetX[cm]=0 	OffsetY[cm]=0
+#Global Optimization
+sFS1         	L[cm]=1e-3          	S[kG/cm/cm)]=170
+sFA         	L[cm]=1e-3          	S[kG/cm/cm)]=750
+sFAa         	L[cm]=1e-3          	S[kG/cm/cm)]=1100
+# Optimization for M566 and dispersion
+#sFA         	L[cm]=1e-3          	S[kG/cm/cm)]=405
+#sFAa         	L[cm]=1e-3          	S[kG/cm/cm)]=1500
+# Zero sextupole correction
+#sFS1         	L[cm]=1e-3          	S[kG/cm/cm)]=0
+#sFA         	L[cm]=1e-3          	S[kG/cm/cm)]=0
+#sFAa         	L[cm]=1e-3          	S[kG/cm/cm)]=0
+end list of elements
+
+4D_BetaBlock
+	Beta_X_1[cm]=$beta	Beta_X_2[cm]=0.
+	Alfa_X_1=$Alp      	Alfa_X_2=0.
+	Beta_Y_1[cm]=0.  	Beta_Y_2[cm]=$beta
+	Alfa_Y_1=0.      	Alfa_Y_2=$Alp 
+	Teta_1[deg]=0.   	Teta_2[deg]=0    U=0
+	Emit1[cm]=$Emit 	Emit2[cm]=$Emit
+	DispX[cm]=0.     	DispY[cm]=0
+	DispXpr[cm]=0.   	DispYpr[cm]=0
+End4DBetaBlock

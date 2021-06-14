@@ -1,0 +1,108 @@
+$E0=800;  =>         800
+$P0= sqrt(($E0+$Mp)^2-$Mp^2);  =>  1463.30016
+$gamma=sqrt(($P0^2/$Mp^2) + 1);  =>  1.85262431
+$beta=sqrt(1-1/$gamma/$gamma);  => 0.841809431
+#-------------------------
+$Brho=$P0/$c*1e11;  =>  4881.04394
+$Bdip=2.35911566;  =>  2.35911566
+$Angle=216/32;  =>        6.75  # deg
+$x=360-216;  =>         144
+$Ldip=$PI*$Angle/180*$Brho/$Bdip;  =>      243.75
+#----------------------
+# Emittancee
+$AcceptN=       25e-4;  =>      0.0025
+$Accept=$AcceptN/($gamma*$beta);  =>0.00160301971
+$DPoverPtot=0.002;  =>       0.002
+#----------------------
+$G=       0.671
+$L_O=123
+#------------------
+$Lq=20;  =>          20
+$FIq=$G*$Lq/$Brho*100;  => 0.264697474  #1/m
+$FIq=$G / $Brho*1e4;  =>  1.32348737  # 1/m^2
+#========================================
+OptiM
+Energy[MeV]=$E0   Mass[MeV]=938.2796 
+Emittance: ex[cm]=$Accept  ey[cm]=$Accept  DP/P=$DPoverPtot
+Initial:	BetaX[cm]=1317	BetaY[cm]=2339 
+	AlfaX=-0.41 	AlfaY=-1.8 
+	DispersX[cm]=0 	DispersY[cm]=0 
+	Dsp_PrimeX=0 	DspPrimeY=0 
+	tetaX[deg]=0        	tetaY[deg]=0        
+	X[cm]= 0   	Y[cm]=0.0000   	Z[cm]=0.0000   	S[cm]=0.0000   
+#===================================================
+begin lattice. Number of periods= 1
+# Linac end
+qLF1 oLq qLD1 oL1 
+qLF2 oLq qLD2 oL1 
+qLF3 oLq qLD3 oL1 
+qLF4 oLq qLD4 oL1 
+qLF5 oLq qLD5  
+#Arc 1
+#h qF1 h o
+o bA o h qD h o bA o
+h qF h o bA o h qD h o bA o
+h qF h o bA o h qD h o bA o
+h qF h o bA o h qD h o bA o
+# straight 1 
+h qF h oS1 qD h oS1
+h qF h oS1 qD h oS1
+#arc 2
+#h qF h o gA bA gA o h qD h o gA bA gA o
+h qF h o bA o h qD h o bA o
+h qF h o bA o h qD h o bA o
+h qF h o bA o h qD h o bA o
+h qF h o bA o h qD h o bA o
+h qF h o bA o h qD h o bA o
+h qF h o bA o h qD h o bA o
+h qF h o bA o h qD h o bA o
+h qF h o bA o h qD h o bA o
+h qF h o bA o h qD h o bA o
+h qF h o bA o h qD h o bA o
+h qF h o bA o h qD h o bA o
+h qF h o bA o h qD h o bA
+# Booster line
+oQB qB1 o qB2  o qB3 oQB bV1 oBV bV2 o qFb oQB qDb oQB qFb o bV2 oBV bV1
+end lattice 
+#===================================================
+begin list
+# Linac end
+oLq 	L[cm]=30 
+oL1 	L[cm]=970        
+qLD1 	L[cm]=30         	G[kG/cm]=0.65    	Tilt[deg]=0
+qLF1 	L[cm]=30         	G[kG/cm]=-0.675  	Tilt[deg]=0
+qLD2 	L[cm]=30         	G[kG/cm]=0.465   	Tilt[deg]=0
+qLF2 	L[cm]=30         	G[kG/cm]=-0.465  	Tilt[deg]=0
+qLD3 	L[cm]=30         	G[kG/cm]=0.465   	Tilt[deg]=0
+qLF3 	L[cm]=30         	G[kG/cm]=-0.435  	Tilt[deg]=0
+qLD4 	L[cm]=30         	G[kG/cm]=0.605   	Tilt[deg]=0
+qLF4 	L[cm]=30         	G[kG/cm]=-0.66   	Tilt[deg]=0
+qLD5 	L[cm]=30         	G[kG/cm]=0.705   	Tilt[deg]=0
+qLF5 	L[cm]=30         	G[kG/cm]=-0.62   	Tilt[deg]=0
+#Arcs 1 & 2
+o	L[cm]=$L_O 
+oS1	L[cm]=2*$L_O+$Ldip
+qF 	L[cm]=20         	G[kG/cm]=$G       	Tilt[deg]=0
+qD 	L[cm]=20         	G[kG/cm]=-$G       	Tilt[deg]=0
+gA 	B[kG]=$Bdip          Angle[deg]=0.5*$Angle  EffLen[cm]=0  Tilt[deg]=0  
+bA 	L[cm]=$Ldip         B[kG]=$Bdip          	G[kG/cm]=0        	Tilt[deg]=0
+h 	Ax[cm]=2.54*0.75 	Ay[cm]=2.54*0.75 	Shape=0 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+# Booster line
+oBV 	L[cm]=200        
+oQB 	L[cm]=40        
+bV1 	L[cm]=200          	B[kG]=$Bdip          	G[kG/cm]=0        	Tilt[deg]=-90
+bV2 	L[cm]=200          	B[kG]=-$Bdip          	G[kG/cm]=0        	Tilt[deg]=-90
+qB1 	L[cm]=30         	G[kG/cm]=0.6     	Tilt[deg]=0
+qB2 	L[cm]=30         	G[kG/cm]=0.155   	Tilt[deg]=0
+qB3 	L[cm]=30         	G[kG/cm]=-0.45   	Tilt[deg]=0
+qFb 	L[cm]=30         	G[kG/cm]=0.625   	Tilt[deg]=0
+qDb 	L[cm]=50         	G[kG/cm]=-0.61   	Tilt[deg]=0
+end list 
+#
+#
+#
+TrajParamBlock
+	X[cm]=0 	Teta_X[rad]=0
+	Y[cm]=0 	Teta_Y[rad]=0
+	s[cm]=0. 	DeltaP/P=0.00001
+EndTrajParamBlock

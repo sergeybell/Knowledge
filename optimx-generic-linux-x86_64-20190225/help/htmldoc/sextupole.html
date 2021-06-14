@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="header.js"> </script>  
+</head>
+<body>
+<h4> S-sextupole</h4>
+<table id="element">
+   <tr>
+    <th>Parameter Description</th>
+    <th>Argument Order</th>
+    <th>Argument Name </th>
+    <th>Units </th>
+    <th>Default Value</th>
+  </tr>
+  <tr>
+    <td>Length </td>
+    <td>  1    </td>
+    <td>  L    </td>
+    <td> cm    </td>
+    <td> 0.0   </td>
+  </tr>
+  <tr class="alt">
+    <td> Sextupole Strength </td>
+    <td>  2   </td>
+    <td>  S    </td>
+    <td>  kG/cm/cm   </td>
+    <td>  0.0   </td>
+  </tr>
+  <tr>
+    <td> Tilt </td>
+    <td>   3  </td>
+    <td>   Tilt[deg]  </td>
+    <td>  degrees </td>
+    <td>  0.0     </td>
+  </tr>
+</table>
+<p>
+  The letters "S" and "s" denote a sextupole. The first argument is the length of the magnet in cm. 
+The second argument is the sextupole gradient in kG/cm/cm. The third argument is the roll angle (tilt) 
+of the magnet in deg with respect to the local beam frame. Rotations are performed around the beam trajectory. 
+Sextupoles affect particle motion simulations (see Tools|Trajectory, Tools|Type trajectory and Tools| Track) 
+and machine chromaticity computations (see View|Integrals).
+</p>
+<pre>
+Example: 
+Sf         L[cm]=36         	S[kG/cm/cm)]=0.0027 	Tilt[deg]=0
+Sd         L[cm]=36         	S[kG/cm/cm)]= -0.0054
+</pre>
+</body>
+</html>

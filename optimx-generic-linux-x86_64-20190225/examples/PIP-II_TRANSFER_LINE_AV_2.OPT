@@ -1,0 +1,29 @@
+# PIP-II Transfer Line.
+# This line starts aright at the end of the 4th HB 650 MHz Cryomodule of the linac.
+# and ends with the c-magnet for vertical injection in the Booster
+$MASS_Hminus=0.980;  =>        0.98
+$R=120.8;  =>       120.8
+$L=$PI*$R/4-12.8;  =>  82.0760981
+$E=800.00;  =>         800
+$Hr=sqrt(($E+$Me)*($E+$Me)-$Me*$Me)*1e11/$c;  =>  2670.21674
+$B=$Hr/$R;  =>  22.1044432
+$Bh=$B/2;  =>  11.0522216
+OptiM
+#  ASTRID general lattice
+Energy[MeV]=$E    Mass[MeV]=$MASS_Hminus 
+Emittance: ex[cm]=2.5e-05  ey[cm]=2.5e-05  DP/P=1.5e-4
+Initial:	BetaX[cm]=2014.58 	BetaY[cm]=2716.55 
+	AlfaX=-0.3167   	AlfaY=-1.315 	
+                    DispersX[cm]=269.3 	DispersY[cm]=0 
+	Dsp_PrimeX=0 	 DspPrimeY=0 
+                    X[cm]=0.000    	Y[cm]=0.000    	Z[cm]=0.000    	S[cm]=0.000    	
+	tetaX[deg]=276.979       	tetaY[deg]=0     
+#  Elements: O-free space, D-dipole, Q-quad, S-sextipole
+#  Elements: B-dipole with gradient
+begin lattice. Number of periods=4 
+O
+end lattice
+begin list
+O          	L[cm]=136      
+end list of elements
+

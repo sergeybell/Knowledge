@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="header.js"></script>
+<title> OptiMX Help: Graphical Window </title>
+</head>
+<body>
+<h2>Graphical Window</h2>
+
+<p> Although there are different types of plot windows, all of them have similar functionality. 
+  Color coded curve legends are placed at the bottom of the window. Pressing the left mouse button on a curve legend
+  switches the corresponding curve on or off. The horizontal axis (abcissa) is usually the coordinate (measured in meters) along the beam line.
+  Location and length of magnets are overlayed on the top part of the plot (lego plot).
+  Hovering the pointer over an element in the logo plot displays its name and sequence index;
+  the information is also provided for the next downstream element. This feature is useful to identify elements that (for example a  quad)
+  have very small or even zero length.
+  There are two vertical axes (ordinates) on the left and on right sides of the plot.
+  The plotted quantities and and associated units are always displayed. Some windows make use of both axes and some of them use
+  only the left axis.
+  A plot zoomed by pressing the left button and dragging the mouse.
+  A left double click on the plot canvas restores the plot to its original size.
+  Clicking the left mouse button on the top border plot provides a system menu. Some of the options are standard and self-explanatory.
+  Detach - detaches window from output. If necessary, a detached window can be re-attached to the output stream. Both attached and detached windows
+  can be printed and copied to the clipboard. To get the current mouse position (in the plot units) click the right mouse button.
+  When a plot is shown,  the vertical coordinate is digitized for the left vertical axis.
+  One can switch it to the right vertical scale (and vise versa) by left mouse click on the capture of the right (left) axis.
+  It will change its highlighting from gray to green. 
+  Click of the right mouse button in the top part of the window will pops up a dialog window for a file name which data will be plotted inside this window.
+  After the file is chosen the second dialog box is popped up to determine how data should be plotted. Up to eight files can be read.
+  This option allows one to read measured data into the window and, consequently, to perform a comparison of measured and calculated properties of the lattice
+  (Fitting to Measurements) and can be used for other applications as well. Data, which are read into different graphical windows, belongs to corresponding
+  windows and are independent. The data are deleted when a window is closed. 
+  Double click in the same top aria of the window brings a dialog box, which allows one to delete the last piece of data and/or to
+  switch off the legend of files read into the window.
+  You can save plot data to a text file. To do so, select the desired window; then choose File| Save As
+</p>
+</body>
+</html>

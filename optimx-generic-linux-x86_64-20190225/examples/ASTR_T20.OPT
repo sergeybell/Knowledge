@@ -1,0 +1,65 @@
+# Starage ring Astrid in Aarhus University, Denmark.
+# This file demonstrates a standard Astrid lattice without coupling,
+# but the plane of the ring is tilted by 20 deg. to the horizontal plane.
+# It creates pseodo-coupling because some ring elements are tilted relative 
+# to horizontal plane.
+$E=579.5;  =>       579.5
+$P=sqrt(($E+$Me)*($E+$Me)-$Me*$Me);  =>  580.010781
+$Hr=$P/$c*1.e11;  =>  1934.70744
+$B=$Hr*$PI/4/(82.08+12.8);  =>  16.0151314
+$Bh=$B/2;  =>  8.00756572
+OptiM
+#  ASTRID general lattice  580.4998748923
+Energy[MeV]=579.5   Mass[MeV]=0.511006   Hr[kG*cm]=1934.71 
+Emittance: ex[cm]=1.3e-05  ey[cm]=1e-06  DP/P=0.0007 
+Initial:	BetaX[cm]=1577.65 	BetaY[cm]=355.869 
+	AlfaX=-2.35474e-08 	AlfaY=-2.55604e-08 
+	DispersX[cm]=269.289 	DispersY[cm]=-0.00550206 
+	Dsp_PrimeX=5.52408e-08 	DspPrimeY=2.79063e-05 
+	X[cm]=0 	Y[cm]=0 	Z[cm]=0 
+	tetaX[deg]=0 	tetaY[deg]=20 
+#  Elements: O-free space, D-dipole, Q-quad, S-sextipole
+#  Elements: B-dipole with gradient
+begin lattice. Number of periods=2 
+O Sf o Qf1 o Sd o Qd1 o1 B11 B1 B12 o2 o2  B21 B2 B22 o1 Qd2 o Sd o Qf2 o Sf O
+O Sf o Qf2 o Sd o Qd2 o1 B31 B3 B32 o2 o2  B41 B4 B42 o1 Qd1 o Sd o Qf1 o Sf O
+end lattice
+begin list:  dL=1  dB=0.1  dG=0.01  dS=0.01
+O          	L[cm]=136 
+o          	L[cm]=9.9 
+o1         	L[cm]=57.46 
+o2         	L[cm]=7.16 
+Sf         	L[cm]=36   	S[kG/cm/cm)]=0.027
+Sd         	L[cm]=36   	S[kG/cm/cm)]=-0.054
+Qf1        	L[cm]=45   	G[kG/cm]=0.277565 	Tilt[deg]=0
+Qd1        	L[cm]=45   	G[kG/cm]=-0.445846 	Tilt[deg]=0
+B11        	L[cm]=12.8   	B[kG]=$Bh   	G[kG/cm]=0.033144  	Tilt[deg]=0
+B1         	L[cm]=82.08   	B[kG]=$B   	G[kG/cm]=0  		Tilt[deg]=1.10415
+B12        	L[cm]=12.8   	B[kG]=$Bh   	G[kG/cm]=0.033144  	Tilt[deg]=13.6785
+B21        	L[cm]=12.8   	B[kG]=$Bh   	G[kG/cm]=0.033144  	Tilt[deg]=14.4327
+B2         	L[cm]=82.08   	B[kG]=$B   	G[kG/cm]=0  		Tilt[deg]=15.1433
+B22        	L[cm]=12.8   	B[kG]=$Bh   	G[kG/cm]=0.033144  	Tilt[deg]=19.9741
+Qf2        	L[cm]=45   	G[kG/cm]=0.277565 		Tilt[deg]=20
+Qd2        	L[cm]=45   	G[kG/cm]=-0.445846 		Tilt[deg]=20
+B31        	L[cm]=12.8   	B[kG]=$Bh   	G[kG/cm]=0.033144  	Tilt[deg]=20
+B3         	L[cm]=82.08   	B[kG]=$B   	G[kG/cm]=0  		Tilt[deg]=19.9741
+B32        	L[cm]=12.8   	B[kG]=$Bh   	G[kG/cm]=0.033144  	Tilt[deg]=15.1433
+B41        	L[cm]=12.8   	B[kG]=$Bh   	G[kG/cm]=0.033144  	Tilt[deg]=14.4327
+B4         	L[cm]=82.08   	B[kG]=$B   	G[kG/cm]=0  		Tilt[deg]=13.6785
+B42        	L[cm]=12.8   	B[kG]=$Bh   	G[kG/cm]=0.033144  	Tilt[deg]=1.10415
+end list of elements
+
+4D_BetaBlock
+	Beta_X_1[cm]=1577.67 	Beta_X_2[cm]=2.01829e-08
+	Alfa_X_1=1.81363e-13  	Alfa_X_2=-1.73768e-12
+	Beta_Y_1[cm]=3.46795e-09 	Beta_Y_2[cm]=355.869
+	Alfa_Y_1=0  	Alfa_Y_2=2.19764e-12
+	Teta_1[deg]=-82.7387 	Teta_2[deg]=-120.027 	U=0
+	Emit1[cm]=1e-05  	Emit2[cm]=1e-05
+	DispX[cm]=269.289 	DispY[cm]=3.26486e-05
+	DispXpr[cm]=4.51009e-13 	DispYpr[cm]=-2.15557e-07
+End4DBetaBlock
+SpaceChargeBlock
+  BeamCurrent[A]=1000000
+  BunchLength[cm]=1.0   dP/P=0.001   Alpha[-1,1]=0.
+EndSpaceChargeBlock

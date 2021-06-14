@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="header.js"></script>
+<title> Optim Help: Aperture </title>
+</head>
+<body>
+<h4>H-aperture limitation </h4>
+<table id="element">
+   <tr>
+    <th>Parameter Description</th>
+    <th>Argument Order</th>
+    <th>Argument Name </th>
+    <th>Units </th>
+    <th>Default Value</th>
+   </tr>
+   <tr>
+    <td>  Horizontal Size</td>
+    <td>  1  </td>
+    <td>  Ax  </td>
+    <td>  cm </td>
+    <td>     </td>
+  </tr>
+   <tr>
+    <td>  Vertical Size</td>
+    <td>  2  </td>
+    <td>  Ay  </td>
+    <td>  cm </td>
+    <td>     </td>
+  </tr>
+  <tr>
+    <td>  Shape </td>
+    <td>  3  </td>
+    <td>  shape  </td>
+    <td>     </td>
+    <td>     </td>
+  </tr>
+  <tr>
+    <td>  X Offset </td>
+    <td>  4  </td>
+    <td>  OffsetX  </td>
+    <td>  cm   </td>
+    <td>     </td>
+  </tr>
+  <tr>
+    <td>  Y Offset </td>
+    <td>  5  </td>
+    <td>  OffsetY  </td>
+    <td>  cm   </td>
+    <td>     </td>
+  </tr>
+  <tr>
+    <td>  Tilt </td>
+    <td>  6  </td>
+    <td>  Tilt  </td>
+    <td>  deg   </td>
+    <td>  0.0   </td>
+  </tr>
+</table>
+<p>
+"H" and "h" denote an aperture limitation. The first two parameters (Ax and Ay) specify the horizontal and vertical apertures. The third parameter
+specify the aperture shape: 0 - rectangular,  1 - elliptical, and 2 - hyperbolic (as shown in the figure below). The fourth and fifth parameters
+(xoffset and yoffset) are used to specify the aperture offset relative to the reference trajectory. The sixth and last parameter is the aperture tilt.
+The values of horizontal and vertical apertures (Ax and Ay) can be displayed together with the beam envelopes (use View|Sizes). Particles that
+go beyond the aperture boundary during tracking will be considered lost.
+</p>
+<pre>
+Example:
+HQF	Ax[cm]=4 	Ay[cm]=2 	Shape=1 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+</pre>
+</body>
+</html>
+  

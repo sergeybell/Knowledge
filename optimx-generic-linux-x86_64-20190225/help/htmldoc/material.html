@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="header.js"></script>
+<title> OptiMX Help: Medium </title>
+</head>
+<body>
+<h4>V-Particle passage through medium</h4>
+
+<table id="element">
+  <tr>
+    <th>Parameter Description</th>
+    <th>Argument Order</th>
+    <th>Argument Mnemonic</th>
+    <th>Units </th>
+    <th>Default Value</th>
+  </tr>
+  <tr>
+   <td>Length    </td>
+    <td> 1       </td>
+    <td> L[cm] </td>
+    <td>cm       </td>
+    <td>       </td>
+  </tr>
+  <tr class="alt">
+   <td>Material Desnity   </td>
+    <td> 2       </td>
+    <td> Ro </td>
+    <td> g/cm**3       </td>
+    <td>     </td>
+  </tr>
+  <tr>
+   <td> Nuclear charge    </td>
+    <td> 3       </td>
+    <td> Z </td>
+    <td>       </td>
+    <td>      </td>
+  </tr>
+  <tr class="alt">
+   <td>Gradient    </td>
+    <td> 4       </td>
+    <td> dL/dx </td>
+    <td>         </td>
+    <td>       </td>
+  </tr>
+  <tr>
+   <td>Tilt    </td>
+    <td> 5       </td>
+    <td> Tilt </td>
+    <td> deg       </td>
+    <td>       </td>
+  </tr>
+  <tr class="alt">
+   <td> Edge Truncation coordinate    </td>
+    <td> 6       </td>
+    <td> EdgeEnd </td>
+    <td> cm       </td>
+    <td>          </td>
+  </tr>
+</table>
+
+<p>
+This element simulates the passage of a particle through a medium. It takes into account the energy loss in the medium and its fluctuations 
+as well as transverse scattering. Finite thickness is taken into account in scattering. The element has an effect only during tracking;
+in all other calculations it is modeled as a drift of length L0. In tracking, every particle obtains independent
+random kicks and displacements in all 3 planes. The kicks are distributed according to a Gaussian probability density for the transverse
+planes and according to a Landau distribution in the longitudinal plane. The medium is considered to be a wedge of angle f in the horizontal plane.
+For positive f, the wedge thickness increases with an increase in the x-coordinate. The thickness of the wedge is equal to $L_0$ at $x = 0$.
+The front surface (the first one which beam encounters) of the wedge is located in x-y plane. The back surface of the wedge 
+is tilted by angle f around y axis. Vertical dimensions of the wedge are unlimited. The wedge thickness becomes equal
+to zero if any of two conditions are satisfied. The first one is achieved when the value $D_s = L_0 + x \tan{f}$ becomes negative.
+The second condition sets the thickness to zero for all x coordinates smaller than x0.
+An example is shown in Figure below. If necessary the wedge can be rolled around s axis (beam direction).
+The properties of wedge material are determined by wedge density in g/cm2 and nuclear charge Z. 
+</p>
+
+<p>
+The line below presents an example of element description. The first parameter determines the wedge thickness at $x = 0$. The second sets the density of material.
+The third parameter determines nuclear charge Z. The fourth parameter is equal to $\tan{f} = dL/dx$. The fifth parameter determines the roll angle;
+and the sixth and last parameter sets the edge truncation coordinate. 
+</p>
+<pre>
+vWedge1   L[cm]=1.3      Ro[g/cm^3]=1.3     Z=4	  dL/dx=0.1     Tilt[deg]=0     EdgeEnd[cm] = -5
+</pre>
+</body>
+</html>
+  

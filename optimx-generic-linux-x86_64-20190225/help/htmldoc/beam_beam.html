@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="header.js"></script>
+<title> OptiMX Help: Beam-Beam Interaction Element </title> 
+</head>
+<body>
+<h4>B-Beam-beam Interaction element</h4>
+
+<table id="element">
+  <tr>
+    <th>Parameter Description</th>
+    <th>Argument Order</th>
+    <th>Argument Mnemonic </th>
+    <th>Units </th>
+    <th>Default Value</th>
+  </tr>
+  <tr>
+    <td>No particles/bunch </td>
+    <td>  1    </td>
+    <td> $Npart    </td>
+    <td>      </td>
+    <td>     </td>
+  </tr>
+  <tr class="alt">
+    <td> X-emittance at collision point  </td>
+    <td>  2    </td>
+    <td> $EmitXbb    </td>
+    <td>     </td>
+    <td>      </td>
+  </tr>
+  <tr>
+    <td> Y-emittance at collision point  </td>
+     <td>  3     </td>
+    <td>  $EmitXbb      </td>
+    <td>    </td>
+    <td>    </td>
+  </tr>
+  <tr class="alt" >
+    <td> Longitudinal rms size at collision point  </td>
+     <td>  4     </td>
+    <td>  $SigmaSbb     </td>
+    <td>    </td>
+    <td>    </td>
+  </tr>
+  <tr>
+    <td> Number of longitudinal slices  </td>
+     <td>  5     </td>
+    <td>  $Nslices     </td>
+    <td>   </td>
+    <td>   </td>
+  </tr>
+  <tr class="alt">
+    <td> Collision locations  </td>
+     <td>  6     </td>
+    <td>  $Scollision     </td>
+    <td>   </td>
+    <td>  </td>
+  </tr>
+</table>
+<p>
+In contrast to other element types, the beam-beam interaction element is not described by a single line in the elements list.  
+To simplify setting the beam-beam collision locations,  the beam-beam interaction is introduced with a special multi-line statement
+which must start on the first line of lattice block (after the "begin lattice" statement).
+The beam-beam statement starts with the key word _B_BEAM. Then follows a variable or expression which evaluates to the number
+of IPs. The other parameters are arrays of length equal or greater than the number of IPs. Theses arrays represent:
+the number of particles per bunch, horizontal and vertical emittances (actually emittances 1 and 2 for X-Y coupled lattice),
+the rms bunch length, number of slices by which each counter-rotating bunch need to be presented, and the longitudinal coordinate
+of each IP (s coordinate). The statement syntax is as follows:
+<pre>
+_B_BEAM($Nbb, $Npart, $EmitXbb, $EmitYbb, $SigmaSbb, $Nslices, $Scollision)
+</pre>
+OptiM checks that the emittances and length are positive, that the coordinates of collision points are monotonically increasing and  
+within the total ring length $(0 <= S[i] < L)$, and that the number of slices is nonzero without exceeding a hard limit of 32. If the 
+the requirements are not fulfilled, the message "Incorrect bunch parameter in beam-beam statement." is issued.
+The example below shows how 72 collision points for bunch number 1 are set for the Tevatron.
+</p>
+<pre>
+Example: Tevatron collision points
+# Insertion in the math header
+ARRAY $Npart[72];
+ARRAY $EmitXbb[72];
+ARRAY $EmitYbb[72];
+ARRAY $SigmaSbb[72];
+ARRAY $Nslices[72];
+ARRAY $Scollision[72];
+$Nbb=72 ; # Number of collision points
+$Ltot=628318.751; # Total ring length
+$S_start=0;   #reference position for the first IP
+$n=0 
+do{
+	$Npart[$n]=2e11 
+	$EmitXbb[$n]=0.0020/($beta*$gamma)
+	$EmitYbb[$n]=0.0020/($beta*$gamma)
+	$SigmaSbb[$n]=30 
+	$Nslices[$n]=1 
+	$n=$n+1 
+}while $Nbb -$n
+$Nslices[0]=12; # this is B0 main IP
+$Nslices[24]=12; # this is D0 main IP
+$n=           0;  =>           0
+do{
+   $Scollision[$n]=$S_start+$Ltot*$n*21/(1113*2)
+   $Scollision[$n+12]=$Scollision[$n]+$Ltot/6
+   $Scollision[$n+2*12]=$Scollision[$n]+2*$Ltot/6
+   $Scollision[$n+3*12]=$Scollision[$n]+3*$Ltot/6
+   $Scollision[$n+4*12]=$Scollision[$n]+4*$Ltot/6
+   $Scollision[$n+5*12]=$Scollision[$n]+5*$Ltot/6
+   $n=$n+1
+}while 12-$n
+#------------------------------------------
+OptiM
+#------------------------------------------
+begin lattice. Number of periods=1
+_B_BEAM($Nbb, $Npart, $EmitXbb, $EmitYbb, $SigmaSbb, $Nslices, $Scollision)
+end lattice
+#------------------------------------------
+</pre>
+</body>
+</html>
+  

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="css/optim.css" media="screen" />
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+</head>
+
+
+<body>
+<h2> What Does OptiM Compute? </h2>
+<p class="sansserif"> OptiM is aimed at assisting with the linear optics design of particle accelerators, including
+  linear space charge effects. The program can also be used for particle tracking,
+  in which case non-linear elements are accounted for.
+</p>
+
+<h3> Outline of the Program Features and Capabilities : </h3> 
+<ul class="sanserif">
+  <li>  All linear optics calculations are based on $6 \times 6$  transfer matrices. 
+  <li>  Dispersion and betatron functions (uncoupled or coupled (X/Y) particle motion) </li>
+  <li>  Beam sizes </li>
+  <li>  Betatron phase advances </li>
+  <li>  Results can be plotted or printed along a reference trajectory, or at the dowstream end(s) of a selection of element(s).</li>
+  <li>  Parameters of accelerator elements can be iteratively adjusted to fit prescribed optical functions (matching). 
+    The matching operation can be performed either for a transport line, where initial Twiss parameters are fixed
+    or for a ring, where Twiss parameters are periodic. </li>
+  <li>  All calculated values are nominally referenced to a moving coordinate frame attached to the central (design) beam orbit.</li>
+  <li>  If desired, the program can calculate and output the position of this reference frame in global
+  coordinates. </li>  
+  <li>  A wide variety of elements is provided to support the design of  linear accelerators, recirculators
+       or circular synchrotron accelerators. </li>
+  <li> A simple input syntax  and a well-developed set of menus minimize the amount of time needed to learn the program. </li>
+  <li>  Not limited to small machines; all necessary measures have been taken to support design and optics studies of very large machines
+    consisting of thousands of elements. </li>
+  <li> Interactive: In complex situations where a designer cannot formulate a full set of requirements
+  in the early stage of a design, working in interactive mode can significantly improve productivity.   </li>
+  <li> particle tracking in presence of non-linear magnetic fields in accelerator magnets </li>
+  <li> beam space charge in the KV-distribution (linear space charge field) approximation.</li>
+  <li> Computations can be performed not only on the design orbit but also on any reference orbit defined by machine errors 
+  (e.g quad offsets or errors in dipole bend strength), correctors or energy offset. In this case, a new "reference" orbit
+  is established and maps for machine elements obtained from an expansion about this new orbit (see Optics Calculations at Reference Orbit and Control). </li>
+  <li> Linear optics computations (tunes, beta-functions, etc.) and non-linear tracking can be performed relative to a 
+    reference orbit. </li>
+ </ul>   
+</body>
+</html>

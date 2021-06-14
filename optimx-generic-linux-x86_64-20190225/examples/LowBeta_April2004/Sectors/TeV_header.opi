@@ -1,0 +1,281 @@
+#===================================================
+# DIPOLES  
+$Ndip=774;  =>         774
+$Ldip=612.14;  =>      612.14
+$P_ref=149997.065;  =>  149997.065
+$KBENDQ = 2.259873E-05*(1+0.01*$F_bendq);  =>2.35840346e-05  # Strength (in 1/m) of the thin quad at each end of all dipoles
+   $Ang=360/$Ndip;  => 0.465116279
+   $Bdip=2*$PI/$Ndip*$Hr/$Ldip;  =>  6.63506964
+   $GdLdip=0.01*$KBENDQ*$Hr;  => 0.117998216
+   $SdLdip=$psext*$Ldip*$Bdip*$SdLunits*1e-4/2.54^2;  =>-0.210898562
+   $AngEdgeEff=360*atan($GdLdip/$Bdip)/2/$PI;  =>  1.01884193  #Effective edge angle of the SC dipole
+   $GdSkew=1.e-4 * $Ldip * $Bdip / 2.54/2*$GdLskewUn;  => 0.111613814
+   $GdSkew0=1.e-4 * $Ldip * $Bdip / 2.54/2*$GdLskewUn0;  => 0.111613814
+$AngHBEND=0.222093;  =>    0.222093  # short SC dipole
+$AngCMAG=0.0852504;  =>   0.0852504
+  $Lhbend=292.1;  =>       292.1
+  $Lcmag=373.888;  =>     373.888
+  $Bhbend=$PI*$AngHBEND/180*$Hr/$Lhbend;  =>  6.63954041
+  $Bcmag=$PI*$AngCMAG/180*$Hr/$Lcmag;  =>   1.9910841
+$AngFMIL=1.5019942E-03;  =>0.0015019942
+$AngFMIS=1.0013294E-03;  =>0.0010013294
+  $Lfmil=609.981;  =>     609.981
+  $Lfmis=406.781;  =>     406.781
+  $Bfmil=$AngFMIL*$Hr/$Lfmil;  =>  1.23199596
+  $Bfmis=$AngFMIS*$Hr/$Lfmis;  =>  1.23161124
+# Aperture definitions for dipoles
+$ScDip = "HSCbend mBskew mBENDQ mBENDS bBEND   mBENDQ mBENDS mBskew HSCbend";
+$ScDip0 = "HSCbend mBskew0 mBENDQ mBENDS bBEND   mBENDQ mBENDS mBskew0 HSCbend";
+$ScHdip="HSCbend mBENDQ mBENDS bHBEND mBENDQ mBENDS HSCbend";
+$bLAMBF0="oLAMF0end HSClambF0 bLAMBF0 HSClambF0 oLAMF0end";
+$NcLamb="bLAMB" ;
+$NcCMAG="HSCcmag bCMAG HSCcmag";
+$NcFMIL="bFMIL";
+$NcFMIS="bFMIS";
+#===================================================
+# SOLENOIDS
+$B_CDF=14.2 * $iC:B0SOLI / 4644.8;  =>-0.00812064029
+$B_D0=  4.224*$iC:D0SOLI/1000;  =>  20.0653468
+$B_TEL=$iT:L1SM;
+#===================================================
+#QUADS
+#
+# Main bus quads
+$EnCor=1 + 1.5e-9*($iT:A2DCV1-660)/1.70868E-03
+$gqH   = $EnCor*$iT:A2DCV1*1.70868E-03*(1+0.01*$F_mq);  =>  1.13880114
+$gqH_1 = $EnCor*$iT:A2DCV1*1.70841E-03*(1+0.01*$F_mq);  =>  1.13862119
+$gqH_2 = $EnCor*$iT:A2DCV1*1.70814E-03*(1+0.01*$F_mq);  =>  1.13844124
+$gqH_3 = $EnCor*$iT:A2DCV1*1.70367E-03*(1+0.01*$F_mq);  =>  1.13546207
+$gqH_4 = $EnCor*$iT:A2DCV1*1.707E-03*(1+0.01*$F_mq);  =>  1.13768145
+$gqH_5 = $EnCor*$iT:A2DCV1*1.70675E-03*(1+0.01*$F_mq);  =>  1.13751483
+# B0 and D0 alpha bumps
+$kq3h=0.522614
+$kq2q3h=2.204
+$kq3v=0.522614
+$kq2q3v=2.204
+$kqT3=    1.334583
+$kqT2=    1.502588
+#
+$dalfB0Q2= -$AlphaB0h*$kq3h*$kq2q3h - $AlphaB0v*$kq3v
+$dalfB0Q3= -$AlphaB0h*$kq3h - $AlphaB0v*$kq3v*$kq2q3v
+$dalfB0QT2=($AlphaB0h+$AlphaB0v)*$kqT2
+$dalfB0QT3=($AlphaB0h+$AlphaB0v)*$kqT3
+#
+$dalfD0Q2= -$AlphaD0h*$kq3h*$kq2q3h - $AlphaD0v*$kq3v
+$dalfD0Q3= -$AlphaD0h*$kq3h - $AlphaD0v*$kq3v*$kq2q3v
+$dalfD0QT2=($AlphaD0h+$AlphaD0v)*$kqT2
+$dalfD0QT3=($AlphaD0h+$AlphaD0v)*$kqT3
+#B0 quads
+$qt = 1.9685E-02;  =>    0.019685
+ $gB0Q1 = 0.0    ;  =>           0
+ $gTQA42 = $iT:QA42F*$qt	;  =>-0.0335212125
+ $gCAQ0 = $sC:AQ0*$iC:AQ0F*5.5973E-03 	;  => 0.169193287
+ $gCAQ9 = -($iC:AQ9F+$diAQ9)*5.6019E-03	;  =>-0.358085318
+ $gTQA45 = $iT:QA45F*$qt	;  =>-0.130240114
+ $gCAQ7 = ($iC:AQ7F+$diAQ7)*5.6089E-03	;  => 0.550054935
+ $gCB0Q6D = -(2.884314E-03*$iC:B0Q6F + 1.39450E-09*$iC:B0Q6F^2)
+ $gCB0QT6 = $iC:B0QT6F*$qt	;  => 0.133243808
+ $gB0Q5D = $sC:B0Q5*(2.894459E-03*$iC:B0Q5F + 2.35392E-09*$iC:B0Q5F^2)
+ $x = $iC:B0Q2F+$diB0Q2+$dalfB0Q2
+ $gB0Q2F = (2.888451E-03*$x+4.11168E-09*$x^2)*(1+0.01*$F_B0Q2)	;  =>  1.98939301
+ $x = $iC:B0Q3F+$diB0Q3+$dalfB0Q3
+ $gB0Q3D = -(2.889975E-03*$x + 7.37261E-09*$x^2)*(1+0.01*$F_B0Q3)*(1+0.01*$F_B0Q3D)	;  => -1.99479636
+ $x=$iC:B0Q2F+$diB0Q2+$dalfB0Q2
+ $gB0Q4F = (2.890143E-03*$x + 4.13645E-09*$x^2)*(1+0.01*$F_B0Q2)	;  =>  1.99056965
+# 
+ $x=$iC:B0Q2F+$iC:B0QT2F+$diB0Q2+$diB0Q2T+$dalfB0Q2+$dalfB0QT2
+ $gB0Q4D = -(2.891999E-03*$x + 4.38201E-09*$x^2)*(1+0.01*$F_B0Q2)	;  =>  -1.9919596
+ $x=$iC:B0Q3F+$iC:B0QT3F+$diB0Q3+$diB0Q3T+$dalfB0Q3+$dalfB0QT3
+ $gB0Q3F = (2.892538E-03*$x + 7.73745E-09*$x^2)*(1+0.01*$F_B0Q3)*(1+0.01*$F_B0Q3F)	;  =>  1.99833521
+ $x=$iC:B0Q2F+$iC:B0QT2F+$diB0Q2+$diB0Q2T+$dalfB0Q2+$dalfB0QT2
+ $gB0Q2D = -(2.895538E-03*$x + 4.01722E-09*$x^2)*(1+0.01*$F_B0Q2)	;  => -1.99423032
+ $gB0Q5F = -$sC:B0Q5*(2.892612E-03*$iC:B0Q5F + 2.40063E-09*$iC:B0Q5F^2)	;  =>-0.394145736
+ $gCB0Q6F = (2.877131E-03*$iC:B0Q6F + 1.67803E-09*$iC:B0Q6F^2) 	;  => 0.392625549
+ $gCB0QT6 = $iC:B0QT6F*$qt	;  => 0.133243808
+ $gCBQ7 = -($iC:BQ7F+$diBQ7)*5.6311E-03 	;  =>-0.561168121
+ $gTQB15 = ($iT:QB15F+$diQB15)*$qt	;  =>  0.13318373
+ $gCBQ9 = ($iC:BQ9F+$diBQ9)*5.6121E-03	;  => 0.503115999
+ $gCBQ0 = -$sC:BQ0*$iC:BQ0F*5.6215E-03	;  =>-0.391659074
+#D0 quads
+ $gD0Q1 = 0.0;  =>           0
+ $gTQC42 = $iT:QC42F*$qt  ;  =>-0.0335212125
+ $gCCQ0 =  $sC:CQ0*$iC:CQ0F*5.6267E-03	;  =>  0.17008198
+ $gCCQ9 = -($iC:CQ9F+$diCQ9)*5.6481E-03	;  => -0.25937272
+ $gTQC45 = $iT:QC45F*$qt	;  =>-0.130240114
+ $gCCQ7 = ($iC:CQ7F+$diCQ7)*5.6097E-03	;  => 0.701595289
+ $gCD0Q6D = -(2.855691E-03*$iC:D0Q6F + 5.00244E-10*$iC:D0Q6F^2)*(1+0.01*$F_D0Q6D)
+ $gCD0QT6 = $iC:D0QT6F*$qt	;  => 0.133243808
+ $gD0Q5D = $sC:D0Q5*(2.890130E-03*$iC:D0Q5F + 2.30132E-09*$iC:D0Q5F^2)
+ $x=$iC:D0Q2F+$diD0Q2+$dalfD0Q2
+ $gD0Q2F = (2.896554E-03*$x + 4.12862E-09*$x^2)*(1+0.01*$F_D0Q2)	 
+ $x=$iC:D0Q3F+$diD0Q3+$dalfD0Q3
+ $gD0Q3D = -(2.898781E-03*$x + 8.38817E-09*$x^2)*(1+0.01*$F_D0Q3)*(1+0.01*$F_D0Q3D)	 
+ $x=$iC:D0Q2F+$diD0Q2+$dalfD0Q2
+ $gD0Q4F = (2.886865E-03*$x + 4.03980E-09*$x^2)*(1+0.01*$F_D0Q2)	 
+#
+ $x=$iC:D0Q2F+$iC:D0QT2F+$diD0Q2+$diD0Q2T+$dalfD0Q2+$dalfD0QT2
+ $gD0Q4D = -(2.892279E-03*$x + 6.02765E-09*$x^2)*(1+0.01*$F_D0Q2)	 
+ $x=$iC:D0Q3F+$iC:D0QT3F+$diD0Q3+$diD0Q3T+$dalfD0Q3+$dalfD0QT3
+ $gD0Q3F = (2.891670E-03*$x + 7.76385E-09*$x^2)*(1+0.01*$F_D0Q3)*(1+0.01*$F_D0Q3F)	 
+ $x=$iC:D0Q2F+$iC:D0QT2F+$diD0Q2+$diD0Q2T+$dalfD0Q2+$dalfD0QT2
+ $gD0Q2D = -(2.892795E-03*$x + 3.93052E-09*$x^2)*(1+0.01*$F_D0Q2)	 
+ $gD0Q5F = -$sC:D0Q5*(2.881589E-03*$iC:D0Q5F + 1.86600E-09*$iC:D0Q5F^2)
+ $gCD0Q6F = (2.873533E-03*$iC:D0Q6F + 1.30841E-09*$iC:D0Q6F^2)
+ $gCD0QT6 = $iC:D0QT6F*$qt	;  => 0.133243808
+ $gCDQ7 = -($iC:DQ7F+$diDQ7)*5.6132E-03	;  =>-0.660421894
+ $gTQD15 = ($iT:QD15F+$diQD15)*$qt	;  =>  0.13318373
+ $gCDQ9 =  ($iC:DQ9F+$diDQ9)*5.617E-03	;  => 0.363130276
+ $gCDQ0 = -$sC:DQ0*$iC:DQ0F*5.6015E-03	;  =>-0.390265641
+# Tune correction quads ( values are given for k1 in 1/m^2 )
+$gQFA4 =  ($iT:QFA4F + (41.87*$dQh + 13.24*$dQv)*$P0/1.e6)*$qt;  =>0.00600922658
+$gQDD1 = ($iT:QDD1F - (12.99*$dQh + 40.60*$dQv)*$P0/1.e6)*$qt;  =>-0.0418852307
+# Phase advance correction quads ( values are given for k1 in 1/m^2 )
+$gQFE1 = ($iT:QFE1F + (41.87*$dQh + 13.24*$dQv)*$P0/1.e6)*$qt;  =>0.00600922658
+$gQDE2= ($iT:QDE2F - (12.99*$dQh + 40.60*$dQv)*$P0/1.e6)*$qt;  =>-0.0418852307
+$gQFF3 = ($iT:QFF3F + (41.87*$dQh + 13.24*$dQv)*$P0/1.e6)*$qt;  =>0.00600922658
+$gQDF4= ($iT:QDF4F - (12.99*$dQh + 40.60*$dQv)*$P0/1.e6)*$qt;  =>-0.0418852307
+# Collimator phase bump quads
+$gQE17 =  ($iT:QE17F+$didQX1_E17)*$qt;  =>0.00961181149
+$gQE19 = ($iT:QE19F + $didQX2_E19 + (41.87*$dQh + 13.24*$dQv)*$P0/1.e6)*$qt	;  =>0.00600922658
+$gQE26 = ($iT:QE26F + (41.87*$dQh + 13.24*$dQv)*$P0/1.e6)*$qt 	;  =>0.00600922658
+$gQE28 = ($iT:QE28F + (41.87*$dQh + 13.24*$dQv)*$P0/1.e6)*$qt 	;  =>0.00600922658
+$gQE47 = ($iT:QE47F + $didQY1_E47 - (12.99*$dQh + 40.60*$dQv)*$P0/1.e6)*$qt 	;  =>-0.0418852307
+$gQF28 = ($iT:QF28F + (41.87*$dQh + 13.24*$dQv)*$P0/1.e6)*$qt 	;  =>0.00600922658
+$gQF32 = ($iT:QF32F + (41.87*$dQh + 13.24*$dQv)*$P0/1.e6)*$qt 	;  =>0.00600922658
+$gQF33 = ($iT:QF33F + $didQY2_F33 - (12.99*$dQh + 40.60*$dQv)*$P0/1.e6)*$qt;  =>-0.0418852307
+$gQF34 = 0.0 ;  =>           0
+# Skew-quads
+$qts=1.5;  =>         1.5
+$gKSQ  = ($iT:SQF+$diKSQ*.1)*$qts   ;  =>   -4.337451
+$gKSQA0= ($iT:SQA0F+$diKSQA0)*$qts ;  =>   8.9560725
+$gKSQA4= ($iT:SQA4F+$diKSQA4)*$qts ;  =>  -7.7590935
+$gKSQB1= ($iT:SQB1F+$diKSQB1)*$qts ;  =>   0.8422845
+$gKSQD0= ($iT:SQD0F+$diKSQD0)*$qts ;  =>           0
+$gKSQE0= ($iT:SQE0F+$diKSQE0)*$qts ;  =>    2.222442
+# QXR quads
+$gQXR_E0=$iT:E0QT*0.051882   	
+$gQXR_E1=$iT:E1QT*0.051882  	
+$gQXR_C0=$iT:C0QT*0.051882   	
+# Aperture definitions for quads
+$qH_5F="HSCquad qH_5F HSCquad";
+$qH_3F="HSCquad qH_3F HSCquad";
+$qH_F="HSCquad qH_F HSCquad";
+$qH_2F="HSCquad qH_2F HSCquad";
+$qH_1F="HSCquad qH_1F HSCquad";
+$qH_4F="HSCquad qH_4F HSCquad";
+$qH_5D="HSCquad qH_5D HSCquad";
+$qH_3D="HSCquad qH_3D HSCquad";
+$qH_D="HSCquad qH_D HSCquad";
+$qH_4D="HSCquad qH_4D HSCquad";
+$qH_2D="HSCquad qH_2D HSCquad";
+$qH_1D="HSCquad qH_1D HSCquad";
+#
+$qTQA42="HSCquad qTQA42 HSCquad";
+$qTQA45="HSCquad qTQA45 HSCquad";
+$qTQB15="HSCquad qTQB15 HSCquad";
+$qTQC42="HSCquad qTQC42 HSCquad";
+$qTQC45="HSCquad qTQC45 HSCquad";
+$qTQD15="HSCquad qTQD15 HSCquad";
+$qTQDD1="HSCquad qTQDD1 HSCquad";
+$qTQFA4 ="HSCquad qTQFA4 HSCquad";
+$qTQFE1="HSCquad qTQFE1 HSCquad";
+$qTQDE2="HSCquad qTQDE2 HSCquad";
+$qTQFF3="HSCquad qTQFF3 HSCquad";
+$qTQDF4="HSCquad qTQDF4 HSCquad";
+$qTQE17="HSCquad qTQE17 HSCquad";
+$qTQE19="HSCquad qTQE19 HSCquad";
+$qTQE26="HSCquad qTQE26 HSCquad";
+$qTQE28="HSCquad qTQE28 HSCquad";
+$qTQE47="HSCquad qTQE47 HSCquad";
+$qTQF28="HSCquad qTQF28 HSCquad";
+$qTQF32="HSCquad qTQF32 HSCquad";
+$qTQF33="HSCquad qTQF33 HSCquad";
+$qTQF34="HSCquad qTQF34 HSCquad";
+#===================================================
+# SEXTUPOLES
+#
+# Chromaticity sextupoles   2*57/50/2.54 [kG/cm/A]
+$gsf1=2*57/50/2.54 *$psext;  => 0.897637795
+$gsf2=2*44/50/2.54*$psext;  => 0.692913386  # !!! 0
+$sCHROMF = $iT:SFF*$gsf1;  =>  3.14069102
+$sCHROMD= $iT:SDF*$gsf1;  => 0.893035606
+# Feeddown sextupoles
+$gS1E2A = $iC:S1E2AF * $gsf2;  =>   1.4448034
+$gS1F2A = $iC:S1F2AF * $gsf2;  =>   1.4448034
+$gS1F3A = $iC:S1F3AF * $gsf2;  =>   1.4448034
+$gS1B1A = $iC:S1B1AF * $gsf2;  =>   1.4448034
+$gS1B3A = $iC:S1B3AF * $gsf2;  =>   1.4448034
+$gS1C2A = $iC:S1C2AF * $gsf2;  =>   1.4448034
+$gS2F1A = $iC:S2F1AF * $gsf2;  =>-0.653412472
+$gS2F2A = $iC:S2F2AF * $gsf2;  =>-0.653412472
+$gS2F4A = $iC:S2F4AF * $gsf2;  =>-0.653412472
+$gS2A1A = $iC:S2A1AF * $gsf2;  =>-0.653412472
+$gS2A3A = $iC:S2A3AF * $gsf2;  =>-0.653412472
+$gS2B4A = $iC:S2B4AF * $gsf2;  =>-0.653412472
+$gS2C3A = $iC:S2C3AF * $gsf2;  =>-0.653412472
+$gS2D2A = $iC:S2D2AF * $gsf2;  =>-0.653412472
+$gS3E1A = $iC:S3E1AF * $gsf2;  =>-0.155423244
+$gS3E3A = $iC:S3E3AF * $gsf2;  =>-0.155423244
+$gS3A2A = $iC:S3A2AF * $gsf2;  =>-0.155423244
+$gS3D2A = $iC:S3D2AF * $gsf2;  =>-0.155423244
+$gS3D4A = $iC:S3D4AF * $gsf2;  =>-0.155423244
+$gS4F2A =$iC:S4F2AF * $gsf2;  =>           0
+$gS4C2A =$iC:S4C2AF * $gsf2;  =>           0
+$gS4C2B =$iC:S4C2BF * $gsf2;  =>           0
+$gS5F1A =$iC:S5F1AF * $gsf2;  =>           0
+$gS5F3A =$iC:S5F3AF * $gsf2;  =>           0
+$gS5A2A =$iC:S5A2AF * $gsf2;  =>           0
+$gS5A3A =$iC:S5A3AF * $gsf2;  =>           0
+$gS5D3A =$iC:S5D3AF * $gsf2;  =>           0
+$gS6A4A = $iC:S6A4AF * $gsf1;  =>  6.62654353
+$gS6C4A = $iC:S6C4AF * $gsf1;  =>  6.62654353
+$gS7B1A = $iC:S7B1ATF * $gsf1;  =>           0
+$gS7D1A = $iC:S7D1ATF * $gsf1;  =>           0
+#===================================================
+# UNUSED CIRCUITS
+$T:Q39S  =       0;  =>           0
+$T:Q39C  =      0;  =>           0
+$gQ39S = $T:Q39S * $qts;  =>           0
+$gQ39C = $T:Q39C *$qts;  =>           0
+#===================================================
+# ELECTROSTATIC SEPARATORS
+$A17VANG = ($iC:A1SVPF+$iC:A1SVMF); # $sC:A1SVP*  no switch yet;  =>           0  #+-6.9 kV. Kicks prots up. 
+$A49HANG = ($iC:A4SHPF+$iC:A4SHMF); # $sC:A4SHP*  no switch yet;   =>           0  #+-100.0 kV. Kicks pbars radial in.
+$A49VANG = ($iC:A4SVPF+$iC:A4SVMF);  # $sC:A4SVP*  no switch yet; =>           0  #+-83.5 kV. Kicks prots down. 
+$B11HANG = $sC:B0SHP*($iC:B0SHPF+$iC:B0SHMF);  =>   70.193482  #+-100.0 kV. Kicks pbars radial in.
+$B11VANG = $sC:B0SVP*($iC:B0SVPF+$iC:B0SVMF);  =>   42.901612  #+-100.0 kV. Kicks prots up. 
+$B17HANG = $sC:B17SP*($iC:B1SHPF+$iC:B1SHMF);  =>  122.213746  #+-47.7 kV. Kicks pbars radial out.
+$C17VANG = $sC:C1SVP*($iC:C1SVPF+$iC:C1SVMF);  =>  111.776734  #+-48.4 kV. Kicks prots down. 
+$C49HANG = ($iC:C4SHPF+$iC:C4SHMF); #$sC:C4SHP* no switch yet;  =>           0  #+-93.0 kV. Kicks pbars radial in.
+$C49VANG = $sC:C4SVP*($iC:C4SVPF+$iC:C4SVMF);  =>           0  #+-83.0 kV. Kicks prots up. 
+$D11HANG = ($iC:D1SHPF+$iC:D1SHMF); # $sC:D1SHP*  no switch yet;  =>           0  #+-86.8 kV. Kicks pbars radial out.
+$D11VANG = ($iC:D1SVPF+$iC:D1SVMF); # $sC:D1SVP*   no switch yet; =>           0  #+-100.0 kV. Kicks prots up. 
+$D48HANG = ($iC:D4SHPF+$iC:D4SHMF); # $sC:D4SHP*  no switch yet; =>           0  #+-15.1 kV. Kicks pbars radial out.
+#===================================================
+# CORRECTORS
+# Aperture definitions for correctors
+$kB11HESEP="HSCesepH kB11HESEP HSCesepH";
+$kB17HESEP="HSCesepH kB17HESEP HSCesepH";
+$kC49HESEP="HSCesepH kC49HESEP HSCesepH";
+$kD11HESEP="HSCesepH kD11HESEP HSCesepH";
+$kD48HESEP="HSCesepH kD48HESEP HSCesepH";
+$kA49HESEP="HSCesepH kA49HESEP HSCesepH";
+$kB11VESEP="HSCesepV kB11VESEP HSCesepV";
+$kC17VESEP="HSCesepV kC17VESEP HSCesepV";
+$kC49VESEP="HSCesepV kC49VESEP HSCesepV";
+$kD11VESEP="HSCesepV kD11VESEP HSCesepV";
+$kA17VESEP="HSCesepV kA17VESEP HSCesepV";
+$kA49VESEP="HSCesepV kA49VESEP HSCesepV";
+#========================================================
+#===================================================
+# OCTUPOLES  6*33/50/2.54/2.54 [kG/cm**2/A]
+$cOZ=6*33/50/2.54/2.54;  => 0.613801228
+#Tune Spread OCTUPOLES  6*33/50/2.54/2.54 [kG/cm**2/A]
+$gTOF =   $iT:OFF*$cOZ;  =>           0
+$gTOD =  $iT:ODF*$cOZ;  =>           0
+#Differential chromaticity OCTUPOLES  6*33/50/2.54/2.54 [kG/cm**2/A]
+$gTO1 =   $iT:O1F*$cOZ;  =>           0
+$gTO2 =  $iT:O2F*$cOZ;  =>           0
+#===================================================
+# CAVITIES
+$WaveLen=628319/1113;  =>  564.527403

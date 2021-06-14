@@ -1,0 +1,1834 @@
+$1#2Contents
+Introduction
+What does OptiM compute?1F8V7AN
+Coordinate system1BRXLBN
+Linear optics calculationsI9G_RC
+Input language description6K.4J5Calculations at Reference OrbitGB0T5U
+Graphical WindowP0V1W6 
+Fitting to Measurements2XPH0YT
+Running OptiM from Command lineCommand_Line
+Elements0H2QVR
+Import and export to other platformsF_IH8E
+Commands
+File Menu6XNXVL
+Edit Menu28IFRD5
+Search Menu2VYK.T
+Fitting Menu8KU.65
+Tools Menu6V_3A4
+View Menu6Y3XP3
+View 4D Menu1EBJO1E
+Space Charge Menu1YNEBMO
+Windows Menu94FMQ4
+Help Menu6XPTVW
+Toolbar
+Toolbar CommandsO.UZJ3
+Procedures
+Copying Text2JOL3V.
+Deleting Text7Z2T6H
+Exiting32MRYOS
+Edit Window7CZ.02P
+Drag/Drop from the File ManagerNNMSB
+Starting Program from the File Manager or Command LineRJVWRZ
+Keyboard Topics
+Windows Key Strokes2SU9_XQ
+Mouse Topics
+Mouse actions for Text windows U95A0K
+Mouse actions for Graphical Windows P0V1W6
+
+OptiM Version 5.0, updated Sep. 21. 2004.
+Copyright © 1998
+LDBS Co.
+All rights reserved.
+
+#3For information on how to use Help, press F1 or select Using Help from the Help menu.
+
+$4#5What does OptiM compute?
+
+	OptiM is aimed at assisting with linear optics design of particle accelerators. However, it is also quite proficient with non-linear optics, tracking and with linear effects due to space charge. 
+All Linear optics calculations are based on 6x6 transfer matrices. The program can compute dispersion and betatron functions (for either uncoupled or coupled (X/Y) particle motion), as well as beam sizes, betatron phase advances, etc. 
+The computed values can be plotted or printed along the machine circumference (View Menu and View 4D Menu) or computed at the end of lattice or at any element. The program can also fit parameters of accelerator 
+elements to get required optics functions (use Fitting Menu). Matching can be performed for a transport line, when initial Twiss parameters are fixed, and for a ring, when Twiss parameters are closed so that they coincide at the lattice start and end. All values, which program calculates, are referenced to the local coordinate frame directed along the central (reference) beam orbit. The program can also calculate and print position of this reference frame relative to the global coordinate frame.  A wide choice of elements allows designing both circular and linear accelerators, along with recirculators. Simple input language and well-developed menus do not require much time to learn how to run the program but do not limit its use to small machines. Actually, all necessary measures have been taken to facilitate the design, support and optics studies for very large machines consisting of many thousands of elements. Interactive work of the program significantly accelerates the search of solution in the complicated cases where a designer cannot formulate a full set of requirements at the initial stage of design. In addition to well-elaborated linear optics functions the program also allows to perform particle tracking in non-linear fields of accelerator magnets(use Tools|TrackF0M18T menu), and to analyze the effect of the beam space charge on the particle motion in the linear field approximation corresponding to the KV-distribution (use Space Charge Menu1YNEBMO). The program can perform computations not only at the reference orbit but also at a closed  orbit excited by machine errors (like offsets of quads or errors in dipole bending), correctors or energy offset. In this case the program first finds a new "reference" orbit then expends nonlinear terms for machine elements and then performs computations (see Optics Calculations at Reference OrbitGB0T5U and ControlCR.RMM). That allows one to perform both linear optics computations (tunes, beta-functions, etc.) and non-linear tracking relative to this new orbit.
+	The program is a standard MS-Windows application with possibility to print any of its windows, and to copy a text or a plot into the clipboard with sequential data embedding into other applications. It has five types of windows. 
+	The first type is the main window, which holds the lattice description. The program can have only one main window. This window has to be initialized before computations by reading from the input file (use File|OpenQIGH0N menu) or by starting a new main window (use File|NewQIF_L menu). The input file name has an extension .opt by default and file structure is described in the Input language description6K.4J5 section.
+	The second type of window is the output text window which the program uses for presenting digital output such as transfer matrix, beam orbit, a list of beta-functions, etc.( see View Menu6Y3XP3). The program sends all digital outputs of the View Menu, as well as, a few other menus into this window. If necessary, the user can detach this window from output (use View|DetachSUX2W0). In this case the program will open a new window for next digital output. There is an option in the View|ControlCR.RMM menu which controls whether the contents of the window should be erased before the next output. In addition View 4D and Space Charge menus create independent text window. Note that the View|Detach menu detaches only active window (one of these three windows). That allows one to detach only desired graphical windows. There is also a few other functions creating text windows. Those windows are not detachable. 
+	The third type of window is an ordinary text window to read and/or edit any text file (use File|Open TextPHL9MM). This window is useful for references and can be used for a general-purpose editing.
+	The fourth type of window is a Graphical WindowP0V1W6, which holds a plot. There are a few different types of plots. For each kind of plots the program opens a separate window and sends all plots of a given type into this window. If necessary, the user can detach the graphical window from output by pressing Detach button in the top left part of the window. In this case a new graphical window will be opened at next plot function. If necessary a window can be again attached to the output by pressing the same button which depicts Attach after the window has been detached. The View|ControlCR.RMM determines whether a graphical window will be cleared before each next output.
+	The fifth type of windows is service graphics window. An information in such a window is not bound to the information in the main window and therefore such windows are independent from all others (see Tools|Tune diagram1.RI0GJ and Tools|Show External File1OI1B89).
+
+$6
+#7Coordinate system
+{bmc bm0.WMF}
+
+
+	The program utilizes two coordinate systems: the global coordinate frame (X - horizontal, Y - vertical, Z - horizontal) and the local coordinate frame with the s-axis directed along beam orbit, the x-axis in horizontal plane, and the y-axis normal to x- and s-axes and always pointing up. Both coordinates frames, XYZ and xys, are right-handed. One needs to be aware that if vertical bends bend the beam by more than 90 deg. vertically the direction of vertical axis y will be changed to opposite at qy = 90 deg. Because the xys frame is determined as the right-handed coordinate frame, the x-axis will change direction as well. That causes corresponding peculiarities in behavior of transfer matrix and a sign change for both dispersion functions.
+	The direction of the orbit in the main coordinate frame is determined by angles qx and qy as shown in the picture. 
+	The roll angle of elements is counted from the local coordinate frame (xys). The positive roll angle (as it has to be in a right-handed system) is in the direction of rotation from x to y (clockwise). For the dipole the roll angle equal to zero corresponds to the dipole field along y axis (that means it stays in the vertical plane) with bending directed toward the negative side of x-axis for positive field. 
+
+
+$8
+#9Linear optics calculations
+
+	All calculations are based on the computation of a six-dimensional transfer matrix throughout a lattice but there are two different view menus, View Menu6Y3XP3 and View 4D Menu1EBJO1E, which have different meaning and assignments.
+ View Menu-functions are designed for analysis of uncoupled motion while all functions including the beta-functions and betatron phase advances are correctly computed even for a strongly coupled motion (actually Edwards-Teng beta-functions, which are uncoupled at the lattice beginning, are computed). Nevertheless the initial phase space of the beam is always considered uncoupled and is determined by 1) the vertical and horizontal beam emittances, 2) the beam momentum spread, 3) the vertical and horizontal beta-functions and their derivatives (a= - 0.5db/ds), and 4) the vertical and horizontal dispersions and their derivatives. Therefore the program correctly calculates beam sizes, beta-functions and dispersions for the line mode, but in the case of the ring mode it the computations will be correct only in the case if the entire ring transfer matrix is uncoupled. If coupling exceeds the threshold value the corresponding message box informs the user in the case of beta-function calculations. The threshold value is controlled in View| ControlCR.RMM menu. Note that the six-dimensional matrix calculations are always performed and that the dispersions, the betatron beam envelopes and the momentum compaction factor are calculated correctly even in the case of strongly coupled lattice. It is important to remember that the closing of the lattice functions for a ring in View Menu is done for 2x2 matrices and is incorrect for both dispersion and beta-functions if the coupling is present.
+View 4D Menu correctly addresses all mentioned above problems and should be used for X-Y coupled lattices. To describe such a lattice an extension of standard Twiss parameters is used (see Coupled XY coupled lattice treatmentSP2PUS). 
+In the course of computations the program correctly treats the adiabatic damping due to acceleration (linear or electrostatic accelerator case) so that the beam emittance decreases inversely proportionally to the relativistic factor, bg. In contrast to that, the determinant of transfer matrix is equal to one even for the case of acceleration to eliminate dependence of the beta-functions on the beam energy. In this case the beta function, bF, and the beam size, a, are related by the following equation
+{bmc bm1.WMF}
+	
+where ein ,  is the initial beam emittance, and bin gin  and b g are the initial and final relativistic factors.
+
+
+$10
+#11XY Coupled Lattice Treatment
+
+	Extending the standard Twiss parameters definition to the coupled motion case one can write down that the particle coordinates depend on the longitudinal coordinate (time) as following
+{bmc bm2.WMF}
+Here 
+{bmc bm3.WMF}
+is the vector of particle positions and angles ,
+{bmc bm4.WMF}
+are the generalized 4D beta-functions, 
+{bmc bm5.WMF}
+ are their negative half-derivatives (a = -1/2 db/ds), q1(s) and q2(s) are the coupling phase parameters, e1 and e2 are generalized emittances (so that total 4D phase volume/emittance is e1 e2), y1 and y2 are the initial betatron motion phases, m1(s), m2(s) are the betatron phase advances, and u(s) is the coupling parameter. n1(s), n2(s) and u(s) are determined by conditions of the motion symplecticity. For the case of uncoupled motion u(s)=0, the primary beta-functions, b1x and b2y , coincide with the beta-functions for uncoupled motion, and the auxiliary beta-functions b1y and b2x are equal to zero; so that only two components corresponding to x- or y-motion are left in the eigen-vectors. For the case of a ring the two vectors in the above equation are the eigen-vectors of particle motion. Usually for stable motion the coupling parameter u(s) is located in [0 – 1] interval. u(s) = 0 – corresponds to the uncoupled motion, u(s) = 1 – corresponds to the uncoupled motion but the eigen-vector is actually aligned in other plane, and u(s) = 1/2 – corresponds to the motion when coupling is equally distributed between two planes.
+Unfortunately, the symplecticity condition is not sufficient to get unique eigen-vectors from the beta-functions. Actually, it yields four possible solutions for n1(s), n2(s) and u(s), which can be separated in two pairs. For each pair corresponding u(s) values are equal, and the phases m1(s) and m2(s) are different by p. As one can see this corresponds to the motion in the mirror symmetrical coordinate frame or, in other words, to a different sign of coupling. For the first pair u(s) usually belongs to [0 – 1] interval, while for the second pair u(s)  is outside this interval. 
+To chose a correct set of eigen-vectors for the given beta- and alpha-functions one needs to know at least one of m1(s) or m2(s) values. To resolve this ambiguity the program chooses the solution for which m1(s) value is the closest to the value determined in 4D_BetaBlock (see 4D Beta-functions block3_ISOIS and Input language description6K.4J5). This ambiguity does not exist in the ring case where View_4D| Close 4D6.0EON	command gets correct values for eigen-vectors and beta-functions. 
+More detailed description of the formalism you can find in the file coupling.pdf, which is included in the standard distribution.
+
+$12
+#13Input language description
+
+One can generate a template for the OptiM input file choosing File|NewQIF_L menu item. The file structure is described below.
+	The input file (the text in the main window) may begin with the math header4.ACT2, which determines numeric and text variables. These variables or expressions build from them may be used later in the main body of the file.
+Any line which begins with sign "#" with exception #INCLUDEINCLUDE_dir and #include is a comment line and is ignored by the program. Comment lines are allowed anywhere. Comment sign # can also be used in the math header to comment out the end of a line. 
+	The first line after the math-header (if the header exists) has to be "OptiM." This line starts the main body of the file. All other lines after "OptiM" (except for the comment lines) have to be written in the order shown below.
+	The second line determines the initial beam energy and the particle mass in MeV. 
+	The third line determines the horizontal and vertical beam emittances, and the relative momentum spread at the start of the lattice. These values are used for beam envelope calculations and are modified in the course of beam acceleration to take into account the adiabatic damping. Effects of the energy spread change due to longitudinal focusing of bunch with finite length are neglected. 
+	Lines 4 ad 5 determine the horizontal and vertical beta-functions (in cm) and their negative half derivatives (a = -0.5 * db/ ds) at the start of the lattice. 
+If necessary two additional parameters can be listed at the end of line 5. They are the initial betatron phases Qx and Qy. They are ignored in all calculations except printing of Twiss-functions, menu View|FunctionsS9DOQ7.
+	Lines 6 and 7 determine the horizontal and vertical dispersions (in cm) and their derivatives at the start of the lattice (D=dD/ds).
+	Lines 8 and 9 determine the position (in cm) and angle (in deg) of the beam trajectory at the start of the lattice (see Coordinate system1BRXLBN). Note that in the general case a change of vertical angle changes the beam optics (lattice functions, etc.) because it changes element rolls. That is the consequence of the choice that the roll values are counted relative to the horizontal plane.
+	After line 9 there can start a block making references to external files. Up to 10 external files can be referenced. This references are used for description of field in accelerating cavity (see W-RF cavity (PI standing wave)13Z.DLO). The block has to start from line “file reference start“ and has to be finished by the line “file reference end”. There can be up to 10 lines in between these two lines. Each line has to have two parameters: file reference number (0 - 9) and file name as shown in an example below, 
+file reference start
+1 C:\BCPP\OPTIM\CAVITY\fit.DAT 
+file reference end
+Both absolute and relative (to the location of your main optics file) paths to the file can be used. In the case of file/directory name with spaces the name has to be surrounded by double quotes (like “File name with spaces.opt”).
+This block can be omitted if there are no references to the external files. 
+	Next line starts the block, which describes the order of the elements in the lattice. This line also determines the number of superperiods in the lattice. This line usually looks like following “begin lattice. Number of periods=1”. Element names in the list can be separated by any number of spaces or Tabs and there is no limitation on number of lines and number of element names per line but each line has to be shorter than 255 symbols. Names can include any alphanumeric symbols and two special symbols: ":" and "_". Each name can have a suffix (tag), i.e. the name can be extended using “&” operator. For example names bARC&1 and bARC&2 are referenced to the element bARC and this name has to be used in the description of element parameters (see below) but bARC1 and bARC2 names will appear in all element lists and program outputs. That allows one putting different tags to elements of the same design. The operator “&” can be also applied to text variables (see math header4.ACT2). In this case, every name described in the text variable will be appended by the suffix. This block has to be ended by the line, which holds the operator "end lattice".
+	The line "begin list" begins the block, which holds the list of elements with their parameters - one line per element (see Elements0H2QVR) with exception of transfer matrix element, which takes 7 lines. The list of elements has to be finished by the operator "end list".
+	The description of the lattice is finalized, if required, by a few service blocks in arbitrary order. The possible blocks include the fitting block, (see Fitting|Betas1MIG458)., 4D Beta-functions block (see 4D Beta-functions block3_ISOIS), Space Charge Block (see Space Charge Menu1YNEBMO) and Trajectory Parameters Block (see Trajectory1JY.3LS).
+	At parsing of every element in the element list the program selects all parameters in a line in the order which they follow in the template, parameter by parameter ignoring keywords. If a line has insufficient number of parameters the program assigns zero to the rest of them. The read-out of each parameter begins after sign ' = ' and ends at the first non-numeric symbol. Therefore, it is not required to type the full names of parameters during typing the input file. Exponential notations can be used for numbers. Pressing 'F2' key (see Edit|Analyze lattice4XACNN) causes the input buffer to be rewritten as program sees it. This function is useful to bring the file into the standard form without modifying the comment lines, but one needs to remember that this function will assign numeric values to all variables used in the definition of elements and, consequently, will destroy a relationship between the math header and the description of elements. 
+	If program encounters a syntax error it pops up a message window and then puts cursor into the line where the error was found.
+Example of the input fileXP14DP.
+
+
+$14#15How to use #INCLUDE and #include directives 
+Directives #INCLUDE and #include are used to insert external file into an OptiM file. They are effective only in the Main OptiM window and are ignored in other text windows. While both directives have similar syntax: 
+#INCLUDE FileName
+#include FileName 
+they have different assignments and actions.
+The first directive #INCLUDE is only active at time of reading or saving a file. When #INCLUDE directive is encountered at time of file opening, the input is switched to the external file. After the file is read in to the window the directive #END_INCLUDE is appended to mark the end of the include. They considered as commented lines for all other operations. The directive works in the following fashion. When the main (active) window is opened the program starts reading a file line-by-line. If it encounters #INCLUDE command it switches to read lines from the file referred in #INCLUDE directive. After it reads all the lines in this file the program continues to read from the initial file. Thus the referred file is inserted in between #INCLUDE and #END_INCLUDE lines. Inserted lines are shifted by one tabulation-stop to distinguish them from other lines of the file. When Save is performed the program saves the file line-by-line. If it encounters #INCLUDE it skips all the lines before finding #END_INCLUDE directive. Thus the information in between #INCLUDE and #END_INCLUDE is not saved. That mechanism works for the main window only and will not be engaged for File|Open TextPHL9MM menu. That allows one to edit other text windows without complications. There is no limitation on number of #INCLUDE statements but only one level of recursion is allowed. 
+The directive #include works differently. It is effective during the file parsing. Every time you start computation the program parses the content of the main window and then performs requested computation. During parsing the program reads text in main window line-by-line. If directive #include is encountered the input is redirected to the corresponding file. After this file is read the program continues to read lines from main file. There is no limitation on number of #include statements but only one level of recursion is allowed.
+These two directives allow one to avoid unnecessary duplication of the information in the case of multiple files to describe different regimes of the ring or transfer line operation. 
+A File|Get File Name7.XD92 command is useful to create a reference to a file in #INCLUDE directive.
+Both directives allow use of absolute and relative (to the location of your main optics file) path to the file. In the case of file/directory name with spaces the name has to be surrounded by double quotes (like “File name with spaces.opt”).
+
+$16
+#174D Beta-function block
+
+	4D beta-function block determines initial values of dispersions and 4D beta-functions, which are used in menu items of View 4D Menu1EBJO1E only. A self-explanatory example of such a block is shown below. Program uses eight 4D-Twiss parameters and the symplecticity conditions to determine the initial eigen-vectors, which are used for further computations (4D beta-functions, betatron phase advances, etc.). Unfortunately, utilizing the symplecticity conditions is not sufficient to find a unique solution for the eigen-vectors. In the general case there are four independent solutions, each of them has different values of the auxiliary 4D-Twiss parameters, Nu_1, Nu_2 and U. To choose a single solution the program chooses values of Nu_1, Nu_2 and U, so that the minimum difference with Nu_1 supplied in the 4D_BetaBlock would be achieved. Values of Nu_2 and U from the 4D_BetaBlock are ignored. Menu item Update 4D betas1XS.A0V allows one to update values of Nu_1, Nu_2 and U in the main file.
+
+Example:
+4D_BetaBlock
+	Beta_X_1[cm]=1760.93 	Beta_X_2[cm]=330.954
+	Alfa_X_1=0.498986  	Alfa_X_2=0.20907
+	Beta_Y_1[cm]=113.14 	Beta_Y_2[cm]=438.468
+	Alfa_Y_1=-0.114458  	Alfa_Y_2=-0.197883
+	Nu_1[deg]=122.309 	Nu_2[deg]=97.9812 	U=-0.167011
+	Emit1[cm]=1.e-5  	Emit2[cm]=1.e-5
+	DispX[cm]=175.168 	DispY[cm]=-20.6339
+	DispXpr[cm]=-0.04483 	DispYpr[cm]=-0.0255863
+End4DBetaBlock 
+
+
+$18#19Example of the input file
+	The following example describes the lattice for ASTRID storage ring in Aarhus University, Denmark.
+_____________________________________________________
+# Edge focusing is modeled by short combine function dipoles
+$R=120.8;  =>       120.8 
+$L=$PI*$R/4-12.8;  =>  82.0760981
+$E=579.467;  =>     579.467
+$Hr=sqrt(($E+$Me)*($E+$Me)-$Me*$Me)*1e11/$c;  =>  1934.59737
+$B=$Hr/$R;  =>  16.0148789
+$Bh=$B/2;  =>  8.00743943 
+$Dip="bB bBc bB"
+OptiM
+#  ASTRID general lattice
+Energy[MeV]=579.467    Mass[MeV]=0.511006 
+Emittance: ex[cm]=1.3e-05  ey[cm]=1e-06  DP/P=0.0007 
+Initial:	BetaX[cm]=1575.31 	BetaY[cm]=355.666 
+	AlfaX=5.17506e-16 	AlfaY=2.6301e-16 
+	DispersX[cm]=269.3 	DispersY[cm]=0 
+	Dsp_PrimeX=-1.36334e-16 	DspPrimeY=0 
+	X[cm]=0.000    	Y[cm]=0.000    	Z[cm]=0.000    	S[cm]=0.000    
+	tetaX[deg]=0        	tetaY[deg]=0        
+#  Elements: O-free space, D-dipole, Q-quad, S-sextipole
+#  Elements: B-dipole with gradient
+begin lattice. Number of periods=4 
+O Sf o qQf&4b o Sd o qQd&4b o1 $Dip&1a o2 o2 $Dip&1b o1 qQd&1a o Sd o qQf&1a o Sf O
+O Sf o qQf&1b o Sd o qQd&1b o1 $Dip&2a o2 o2 $Dip&2b o1 qQd&2a o Sd o qQf&2a o Sf O
+O Sf o qQf&2b o Sd o qQd&2b o1 $Dip&2a o2 o2 $Dip&2b o1 qQd&3a o Sd o qQf&3a o Sf O
+O Sf o qQf&3b o Sd o qQd&3b o1 $Dip&2a o2 o2 $Dip&2b o1 qQd&4a o Sd o qQf&4a o Sf O
+end lattice
+begin list
+O       	L[cm]=136      
+Os   	L[cm]=86       
+o      	L[cm]=9.90133  
+o1    	L[cm]=57.46    
+o2    	L[cm]=7.16     
+Sf     	L[cm]=36         	S[kG/cm/cm)]=0.0027
+Sd    	L[cm]=36         	S[kG/cm/cm)]=-0.0054
+qQf  	L[cm]=45         	G[kG/cm]=0.277565 	Tilt[deg]=0
+qQd  	L[cm]=45         	G[kG/cm]=-0.445846 	Tilt[deg]=0
+bB    	L[cm]=12.8       	B[kG]=8.0074394   	G[kG/cm]=0.033144  	Tilt[deg]=0
+bBc  	L[cm]=82.076098   	B[kG]=16.014879   	G[kG/cm]=0        	Tilt[deg]=0
+c1   	L[cm]=100          	B[kG]=8.40637       
+end list of elements
+
+BetaFitBlock  dL[cm]=0.01  dB[kGs]=0.01  dG[kGs/cm]=0.001
+#Required parameters and their accuracy listed below(dPARM<=0. - no fitting)
+#Maximum Betas[cm] and MomentumCompaction are on the next line
+BtXmax=5000  dBtXmax=0  BtYmax=5000  dBtYmax=0  Alfa=0.0679  dAlfa=0.001
+#Fitting parameters at the end of the lattice
+Beta_X[cm]=1603.9 	dBeta_X[cm]=-0.1 	Alfa_X=0  	dAlfa_X=-0.0001
+Beta_Y[cm]=359.5 	dBeta_Y[cm]=0.1 	Alfa_Y=0  	dAlfa_Y=-0.0001 
+Disp_X[cm]=269.058 	dDisp_X[cm]=-1 	D_prime_X=0 	dD_prime_X=-0.001 
+Disp_Y[cm]=0 	dDisp_Y[cm]=-1 	D_prime_Y=0 	dD_prime_Y=-0.001 
+Qx=0.550986 	dQx=-0.01 
+Qy=0.658466 	dQy=-0.01 
+G: qQf
+G: qQd
+EndBetaFitBlock
+
+4D_BetaBlock
+	Beta_X_1[cm]=1575.31 	Beta_X_2[cm]=6.89188e-32
+	Alfa_X_1=5.10072e-16  	Alfa_X_2=0
+	Beta_Y_1[cm]=6.6708e-34 	Beta_Y_2[cm]=355.666
+	Alfa_Y_1=0  	Alfa_Y_2=2.61961e-16
+	Nu_1[deg]=23.0371 	Nu_2[deg]=-147.283 	U=0
+	Emit1[cm]=1.e-5. 	Emit2[cm]=1.e-5
+	DispX[cm]=269.3 	DispY[cm]=0
+	DispXpr[cm]=-1.35845e-16 	DispYpr[cm]=0
+End4DbetaBlock
+
+SpaceChargeBlock
+  BeamCurrent[A]=0.1
+  BunchLength[cm]=1.0   dP/P=0.001   Alpha[-1,1]=0.
+EndSpaceChargeBlock
+
+
+$20#21Math header
+Syntax of the math header is similar to the syntax of PERL scripts. Like in PERL scripts, the name of each variable starts from "$" sign. Unlike PERL scripts each line may hold only one expression. An expression must end with ";" or <ENTER>. The rest of the line after sign ";" is ignored in calculations. Choosing menu Edit|Analyse Header12514J8 or pressing <Ctrl+F2> keys performs the calculations inside the header and adds the results of calculations at the end of each line after sign “;”. Consequently, all information located previously after “;” will be erased. If one needs to keep this information the comment sign # should be used to comment the rest of the line. The sign “;” need to be typed in the line before the comment sign  #.
+An array of numbers may be introduced by the following line
+	ARRAY $name[size]={val1, val2, …val_size}
+Here “$name” is  the array name, “size” is an integer number which sets the array size, if val’s are not set they are assigned to zero. To reference to an array element one uses $name[$i], where $i belongs to [0, size-1] interval. Actually the integer value of real variable $i is used to find a particular element. 
+The order of calculations inside an expression is the same as in standard computer languages (FORTRAN, C, PERL,  et c.) with use four arithmetic operations: +, -, * and /, and operator = (assign sign). Once a variable is assigned it can be used in later expressions. The following functions can be used: 
+sqrt($x), 
+sin($x), 	cos($x), 	tan($x), 
+asin($x), 	acos($x), 	atan($x), 
+exp($x), 
+log($x)  -  natural logarithm.
+theta($x)   -    Theta-function (theta($x)=1 if $x>0 and theta($x)=0 otherwise)
+abs($x)  - computes the absolute value of $x  
+sign($x) - sign($x) = 1 for positive $x, and sign($x) = -1 for negative $x
+int($x) – returns integer part of $x
+fact($x) – computes factorial of integer $x, $x must belong to [1,20] interval
+hro($P) - computes H*rho in kG cm for given momentum $P im MeV/c 
+gauss($x) -  generates a random number with Gaussian distribution and sigma equal to $x
+Names of variables and functions are case sensitive. A few constants are built-in, but they can be reassigned in the course of computations if necessary. The constants are: 
+$pi = $PI = 3.1415926535897932385;
+$e = $E = 2.7182818284590452354;
+$Me = 0.511006	-	the mass of electron in MeV;
+$Mp = 938.2723	-	the mass of proton in MeV;
+$Mmu = 105.6		-	the mass of muon in MeV;
+$c = 2.997925e10	-	the light velocity in cm/s;
+$_turn                             -	This is an internal variable used in the tracking. It is equal to 1 at the first turn; and if requested in the tracking parameters dialog $_nturn is incremented by 1 at each next turn in the course of tracking. Changes of this variable allow one to change lattice parameters, accelerating voltage, etc. at each turn if necessary. Note that for small number of particles and large number of turns it considerably slows tracking down.
+All computations inside the math header are performed with double accuracy. Variables determined in the math header can be used inside the main body of the file (after OptiM line). Their names will be substituted by their values (with nine digit accuracy) at parsing. The text strings can be used in math header for defining text variables. See Math Header example0_JZQM describing a FODO cell with a dipole magnet. 
+	Do-While iterative loop can be used to help with calculations and/or filling arrays. The loop is working similar to the Do-While loop in C with the difference that key words include “{“ and “}” so that the loop starts with “do{“ keyword and this is the only keyword allowed in this line. The loop has to be ended with “}while” keyword which need to be followed by an expression. Loop continues as long as this expression is positive. The loop shown below fills 10 elements of array s with its number plus 100:
+ARRAY $s[10];
+$n=           0;  
+do{
+	$s[$n]=$n+100;  
+	$n=$n+1;  
+}while 10-$n
+Nested loops and multidimensional arrays are not allowed.  To avoid infinite loops maximum number of iterations is limited to  10,000. 
+	Note that in the main body of the file (after math header) all entries appearing after sign “=” are considered to be mathematical expressions. It works equally good for parmeters of elements and values of variables in service blocks.
+	It is important to remember that performing Edit| Analyse Lattice4XACNN function (pressing F2 key) will replace all variables with their values. Taking into account that it completely destroys connection of the lattice description with the math-header the message box is popped up requiring the user to verify the command. Similar Edit|Read Field Integral4A8OXUP command and Fitting|Betas1MIG458 command will also substitute variables by their values for elements they effect.
+	Edit|IncrementJYL4_Z and Edit|Decrement_Y0JEQ commands can be used to make an interactive change of a variable. This variable has to be determined in the following form: $VariableName= value, where value is a number.
+
+
+$22#23Math header example
+	Example describes a FODO cell with a dipole magnet. The magnet has parallel edges and edge sextupole field:
+
+$P=4000;  #beam  momentum of 4 GeV
+$E=sqrt($P*$P+$Me*$Me)-$Me;  =>  3999.48903; #beam energy for electrons
+$fi=10;  #bending angle of 20 deg.
+$L=200; #magnet length of 200 cm;
+$HR=$P/($c*1e-11);  =>  13342.5619;  #rigidity in kG cm
+$B=$HR/$L*$fi/180*$pi; =>  11.6435818;   #magnetic field in kG
+$FIedge=$fi/2;
+$Sint=0.05;  #integral sextupole strength
+$Lsext=1e-3;
+$Ssext=$Sint/$Lsext
+$Dipole="hDip Sedge Gedge bDipole Gedge Sedge hDip";
+OptiM
+Energy[MeV]=$E   Mass[MeV]=0.511006   Hr[kG*cm]=335.264 
+Emittance: ex[cm]=1e-05  ey[cm]=1e-07  DP/P=0.0001 
+Initial:	BetaX[cm]=1207.15 	BetaY[cm]=581.058 
+	AlfaX=-1.35249 	AlfaY=0.675715 
+	DispersX[cm]=653.417 	DispersY[cm]=0 
+	Dsp_PrimeX=0.738743 	DspPrimeY=0 
+	X[cm]=0 	Y[cm]=0 	Z[cm]=0 	S[cm]=0 
+	tetaX[deg]=0 	tetaY[deg]=0 
+begin lattice. Number of periods=1 
+qF o $Dipole&2 o qD o $Dipole&3 o
+end lattice
+begin list
+o          	L[cm]=15 
+Sedge   	L[cm]=$Lsext   	S[kG/cm/cm)]=$Ssext
+Gedge  	B[kG]=$B   	Angle[deg]=$FIedge  EffLen[cm]=5  Tilt[deg]=0  
+Bdipole 	L[cm]=$L   	B[kG]=$B   	G[kG/cm]=0  	Tilt[deg]=0
+qF        	L[cm]=30   	G[kG/cm]=1 	Tilt[deg]=0
+qD        	L[cm]=30   	G[kG/cm]=-1 	Tilt[deg]=0
+hDip     	Ax[cm]=0  Ay[cm]=0  Shape=0  OffsetX[cm]=0  OffsetY[cm]=0 	Tilt[deg]=0
+end list of elements
+
+The operator & adds tags for a dipole in the list so that the dipoles of the same design could be described once but every dipole in the lattice would have a unique name.
+
+
+$24#25Import and export to other platform
+
+	The program can produce import and export to MAD, DIMAD and RESOLVE type files. See description in following topics:
+Import … from MAD2SO090	Convert a MAD output file into OptiM format.
+Import … from DIMAD3.UWCV.	Convert a DIMAD output file into OptiM format.
+Import … from Resolve17HCR.X	Convert a RESOLVE format file into OptiM file.
+Export ... to DIMADXCPBPK	Convert a OptiM file into DIMAD - MAD input file
+Export ... to RESOLVE1KC015	Convert a OptiM file into RESOLVE input file
+
+$26#27Filtering
+	Filter allows user to leave only the desired elements in the list. Filter is case sensitive. "%" denotes any single character, "*" denotes an arbitrary number (including zero) of any characters. 
+For example the filter "A*b%*" will match following names "Ab1", "Aab2.BDL%", and "A123bB". If necessary two or more filters can be applied simultaneously. They have to be separated by “;”. For example string “q*;b*” will leave in a list all elements which name begin from letters q and b. There is an additional check-box which determines that the lower and upper cases have to be matched.
+
+$28#29Optics Calculations at Reference Orbit
+	In many applications a computation of linear optics (tunes, beta-functions, etc.) need to be carried out not only at the central orbit but at one or many excited orbits. It can be a computation of optics change with beam momentum, or optics change due to moving the beam to the helical orbit to achieve the beam separation at the parasitic crossings in a collider.
+To perform such computations the program need to be switched to the so-called reference orbit mode (see ControlCR.RMM). In this case in the process of each requested calculation the program performs the following actions:
+1.   Parses text in the main window and creates a structure describing the beam optics at the central orbit. 
+2.   Finds a reference orbit. It does it in the exactly same fashion as Tools/Trajectory1JY.3LS command. In the line regime the program starts from parameters given in TrajParamBlock. In the ring regime the program first closes the trajectory and then builds the beam positions at every element. 
+3.   From known properties of elements and beam positions at each element the program builds a new lattice referenced to this new orbit. In this case each multipole is presented by a set of multipoles of given and lower orders. Thus this new lattice represents all linear and non-linear properties of the original lattice. In this reference orbit mode View/Lattice1LH9NBB command shows parameters of elements at the reference mode. As one can see in this case each element is presented as a set of a few elements. 
+4.   After new lattice is built other computations are performed the same way as they done for central orbit. Thus all the commands can be used in the reference orbit mode. The only exception is Tool/Trajectory command, which is performed but results are ambiguous because the same sources of orbit excitation are used to compute orbit change at parsing and than for a real calculation.
+
+$30
+#31Graphical Window
+
+	Although there are different types of graphical windows all of them have similar functionality. 
+	Different curves are plotted by different colors. Captions (curve legends) of the same color as curves are placed at the bottom part of the window and determine the curve assignment. Pressing the left mouse button at a curve legend (grayed rectangle) will switch on and off corresponding curve.
+	The horizontal axis (ordinate) is usually the coordinate (measured in meters) along beam line. Location and length of magnets are shown at the bottom part of the screen by color rectangles. Different kinds of magnets have different colors. A click of the left mouse button on a rectangular prints the name and number of the corresponding element in the right-upper part of window. The next downstream element is also printed. This feature is useful to get a name of downstream element (for example quad) if it has too small or zero length to be surely clicked on.
+	There are two vertical axes (abscissa), one on the left and other on the right side of the plot. Their titles and units are always captured. Some windows use both axes some of them use the left axis only. The right axis has no capture in this case.
+	The axis ranges can be changed by left mouse click on corresponding green arias. It pops up a dialog window for input of the corresponding number. The longitudinal scale can be also zoomed by pressing the left button and dragging the mouse. The double click of the left button in the plot aria rewrites the plot with full length of the structure.
+	There are three green buttons at the top of the window. Refresh - rewrite a plot; it is always necessary after window resizing. Detach - detaches window from output. If necessary a detached window can be again attached to output. Both attached and detached windows can be printed and copied into clipboard. The third green button is assigned for an input of a window comment. This comment is useful if you are going to print this window or copy it into another document, or you have many windows and you would like to distinguish them with captures.
+	To digitize current mouse position (in units of the plot) click the right mouse button in the region of a plot. It prints mouse pointer coordinates at the upper-right part of the window. Pressing and dragging of the right mouse button allows to measure a distance between different points of the plot. When a graphical window is initially opened the vertical coordinate is digitized for the left vertical axis. One can switch it to the right vertical scale (and vise versa) by left mouse click on the capture of the right (left) axis. It will change its highlighting from gray to green. 
+Click of the right mouse button in the top part of the window will pops up a dialog window for a file name which data will be plotted inside this window. After the file is chosen the second dialog box is popped up to determine how data should be plotted. Up to eight files can be read. This option allows one to read measured data into the window and, consequently, to perform a comparison of measured and calculated properties of the lattice (Fitting to Measurements2XPH0YT) and can be used for other applications as well. Data, which are read into different graphical windows, belongs to corresponding windows and are independent. The data are deleted when a window is closed. 
+Double click in the same top aria of the window brings a dialog box, which allows one to delete the last piece of data and/or to switch off the legend of files read into the window.
+You can save data from graphical window to a text file. To perform it: first, select the desired window; then choose File| Save60.MF5.
+
+
+
+$32
+#33Fitting to Measurements
+
+	The program allows one to plot external data on the top of any standard output into a graphical window. This data can be measurement results (measured beta-functions, differential orbits, etc.) or desired values of certain parameters. Comparing the external data with model predictions one can manually fit (use Edit|IncrementJYL4_Z and Edit|Decrement_Y0JEQ) the model to the data. In spite that it basically is “inefficient” manual fitting this mechanism is actually powerful feature allowing one to perform many different procedures with high efficiency. It does not replace specialized programs for data analysis but is greatly helpful for preliminary data analysis when experimental uncertainties (like wrong sign of BPM measurement) can cloud the fitting results. 
+	To read data into a graphical window click the right mouse button in the top part of the window (see Graphical WindowP0V1W6). That pops up a dialog box for a file name. After the file is chosen, the data description dialog box is popped up to determine data representation format. Up to eight files can be read into one window.
+Each file has to be a plain text file with space or tabulation separated columns. The length of every line should not exceed 256 symbols. The data description dialog box allows one to chose columns for x and y coordinates, and, if necessary, for error bars. Column number equal to zero means that this column is not used. Thus if a number for at least one of two error-bar columns is zero the error bars are not be plotted. Lines which begin with # sign are considered as comments and are ignored.
+There are two different ways to determine longitudinal coordinates of the plotted points. The first one is when the longitudinal coordinates are taken from the optics file itself. In this case the check box “Determine S coordinate from element name” has to be checked and the field “Column number for element names” has to point to the column with element names. Then, the program assigns longitudinal coordinate for every point to be equal the longitudinal coordinate at exit of corresponding element. If names in the file do not have OptiM prefix it can be appended from the field  “Name prefix”. If necessary only the lines with desired names can be filtered in using the field “Filter for names” (See FilteringWO8I_K). 
+In the second method the numerical value for longitudinal coordinate is taken from the column pointed by the field “Column number for S coordinate”. The values have to be expressed in cm. If the check box “Reference S coordinate to S0” is checked the initial path length (s-coordinate from the line 8 of OptiM file; see Input language description6K.4J5) is subtracted from the longitudinal coordinates kept in the file. It allows one to use the same data files for plotting data inside different short pieces of long machine.
+The described above plotting of experimental data (or any other information) allows one to do a wide scope of machine studies. For example: the plotting of BPM measurements (or differential BPM measurements) inside Tools|Trajectory1JY.3LS window allows one to understand errors in bending angles of dipoles (or focusing strength of quadrupoles) and determine required values for correctors (or quadrupole corrections); the plotting of beta-function measurements inside View|BetasYGSLBV window allows one to understand errors in focusing strength of quadrupoles. Similar procedure can be performed with other graphical windows. The use of Edit|IncrementJYL4_Z and Edit|Decrement_Y0JEQ commands allows interactively perform optics adjustments which accelerates finding out errors of machine optics.
+Example of the external file:
+# s[m]  dx1[cm] dxm[cm]  dxp[cm]  name  alarm
+-9620.2803  0.0000  0.0000  0.0000 IPM0L01 
+-9263.3896 -0.0001 -0.0028  0.0027 IPM0L02 
+-8673.1797  0.0000  0.0000  0.0000 IPM0L03 
+-8358.1797  0.0003 -0.0008  0.0013 IPM0L04 
+-7376.7598  0.0000  0.0000  0.0000 IPM0L05 
+…..
+
+$34#35Running OptiM from Command Line
+
+OptiM can be started with parameters from command line, batch file or other program. At the exit the program returns 0 for successful completion and 1 if an error is encountered. Depending on a parameter list the program will perform the following actions:
+To start the program with input file in main window one needs to use:
+optim32 InputFileName
+At start the program will read a file with InputFileName name and will be ready for an interactive operation. In particular it allows one to start the program by double click on the name of input optim file (*.opt) in File Manager or Windows Explorer. To use it one needs to describe .opt extension in the operating system. View-Option-File types menu can be used for this operation in Windows Explorer.
+	All operation modes described below are created for non interactive program execution, where the program is used to generate output files from input files. The parameters used in command line correspond to parameters used in similar menus of interactive program operation. The following swithes can be used:
+-f – save list of Twiss  functions  (beta-functions, dispersions etc.) 
+-s – save list of Twiss functions to file with MAD like structure
+-c – save list of coupled Twiss parameters 
+-i – save list of Twiss  functions  with beam space charge
+-t – save beam trajectory
+-r - read BdL from .snap file create new OptiM file
+-w - create .snap file
+-p – multi-particle tracking
+Detailed description of each mode is presented below
+	To generate list of beta functions one needs to use (see FunctionsS9DOQ7):
+optim32 -f InputOptimFileName OutputTwissFileName <filter> <MatchCase> <HideFirstLetter> <Comment> <step> <CloseLattice>
+Default values are:
+filter=*
+MatchCase=Y
+HideFirstLetter=Y
+Comment=#
+step=0
+CloseLattice=Y  (if Y periodic solution will be used) 
+The program puts Comment in a separate line at the beginning of output file. This can be used for different purposes but for CEBAF recirculator the comment usually keeps a pass number for corresponding section like “Pass 1”.
+	To generate beta function list and element parameters (MAD like structure):
+optim32 -s InputOptimFileName OutputTwissFileName <filter> <MatchCase> <HideFirstLetter> <Comment> <step> <CloseLattice>
+Program puts Comment in a separate line at the beginning of output file
+Default values are:
+filter=*,  
+MatchCase=Y, 
+HideFirstLetter=Y, 
+Comment=#
+step=0,    
+CloseLattice=Y (if Y periodic solution will be used).
+	To generate list of coupled beta-functions one needs to use (see Functions 4D5LFX9S0):
+optim32 -c InputOptimFileName OutputTwiss4DFileName <filter> <MatchCase> <HideFirstLetter> <step> <CloseLattice>
+      	defaults:
+            filter=*
+         	MatchCase=Y
+            HideFirstLetter=Y
+            step=0
+            CloseLattice=N
+	To generate list of coupled beta-functions with linear space charge focusing taken into account one needs to use (see Functions 4D5LFX9S0):
+optim32 -i InputOptimFileName OutputTwiss4DFileName <filter> <MatchCase> <HideFirstLetter> <step> <CloseLattice>
+      	defaults:
+            filter=*
+         	MatchCase=Y
+            HideFirstLetter=Y
+            step=0
+            CloseLattice=N
+	To generate list of output beam trajectory one needs to use (see Type TrajectoryG.HRLJ):
+optim32 -t InputOptimFileName OutputTrajFileName <filter> <MatchCase> <CloseLattice> <OutputType> <step>
+      	defaults:
+            filter=*
+         	MatchCase=Y
+            HideFirstLetter=Y
+            CloseLattice=Y (N - No closure, Y - linear closure, E - nonlinear closure)
+            OutputType=T (T - text, B - binary)
+            step=0
+	To read the integral BdLs from .snap file into an input file and to generate a new .opt file one needs to use (see Read Field Integral4A8OXUP) 
+optim32 -r InputOptimFileName OutputOptimFileName InputSnapFile <filter> <MatchCase> <NamePrefix> <Scale> <StartTwissFile>
+	Default values are:
+filter=*
+MatchCase=Y
+NamePrefix=""
+Scale=1
+If StartTwissFile is used the initial Twiss parameters will be taken from the END line of this file, otherwise values from initial OptiM file will be used. 
+	To create a .snap file one needs to use (see Lattice1LH9NBB)
+optim32 -w InputOptimFileName OutputSnapFileName <filter> <MatchCase> <HideFirstLetter>
+	Default values are:
+            filter=*
+         	MatchCase=Y
+            HideFirstLetter=Y
+	Multiparticle tracking
+	To perform multi-particle  tracking one needs to use (see TrackF0M18T) 
+optim32 -p InputOptimFileName OutputTrackingFileName InputPartPosFileName <filter> <MatchCase> <Nturn> <ring>
+Default values are:
+filter=*
+MatchCase=Y
+Nturn=1
+ring=L (should be R or L) 
+
+$36#37File Menu
+
+	The File menu provides commands for creating new files, opening existing files, saving files, printing files, export to and import from other platforms, and exiting the application. It also allows recalling one of four recently used files.
+
+NewQIF_L	Create a new, untitled, template to begin a new lattice.
+OpenQIGH0N	Open an existing OptiM file.
+New Text4TKVR7	Creates empty text window.
+Open TextPHL9MM	Open a Text file.
+Compress6GOTSR 	Compress the lattice description from an OptiM file to another OptiM file. 
+Import … from MAD2SO090	Convert a MAD output file to OptiM format.
+Import … from DIMAD3.UWCV.	Convert a DIMAD output file to OptiM format.
+Import … from Resolve17HCR.X	Convert a RESOLVE format file to OptiM file.
+Export ... to MADWK.KHJ	Convert an OptiM file to MAD input file
+Export ... to CEBAF DIMAD9WHW8.	Convert an OptiM file into a DIMAD input file with name conversions necessary to support CEBAF Model Server
+Export ... to RESOLVE1KC015	Convert an OptiM file into RESOLVE input file
+Save60.MF5	Save the current text window (works if the contents of the window have been changed).
+Save As3ZP20Z3	Save the current text window under a new name.
+Execute1_RRVGG	Execute a list of commands located in current text window.
+Get File Name7.XD92	Insert a file name into the current text window at cursor position.
+Print Preview42FQBS	Show a print preview of selected window.
+Print...14_XRGY	Print a selected window.
+Print Setup7NKTCR	Setup of printing and a printer.
+Exit5AQL781	Exit OptiM application.
+
+$38
+#39File New Command
+
+	The File|New command creates the main, untitled window, makes it the active window, and inserts a simple template to begin a new lattice. The application prompts you to name untitled documents when they are closed. Only one main window can be open in the program. Therefore File|New and File|Open menus are grayed if the main window is already opened.
+
+
+$40
+#41File Open Command
+
+	The File|Open command displays the Open a File dialog box so you can select a file to load into a new document window. Only one main window can be open in the program. Therefore File|New and File|Open menus are grayed if the main window is already opened.
+
+
+$42
+#43File New Text Command
+
+	The File|New Text command creates empty text window. Arbitrary number of text windows can be created.
+
+
+$44
+#45File Open Text Command
+
+	Opens a text file and puts its contents into a text window. This window cannot be the main window. This command should be used to open any text file for reference or editing. Arbitrary number of text windows can be created.
+
+
+
+
+
+$60
+#61File Save Command
+
+	The File|Save command saves the document in the active window to disk. If the document is unnamed, the Save File As dialog box is displayed so you can name the file, and choose where it is to be saved.
+
+
+$62
+#63File Save As Command
+
+	The File|Save As command allows you to save a document under a new name, or in a new location. The command displays the Save File As dialog box. You can enter the new file name, including the drive and directory. If you choose an existing file name, you are asked if you want to overwrite the existing file. 
+
+$64
+#65File Execute Command
+
+	The File|Execute command executes a list of commands located in the current (chosen) text window. Commands must be in a form of simple *.bat file. Each parameter in the line can be put in quotation marks like an example in the following line starting MSWord with file Text.doc,
+ ‘‘C:\Program files\MSOffice\Winword\Winword.Exe\’’  ‘’E:\documents\Text.doc’’  
+Such format allows one to use spaces in file names.
+
+$66
+#67File Get File Name Command
+
+	The File|Get File Name command inserts a file name into the current text window at cursor position. To get a file name the standard windows open file dialog box is used. This command is designed to obtain references to external files (see Input language description6K.4J5) and making command files (see Execute1_RRVGG).
+
+
+$68
+#69File Print Preview Command
+
+	Shows a print preview of selected window. It works for both text and graphical windows. To close File Preview, click the left mouse button at the close window button (a cross at the top left corner of the window).
+
+
+$70
+#71File Print Command
+
+	Prints a selected window. It works for both text and graphical windows.
+
+
+
+$72
+#73File Print Setup Command
+
+	The standard Windows dialog to choose a setup of printing, the paper orientation and the printer.
+
+
+
+$74
+#75File Exit Command
+
+	The File|Exit command exits OptiM. If you have modified documents without saving, you'll be prompted to save before exiting.
+
+
+$76
+#77Edit Menu
+
+	The Edit menu provides commands to undo edits, access the clipboard, delete text, and to perform special editing for the main window.
+
+Undo_W69MQ	Undo the previous operation with selected text window.
+CutXAK7Q5	Delete selected text in the selected text window and move it to the clipboard.
+Copy31PT96E	Copy selected text from the selected text window to clipboard or copy a plot to the clipboard if the selected window is a Graphical Window
+PasteZWK0HB	Move text from the clipboard to the selected text window.
+Clear AllZJUW5O	Delete all text in a selected text window.
+Delete18H2UJR	Delete selected text in a selected text window.
+Analyze Lattice4XACNN	Parse a contents of the main window.
+Analyze Header12514J8	Perform calculations for the math header of the main window and print results of the calculations at the end of lines.
+Analyze LineTSGQNA	Similar to Analyze Lattice and Analyze Header but updates only the line where the cursor is located
+Consistency CheckH_ESLQ	Perform a consistency check.
+Inverse Lattice1RQGTF0	Inverse an order of elements in the lattice.
+Scale EnergyHRV80_ 	Scale all elements of the lattice to a new energy
+Read Field Integral4A8OXUP 	Read the field integral for elements from .snap file.
+IncrementJYL4_Z	Increment a value of chosen parameter for element.
+Decrement_Y0JEQ 	Decrement a value of chosen parameter for element. 
+StepsB7NO2H 	Change steps for IncrementJYL4_Z and Decrement_Y0JEQ menu items.
+
+
+$78#79Edit Undo Command
+
+	The Edit|Undo command restores the file in the current window to the way it was before your most recent edit operation. Undo inserts any characters you deleted, deletes any characters you inserted, replaces any characters you overwrote, and moves your cursor back to a prior position.
+
+
+$80
+#81Edit Cut Command
+
+	The Edit|Cut Command removes the selected text from your document and places the text into the clipboard. Choose Edit|PasteZWK0HB menu or Shift+Insert key to paste the cut text into another document. The text remains selected in the clipboard, and can be pasted multiple times. 
+
+
+$82
+#83Edit Copy Command
+
+	The Edit|Copy command leaves the selected text intact and places an exact copy of it in the clipboard. To paste the copied text into another document, choose Edit|PasteZWK0HB or Shift+Insert key. For an active graphical window the Edit|Copy command places a copy of the plot into the clipboard
+
+
+$84
+#85Edit Paste Command
+
+	The Edit|Paste command inserts the text currently selected in the clipboard into the current text window at the cursor position. 
+
+
+$86
+#87Edit Clear All Command
+
+	The Edit|Clear All Command deletes the entire contents of the current text window. Use Edit|Undo_W69MQ to restore the contents.
+
+
+$88
+#89Edit Delete Command
+
+	Deletes select text without placing it in the clipboard. 
+
+$90
+#91Edit Analyze Lattice Command
+
+	Parses the contents of the main window, which holds the lattice description. The program pops up a message window if it encounters a syntax error. The cursor will be positioned in the line where program encounters the first error. The program rewrites the contents of the main window in its standard format. User comments will not be affected. 
+	All references to variables determined in the math header will be substituted by their values. Thus if one needs these references to be preserved the Edit|Analyse Lattice command should not be used. 
+	To prevent unintentional use of this command the dialog box warning about the file changes is popped up before any changes take place.
+	It works in the main window only.
+
+
+$92#93Edit Analyze Header Command
+
+	Parses the contents of the math header4.ACT2 of the main window (the window which holds the lattice description), performs calculations, and prints results of the calculations at the end of each line of the header. The program pops up a message window if it encounters a syntax error. The cursor will be positioned in the line where program encounters the first error.
+	This operation does not destroy the end line comments, which are allowed in the math header. 	It works in the main window only.
+
+
+$94#95Edit Analyze Line Command
+
+	Parses the contents of the main window (the window which holds the lattice description), performs calculations. If the current line (line where the cursor is located) is in the math header it reprints the result of the calculations for this line. This operation does not destroy the end line comment. If the current line is located in the element list the command prints the parsing result for this line. If element parameters are presented by variables it will replace the variables by their numerical values, and, consequently, it will brake relationship of this line to the math header.
+	This command works in the main window only.
+
+
+$96#97Edit Consistency Check
+
+	The command checks that the elements are not repeated in the element list (as it normally has to be) and that all elements of the element list are used in the lattice list. This feature is created to check repeated definitions or unused lines in the element list. 
+	The command checks that the field values and the tilts of edge focusing elements correspond to the field value and the tilt of adjacent dipoles. One needs to remember that if the tilt of a dipole is different from 0 or 90 deg. the input and output tilt angles are different (see B, D-combined function magnet2UGH_FR). The command also informs about edge focusing elements, which do not have immediately adjacent dipoles. 
+
+$98#99Edit Inverse Lattice Command
+
+	Inverses the order of elements in the lattice. Substitutes values of exit beta-functions, dispersions, energy and absolute coordinates of the initial lattice as initial beta-functions, dispersions, energy and absolute coordinates for the inverted lattice. Changes signs of (1) the accelerating gradient for accelerating cavities, (2) of the bending field for dipoles and solenoids. Adjusts the tilt angles for dipoles so that the absolute beam trajectory would stay the same. Changes signs for quad rolls. Thus after the inversion the beta-functions and the vertical dispersion through lattice will stay the same, while the horizontal dispersion will change its sign.
+
+
+$100
+#101Edit Scale Energy Command
+
+	Scale magnetic fields for all elements of the lattice to a new energy. This command should be used when the energy of the beam has to be changed. Magnetic fields of magnets are scaled proportionally to the momentum change, while cavity accelerating gradients are scaled proportionally to the energy change.
+
+
+$102
+#103Edit Read Field Integral Command
+
+	Reads field integrals for elements from .snap file. This type of files is used in EPICS control software and has the following structure:
+
+Start header
+.............
+End header
+Name_1  1  value_1
+............
+Name_n  1  value_n
+
+	The header, if it exists, is ignored by the program. 
+	Name_n is the name of the EPICS  field which determines the element integral field. It must have the following structure: pname.BDL, where p is the name prefix (q for quadrupole, b for dipole, etc., see Elements0H2QVR ), name is the element name (like MQB1A01 for the case of the CEBAF accelerator), and .BDL is the name suffix denoting that value_n represents element integral field measured in Gauss and centimeters (G cm - for dipole, G - for quadrupole, G/cm - for sextupole). Actually, the program truncates the suffix from name and does not check what follows after period. Thus any suffix or no suffix can be used. If naming convention does not have appropriate OptiM prefix (b, q, etc.) it can be added with help of the dialog window coming after Edit|Read field integral menu is chosen. The filter in this dialog box is applied to the names of the .snap file and allows to choose desired elements for the integral field update. If check box compare only is checked the field values in the main window will not be updated so that the comparison of integral fields of the .snap file and the OptiM file will be performed only. 
+	By definition the second parameters informs how many data values are in a given line. The program ignores it (or in other words sets it to one) and considers the third parameters as a set value. Other fields if they are present in the line are ignored.
+	The following example shows a naming convention for the CEBAF accelerator:
+MQB1A01  is the element name for a CEBAF quad,
+qMQB1A01  is the corresponding OptiM element name,
+MQB1A01.BDL  is the name of the EPICS field which holds a value of the element integral field.
+	See also View|Lattice1LH9NBB. This menu choice allows one to create .snap file for download into a machine.
+
+
+$104
+#105Edit Increment Command
+
+	Increments a value of chosen parameter for element. If text or graphical windows are opened their contents will be renewed for incremented value of the parameter. To increment the value of a parameter put cursor in area of this parameter (after "=" sign) and press "Ctrl +right arrow". The steps of the increment are controlled by Edit|StepsB7NO2H command.
+This command can be also used for incrementing a variable in the math header.
+
+
+
+$106
+#107Edit Decrement Command
+
+	Decrements a value of chosen parameter for element. If text or graphical windows are opened, their contents will be renewed for decremented value of the parameter. To increment a value of the parameter put cursor in area of this parameter (after "=" sign) and press "Ctrl + left arrow". The steps of the decrement are controlled by Edit|StepsB7NO2H command.
+This command can be also used for decrementing a variable in the math header.
+
+
+
+$108
+#109Edit Steps Command
+
+	Change steps for Edit|IncrementJYL4_Z and Edit|Decrement_Y0JEQ menu items. There are steps for incrementing the element length, the element magnetic field, and the element quadrupole and sextupole gradients. There are also steps for cavity gradient and phase and for decrementing and incrementing variables. 
+
+
+$110
+#111Search Menu
+
+	The Search menu provides commands to find and replace text.
+
+Find_VR4WF		Find a pattern of text.
+Replace1MUS7LF		Replace one pattern of text with another.
+NextB0UTKI		Find and/or replace the next occurrence of text pattern.
+
+$112
+#113Search Find Command
+
+	The Search|Find command searches the current text window for a text pattern. The command displays the Find dialog, which controls the search process. Options in the dialog determine whether only whole words are to be matched, whether the case of characters is significant, and whether the search should be conducted forwards or backwards through the document. As each match is found, it is highlighted in the document.
+
+
+$114
+#115Search Replace Command
+
+	The Search|Replace command searches the current document for a text pattern, and replaces occurrences of the pattern with new text. The command displays the Replace dialog, which controls the search/replace process. Options in the dialog determine whether only whole words are to be matched, and whether the case of characters is significant. The dialog is also used to specify the pattern to search for, and the text to replace occurrences with.
+
+
+$116
+#117Search Next Command
+
+	The Search|Next command repeats the last Find or Replace operation.
+
+
+$118
+#119Fitting Menu
+
+	The Fitting menu provides fitting of the lattice properties
+
+Betas1MIG458			Perform a fitting of beta-functions and dispersion.
+Undo3B49ACP			Undo results of the last fitting procedure.
+StopN02IG.			Stop fitting.
+
+$120
+#121Fitting Betas Command
+
+	Performs a fitting of beta-functions, dispersion and momentum compaction. If the fitting block was not created the Fitting Betas command will append the fitting block (template) at the end of the main window text. Then, one has to fill-in the required parameters for fitting and after this one needs to perform the Fitting Betas command again to start fitting. First, it rewrites fitting block to its standard format. Second, the program opens a text window for its logs, and, third, it performs fitting. The calculations can be stopped by StopN02IG. fitting command. One can look the contents of different windows while program fits, but an use of other menu commands during fitting can cause the program to crash.
+	The program uses the steepest descend method with automatically chosen step. The initial values of steps for length, magnetic field and its gradient are determined in the fitting block. To calculate the fitting error (which is minimized in the course of the fitting) the program uses the accuracy parameters for each of fitting parameters. Zero or negative accuracy parameter means that the corresponding parameter does not need a fitting. The example of the fitting block is shown below. As can be seen from the example the elements can be organized in groups so that the elements in each group are changed proportionally during fitting. Note that balancing of the accuracy parameters changes the convergence speed. If convergence is too slow one needs to play with ratio of these parameters to improve convergence. 
+
+
+# initial values of steps for length, magnetic field and its gradient
+BetaFitBlock dL[cm]=0.01 dB[kG]=0.01 dG[kG/cm]=0.001
+#Required parameters and their accuracy listed below(dPARM<=0. - no fitting)
+#Maximum Betas[cm] and MomentumCompaction are on the next line
+BtXmax=5000.  dBtXmax=0.  BtYmax=5000.  dBtYmax=0.  Alfa=0.  dAlfa=0.
+# Fitting parameters at the end of the lattice
+Beta_X[cm]=1603.9 	dBeta_X[cm]=0.1 	Alfa_X=0 	dAlfa_X=-0.0001
+Beta_Y[cm]=359.5 	dBeta_Y[cm]=0.1 	Alfa_Y=0 	dAlfa_Y=-0.0001 
+Disp_X[cm]=269.058 	dDisp_X[cm]=-1 	D_prime_X=0 	dD_prime_X=-0.001 
+Disp_Y[cm]=0 	dDisp_Y[cm]=-1 	D_prime_Y=0 	dD_prime_Y=-0.001 
+Qx=0.550986 	dQx=-0.01 
+Qy=0.658466 	dQy=-0.01 
+#
+#Fit at element with number =2 
+#To create a Fitting at intermidiate element: uncomment the line above, 
+# write the correct element number and insert six lines describing the
+# fit parameters. You can use up to 4 intermidiate points
+#Each point has to be determined as described above
+#
+# Groups of elements below. Each group has to be located on one line
+# beginning from the letter describing the changeable parameter such as: L:, B:, Q: 
+G: Qf QF1
+G: Qd
+EndBetaFitBlock
+
+
+$122
+#123Fitting Undo Command
+
+	Undo results of the last fitting procedure.
+
+
+$124
+#125Fitting Stop Command
+
+	Stop fitting.
+
+
+$126
+#127Tools Menu
+
+	The Tools menu provides tools for lattice study
+
+Close Lattice1K_0JGM 	Close the lattice.
+Close Symmetric13HNBVV 	Close the lattice symmetrically.
+TrackF0M18T	Perform multiparticle tracking.
+Trajectory1JY.3LS	Plot a betatron motion trajectory into a graphical window.
+Type TrajectoryG.HRLJ	Type a betatron motion trajectory into a text window.
+Close TrajectoryGTSW5T	Closes the closed orbit for circular machine.
+Tune Diagram1.RI0GJ	Plots the tune diagram.
+Show External File1OI1B89	Plots an external file.
+ControlC4V0UI 	Controls behavior of Tools|Trajectory and Tools|Close Trajectory menus).
+
+
+$128
+#129Tools Close Lattice Command
+
+	Closes the lattice (finds a periodic solution for beta-functions and dispersions). If program can close the lattice it updates the initial Twiss parameters in the main window.
+
+
+
+$130
+#131Tools Close Symmetric Command
+
+	Closes the lattice symmetrically. That means that derivatives of the beta-functions and dispersions will be equal to zero at the lattice entrance and exit. If program can close the lattice it rewrites initial Twiss parameters in the main window.
+
+
+
+$132#133Tools Track Command
+	Performs multiparticle and single and multiturn tracking. 
+	After Tools|Track menu is chosen a new window is created. This window is an interface to a tracking object with a few menu buttons at the window top to control the tracking object behavior. A few independent tracking windows can be opened simultaneously.
+	Before you can perform tracking you need to determine general tracking parameters and generate initial particle distribution. 
+	To determine general tracking parameters one needs to click the left mouse button at PARAM. button at the top of the tracking window. You will get a dialog window for input of the number of turns and the element number where the tracking results should be presented. Negative or zero element number corresponds to the last element of the lattice. Two check boxes determine should the program use the fast tracking algorithm instead of accurate one, and should the program put tracking results into a text window. If printing of tracking results is requested, then the program prints the normalized beam emittances, the maximum particle coordinates, and percent of survived particles at the end of tracking. These tracking results go into a single text window, which is used for this purpose only. If many tracking windows are opened the tracking results from all windows go to this window. If necessary a user can also use this window to type additional comments. A new line is appended to the end of the text for each tracking. 
+	After you determined the general tracking parameters you will see two new additional buttons: DISTR. and READ. They are assigned to generate an initial distribution of the particles.
+Use the DISTR. button to generate a Gaussian particle distribution in 6D phase space. It will bring a dialog window with the following parameters: RMAX, RMIN and the number of particles. RMAX and RMIN are used to determine how the Gaussian distribution is truncated at the outer and inner radii in the 6D phase space; i.e. the particles which coordinates are lager than RMAX*SIGMA or less than RMIN*SIGMA will be thrown out from the initial distribution. Assigning RMAX close to RMIN you can generate a spherical particle distribution in the 6D space. Default values are RMAX=6, RMIN=0. 
+	Other parameters for the transverse and longitudinal distributions (bunch length, energy spread and alpha) are determined in the main window in the 4D Beta-functions block3_ISOIS and the space charge block (see Space Charge Menu1YNEBMO). 
+	Parameters of the 4D Beta-function block determine the transverse particle distribution, which is are generally considered to be X-Y coupled (see 4D Beta-functions block3_ISOIS and Input language description6K.4J5). If this block was not previously created the program will ask your permission to create it, and, then, you need to determine correct initial 4D Twiss functions and emittances (use Close 4D6.0EON menu to determine initial Twiss functions for a circular machine).
+	Parameters of the space charge block determine the equation of ellipse in the longitudinal phase space (projection of 6D ellipsoid to the longitudinal plane) is: 
+	{bmc bm6.WMF}
+where sp and ss are the energy spread and the bunch length (for definition of a see also Size4D17Z36H6). As it follows from the definition the total longitudinal emittance is equal to
+		{bmc bm7.WMF}
+If the initial dispersions in the 4D Beta-function block are not zero an additional particle displacement proportional to its momentum deviation is assigned. 
+	If you need a special initial distribution you can generate it externally and then read it into a tracking window. Use READ button to perform it. The file has to be formatted as follows. The first line has to be  “OptiM Track Data”. Then one line for every particle with 6 numbers: x[cm], dx/ds, y[cm], dy/ds, z[cm], Dp/p, like in example below. 
+OptiM Track Data
+-0.281148  	-2.20735e-05  	0.0973784  	0.000123752  	-0.0444716  	0.000138878
+…..  	
+-0.19935  	4.71474e-05  	-0.00284839  	-8.62216e-05  	0.199689  	0.000104129  	
+There also can be two additional 7-th and 8-th columns. The 7-th column is a particle ID. If it is not assigned the program assigns it to be equal to a particle number. The 8-th column is the statistical weight of the particle. If it is not assigned the program assigns it to be equal to 1.
+	After you created a particle distribution you can perform tracking calculations. After the tracking is performed the particle distribution can be observed before and after the tracking using INITIAL and FINAL buttons. Using X-Y, X-X`, Y-Y`, S-dP/P buttons one can see projections of the 6D phase space into corresponding planes. One also can see how the normalized emittance, the energy spread and the beam intensity were changed in the course of tracking using buttons EMITTN and INTENS. For one turn tracking the emittance and intensity are plotted as functions of longitudinal coordinate s, while for multiturn tracking as functions of the turn number. 
+	One can perform a save of both the initial and final particle distributions using SAVE button which saves the distribution for current view mode (INITIAL or FINAL). This distribution can be read later as an initial particle distribution. 
+
+
+$134
+#135Tools Trajectory Command
+
+	Plots a betatron motion trajectory, i.e. plots a particle trajectory relative to the reference orbit. The program takes the initial particle positions angles and momentum deviation from the trajectory parameter block which form is shown below:
+TrajParamBlock
+	X[cm]=0. 	Teta_X[rad]=0.
+	Y[cm]=0. 	Teta_Y[rad]=0.
+	s[cm]=0. 	DeltaP/P=0.
+EndTrajParamBlock
+If there is no such block in the main window it will be automatically created. 	
+	Tools|ControlC4V0UI menu determines how the trajectory is plotted.
+
+
+$136
+#137Tools Type Trajectory Command
+
+	Like Trajectory1JY.3LS command but makes numerical output into a text window. 
+	The program asks initial betatron amplitudes and angles, and then propagates betatron trajectory along the lattice. Correctors kick the beam in accordance with their strength. Step parameter determines the distance between two points of the trajectory. Length of each element is divided by an integer number so that to get a step size with a value closest to the step parameter. Zero or negative step parameter causes the output to be performed at the ends of elements only. Filter allows one to leave the desired elements in the list (See FilteringWO8I_K). If necessary you can additionally cut the output to elements in the range from Start from Element to Stop at element. Zero for these parameters means the entire range of output. 
+
+
+
+$138
+#139Tools Close Trajectory Command
+
+	Closes the closed orbit for the ring where the closed orbit is different from the ideal one due to non-zero transverse and/or longitudinal correctors and momentum offset. Command updates the trajectory parameter block which are used by Trajectory1JY.3LS and Type trajectoryG.HRLJ commands. Tools|ControlC4V0UI menu determines how the trajectory closure is performed.
+
+
+$140
+#141Tools Tune Diagram Command
+
+	Plots the tune diagram. This is another type of graphical window but its functionality is close to the general graphical window (see Graphical WindowP0V1W6). The program asks coordinates for the rectangle in the tune space (where the tune diagram has to be build), the maximum order of resonances (for which resonance lines have to be build) and types of resonances (sum or coupling resonances). Additionally it asks do the user needs captions on those lines, the number of grids along vertical and horizontal axes, and the machine tune which will be marked on the tune diagram by a cross.
+
+
+$142#143Tools Show External File Command
+
+	Plots numerical values from an external text file. File has to consist of columns and rows. Any number of spaces and tabs delimits columns. Up to four curves can be build simultaneously. Corresponding dialog box is self-explanatory. One needs to assign: which column keeps data for abscissa and which columns should be used as ordinates; which ordinate axis (left or right) has to be used for plotting of corresponding curves. If column number is less or equal to zero corresponding curve will not be build. File name can be typed-in or obtained by pressing the “Get File Name” button. 
+	That is special type of graphical window but its functionality is close to the general graphical window (see Graphical WindowP0V1W6). Pressing REDRAW box at the window brings a dialog box again for adjustments of plot parameters.
+
+
+
+$144#145Tools Control Command
+
+	Controls behavior of Tools|Trajectory and Tools|Close Trajectory menus. 
+	The first two-way radio button allows one to choose how the orbit closure in a ring will be performed. If Use single plane closure for each plane is chosen then only elements of 2-by-2 horizontal and vertical transfer matrices are used for closure and non-linear terms are ignored. In this case orbit can be excited by transverse correctors only (see K-transverse correctorJMTHE5). If Use general 6D closure is chosen then the orbit is closed with all non-linearities and plane-to-plane coupling taken into account. In this case both transverse and longitudinal correctors, as well as electrostatic acceleration and RF cavities, affect the beam motion. If there are no accelerating cavities in a ring the longitudinal degree of freedom cannot be closed and one needs to check 4D closure check box. In this case only transverse coordinates are used for the closure and one additionally needs to write down a desired momentum offset in TrajParamBlock (see Trajectory1JY.3LS). Three numeric parameters below Use general 6D closure button determine the iteration parameters for the 6D (or 4D) orbit closure.
+	The second three-way radio button allows one to choose how the trajectory is plotted. If Normal plot is chosen then the vertical and horizontal beam displacements are plotted. If Plot beam displacement normalized by beam size is chosen then the program plots the beam displacements normalized by the beam sizes (x/Ax and y/Ay). And if Plot beam displacement together with beam boundaries is chosen the program, additionally to the beam centroids, plots the beam boundaries (x, x+Ax, x-Ax, and y, y+Ay, y-Ay). For the last two choices the beam size is computed the same way as for View| Sizes.OKRZF menu, i.e. the eighth check box of View| ControlCR.RMM menu determines either the betatron beam size or the total beam size should be used. 
+
+
+
+$146
+#147View Menu
+ 
+	The View menu provides a view of lattice properties
+
+BetasYGSLBV	Plot the beta-functions and dispersions.
+Sizes.OKRZF	Plot the horizontal, vertical and synchrotron beam sizes.
+PhasesBO9EB5	Plot the betatron phases.
+Functions at ElementYQBH6N	Print the beta-functions and dispersions in the text window.
+Integrals32DW9U6	Print integrals over lattice (Chromaticity, SR losses, etc.).
+Matrix11QXD2J	Print a transfer matrix between to elements.
+Integration Step1WHB3B8	Set the integration step for Integrals menu item.
+FunctionsS9DOQ7	Print Twiss parameters into the text window.
+Lattice1LH9NBB	Print all elements of the lattice with their parameters. The print is performed in order of elements locations.
+OrbitYU50JW	Print the beam trajectory to the text window.
+ControlCR.RMM	Allow to change parameters which program uses during its operation.
+DetachSUX2W0	Detach the text window.
+
+$148
+#149View Betas Command
+
+	Plots the beta-functions and dispersions (see also Graphical WindowP0V1W6).
+
+
+$150
+#151View Sizes Command
+
+	Plots the horizontal, vertical sizes for both betatron and synchrotron motion (see also Graphical WindowP0V1W6).  It also can build the total beam sizes (sum of betatron and synchrotron sizes added in squares). This feature is controlled by View| ControlCR.RMM menu.
+
+
+$152
+#153View Phases Command
+
+	Plots the betatron phases (see also Graphical WindowP0V1W6).
+
+
+$154
+#155View Function at Element Command
+
+	Prints the beta-functions and dispersions at element with number determined by dialog window into the text window.
+
+
+$156
+#157View Integrals Command
+
+	Print integrals over lattice into the text window. An example of the calculation is shown below. Values which are changed with beam acceleration (like emittance, energy spread, etc.) are given for the final energy at the lattice end. It is important to note that the contribution of sextupoles into the machine chromaticity is taken into account while the contribution from  multipoles of the same order is ignored. 
+
+N    L 	BetaX 	AlfaX 	BetaY 	AlfaY 	DspX 	DspXp 	DspY 	DspYp 	NuX 	NuY
+0    0.0	1575.9	0	355.6	-3.94e-16	269.305	-1.816e-17	0	0	0	0
+27  1000.0	1575.9	-5.13e-07	355.6	-2.46e-07	269.304	7.064e-08	0	0	0.5521	0.6599
+
+Transfer Matrix for Structure
+X[cm]	Px	Y[cm]	Py	dP/P	dL[cm]
+-0.946831	-507.037	0	0	0	524.291	
+0.000204147	-0.946831	0	0	0	-0.0549778	
+0	0	-0.535905	-300.252	0	0	
+0	0	0.00237403	-0.535905	0	0	
+-0.0549778	524.291	0	0	1	82.7826	
+0	0	0	0	0	1	
+
+Total Length=1000 	 Tunes: Qx=0.552132     Qy=0.659985 
+Momentum compaction=0.0679769 Chromaticity: nuxp=0.119024 	 nuyp=0.0595187
+Initial Energy = 579.467 MeV 		Final Energy = 579.467 MeV
+SR losses: VSR = 1.93167 keV 	RMS fluctuations of VSR = 0.939382 keV
+Relative: SR losses: VSR/E0 = 3.33354e-06 		RMS fluctuations of VSR/E0 = 1.62111e-06
+Emittance increase due to SR: ex = 5.50457e-11 cm 	ey = 0 cm
+Normalized Emittance Increase: exn = 6.24754e-08 cm 	eyn = 0 cm
+
+ Parameters below are given for 4 periods
+Total Length=4000 	 Tunes: Qx=2.20853    Qy=2.63994 
+Chromaticity: nuxp=0.476095 	 nuyp=0.238075
+SR losses: VSR = 7.7267 keV 	RMS fluctuations of VSR = 1.87876 keV
+Relative: SR losses: VSR/E0 = 1.33341e-05 		RMS fluctuations of VSR/V0 = 3.24223e-06
+
+ Parameters below are for storage ring
+Damping parameters: gx = 0.629975 	gy = 1 	gz = 2.37003 
+Equilibrium rms emittances: ex = 1.31059e-05 cm 	ey = 0 cm
+Equilibrium relative rms momentum spread: = 0.000407821(Chromaticity, SR losses, etc.).
+
+
+$158
+#159View Matrix Command
+
+	Prints a transfer matrix between elements. The program pops up a dialog window to get input parameters for calculation. Element numbering starts from one. For example request to calculate matrix from element one to element one will print the matrix for the element one If numbers outside of acceptable range are used the closest numbers for actual elements will be used. 
+
+
+$160
+#161View Integration Step Command
+
+	Sets the integration step for Integrals menu item.
+
+
+$162
+#163View Functions Command
+
+	Prints Twiss parameters into the text window. Filter allows one to leave the desired elements in the list (See FilteringWO8I_K). Negative or zero step causes an output at the ends of elements only. If you need you can print functions only for elements in the range from Start from Element to Stop at element. Zero for these parameters means the entire range of output. 
+
+$164#165View Lattice Command
+
+	Prints all elements of the lattice with their parameters. The print is performed in order of element locations. Program pops up a dialog window with choices. 
+	Filter allows one to leave the desired elements in the list (See FilteringWO8I_K).
+	Print BdL's choice causes a print of integral fields of the magnets. In this case, only the magnetic elements will be listed. The file is in the EPICS download format (used at CEBAF for downloading magnet parameters). To make a standard EPICS downloadable file a header must be inserted at the beginning of the file. This output file (with or without header) can be read back by the program with help of Edit|Read Field Integral4A8OXUP menu. It can be used for both an exchange of element parameters in between different files and a comparison of these parameters. Note that running OptiM from the command line (see Running OptiM from Command lineCommand_Line) allows one to create a standard EPICS downloadable file with the header.
+	The first letter of the element name can be skipped if desired.
+	
+
+
+$166
+#167View Orbit Command
+
+	Prints the beam orbit to the text window. If STEP is equal or less than zero only the positions at the end of each element are printed. 
+	The check box Start from coordinates & angles written in the file allows one to choose the initial coordinates independent from coordinates determined in the main window. At each next time Veiw|Orbit command is called the initial coordinates in the dialog box will be updated for the output coordinates of the previous call. That allows one to track orbit for a few periods if necessary. The value of initial vertical angle effects the machine optics and orbit shape. Therefore it is excluded from the dialog box. This value is always taken from the main window.
+	Filter allows one to leave the desired elements in the list (See FilteringWO8I_K).
+
+
+$168
+#169View Control Command
+
+	Allows to one to change parameters, which program uses during its operation. They are listed below.
+	The first parameter determines - is the lattice designed for RING or transfer LINE? If it is the ring the program automatically closes the lattice during manual or automatic fitting.
+	The second parameter is a check box. It switches between calculations at the central orbit and the reference orbit (see Optics Calculations at Reference OrbitGB0T5U).
+	Then there are eight check boxes.
+	If the first check box (Autostart for plotting lattice functions) is checked the program automatically renews graphical windows for beta-function and sizes each time when user increments or decrements a value of the element parameter (Edit|IncrementJYL4_Z or Edit|Decrement_Y0JEQ)
+	If the second check box (Autostart for printing lattice functions) is checked the program automatically types Twiss parameters at the lattice end into open text window each time when user increments or decrements a value of the element parameter (Edit|IncrementJYL4_Z or Edit|Decrement_Y0JEQ)
+	If the third check box (Clear plot before drawing into the window) is not checked the program does not erase the previous plot before drawing the next one. This option is useful to see small changes in functions. To clear a plot one needs to press the left mouse button at REFRESH green button in the graphical window.
+	If the fourth check box (Cleat text before typing into the window) is checked the program automatically erases contents of the output text window before output. 
+	If the fifth check box (Rewrite main buffer at analysis) is checked the program automatically rewrites contents of the main window before any calculation (see Edit|Analyse Lattice4XACNN). 
+	If the sixth check box (Draw element boxes at graphical screens) is checked the program draws elements as colored boxes at the bottom of graphical screen.
+	The seventh check box controls plotting apertures in View|Size menu (see Element|H-aperture limitation0K7ITG).
+	The eighth check box chooses between plotting the betatron beam size and the total beam size (sqrt(eb) versus sqrt(D^2*Dp/P)^2+eb) ). 
+ 	The next (11-th) parameter determines the number of points for plots. This number cannot be changed for already open plots. Thus if you want to change the number of points you need to close the open graphical windows or detach it from the output. Then, the change will be effective for a newly open window.
+	The twelfth parameter controls coupling threshold for View|BetasYGSLBV menu. In the presence of coupling the beta-functions in View|Betas menu do not describe particle motion and View 4D|Beta4DQUX2H6 menu should be used. If coupling is above threshhold the user will be informed that calculations are not sufficiently accurate.
+	The last two parameters determine the accuracy and the integration step of the numerical integration of particle motion equations for W-RF cavity (PI standing wave)13Z.DLO. 
+
+
+$170
+#171View Detach Command
+
+	Detaches the text window. It the program needs to make a text output it will open a new text window. This command takes effect only if the corresponding window is chosen (highlighted).
+
+$172
+#173View 4D Menu
+ 
+	The View 4D menu provides a view of lattice properties with coupled vertical and horizontal beam motion.
+
+Update 4D betas1XS.A0V	Updates initial beta-functions in 4D initial parameters block.
+Close 4D6.0EON	Closes beta-functions and dispersions for a ring and updates information in 4D initial parameters block..
+Beta4DQUX2H6	Plots 4D beta functions.
+Dispersion 4D1P.RJVE	Plots the horizontal, vertical and dispersion functions.
+Size4D17Z36H6	Plots the large and small semi-axes of the beam size ellipsoid and its rotation.
+Size projectionsEPR7M4	Plots the projection of beam sizes to the horizontal, vertical planes.
+Phases 4DD8LSSD	Plots the betatron phases.
+Functions 4D5LFX9S0	Prints 4D Twiss parameters into the text window.
+Functions at Elem.67CRP1	Print the beta-functions and dispersions at the end of element into a text window.
+ControlHS39XX	Controls the behavior for calculations of the X-Y coupled beta-functions.
+
+
+
+$174
+#175View Update 4D-betas Command
+ 
+	Updates values in 4D block (see XY coupled lattice treatmentSP2PUS and 4D Beta-functions block3_ISOIS).
+
+$176
+#177View 4D Close 4D Command
+
+	Closes the lattice for X-Y coupled case (finds the periodic solution for beta-functions and dispersions). If program can close the lattice it rewrites initial Twiss parameters in 4D Beta-functions block3_ISOIS of the main window.
+
+
+$178
+#179View 4D Betas 4D Command
+ 
+	Plots 4D beta functions with initial values taken from 4D Beta-functions block3_ISOIS of the main window (see also Graphical WindowP0V1W6 and XY coupled lattice treatmentSP2PUS).
+
+$180
+#181View 4D Dispersion 4D Command
+ 
+	Plots the horizontal and vertical dispersion functions with initial values from 4D Beta-functions block3_ISOIS of the main window (see also Graphical WindowP0V1W6).
+
+
+$182
+#183View 4D Sizes 4D Command
+ 
+	Plots the large and small semi-axes of the beam size ellipsoid (a, b) and the ellipsoid tilt angle q. Initial values of beta-functions and emittances are taken from 4D Beta-functions block3_ISOIS of the main window (see also View 4D|Size projectionsEPR7M4).
+
+
+{bmc bm8.WMF}
+
+
+	
+
+
+$184#185View 4D Sizes Projections Command
+ 
+	Plots the projections of beam ellipsoid into horizontal and vertical planes and the parameter AlphaXY describing the beam ellipse orientation in accordance with the following formula:
+	{bmc bm9.WMF}
+Here the beam projections, xmax and ymax , and corresponding them auxiliary coordinates are chosen as shown in the figure below
+
+{bmc bm10.WMF}
+For  axy = 0  the main ellipse axes coincide with the coordinate frame axes. For  axy = +-1  the ellipse is transformed into a straight line. Corresponding ellipse equation is
+	{bmc bm11.WMF}
+while the ellipse half-axes and tilt are determined by following equations:
+	{bmc bm12.WMF}
+	Initial values of beta-functions and emittances are taken from 4D Beta-functions block3_ISOIS of the main window.
+
+$186
+#187View 4D Phases 4D Command
+ 
+Plots the 4D betatron phases with initial values from 4D Beta-functions block3_ISOIS of the main window (see also Graphical WindowP0V1W6 and XY coupled lattice treatmentSP2PUS).
+
+
+
+$188
+#189View 4D Functions 4D Command
+ 
+		Prints 4D Twiss parameters into the text window. Filter allows one to leave the desired elements in the list (See FilteringWO8I_K). Negative or zero step causes an output at the ends of elements only. If you need you can print functions only for elements in the range from Start from Element to Stop at element. Zero for these parameters means the entire range of output.
+
+
+
+$190
+#191View 4D Functions at Elem.
+ 
+	Prints the 4D beta-functions and dispersions at given element into the 4D text window. The element number is determined in a popped-up dialog box. Zero or negative number denotes the lattice end.
+
+$192
+#193View 4D Control
+ 
+	Brings up a dialog box with a check box which controls updating of beta-functions for X-Y coupled motion. If the box is checked, then before every calculation the values in 4D block (see XY coupled lattice treatmentSP2PUS and 4D Beta-functions block3_ISOIS) is updated. Otherwise parameters Nu_1, Nu_2 and U are chosen so that of four possible choices for the parameters the parameter Nu_1  would be closest to its value in the main window. If necessary they can be updated (calculated) using (Update 4D betas1XS.A0V menu).
+
+
+
+$194#195Space Charge Menu
+
+	The Space Charge menu provides commands to compute an effect of the beam space charge on the beam transport for the K-V distribution for the cases of coupled and uncoupled vertical and horizontal beam motion (see Graphical WindowP0V1W6 and XY coupled lattice treatmentSP2PUS). For KV-distribution the bunch electric field depends linearly on the transverse coordinates and the 4D Twiss functions can be used to describe the beam transport with space charge taken into account.
+	The initial values for transverse phase space are taken from 4D Beta-functions block3_ISOIS of the main window. If this block was not previously created the program will ask your permission to create it, and, then, you need to determine correct initial 4D Twiss functions and emittances (use Close 4D6.0EON menu to determine initial Twiss functions for a circular machine).
+	If the space charge block was not found in the main window the program suggests creating it and, then, you need to write correct values of the beam current and bunch parameters. The second line in SpaceChargeBlock is reserved for bunched beam calculations and is not used for CW beam. For the case of bunched beam you additionally will need to write correct values for the initial bunch length and the orientation of phase space ellipse in the longitudinal phase space, i.e. parameter alpha (see Size4D17Z36H6 for definitions). The structure of the space charge block is shown below. 
+
+SpaceChargeBlock
+  BeamCurrent[A]=0.1
+  BunchLength[cm]=1.0   dP/P=0.001   Alpha[-1,1]=0.
+EndSpaceChargeBlock
+
+
+CW BetasIFCL0V	Plots 4D beta functions for CW beam.
+CW Sizes3ZZXP2P	Plots the large and small semi-axes of the beam size ellipsoid and its rotation.
+CW Projections11K2IQZ	Plots the horizontal, vertical beam sizes and the ellipse orientation parameter, a (see Size4D17Z36H6 for definition) for CW beam.
+CW Phases1_K2WM	Plots the 4D betatron phases
+CW Functions131SRWS	Prints 4D Twiss parameters into a text window
+Control5GF5A0	Controls the behavior for calculations of the CW menu.
+
+
+$196#197Space Charge CW Betas Command
+	Plots 4D beta functions for CW beam with KV-distribution. 
+
+
+$198#199Space Charge CW Sizes Command
+
+	Plots the large and small semi-axes of the beam size ellipsoid and the rotation angle of the ellipsoid (see . Size4D17Z36H6). 
+
+
+$200#201Space Charge CW Projections Command
+
+	Plots the horizontal, vertical beam sizes and the ellipse orientation parameter, a, (see Size4D17Z36H6 for definition) for CW beam with KV-distribution (see Size projectionsEPR7M4).
+
+
+$202#203Space Charge CW Phases Command
+
+	Plots 4D betatron phases for CW beam with KV-distribution. 
+
+$204#205Space Charge CW Functions Command
+
+	Prints 4D Twiss parameters into a text window for CW beam with KV-distribution. 
+
+$206#207Space Charge CW Control Command
+
+	Determines the step of the integration for all CW commands. 
+
+$208#209Window Menu
+
+	The Window menu provides commands to control the position and layout of application's windows.
+
+Cascade42T9315	Resize and position all windows in an overlapping pattern.
+Tile16H.RID	Resize and position all windows in an non overlapping pattern.
+Arrange IconsLMDNWQ	Align all iconized windows along a grid.
+Close AllGLX23P	Close all windows.
+
+$210
+#211Window Cascade Command
+
+	The Window|Cascade command arranges all document windows from the top-left position of the application's main window so that the title bar of each is visible.
+
+
+$212
+#213Window Tile Command
+
+	The Window|Tile command arranges all document windows side-by-side in a non-overlapping pattern.
+
+
+$214
+#215Window Arrange Icons Command
+
+	The Window|Arrange Icons command arranges all iconized windows into rows along the bottom of the application's main window.
+
+
+$216
+#217Window Close All Command
+
+The Window|Close All command closes all document windows open in the application.
+
+
+$218
+#219Help Menu
+
+	The Help menu provides access to the help system and the about dialog.
+
+Contents	Start help engine and brings up the help contents.
+About		Show the program version and user's name.
+
+
+$220
+#221The Toolbar
+	The Toolbar is a row of buttons at the top of the main window which represent application commands. Clicking one of the buttons is a quick alternative to choosing a command from the menu.  Buttons on the toolbar activate and deactivate according to the state of the application.
+
+Button	Action	Menu Equivalent
+{bmc bm13.BMP}	Locate and open a file	File|OpenQIGH0N
+{bmc bm14.BMP}	Open a text file for editing	File|Open TextPHL9MM	
+{bmc bm15.BMP}	Save the file in the active window	File|Save60.MF5
+{bmc bm16.BMP}	Cut selected text to Clipboard	Edit|CutXAK7Q5
+{bmc bm17.BMP}	Copy selected text or active graphical 
+	window to Clipboard	Edit|Copy31PT96E
+{bmc bm18.BMP}	Paste text from Clipboard	Edit|PasteZWK0HB
+{bmc bm19.BMP}	Change values for increment	Edit|StepsB7NO2H
+{bmc bm20.BMP}	Detach text window from output	View|DetachSUX2W0
+{bmc bm21.BMP}	Reverses the last text editing action	Edit|Undo_W69MQ
+{bmc bm22.BMP}	Finds a string or expression	Edit|Find_VR4WF
+{bmc bm23.BMP}	Repeat last Find or Replace operation	Search|NextB0UTKI
+{bmc bm24.BMP}	Prints file	File|Print14_XRGY
+{bmc bm25.BMP}	Shows pages of the document	File|Print Preview42FQBS
+{bmc bm26.BMP}	Close lattice	Tools|Close lattice1K_0JGM
+{bmc bm27.BMP}	Plots beta function	View|BetasYGSLBV
+{bmc bm28.BMP}	Types lattice functions	View|FunctionsS9DOQ7
+{bmc bm29.BMP}	Calculates the transfer matrix 
+	between elements	View|Matrix11QXD2J
+{bmc bm30.BMP}	Types integrals over lattice	View|Integrals32DW9U6
+{bmc bm31.BMP}	Closes the lattice symmetrically	Tools|Close symmetrically13HNBVV
+{bmc bm32.BMP}	Fits Beta-functions, dispersions and 
+	tune advances	Fitting|Betas1MIG458
+{bmc bm33.BMP}	Stop fitting	Fitting| StopN02IG.
+{bmc bm34.BMP}	Toggles between line and ring modes	View|ControlCR.RMM
+{bmc bm35.BMP}	Toggles between reference and central orbit modes	View|ControlCR.RMM
+.
+
+$222#223Windows Keys
+
+Cursor Movement Keys2K6J.ME
+Dialog Box KeysEXPPM1
+Editing KeysBKN_WY
+Help Keys 187LZ1HMenu KeysAPCBI5
+System Keys10J4P0Y
+Text Selection Keys52C_300
+Window Keys1HQ5.TO
+
+$224
+#225Cursor Movement Keys
+Key(s)	Function
+Arrow key	Moves the cursor left, right, up, or down in a field.
+End	Moves to the end of a line.
+Home	Moves to the beginning of a line.
+Page Up or Page Down	Moves up or down in a field, one screen at a time.
+
+$226
+#227Dialog Box Keys
+Key(s)	Function
+Tab	Moves from field to field (left to right and top to bottom).
+Shift+Tab	Moves from field to field in reverse order.
+Alt+letter	Moves to the option or group whose underlined letter matches the one you type.
+Arrow key	Moves from option to option within a group of options.
+Enter	Executes a command button.
+	Or, chooses the selected item in a list box and executes the command.
+Esc	Closes a dialog box without completing the command. (Same as Cancel)
+Alt+Down Arrow	Opens a drop-down list box.
+Alt+Up or Down Arrow	Selects item in a drop-down list box.
+Spacebar	Cancels a selection in a list box.
+	Selects or clears a check box.
+Ctrl+Slash	Selects all the items in a list box.
+Ctrl+Backslash	Cancels all selections except the current selection.
+Shift+ Arrow key	Extends selection in a text box.
+Shift+ Home	Extends selection to first character in a text box.
+Shift+ End	Extends selection to last character in a text box
+
+$228
+#229Editing Keys
+Key(s)	Function
+Backspace	Deletes the character to the left of the cursor.
+	Or, deletes selected text.
+Delete	Deletes the character to the right of the cursor.
+	Or deletes selected text.
+Ctrl+Right Arrow	Increment a parameter (see IncrementJYL4_Z).
+Ctrl+Left Arrow	Decrement a parameter (see Decrement_Y0JEQ).
+
+$230
+#231Help Keys
+Key(s)	Function
+F1	Gets Help and displays the Help Index for the application. If the Help window is already open, pressing F1 displays the "Using Windows Help" topics.
+	In some Windows applications, pressing F1 displays a Help topic on the selected command, dialog box option, or system message.
+Shift+F1	Changes the pointer to {bmc bm36.BMP} so you can get Help on a specific command, screen region, or key. You can then choose a command, click the screen region, or press a key or key combination you want to know more about.
+	(This feature is not implemented yet.)
+
+$232
+#233Menu Keys
+Key(s)	Function
+Alt	Selects the first menu on the menu bar.
+Letter key	Chooses the menu, or menu item, whose underlined letter matches the one you type, when a menu has focus.
+Alt+letter key	Pulls down the menu whose underlined letter matches the one you type.
+Left or Right Arrow	Moves among menus of the main menu bar.
+Up or Down Arrow	Moves among menu items within a drop-down menu.
+Enter	Chooses the selected menu item.
+
+$234
+#235System Keys
+The following keys can be used from any window, regardless of the application you are using.
+Key(s)	Function
+Ctrl+Esc	Switches to the Task List.
+Alt+Esc	Switches to the next application window or minimized icon, including full-screen programs.
+Alt+Tab	Switches to the next application window, restoring applications that are running as icons.
+Alt+PrtSc	Copies the entire screen to Clipboard.
+Ctrl+F4	Closes the active window.
+F1	Gets Help and displays the Help Index for the application. (See Help Keys187LZ1H)
+
+$236
+#237Text Selection Keys
+Key(s)	Function
+Shift+Left or Right Arrow	Selects text one character at a time to the left or right.
+Shift+Down or Up	Selects one line of text up or down.
+Shift+End	Selects text to the end of the line.
+Shift+Home	Selects text to the beginning of the line.
+Shift+Page Down	Selects text down one window.
+	Or, cancels the selection if the next window is already selected.
+Shift+Page Up	Selects text up one window.
+	Or, cancels the selection if the previous window is already selected.
+Ctrl+Shift+Left or Right Arrow	Selects text to the next or previous word.
+Ctrl+Shift+Up or Down Arrow	Selects text to the beginning (Up Arrow) or end (Down Arrow) of the paragraph.
+Ctrl+Shift+End	Selects text to the end of the document.
+Ctrl+Shift+Home	Selects text to the beginning of the document.
+
+$238
+#239Window Keys
+Key(s)	Function
+Alt+Spacebar	Opens the Control menu for an application window.
+Alt+Hyphen	Opens the Control menu for a document window.
+Alt+F4	Closes an application.
+Alt+Esc	Switches to the next application window or minimized icon, including full-screen programs.
+Alt+Tab	Switches to the next application window, restoring applications that are running as icons.
+Alt+Enter	Switches a non-Windows application between running in a window and running full screen.
+Arrow key	Moves a window when you have chosen Move from the Control menu.
+	Or, changes the size of a window when you have chosen Size from the Control menu.
+
+$240
+#241Mouse actions for text windows
+	You can use the left mouse button to change the position of the cursor and to highlight text. 
+	Right mouse button has additional functionality under Windows 95 and Windows NT. Press the right mouse button inside text window to see corresponding menu.
+
+
+$242
+#243Copying Text
+
+To copy text to a document from the clipboard, position the cursor at the desired insertion point, and choose Edit|Copy31PT96E from the menu or Ctrl+Insert key.
+
+$244
+#245Deleting Text
+
+To delete text from a document, select the text, and choose Edit|CutXAK7Q5 or Edit|Delete18H2UJR from the menu.  Cut will put the deleted text in the clipboard, and Delete will simply delete it. Pressing Delete key performs the same function as Edit|Delete18H2UJR.
+
+$246
+#247Exiting
+
+To exit the application, choose File|Exit5AQL781 from the menu or Alt+F4..
+
+$248
+#249Edit Window
+
+The text windows in this application allow reading, editing, printing and saving text files up to 384K characters in size.
+
+$250
+#251Drag/Drop from the File Manager
+
+A text file can be opened into an editor in the application by dragging the file from the File Manager, and dropping it on OptiM's main window.
+
+
+$252#253Starting Program from the File Manager or Command Line
+
+The program can have one parameter which is a name of the main file to be opened at start. It allows to start the program from the File Manager (Windows Explorer in Windows 95 and Windows NT) by double click on a file with appropriate file name extension; or from the DOS prompt (Windows 95 and Windows NT only) by typing the program file name and the OptiM file name 
+(like: optim32.exe astrid.opt).
+To bind .opt extension to the program in Windows 95 you need to perform the following actions.
+1. 	Open Windows Explorer
+1. 	Chose View|Options menu
+1. 	Press File Types tab
+1. 	Press New Type button
+1. 	Write  OptiM  file for Description of type
+1. 	Write  .Opt  for Associated Extension
+1. 	Press New button
+1. 	Write  Open  for Action
+1. 	Browse to OptiM .exe file
+1. 	Press OK for all pop-up windows you opened.
+Similar actions you need to perform for other platforms. 
+
+
+$254#255Elements
+
+	The first letter in the element name denotes the element type according to the following table:
+Basic accelerator elements
+O, I -free space6U_P7Q
+B, D-combined function magnet2UGH_FR
+G-magnet edge1.0LFBU
+Q-quad6XZ9KK
+C-SolenoidA35BB
+CC-only focusing part for solenoid12.TFIZ
+S-sextupole1.6W1BN
+M-multipole & axial symmetric multipole2BYL0HP
+RF acceleration
+A - pill-box RF cavity (PI standing wave, perturbation theory)7TAR_9N
+W-general RF cavity (PI standing wave, numerical integration)13Z.DLO
+Electrostatic 
+E-electrostatic acc. sectionBCTKBD
+R-electrostatic bend combined with magnetic bend3KXQ_S4
+L-electrostatic quadrupole36OC.S5
+Correctors 
+K-transverse correctorJMTHE5
+Z-longitudinal corrector.4H2.8
+Auxiliary elements
+F-lithium lensJU._81
+X-transfer matrixJIJPVT
+H-aperture limitation0K7ITG
+T-transverse random particle scatteringA1LACX 
+U-longitudinal random particle scatteringIC439E 
+V-element describing particle passage through a medium4K0PBM 
+_B-beam-beam interaction element_GFA3X 
+Y-wake-field element12LICUL
+	Either lower or upper case can be used for this first letter. The rest of the name can be encoded by letters, digits, and “:” and “_” signs in an arbitrary order. Only first 11 symbols of the name are considered by the program. Other symbols are ignored. The program is case sensitive, so that "o" , "O" , "o1" and "O1" denote 4 different elements. 
+
+$256
+#257O, I-free space
+
+Letters "O", “o”, “I” and "i" denote a drift. The first parameter is equal to the length of the drift in cm. Element “I” is assigned for denoting elements which are desirable to be visible in graphical windows like beta-function plot, etc. Normally should be used to denote the beam instrumentation like beam position monitor, viewer, etc. It is analogues to the monitor in DIMAD and MAD. 
+Element “I” can also have the second parameter. It is called the tilt angle but it is not used in any OptiM calculations and therefore can be used to keep any additional information about the element. The tilt angle is printed in View|Lattice1LH9NBB menu and can be used by other programs. One of possible applications of this parameter is that the tilt value can be used to distinguish between horizontal and vertical BPMs.
+
+Examples: 
+O    		L[cm]=136 
+otarget		=10
+iIPM1A23   	L[cm]=1        	Tilt[deg]=90  
+
+Note that the second line is correct and will be interpreted as “otarget		L[cm =10”.
+
+
+
+$258#259B,D-combined function magnet
+
+	Letters "B", “D”, “b” and "d" denote a combined function sector magnet. The first parameter is equal to the length of the magnet in cm. The second parameter is equal to the bending magnetic field in kG. The third parameter is the field gradient in kG/cm. The fourth parameter is the roll angle (tilt) of the magnet in deg with respect to the local beam frame. The rotation is performed around the beam trajectory at the magnet entrance. 
+The edge focusing of the dipole is determined by a separate element (see: G-magnet edge1.0LFBU). If an edge focusing element is used it has to be immediately adjacent to a corresponding edge of the dipole. If the tilt of a dipole is different from 0 or 90 deg. the input and output tilt angles are different. This is the consequence of the local coordinate frame choice (see Coordinate system1BRXLBN). The tilt of edge focusing element at the dipole entrance has to coincide with the dipole tilt. The tilt of edge focusing element at the dipole exit can be determined from View|Lattice1LH9NBB menu or can be calculated independently from the local coordinate frame definition. The Edit| Consistency CheckH_ESLQ menu examines that all edge focusing elements are described correctly.
+Examples: 
+B	L[cm]=12.8  	B[kG]=8.008  	G[kG/cm]=0.033144 	Tilt[deg]=45
+b2	L[cm]=12.8  	B[kG]=8.008  	G[kG/cm]=0.033144 	Tilt[deg]=0
+b2	    =12.8  	=8.008  	
+	Note that the third and fourth parameters are equal to zero for the last line.
+
+	A dipole can have a roll error. It causes the beam kick proportional to the roll and directed normally to the bending plane. Similar to correctors the dipole roll causes excitation of beam trajectory and is used in all trajectory related calculations including the optics calculations on a reference orbit.
+
+Example: 
+BB1   L[cm]=120   B[kG]=8.00   G[kG/cm]=0.0331   Tilt[deg]=0   TiltError[deg]=0.1
+
+
+$260
+#261G-magnet edge
+
+	Letters "G" and "g" denote a magnet edge which describes additional edge focusing. The first parameter is the bending magnetic field of the corresponding magnet in kG. The second parameter is the pole rotation angle in deg. It is defined so that it is positive and equal to the half of the bending angle for the rectangular magnet (magnet with parallel edges). The third parameter is the effective length of the edge field. The fourth parameter is the roll angle (tilt) of the entire magnet in deg with respect to the local beam frame. The rotation is performed around the beam trajectory at the magnet entrance. Nominally, the first and fourth parameters have to be the same as for corresponding dipole. Nevertheless if the dipole tilt angle is not equal to 0 or 90 deg. the tilt angle of the edge focusing element at the dipole exit is different from dipole tilt angle (see B, D-combined function magnet2UGH_FR)
+The inverse focal strengths of the edge field are equal to:
+		1/Fx = - tan(a) / |R|
+		1/Fy =  tan(a) / |R| - a/R**2
+where a is the pole rotation angle, R is the bending radius, and a is the effective length of the edge. The parameter a is related to DIMAD definitions by following equation:
+		a = g K (1.+(sin(a))**2) / (cos(a))**3
+where g is equal to the gap of the dipole, and K ~ 0.5 - 1 ( K - value) characterizes the length of the edge magnetic field determined by the edge shape and the coil design.
+
+Examples:
+ 
+# Vertically bending rectangular magnet (beam momentum of 445 MeV). 
+#    The magnet edges and body have to be listed in the lattice description 
+#    			as gMAI1R01 bMAI1R01 gMAI1R01
+gMAI1R01  	B[kG]=-4.84581	 Angle[deg]= 9.3943	EffLen[cm]=1.39004 	Tilt[deg]=-90 
+bMAI1R01  	L[cm]=100.449  B[kG]=-4.84581  	G[kG/cm]=0 		Tilt[deg]=-90
+#This magnet can also be described in the following way
+#       Next 6 lines have to be in the math header
+$Pc=445
+$Hro=$Pc*1e11/$c;  =>     1484.36  ; $c is the build-in light velocity ~3e10 cm/c  
+$B=-4.84581;  =>    -4.84581
+$L=100.449;  =>     100.449
+$Fi=-180/$PI*$B*$L/$Hro;  =>  18.7886419
+$FiEdge=$Fi/2.;  =>  9.39432095
+$MAI1R01=" gMAI1R01 bMAI1R01 gMAI1R01 "
+# The magnet is refered in the lattice description as $MAI1R01 for shorteness.
+#Then in the describtion of elements it looks like this:
+gMAI1R01  	B[kG]=$B	Angle[deg]= $FiEdge	EffLen[cm]=1.39004 	Tilt[deg]=-90 
+bMAI1R01  	L[cm]=$L	B[kG]=$B  	G[kG/cm]=0 		Tilt[deg]=-90
+
+# Horizontally bending sector dipole. Lattice description: g b G
+g  	B[kG]=-4.84581  	Angle[deg]=0 		EffLen[cm]=1.39004 	Tilt[deg]=0 
+b  	L[cm]=100.449  	B[kG]=-4.84581  	G[kG/cm]=0 		Tilt[deg]=0
+G  	B[kG]=4.84581  	Angle[deg]=0  		EffLen[cm]=1.39004 	Tilt[deg]=0
+
+$262
+#263R-electrostatic bend combined with magnetic bend
+
+	Letters "R" and "r" denote the electrostatic bend combined with the magnetic bend. The first three parameters are the same as for combined function magnet (see: B-combined function magnet2UGH_FR). The last two parameters are the electric field on the orbit, Eo [kV/cm], and its gradient, Ge [kV/cm2], so that the electric field potential near orbit is determined by the following equation
+	f(x,y) =  Ro Eo ln(1+x/Ro) + 0.5 Ge (x*x -y*y) + ... ,
+	Ex(x,y) = - Eo (1-x/Ro) - Ge x + ... ,
+	Ey(x,y) = + Ge y + ... ,
+Here Ro  is the bending radius determined by the common effect of electric and magnetic fields. The edge magnetic focusing is determined by a separate element. (see: G-magnet edge1.0LFBU). For the spherical electrostatic deflector, which has equal focusing strengths in both planes, one can write down that Ge = - Eo /Ro .
+
+Examples: 
+R   L[cm]= 139.62634   B[kG]=0  	Gb[kG/cm]=0 	E[kV/cm]= 0.9999869 	Ge[kV/cm**2]=0
+ra   L[cm]= 8.7266461  B[kG]=0  	Gb[kG/cm]=0 	E[kV/cm]= 0.9999869 	Ge[kV/cm**2]=0
+$264#265Q-quad
+
+	Letters "Q" and "q" denote a quadrupole. The first parameter is equal to the length of the magnet in cm. The second parameter is equal to the magnetic field gradient in kG/cm. The third parameter is the roll angle (tilt) of the magnet in deg with respect to the local beam frame. The rotation is performed around the beam trajectory.
+
+Examples: 
+Qfs     	L[cm]=45  	G[kG/cm]=0.277565 	Tilt[deg]=45
+Qd     	L[cm]=45  	G[kG/cm]=-0.445846 	
+
+	A quadrupole can have offsets in both horizontal and vertical planes. These offsets cause the beam kicks proportional to quad displacements in the corresponding planes (for the tilt=0). Similar to correctors the displacement of quadrupole causes excitation of beam trajectory and is used in all trajectory related calculations including the optics calculations on a reference orbit.
+
+Example: 
+QQf   L[cm]=45   G[kG/cm]=0.277    Tilt[deg]=0   OfsX[cm]=0.1   OfsY[cm]=0.01
+
+
+$266
+#267L-electrostatic quadrupole
+
+	Letters "L" and "l" denote an electrostatic quadrupole. The first parameter is equal to the length of the magnet in cm. The second parameter is equal to the electric field gradient in kV/cm/cm.
+
+Examples: 
+Lf		L[cm]=10 	Ge[kV/cm**2]=0.073 
+Ld		L[cm]=10  	Ge[kV/cm**2]=-0.106 
+
+
+
+$268#269S-sextupole
+
+	Letters "S" and "s" denote a sextupole. The first parameter is equal to the length of the magnet. The second parameter is equal to the sextupole gradient in kG/cm/cm. The third parameter is the roll angle (tilt) of the magnet in deg with respect to the local beam frame. The rotation is performed around the beam trajectory. Sextupoles are used for simulation of particle motion (see Tools|Trajectory1JY.3LS, Tools|Type trajectoryG.HRLJ and Tools| TrackF0M18T) and for calculation of the machine chromaticity (see View|Integrals32DW9U6).
+
+Example: 
+Sf         	L[cm]=36         	S[kG/cm/cm)]=0.0027 	Tilt[deg]=0
+Sd         L[cm]=36         	S[kG/cm/cm)]= -0.0054
+
+
+$270
+#271M-multipole & axial symmetric multipole
+
+	Letters "M" and "m" denote a zero length multipole. The first parameter is equal to the number of multipole harmonic (m=1 - quadrupole, m=2 - sextupole, ...). The second parameter is equal to the integral of the multipole gradient in kG/cm**(m-1). The third parameter is the roll angle (tilt) of the multipole in deg with respect to local beam frame. The rotation is performed around the beam trajectory. For tilt=0 the dependence of horizontal and vertical magnetic kicks on coordinates is determined by the following equations:
+
+	Dqx = - (BmL) / (Br) (r^m / m!) cos(mq)  ,
+	Dqy =  (BmL) / (Br) (r^m / m!) sin(mq)  ,
+
+where r and q are polar coordinates of the point so that  x = r cosq and y = r sinq . 
+Note that the focusing of the first order (m=1) corresponding to quadrupole field is taken into account in all calculations and, in particular, it effects the linear Twiss functions. The focusing of the second order (m=2) is taken into account in the chromaticity calculations. Multipoles of higher orders are used for particle tracking only (see Tools|Trajectory1JY.3LS, Tools|Type trajectoryG.HRLJ). 
+If the multipole parameter is negative the same M-element describes the axial symmetric non-linear focusing. That can be useful to describe nonlinear focusing of axial symmetric elements such as lithium lens, solenoid etc. In this case the same as for a general multipole the length of the element is equal to zero, but in contrary, as follows from the definition, the element tilt does not affect its action. The effects of linear axial symmetric multipole (m=-1) is taken into account in all calculations. For higher order multipoles (m < -1) their effects are taken into account for the particle tracking only ((see Tools|Trajectory1JY.3LS, Tools|Type trajectoryG.HRLJ). The kicks experienced by particles can be described by the following equations:
+	Dqx = - (BmL) / (Br) (r^m / m!) ,
+	Dqy =  (BmL) / (Br) (r^m / m!) .
+
+Example: 
+m21		Order:m=3  Bm*L[kG/cm**(m-1)]=0.01  Tilt[deg]=0
+m          	Order:m=10   Bm*L[kG/cm**(m-1)]=0.01   Tilt[deg]=45
+maxi         	Order:m=-4   Bm*L[kG/cm**(m-1)]=0.21   
+
+$272#273C-Solenoid
+
+	Letters "C" and "c" denote a solenoid. The first parameter is equal to the length of the magnet in cm. The second parameter is equal to the magnetic field in kG. The third parameter is the aperture (effective radius) of the solenoid.
+	If the aperture is equal to zero (or the third parameter is not present) a solenoid is considered as an ideal linear solenoid with transfer matrix equal to
+
+{bmc bm37.WMF}
+
+Here L is the solenoid length and B0 is its magnetic field.
+If the aperture is non-zero there is a correction related to the finite length of the solenoid edge. This correction decreases the solenoid total focusing in comparison with the ideal solenoid of the same length. In this case the solenoid length, which one needs to type in, is determined by the following equation
+
+{bmc bm38.WMF}
+
+The correction to the edge focusing at each solenoid edge is determined by the following formula
+
+{bmc bm39.WMF}
+where  a is the effective radius of the solenoid. The program also takes into account that the edge focusing is slightly shifted from the solenoid edge. 
+In tracking simulations the program also takes into account the first nonlinear focusing term (DF  r3).
+
+Examples: 
+C1		L[cm]=10	B[kG]=20
+c1		L[cm]=1100	B[kG]=1
+
+$274
+#275CC-only focusing part for solenoid
+
+	If after a letter "C" (or "c") another letter "C" (or "c") follows, then the program treats it as a focusing element with the focusing strength equal to 
+		k: = e B/(p c),
+so that the 2D transfer matrices for horizontal and vertical motions are equal to
+
+			cos(kL/2)		sin(kL/2)/(k/2)
+		 M = 
+			-sin(kL/2)*(k/2)		cos(kL/2)
+
+and vertical and horizontal motions are decoupled. Such transfer matrix coincides with a transfer matrix of the solenoid when kL = 2pn, n = 0, 1, 2, 3 ..., and vertical and horizontal motions are decoupled. Similar to the complete description of the solenoid edge focusing is taken into account. (C-SolenoidA35BB)
+
+Examples: 
+Cc1		L[cm]=10	B[kG]=20
+cc1		L[cm]=1100	B[kG]=1
+
+
+$276#277K-corrector
+
+	Letters "K" and "k" denote a dipole corrector. The first parameter is equal to the length of the magnet in cm. The second parameter is equal to the magnetic field in kG. The third parameter determines the tilt around beam direction (Tilt=0 for the horizontal corrector and Tilt=90 for the vertical one). Correctors are used for calculations of single and multiple particle tracking only (Tools|Trajectory1JY.3LS, Tools|Type trajectoryG.HRLJ).
+
+Example: 
+k          	L[cm]=10   	B[kG]=0.01   	Tilt[deg]=0
+
+
+$278#279Z-longitudinal corrector
+
+	Letters "Z" and "z" denote a longitudinal corrector. The first parameter is equal to the length of the corrector in cm. The second parameter determines the beam energy change in MeV. Longitudinal correctors are used for calculations of single and multiple particle tracking only (Tools|Trajectory1JY.3LS, Tools|Type trajectoryG.HRLJ).
+
+Example: 
+zLK1          	L[cm]=10         DE[MeV]=0.1
+
+
+$280#281A - pill-box RF cavity (PI standing wave)
+
+	Letters "A" and "a" denote an accelerating cavity. The first parameter is equal to the total length of the cavity. The second parameter is equal to the number of cells in the cavity. The third parameter is equal to the effective length of the cell. The fourth parameter is the total accelerating voltage of the cavity for the on-crest acceleration. Fifth parameter determines the accelerating phase relative to the phase of the on-crest acceleration so that the positive value means that a particle goes through the cavity after the voltage reaches its maximum. Sixth parameter (WaveL) determines the wave length of the accelerating voltage in vacuum (Lambda=c/f). The program calculates focusing effect of the cavity fields in the second order of the perturbation theory for the case when each cell is approximated by the pill-box cavity with length equal to Eff_L. This approximation works well for relativistic particles if the energy change in one cell is much less than the current particle energy. Otherwise one needs to use W-general RF cavity 13Z.DLO. Note that by definition the determinant of the cavity transfer matrix is equal to 1 (see Linear optics calculations-general RF cavity I9G_RC).
+Example: 
+# cavity with total length of 50 cm and accelerating gradient of 2.5 MeV. The cavity consists of 5
+# cells with the cell effective length of 7 cm. Accelerating phase is equal to zero (on crest 
+# acceleration)
+A2 	L[cm]=50  Ncell=5  Eff_L[cm]=7  A[MeV]=2.5  Phase[deg]=0  WaveL[cm]=20 
+
+$282#283W-RF cavity (PI standing wave)
+
+	Letters "W" and "w" denote an axial symmetric accelerating cavity. The first parameter is equal to the total length of the cavity. The second parameter is equal to the total accelerating voltage of the cavity for on-crest acceleration. Phase determines the accelerating phase relative to the phase of the on-crest acceleration so that the positive value means that a particle goes through the cavity after the voltage reaches its maximum. WaveL determines the wave length of the accelerating voltage in vacuum (Lambda=c/f). FileRef is the reference number to an external file which must be determined in the file reference section (see Input language description6K.4J5). 
+The external file has to consist of two columns determining the amplitude of the standing wave accelerating field along cavity axis. The first column determines the longitudinal coordinate and the second one the longitudinal electric field value (with sign). The program interpolates field at intermediate points using cubical spline. Usually 10-15 points per cavity cell is sufficient to get dissent accuracy. The relative dependence of the field is only important, the program chooses required amplitude itself. The coordinate has to grow with line number. The difference of coordinates for the last and first points must be equal to the cavity length. 
+The program finds the transfer matrix using the third order Runge-Kutta method.-Accuracy and number of steps are determined by View|ControlCR.RMM menu. The accuracy is determined by a difference of the transfer matrix determinant from one. If accuracy is not achieved the program pops-up a message window. To keep the transfer matrix symplectic its elements M21 and M43 are corrected to make each of the 2*2 determinants equal to 1.
+
+Example: 
+# cavity with total length of 70 cm and accelerating voltage of 2.5 MeV. The cavity field is determined in the external file C:\OPTIM\CAVITY\cav2.DAT. Accelerating phase is equal to zero (on crest acceleration).
+
+file reference start
+1 C:\OPTIM\CAVITY\cav1.DAT 
+3 C:\OPTIM\CAVITY\cav2.DAT 
+file reference end
+……..
+wAq2       	L[cm]=70        A[MeV]=2.5       Phase[deg]=0  WaveL[cm]=20 FileRef=3
+
+$284
+#285E-electrostatic accelerating section
+
+	Letters "E" and "e" denote a section with electrostatic acceleration in the uniform electrostatic field. The first parameter is equal to the total length of the accelerating field. The second parameter is equal to the total energy change in the section. The program takes into account the effect of the beam focusing and defocusing on the entrance and exit of the section but does not take any effect of the beam space charge.
+
+Example: 
+Eacc          	L[cm]=0   	Delta_E[MeV]=20
+
+$286
+#287F-Lithium lens
+
+	Letters "F" and "f" denote the lithium lens. The first parameter is equal to the length of the magnet in cm. The second parameter is equal to the electric current density in kA/cm/cm. It can be also used for an estimate of the lattice function change due to linear contribution of the beam-beam effects or the electron beam space charge in the electron cooler. For these cases one needs to make a correction for the electric field effect.
+
+Examples: 
+F1		L[cm]=10  	j[kA/cm**2]=88.72665
+
+The example below represents a description of the Fermilab lithium lens. This description includes all important physical phenomena in the lens: (1) non-linearity of lithium lens focusing due to the skin-effect and (2) particle scattering in the beryllium windows and in the lithium (see also M- axial symmetric multipole2BYL0HP and T-transverse random particle scatteringA1LACX).
+
+#--------------------------------------------------
+#                    Lens description in the math header
+$LensCurrent= 517.719904;  =>  517.719904
+$PulseLength=360e-6;  =>     0.00036  # usec,  duration of half sinusooidal pulse 
+$LensDelay=45;  =>          45  # deg, delay relative to the wave crest
+$LensL=15;  =>          15  # cm, effective length of the lens
+$LensR=1;  =>           1  # cm, radius of the lens
+$DTi=0.1;  =>         0.1  # cm, thickness of titanium contaner
+$Nlp=9;  =>           9  # number of pieces to split lens for non-linear tracking
+$RoLi=11.45e-6;  =>   1.145e-05  # Ohm cm, resistivity of lithium
+$RoTi=42e-6;  =>     4.2e-05  # Ohm cm, resistivity of titanium
+   $LensLp=$LensL/$Nlp/2;  => 0.833333333
+   $LensI0=$LensCurrent*$RoTi/($RoTi+2*$RoLi*$DTi/$LensR);  =>  490.951365
+   $LensJ0=$LensI0/($PI*$LensR*$LensR);  =>  156.274673
+   $Feff=0.5/$PulseLength;  =>  1388.88889
+   $SigmaR=$c*$c * 1e-9 / $RoLi;  =>7.84939021e+16
+   $DeltaSkin=$c/(2*$PI*sqrt($SigmaR*$Feff));  => 0.456971508
+   $KsiMax=sqrt(2)*$LensR/$DeltaSkin;  =>  3.09475216
+   $x=$KsiMax*$KsiMax;  =>  9.57749093
+   $FiKsiMax= $KsiMax / (2*sqrt(2)) * (1 + $x*(-1/8+$x*(-1/192+$x*(1/9216+$x/737280))));  => -0.6217
+   $FrKsiMax= $KsiMax / (2*sqrt(2)) * (-1 + $x*(-1/8+$x*(1/192+$x*(1/9216-$x/737280))));  => -1.7895
+   $Fr2=sqrt($FiKsiMax*$FiKsiMax + $FrKsiMax*$FrKsiMax);  =>   1.8944391
+   $Psi=atan($FiKsiMax/$FrKsiMax) + $PI/4;  =>  1.11976553
+   $si=sin($PI*$LensDelay/180-$Psi);  =>-0.328171637
+   $co=cos($PI*$LensDelay/180-$Psi);  => 0.944618111
+   $KsiNorm=sqrt(2)/$DeltaSkin;  =>  3.09475216
+   $x=$KsiNorm*$KsiNorm;  =>  9.57749093
+   $M1= $KsiNorm*$co/2/$Fr2;  => 0.771563189
+   $M3=-$KsiNorm*$si*$x*3/8/$Fr2;  =>  1.92543689
+   $M5=-$KsiNorm*$co*$x*$x*5/16/$Fr2;  =>  -44.233878
+   $M7= $KsiNorm*$si*$x*$x*$x*35/128/$Fr2;  => -128.783313
+   $M9= $KsiNorm*$co*$x*$x*$x*$x*63/256/$Fr2;  =>  3195.28114
+   $LensJ=$LensJ0*$M1;  =>  120.575785
+   $GL1=.200*$LensI0/($LensR*$LensR)*$M1*$LensL/$Nlp;  =>  126.266667
+   $GL3=.200*$LensI0/($LensR*$LensR)*$M3*$LensL/$Nlp;  =>  315.098623
+   $GL5=.200*$LensI0/($LensR*$LensR)*$M5*$LensL/$Nlp;  => -7238.89426
+   $GL7=.200*$LensI0/($LensR*$LensR)*$M7*$LensL/$Nlp;  => -21075.4478
+   $GL9=.200*$LensI0/($LensR*$LensR)*$M9*$LensL/$Nlp;  =>  522909.213
+   $ScatLi =1000*sqrt(($LensL+0.5*$LensR)/$Nlp/155.)*13.6/$E0;  => 0.179195734
+   $ScatBe=1000*sqrt(0.7/35.5)*13.6/$E0;  => 0.238717229
+   $ScatTot=1000*sqrt(($LensL+0.5*$LensR)/155.+1.4/35.5)*13.6/$E0;  => 0.634800623
+   $LiLens="fLens tLi mLens3 mLens5  mLens7 mLens9 fLens";
+
+begin lattice. Number of periods=1 
+…
+hLens tBe
+$LiLens $LiLens $LiLens 
+$LiLens $LiLens $LiLens 
+$LiLens $LiLens $LiLens 
+tBe hLens IAP2START oDR700A 
+…
+end lattice 
+#
+begin list
+mLens3 	Order:m=-3   	Bm*L[kG/cm**(m-1)]=$GL3   
+mLens5   	Order:m=-5   	Bm*L[kG/cm**(m-1)]=$GL5   
+mLens7  	Order:m=-7   	Bm*L[kG/cm**(m-1)]=$GL7   
+mLens9  	Order:m=-9   	Bm*L[kG/cm**(m-1)]=$GL9  
+tLi     	Rms angle[mrad]=$ScatLi  	1/L*dL/dx[1/cm]=0 	Tilt[deg]=0 
+tBe     	Rms angle[mrad]=$ScatBe	1/L*dL/dx[1/cm]=0 	Tilt[deg]=0 
+fLens        	L[cm]=$LensLp          	j[kA/cm**2]=$LensJ
+#
+…
+end list 
+
+
+
+$288#289X-transfer matrix 
+
+	Letters "X" and "x" denote a linear 6x6 transfer matrix. There are two parameters. The first one determines an energy change when beam passes the section described by transfer matrix, and the second the total length of the section.  Following 6 lines hold the matrix itself. The transfer matrix for the entire lattice or its fraction can be directly copied from the program output (View|Matrix11QXD2J). 
+
+Example: 
+Xmatr1     	Energy increase[MeV]=0        	L[cm]=0       
+# X[cm]		Px	Y[cm]	Py	dL[cm]	dP/P
+0.9261	6.243	0	0	0	-11 
+0.007249	1.129	0	0	0	-0.6453 
+0	0	115.9	4161	0	0 
+0	0	3.903	140.1	0	0 
+-0.5178	8.393	0	0	1	33.63 
+0	0	0	0	0	1 
+
+$290#291H-aperture limitation 
+
+	Letters "H" and "h" denote an aperture limitation. The first two parameters (Ax and Ay) determine the horizontal and vertical apertures. The third parameter determines its shape so that 0 - corresponds to a rectangular,  1 - corresponds to an ellipse, and 2 - corresponds to a hyperbolic shape as shown in the figure below. Fourth and fifth parameters (xoffset and yoffset) determine offsets of the aperture relative to the reference trajectory, and the sixth parameter determines the aperture tilt. 
+	The values of horizontal and vertical apertures (Ax and Ay) can be viewed together with the beam envelopes (use View| Sizes.OKRZF menu). If a particle is outside of the aperture in the course of tracking its tracking will be stopped and the particle will be considered as a lost particle.
+
+{bmc bm40.WMF}
+
+Example:
+HQF	Ax[cm]=4 	Ay[cm]=2 	Shape=1 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+
+
+$292#293T-transverse random particle scattering 
+
+	Letters "T" and "t" denote the transverse scatterer - the element which randomly scatters particles in the transverse plane. Every particle gets an independent random kick. The kicks have the Gaussian probability density. 
+Such element allows simulating a particle passage through a medium. The first parameter determines the rms. angle of the scattering. The second parameter determines the relative gradient of the thickness required for simulating wedged absorbers in the ionization cooling, and the third parameter determines the wedge tilt (roll). 
+
+
+t1 	Rms angle[mrad]=0.1  	dL/dx/L[1/cm]=0 	Tilt[deg]=0
+
+
+
+$294#295U-Longitudinal random particle scattering
+
+	Letters "U" and "u" denote the longitudinal scatterer - the element which randomly scatters particles in the longitudinal plane. Every particle gets an independent random kick. The kicks have the Gaussian probability density. As it follows from the definition there are equal probabilities for positive and negative energy change therefore the Z-longitudinal corrector.4H2.8 needs to be used if one wants to take into account the average energy loss in the medium. 
+Such element allows simulating a particle passage through a medium. The first parameter determines the rms. energy loss due to scattering. The second parameter determines the relative gradient of the thickness required for simulating wedged absorbers in the ionization cooling, and the third parameter determines the wedge tilt (roll). 
+
+u1 	Rms loss[MeV]=0.1  	dL/dx/L[1/cm]=0 	Tilt[deg]=0
+
+$296#297V-Particle passage through medium
+
+	Letters "V" and "v" denote an element describing particle passage through medium. It takes into account the energy loss in the medium and its fluctuations as well as the transverse particle scattering. Finite thickness is taken into account in scattering. The element plays role only during tracking and is ignored in all other calculations where it is considered to be a drift of length L0. In tracking every particle obtains an independent random kicks and displacements in all 3 planes. The kicks have the Gaussian probability density for transverse planes, and Landau distribution for longitudinal plane. 
+The medium is considered to be a wedge in horizontal plane with angle f.  For positive f the wedge thickness grows with x-coordinate increase. The thickness of the wedge is equal to L0 at x = 0. The front surface (the first one which beam encounters) of the wedge is located in x-y plane. The back surface of the wedge is tilted by angle f around y axis. Vertical dimensions of the wedge are unlimited. The wedge thickness becomes equal to zero if any of two conditions are satisfied. The first one is achieved when the value Ds = L0 + x tan(f) becomes negative. The second condition sets the thickness to zero for all x coordinates smaller than x0. An example is shown in Figure below. If necessary the wedge can be rolled around s axis (beam direction).
+The properties of wedge material are determined by wedge density in g/cm2 and nuclear charge Z. 
+{bmc bm41.WMF} 
+
+The line below presents an example of element description. The first parameter determines the wedge thickness at x = 0. The second sets the density of material. The third parameter determines nuclear charge Z. The fourth parameter is equal to tan(f) = dL/dx. The fifth parameter determines the roll angle; and the last sixth parameter sets the edge truncation coordinate. 
+
+vWedge1   L[cm]=1.3      Ro[g/cm^3]=1.3     Z=4	  dL/dx=0.1     Tilt[deg]=0     EdgeEnd[cm] = -5
+
+
+$298#299_B-Beam-beam Interaction element
+
+	In distinguish from other elements the beam-beam interaction is not described by a single line in the list of elements. To simplify setting the beam-beam collision points the beam-beam interaction is introduced by a statement in the first line of lattice block (in the next line after “begin lattice” statement (see Input language description6K.4J5).  The beam-beam statement starts with a key word _B_BEAM. Then follows an expression or variable which sets number of IPs. Other parameters are presented by names of arrays with length equal or above number of IPs. The arrays present: number of particles per bunch, horizontal and vertical emittances (actually emittances 1 and 2 for X-Y coupled lattice) , rms bunch length, number of slices by which each counter-rotating bunch need to be presented, and the longitudinal coordinate of each IP (s coordinate). The syntax of the statement is shown below. 
+_B_BEAM($Nbb, $Npart, $EmitXbb, $EmitYbb, $SigmaSbb, $Nslices, $Scollision)
+Program checks that emittances and length are above zero, the coordinates of collision points are growing monotonically and are within the total ring length (0<=S[i]<L), and the number of slices above 0 and less or equal to 32. If this conditions are not fulfilled the program opens a message box with message “Incorrect value of bunch parameter in the beam-beam statement”.
+
+The example below presents setting of 72 collision points for Tevatron for the bunch number 1.
+
+Example: Tevatron collision points
+# Insertion in the math header
+ARRAY $Npart[72];
+ARRAY $EmitXbb[72];
+ARRAY $EmitYbb[72];
+ARRAY $SigmaSbb[72];
+ARRAY $Nslices[72];
+ARRAY $Scollision[72];
+$Nbb=72 ; # Number of collision points
+$Ltot=628318.751; # Total ring length
+$S_start=0;   #reference position for the first IP
+$n=0 
+do{
+	$Npart[$n]=2e11 
+	$EmitXbb[$n]=0.0020/($beta*$gamma)
+	$EmitYbb[$n]=0.0020/($beta*$gamma)
+	$SigmaSbb[$n]=30 
+	$Nslices[$n]=1 
+	$n=$n+1 
+}while $Nbb -$n
+$Nslices[0]=12; # this is B0 main IP
+$Nslices[24]=12; # this is D0 main IP
+$n=           0;  =>           0
+do{
+	$Scollision[$n]=$S_start+$Ltot*$n*21/(1113*2)	$Scollision[$n+12]=$Scollision[$n]+$Ltot/6
+	$Scollision[$n+2*12]=$Scollision[$n]+2*$Ltot/6
+	$Scollision[$n+3*12]=$Scollision[$n]+3*$Ltot/6
+	$Scollision[$n+4*12]=$Scollision[$n]+4*$Ltot/6
+	$Scollision[$n+5*12]=$Scollision[$n]+5*$Ltot/6
+	$n=$n+1
+}while 12-$n
+#------------------------------------------
+OptiM
+…
+#------------------------------------------
+begin lattice. Number of periods=1
+_B_BEAM($Nbb, $Npart, $EmitXbb, $EmitYbb, $SigmaSbb, $Nslices, $Scollision)
+…
+end lattice
+#------------------------------------------
+
+$300#301Y - Wake Field element
+
+	Letters "Y" and "y" denote a wake field element. Length of the element is always zero and it does not participate in any optics calculations except tracking. While usually a single bunch calculations are implied multi-bunch calculations can be performed. To achieve that, the initial longitudinal distribution needs to be split on bunches and the wave length of accelerating wave needs to be equal to bunch-to-bunch distance.
+The first parameter in the element definition line determines the plane of the wake field: 0 – both transverse planes (axial symmetric wake), 1 – x-plane, 2 – y-plane, 3-longitudinal plane. The second parameter determines the scaling to be applied to the data read from a text file which determines a dependence of the wake field on longitudinal coordinate. The last parameter FileRef is the reference number to an external file which must be determined in the file reference section (see Input language description6K.4J5). 
+The external file has to consist of two columns determining the wake strength on the longitudinal coordinate. The first column determines the longitudinal coordinate in cm and the second one the wake strength in arbitrary units. Positive sign of the strength corresponds defocusing for transverse wakes, and deceleration for longitudinal wake. The longitudinal coordinate must start from zero and grow monotonically. The wake field is considered to be zero at negative coordinates. The length of the data must exceed the total longitudinal spread of the particles (bunch or beam length). The wake field strength needs to be normalized so that the momentum change excited at given longitudinal coordinate by all particles located at zero longitudinal coordinate would be equal to the product of the value in the file for this coordinate and the amplitude determined by the second parameter of the element definition. The value of momentum change has to be expressed in eV/c. The program interpolates the wake-field at intermediate points using cubical spline. Usually 10-20 points per oscillation length of the wake function are sufficient to get decent accuracy. The accuracy of computations  of wake-function grows with number of particles participating in tracking. Numerical experiments show that 500 particles yield  about 10% accuracy for longitudinal wake of Gaussian bunch. 50000 sufficient for most of calculations.
+The example below presents definition of the transverse and longitudinal wake elements.  The wake functions in the file have standard definition:
+{bmc bm42.WMF}
+They have dimensions 1/cm for longitudinal and 1/cm^2 for transverse degrees of freedom.
+
+Example: Transverse and longitudinal wake-fields for a cavity 
+# Wake field definition 
+$Npart=2e11;  # Number of particles 
+# Amplitude calculation for the wake field expressed  in inverse cm
+$AwakeL=300 * 4.8e-10 * $Npart;  
+…
+file reference start
+1  LongWake.dat 
+2  TransvWake.dat 
+file reference end
+…
+begin list
+# Longitudinal wake-field element definition
+yLSCcav  	plane=3	  Scale=$AwakeL	FileRef=1
+# Transverse wake-field element definition
+yTrSCcav 	plane=0	  Scale=$AwakeL	FileRef=2
+

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="header.js"> </script>
+</head>
+<body>
+<h4>A - Pillbox RF cavity (pi-mode standing wave)</h4>
+<table id="element">
+   <tr>
+    <th>Parameter Description</th>
+    <th>Argument Order</th>
+    <th>Argument Name </th>
+    <th>Units </th>
+    <th>Default Value</th>
+  </tr>
+  <tr>
+    <td> Total Length </td>
+    <td>  1    </td>
+    <td>  cm    </td>
+    <td>       </td>
+    <td>       </td>
+  </tr>
+  <tr class="alt">
+    <td> No of cells </td>
+    <td>  2     </td>
+    <td>        </td>
+    <td>        </td>
+    <td>        </td>
+  </tr>
+  <tr>
+    <td> Effective length </td>
+    <td>  3  </td>
+    <td>  Eff_L  </td>
+    <td>  cm </td>
+    <td>       </td>
+  </tr>
+  <tr class="alt">
+    <td>  Voltage </td>
+    <td>  4  </td>
+    <td>  A  </td>
+    <td>  MV </td>
+    <td>  0.0     </td>
+  <tr>
+    <td>  Phase </td>
+    <td>  5  </td>
+    <td>  phase  </td>
+    <td>  deg </td>
+    <td>  0.0     </td>
+  </tr>
+  <tr class="alt">
+    <td>  Wavelength </td>
+    <td>  6  </td>
+    <td>  WaveL  </td>
+    <td>  cm  </td>
+    <td>  0.0     </td>
+  </tr>
+</table>
+<p>
+The letters "A" and "a" denote an accelerating cavity. The first parameter is the total length of the cavity in cm. 
+The second parameter is the number of cells. The third parameter is the effective length of the cell. 
+The fourth parameter is the total accelerating voltage of the cavity for on-crest acceleration. 
+The fifth parameter is the accelerating phase relative to the phase of the on-crest acceleration; a 
+positive phase implies that a particle goes through the cavity after the voltage reaches its maximum. 
+the sixth parameter (WaveL) is the wavelength of the accelerating voltage in vacuum $(\lambda = c/f)$. 
+The program calculates focusing effect of the cavity fields in the second order of the perturbation 
+theory for the case when each cell is approximated by the pill-box cavity with length equal to Eff_L. 
+This approximation works well for relativistic particles if the energy change in one cell is much less 
+than the current particle energy. When that is not the case, one needs to use W-general RF cavity. 
+Note that by definition the determinant of the cavity transfer matrix is equal to 1 
+(see Linear optics calculations-general RF cavity).
+<pre>
+Example: 
+# cavity with total length of 50 cm and accelerating gradient of 2.5 MeV. The cavity consists of 5
+# cells with the cell effective length of 7 cm. Accelerating phase is equal to zero (on crest 
+# acceleration)
+A2 	L[cm]=50  Ncell=5  Eff_L[cm]=7  A[MeV]=2.5  Phase[deg]=0  WaveL[cm]=20 
+</pre>
+</body>
+</html>
+  

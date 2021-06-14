@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="header.js"> </script>
+</head>
+<body>
+<h4>R: Combined Electrostatic and Magnetostatic bend (Generalized Wien filter) </h4>
+<table id="element">
+   <tr>
+    <th>Parameter Description</th>
+    <th>Argument Order</th>
+    <th>Argument Name </th>
+    <th>Units </th>
+    <th>Default Value</th>
+   </tr>
+   <tr>
+    <td>  Length </td>
+    <td>  1  </td>
+    <td>  L  </td>
+    <td>  cm </td>
+    <td>       </td>
+  </tr>
+  <tr>
+    <td>  Magnetic Field </td>
+    <td>  2  </td>
+    <td>  B  </td>
+    <td>  kG     </td>
+    <td>        </td>
+  </tr>
+ <tr>
+    <td>  Magnetic Field Gradient</td>
+    <td>  3  </td>
+    <td>  Gb  </td>
+    <td>  kG/cm     </td>
+    <td>        </td>
+  </tr>
+  <tr>
+    <td>  Electric Field </td>
+    <td>  4  </td>
+    <td>  E  </td>
+    <td>  kV/cm     </td>
+    <td>        </td>
+  </tr>
+  <tr>
+    <td>  Electric Field Gradient </td>
+    <td>  5  </td>
+    <td>  Ge  </td>
+    <td>  kV/cm **2    </td>
+    <td>        </td>
+  </tr>
+</table>
+
+<p>
+R denotes a bend element where bending is provided by a combination of electrostatic and magnetic forces.
+Bending occurs in the horizontal plane and results from an electric field of magnitude $E_0$ in the $x$ direction
+and a magnetic field of magnitude $B_0$ in the $-y$ direction. A transverse field gradient may be present
+in either or both static fields.
+
+The first three arguments in the element specification are the same as those used for a conventional (strictly magnetic)
+combined function magnet  (see: B-combined function magnet). Two additional arguments follow:
+the electric field on the central orbit,  E [kV/cm] and its gradient, Ge [kV/cm2].
+For cylindrical electrodes, the electric field near the central orbit is given by the following equation
+$$
+\begin{eqnarray}
+	\phi(x,y)  & = &  R_0 E_0 \ln(1+x/R_0) \\
+	E_x(x,y) & = & - E_0 (1-x/R_0) + ... ,\\
+	E_y(x,y) & = & + y/R_0 + ... ,
+\end{eqnarray}
+$$
+where $R_0$ is the bending radius set by the combined effect of the electric and magnetic fields.
+In this case one has $G_e = -E_0/R_0$.  
+
+
+Magnetic edge focusing is modeled with a separate element. (see: G-magnet edge). 
+
+For spherical electrostatic deflector plates, one has $G_e = - 2 E_0 /R_0$. For toroidal plates, 
+$G_e = - (1+ k) E_0/R_0 $ with $k$ the ratio of the electrode curvature in the bending plane
+to that in the transverse plane.  If the electrodes plates are plane and parallel, $R_0 = \infty$,
+the magnetic and electric bending forces cancel each other out and one has a
+classic Wien filter.
+
+<pre>
+Examples:
+  
+R   L[cm]= 139.62634   B[kG]=0  	Gb[kG/cm]=0 	E[kV/cm]= 0.9999869 	Ge[kV/cm**2]=0
+... <br>
+ra   L[cm]= 8.7266461  B[kG]=0  	Gb[kG/cm]=0 	E[kV/cm]= 0.9999869 	Ge[kV/cm**2]=0
+</pre>
+
+<h4>Transfer Matrix</h5>
+$$
+R = 
+\left(
+\begin{array}{cccccc}
+\cos k_xL & \frac{1}{k_x} \sin k_xL  &  0 &  0 &  0  & \frac{\kappa_p}{k_x^2} (1-\cos k_xL) \\ 
+-k_x\sin k_xL                        & \cos k_xL      &  0 &  0 &  0  & \frac{\kappa_p}{k_x} \sin k_xL \\ 
+0         & 0                        &     \cos k_yL & \frac{1}{k_y}(\sin k_yL) &  0 &  0  \\
+0         & 0                        & -k_x\sin k_yL & \cos k_yL                &  0 &  0  \\
+-\frac{\kappa_p}{k_x}\sin k_xL       & -\frac{\kappa_p}{k_x}(1- \cos k_xL) &  0 &  0 &  1  & \frac{L}{\gamma^2} - \frac{L\kappa^2_p}{k_x^2} \frac{(1 -\sin k_xL)}{Lk_x} \\
+0 & 0 & 0 & 0 & 0 & 1 
+\end{array}
+\right)
+$$
+where
+$$
+\kappa_p = 1 + \left( \frac{eE_0R_0}{m_0c^2\beta^2\gamma^3}\right)^2
+$$
+
+$$
+\begin{eqnarray}
+k_x^2 & = &  \frac{1}{R_0^2} + \left( \frac{eE_0}{m_0c^2\beta^2\gamma^2} \right)^2 + \frac{eG}{cp_0} \\
+k_y^2 & = & -\frac{eG}{cp_0}
+\end{eqnarray}
+$$
+
+$$
+\frac{1}{R_0} = \frac{eE_0}{\beta c p} + \frac{eB_0}{p} =   \frac{E_0}{\beta c B\rho} +   \frac{B_0}{B\rho} = \frac{1}{\rho_B} + \frac{1}{\rho_E}   
+$$
+and
+$$
+G = G_B + \frac{1}{\beta c} G_E 
+$$
+</p>
+</body>
+</html>
+  

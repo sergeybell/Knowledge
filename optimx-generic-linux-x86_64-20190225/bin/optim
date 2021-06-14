@@ -1,0 +1,30 @@
+#!/bin/bash
+#--------------------------------------------------------- 
+# This script is used for the linux binary distribution.  
+# 
+# LC_ALL overrides *all* the locale env variables.
+# This is likely to be an overkill. In case this
+# causes some issues, the min locale env settings 
+# below should be sufficient 
+# for proper operation.
+# 
+# LC_COLLATE="en_US.UTF-8"
+# LC_NUMERIC="en_US.UTF-8"
+#
+#--------------------------------------------------------
+DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+export LD_LIBRARY_PATH=$DIR/../lib
+#if qt5 is not available on your system, try this
+#export LD_LIBRARY_PATH=$DIR/../lib:$DIR/../lib/Qt5
+#
+export LC_ALL=en_US.UTF-8
+#
+# If  LC_ALL causes problems, use this instead 
+# export LC_COLLATE="en_US.UTF-8"
+# export LC_NUMERIC="en_US.UTF-8"
+#
+# This variable defines the default search path for the Qt5 platforms plugins  
+# You should not have to define it.
+#export QT_QPA_PLATFORM_PLUGIN_PATH=$DIR/../bin/platforms
+#
+exec $DIR/optim_x "$@"

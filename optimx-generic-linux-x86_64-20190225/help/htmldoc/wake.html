@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="header.js"></script>
+<title> OptiMX Help: Wake Field Element </title>
+</head>
+<body>
+<h4>Y - Wake Field element</h4>
+<p> The letters "Y" and "y" denote a wake field element. The element length is always zero and it does not participate 
+in any optics calculations except tracking. While usually single bunch calculations are implied, multi-bunch calculations 
+can be performed. To achieve that, the initial longitudinal distribution needs to be split on bunches and the wavelength 
+of accelerating wave needs to correspond to the bunch-to-bunch distance.
+The first parameter in the element definition line determines the plane of the wake field: 0: both transverse planes (axial symmetric wake), 
+1: x-plane, 2: y-plane, 3: longitudinal plane. The second parameter determines the scaling to be applied to the data read from a text file 
+which determines a dependence of the wake field on longitudinal coordinate. The last parameter FileRef is the reference number 
+to an external file which must be determined in the file reference section (see Input language description). 
+The external file has to consist of two columns determining the wake strength on the longitudinal coordinate. 
+The first column determines the longitudinal coordinate in cm and the second one the wake strength in arbitrary units. 
+Positive sign of the strength corresponds defocusing for transverse wakes, and deceleration for longitudinal wake. 
+The longitudinal coordinate must start from zero and grow monotonically. The wake field is considered to be zero at negative coordinates. 
+The length of the data must exceed the total longitudinal spread of the particles (bunch or beam length). 
+The wake field strength needs to be normalized so that the momentum change excited at given longitudinal 
+coordinate by all particles located at zero longitudinal coordinate would be equal to the product of the value in the file 
+for this coordinate and the amplitude determined by the second parameter of the element definition. 
+The value of momentum change has to be expressed in eV/c. The program interpolates the wake-field at intermediate 
+points using cubical spline. Usually 10-20 points per oscillation length of the wake function are sufficient to 
+get decent accuracy. The accuracy of computations  of wake-function grows with number of particles participating in tracking. 
+Numerical experiments show that 500 particles yield  about 10% accuracy for the longitudinal wake of a Gaussian bunch. 
+50000 particles should be adequate in most cases. The example below illustrates how to define transverse and longitudinal wake elements.  
+The wake functions in the file have the standard definition:
+$$
+c\Delta p_\parallel(s) = Ne^2 \int_s^\infty W_\parallel(s'-s)\rho(s') ds' \;\;\; \int_{-\infty}^{\infty} \rho(s')ds' = 1
+$$
+$$
+c\Delta p_x(s) = Ne^2 x \int_s^\infty W_x(s'-s)\rho(s') ds'
+$$
+
+They have dimensions 1/cm for longitudinal and 1/cm^2 for transverse degrees of freedom.
+</p>
+<pre>
+Example: Transverse and longitudinal wake-fields for a cavity 
+# Wake field definition 
+$Npart=2e11;  # Number of particles 
+# Amplitude calculation for the wake field expressed  in inverse cm
+$AwakeL=300 * 4.8e-10 * $Npart;  
+file reference start
+1  LongWake.dat 
+2  TransvWake.dat 
+file reference end
+begin list
+# Longitudinal wake-field element definition
+yLSCcav  	plane=3	  Scale=$AwakeL	FileRef=1
+# Transverse wake-field element definition
+yTrSCcav 	plane=0	  Scale=$AwakeL	FileRef=2
+</pre>
+</body>
+</html>
+  

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="header.js"></script>  
+<title>OptiMX HELP</title>
+</head>
+<body>
+<h2>Elements</h2>
+</p>
+The first character of an element label is used to encode its type. In a few instances, the second character is
+also used for that purpose.  With the exception of the character(s) used to encode type, a label may include, in arbitrary order:
+letters, digits, and the two special characters ":" and "_" . Only the first 11 characters of a label are significant;
+all others are ignored. Labels are case sensitive, so "o" , "O" , "o1" and "O1" are four distinct elements.
+Note that type encoding is not case sensitive; the elements "o" and "O" both have the same element type.
+</p>
+The following is a complete list of available element types. 
+</p>
+
+<h3> Basic Accelerator Elements </h3> 
+<table>
+<tr> <td>O,I  </td> <td><a href="drift.html">              free space (drift)  </a> </td></tr> 
+<tr>  <td>B,D </td> <td><a href="combined_function.html"> combined function magnet </a> </td></tr> 
+<tr>  <td>G   </td> <td><a href="dipole_edge.html">  magnet edge </a> </td></tr> 
+<tr>  <td>Q   </td> <td><a href="quad.html">   quad </a> </td></tr> 
+<tr>  <td>C   </td> <td><a href="solenoid.html">  Solenoid </a> </td></tr> 
+<tr>  <td>CC  </td> <td><a href="pseudo_solenoid.html"> pseudo-solenoid (radial focusing only)  </a> </td></tr> 
+<tr>  <td>S   </td> <td><a href="sextupole.html">  sextupole </a> </td></tr> 
+<tr>  <td>M   </td> <td><a href="multipole.html">  multipole & axial symmetric multipole </a> </td></tr> 
+</table>
+<h3> RF acceleration </h3> 
+<table>
+<tr>  <td>A </td>     <td><a href="pillbox_cavity.html">pill-box RF cavity (PI standing wave, perturbation theory) </a> </td></tr> 
+<tr>  <td>W </td>  <td><a href="rf_cavity.html"> general RF cavity (PI standing wave, numerical integration) </a> </td></tr> 
+</table>
+<h3> Electrostatic Elements </h3>
+<table>
+<tr>  <td>E </td>  <td><a href="electrostatic_acceleration.html"> electrostatic acc. section </a> </td></tr> 
+<tr>  <td>R </td>  <td><a href="electrostatic_combined_function.html"> combined electrostatic and magnetostatic bend (generalized Wien filter) </a> </td></tr> 
+<tr>  <td>L </td>  <td><a href="electrostatic_quad.html"> electrostatic quadrupole </a> </td></tr> 
+</table>
+<h3> Correction Elements </h3>  
+<table>
+<tr>  <td>K </td>  <td><a href="transverse_corrector.html"> transverse corrector </a>  </td></tr> 
+<tr>  <td>Z </td>  <td><a href="longitudinal_corrector.html"> longitudinal corrector </a>  </td></tr> 
+</table>
+<h3> Auxiliary elements </h3> 
+<table>
+<tr>  <td>F </td>  <td><a href="lithium_lens.html"> lithium lens </a>  </td></tr> 
+<tr>  <td>X </td>  <td><a href="transfer_matrix.html"> transfer matrix </a>  </td></tr> 
+<tr>  <td>H </td>  <td><a href="aperture.html"> aperture limitation </a>  </td></tr> 
+<tr>  <td>T </td>  <td><a href="transverse_scatterer.html"> transverse random particle scattering  </a>  </td></tr> 
+<tr>  <td>U </td>  <td><a href="longitudinal_scatterer.html"> longitudinal random particle scattering  </a>  </td></tr> 
+<tr>  <td>V </td>  <td><a href="material.html"> element describing particle passage through a medium </a>  </td></tr> 
+<tr>  <td>_B </td> <td><a href="beam_beam.html"> beam-beam interaction element </a>  </td></tr> 
+<tr>  <td>Y </td>  <td><a href="wake.html"> wake-field element </a>  </td></tr> 
+</table>
+
+</body>
+</html>

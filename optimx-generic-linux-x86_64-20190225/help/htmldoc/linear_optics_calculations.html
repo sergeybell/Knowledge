@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="header.js">  </script>
+<title>OptiMX Help: Linear Optics Calculations </title>
+</head>
+<body>
+<h2> Linear Optics Calculations </h2>
+
+<p class="sansserif">
+  All calculations are based on six-dimensional transfer matrices. Three distinct menus are available namely: <b> View </b>, <b>View 4D</b>
+  and <b>Space Charge</b>.
+  The functions of the <b>View</b> menu are meant to be used when the motion is uncoupled. However, note that while the initial lattice functions
+  (at the beamline upstream end) are assumed to be uncoupled, no additional assumption is made about coupling. Internally, the code 
+  propagates the so-called Edwards-Teng lattice functions. The downstream beam sizes, beta-functions and dispersions are correctly
+  computed regardless of any coupling introduced by the elements in the beamline.  
+</p>
+<p> The initial beam phase space is determined by </p>
+<ul>
+<li> the vertical and horizontal beam emittances </li> 
+<li> the beam momentum spread </li>
+<li> the vertical and horizontal beta-functions and their derivatives \( \alpha = -\frac{1}{2}\frac{d\beta}{ds} \) </li>
+<li> the vertical and horizontal dispersions and their derivatives.</li>
+</ul>
+
+<p> In ring mode, computations will obviously be correct only when the overall one-turn transfer matrix contains no coupling entries.
+  Because full six-dimensional matrix calculations are always performed, the dispersions,
+  betatron beam envelopes and the momentum compaction factor will be calculated correctly even when the lattice is strongly coupled. 
+  When beta-functions are computed from the View Menu, a message box will will inform the user in the event  
+  coupling exceeds an a-priori specified threshold. The latter can be changed from the View|Control  menu.
+  
+</p>
+<p>
+  The functions in the View 4D (and Space Charge as well) menu make no assumptions about coupling and should be preferred when dealing
+  with X-Y coupled lattices. An extension of the standard Twiss parameter formalism is used (see Coupled XY coupled lattice treatment). 
+</p>
+<p>
+Lattice functions for periodic lattices are determined using 2x2 matrices for each plane;  obviously both the dispersion and the
+beta-functions determined in this manner will not be correct if coupling is present in the overall transfer matrix.
+</p>
+The program accounts for adiabatic damping due to acceleration (linear or electrostatic accelerator case).
+The beam emittance decreases in inverse proportion to the relativistic factor, $ \beta\gamma $.
+In contrast, the determinant of the transfer matrix is equal to one even in presence of acceleration
+so as to eliminate dependence of the beta-functions on the beam energy. 
+Using these conventions, the beta function, $\beta$, and the beam size, $a$, are related by the following equation
+$$ a = \sqrt{ \epsilon_{in}\beta_F \frac{\beta_{in}\gamma_{in}}{\beta\gamma} }$$
+where $\epsilon_{in}$ is the initial beam emittance, and $ \beta_{in} $, $ \gamma_{in} $  and $ \beta $, $ \gamma $ are respectively
+the initial and final relativistic factors.
+</p>
+</body>
+</html>

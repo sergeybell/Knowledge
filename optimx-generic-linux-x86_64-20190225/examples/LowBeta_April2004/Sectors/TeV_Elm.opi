@@ -1,0 +1,921 @@
+#========================================================
+# TEAVTRON NAMING CONVENTION
+#
+# DIPOLES:
+#    mBskew* - skew quad in dipoles
+#    mBENDQ* - edge fokusing in dipole
+#    mBENDS* - sextupole in dipole
+# QUADS
+#    qH*  - main bus quads
+#    qC* - final focus quads
+#    qT* - correction quads
+#    mTSQ* - skew quads
+# SEXTUPOLES
+#    mS* - chromaticity sextupoles
+#    mCS* - feeddown sextupoles
+# CORRECTORS
+#    k*SEP  -  electrostatik separators
+#    kH*;kV* -  correctors
+#  INSTRUMENTATION
+#    ip*  - BPMs
+#    is*  -  flying wires and synchrotron radiation monitors
+#    iBLT*  - BLTs
+# OPTICS CORRECTIONS
+#    MQS* - quad corrections
+#========================================================
+#  Dipoles
+#
+bBEND 	L[cm]=$Ldip     	B[kG]=$Bdip   	G[kG/cm]=0        	Tilt[deg]=0
+mBENDQ 	Order:m=1   	Bm*L[kG/cm**(m-1)]=$GdLdip   	Tilt[deg]=0
+mBskew 	Order:m=1   	Bm*L[kG/cm**(m-1)]=$GdSkew   	Tilt[deg]=-45
+mBskew0 	Order:m=1   	Bm*L[kG/cm**(m-1)]=$GdSkew0   	Tilt[deg]=-45
+mBENDS 	Order:m=2   	Bm*L[kG/cm**(m-1)]=$SdLdip   	Tilt[deg]=0
+HSCbend	Ax[cm]=3.5 	Ay[cm]=3.5 	Shape=0   OffsetX[cm]=0   OffsetY[cm]=0 	Tilt[deg]=0
+#
+bHBEND 	L[cm]=$Lhbend	B[kG]=$Bhbend	G[kG/cm]=0        	Tilt[deg]=0
+bFMIL   	L[cm]=$Lfmil    	B[kG]=$Bfmil  	G[kG/cm]=0          Tilt[deg]=0
+bFMIS   	L[cm]=$Lfmis    	B[kG]=$Bfmis 	G[kG/cm]=0          Tilt[deg]=0
+bCMAG 	L[cm]=$Lcmag    	B[kG]=$Bcmag   	G[kG/cm]=0        	Tilt[deg]=0
+bLAMBF0 	L[cm]=280 
+HSClambF0	Ax[cm]=5.05 	Ay[cm]=3.15 	Shape=0   OffsetX[cm]=0   OffsetY[cm]=0 	Tilt[deg]=0
+HSCcmag	Ax[cm]=4.4 	Ay[cm]=1.5 	Shape=0   OffsetX[cm]=0   OffsetY[cm]=0 	Tilt[deg]=0
+HSCf17k	Ax[cm]=2.475 	Ay[cm]=1.65 	Shape=0   OffsetX[cm]=0   OffsetY[cm]=0 	Tilt[deg]=0
+#HSCa0	Ax[cm]=2.3 	Ay[cm]=0.5 	Shape=0   OffsetX[cm]=0   OffsetY[cm]=0 	Tilt[deg]=0
+HSCa0	Ax[cm]=2.3 	Ay[cm]=1 	Shape=0   OffsetX[cm]=0   OffsetY[cm]=0 	Tilt[deg]=0
+HSCa0k	Ax[cm]=2.2 	Ay[cm]=2.2 	Shape=0   OffsetX[cm]=0   OffsetY[cm]=0 	Tilt[deg]=0
+HSCb48k	Ax[cm]=3.0 	Ay[cm]=1.75 	Shape=0   OffsetX[cm]=0   OffsetY[cm]=0 	Tilt[deg]=0
+HSCe48k	Ax[cm]=4.25 	Ay[cm]=1.9	Shape=0   OffsetX[cm]=0   OffsetY[cm]=0 	Tilt[deg]=0
+HSCe17k	Ax[cm]=4.1 	Ay[cm]=1.75 	Shape=0   OffsetX[cm]=0   OffsetY[cm]=0 	Tilt[deg]=0
+# 
+bE0DOGM 	L[cm]=607.06     	B[kG]=0   	 
+bE0DOGP 	L[cm]=607.06     	B[kG]=0   	 
+bE0DOGMP1 	L[cm]=123.7631   	B[kG]=0   	 
+bE0DOGMP2 	L[cm]=483.2969   	B[kG]=0   	 
+#------------------------------------------
+# Quads
+#
+# Quads at the Main Tevatron Bus.
+HSCquad	Ax[cm]=3.5 	Ay[cm]=3.5 	Shape=1   OffsetX[cm]=0   OffsetY[cm]=0 	Tilt[deg]=0
+qH_5F 	L[cm]=64.77       	G[kG/cm]=$gqH_5 	Tilt[deg]=0
+qH_3F 	L[cm]=81.4578    	G[kG/cm]=$gqH_3 	Tilt[deg]=0
+qH_F 	L[cm]=167.894   	G[kG/cm]=$gqH   	Tilt[deg]=0
+qH_2F 	L[cm]=210.1088   	G[kG/cm]=$gqH_2 	Tilt[deg]=0
+qH_1F 	L[cm]=252.48     	G[kG/cm]=$gqH_1 	Tilt[deg]=0
+qH_4F 	L[cm]=229.08     	G[kG/cm]=$gqH_4 	Tilt[deg]=0
+qH_5D 	L[cm]=64.77       	G[kG/cm]=-$gqH_5 	Tilt[deg]=0
+qH_3D 	L[cm]=81.4578    	G[kG/cm]=-$gqH_3 	Tilt[deg]=0
+qH_D 	L[cm]=167.894    	G[kG/cm]=-$gqH   	Tilt[deg]=0
+qH_4D 	L[cm]=229.08     	G[kG/cm]=-$gqH_4 	Tilt[deg]=0
+qH_2D 	L[cm]=210.1088   	G[kG/cm]=-$gqH_2 	Tilt[deg]=0
+qH_1D 	L[cm]=252.48     	G[kG/cm]=-$gqH_1 	Tilt[deg]=0
+# B0 straignt section quads
+qTQA42 	L[cm]=76.2       	G[kG/cm]= $gTQA42	Tilt[deg]=0
+qCAQ0 	L[cm]=63.5       	G[kG/cm]= $gCAQ0 	Tilt[deg]=0
+qCAQ9 	L[cm]=63.5       	G[kG/cm]= $gCAQ9	Tilt[deg]=0
+qTQA45 	L[cm]=76.2       	G[kG/cm]= $gTQA45 	Tilt[deg]=0
+qCAQ7 	L[cm]=63.5       	G[kG/cm]= $gCAQ7 	Tilt[deg]=0
+qCB0Q6D 	L[cm]=60.6425    	G[kG/cm]= $gCB0Q6D 	Tilt[deg]=0
+qCB0QT6D 	L[cm]=38.1       	G[kG/cm]= $gCB0QT6 	Tilt[deg]=0
+qCB0Q5D 	L[cm]=140.1826   	G[kG/cm]= $gB0Q5D 	Tilt[deg]=0
+qCB0Q1D 	L[cm]=140.1826   	G[kG/cm]=-$gB0Q1       	Tilt[deg]=0
+qCB0Q2F 	L[cm]=335.28     	G[kG/cm]= $gB0Q2F 	Tilt[deg]=0
+qCB0Q3D 	L[cm]=589.28     	G[kG/cm]= $gB0Q3D 	Tilt[deg]=$RollB0Q3D
+qCB0Q4F 	L[cm]=335.28     	G[kG/cm]= $gB0Q4F 	Tilt[deg]=0
+# 
+qCB0Q4D 	L[cm]=335.28     	G[kG/cm]= $gB0Q4D 	Tilt[deg]=0
+qCB0Q3F 	L[cm]=589.28     	G[kG/cm]= $gB0Q3F 	Tilt[deg]=$RollB0Q3F
+qCB0Q2D 	L[cm]=335.28     	G[kG/cm]= $gB0Q2D 	Tilt[deg]=0
+qCB0Q1F 	L[cm]=140.1826   	G[kG/cm]= $gB0Q1    	Tilt[deg]=0
+qCB0Q5F 	L[cm]=140.1826   	G[kG/cm]= $gB0Q5F	Tilt[deg]=0
+qCB0Q6F 	L[cm]=60.6425    	G[kG/cm]= $gCB0Q6F 	Tilt[deg]=0
+qCB0QT6F 	L[cm]=38.1       	G[kG/cm]= $gCB0QT6 	Tilt[deg]=0
+qCBQ7 	L[cm]=63.5       	G[kG/cm]= $gCBQ7 	Tilt[deg]=0
+qTQB15 	L[cm]=76.2       	G[kG/cm]= $gTQB15 	Tilt[deg]=0
+qCBQ9 	L[cm]=63.5       	G[kG/cm]= $gCBQ9 	Tilt[deg]=0
+qCBQ0 	L[cm]=63.5       	G[kG/cm]= $gCBQ0 	Tilt[deg]=0
+# D0 straignt section quads
+qTQC42 	L[cm]=76.2       	G[kG/cm]= $gTQC42 	Tilt[deg]=0
+qCCQ0 	L[cm]=63.5       	G[kG/cm]= $gCCQ0 	Tilt[deg]=0
+qCCQ9 	L[cm]=63.5       	G[kG/cm]= $gCCQ9 	Tilt[deg]=0
+qTQC45 	L[cm]=76.2       	G[kG/cm]= $gTQC45 	Tilt[deg]=0
+qCCQ7 	L[cm]=63.5       	G[kG/cm]= $gCCQ7 	Tilt[deg]=0 
+qCD0Q6D 	L[cm]=60.6425    	G[kG/cm]= $gCD0Q6D 	Tilt[deg]=0
+qCD0QT6D 	L[cm]=38.1       	G[kG/cm]= $gCD0QT6 	Tilt[deg]=0
+qCD0Q5D 	L[cm]=140.1826   	G[kG/cm]= $gD0Q5D 	Tilt[deg]=0
+qCD0Q2F 	L[cm]=335.28     	G[kG/cm]= $gD0Q2F 	Tilt[deg]=0
+qCD0Q3D 	L[cm]=589.28     	G[kG/cm]= $gD0Q3D 	Tilt[deg]=$RollD0Q3D
+qCD0Q4F 	L[cm]=335.28     	G[kG/cm]= $gD0Q4F 	Tilt[deg]=0
+#
+qCD0Q4D 	L[cm]=335.28     	G[kG/cm]= $gD0Q4D 	Tilt[deg]=0
+qCD0Q3F 	L[cm]=589.28     	G[kG/cm]= $gD0Q3F 	Tilt[deg]=$RollD0Q3F
+qCD0Q2D 	L[cm]=335.28     	G[kG/cm]= $gD0Q2D 	Tilt[deg]=0
+qCD0Q5F 	L[cm]=140.1826   	G[kG/cm]= $gD0Q5F 	Tilt[deg]=0
+qCD0Q6F 	L[cm]=60.6425    	G[kG/cm]= $gCD0Q6F 	Tilt[deg]=0
+qCD0QT6F 	L[cm]=38.1       	G[kG/cm]= $gCD0QT6 	Tilt[deg]=0
+qCDQ7 	L[cm]=63.5       	G[kG/cm]= $gCDQ7 	Tilt[deg]=0
+qTQD15 	L[cm]=76.2       	G[kG/cm]= $gTQD15 	Tilt[deg]=0
+qCDQ9 	L[cm]=63.5       	G[kG/cm]= $gCDQ9 	Tilt[deg]=0
+qCDQ0 	L[cm]=63.5       	G[kG/cm]= $gCDQ0 	Tilt[deg]=0
+# Tune correction quads
+qTQDD1 	L[cm]=76.2       	G[kG/cm]=$gQDD1 	Tilt[deg]=0
+qTQFA4 	L[cm]=76.2       	G[kG/cm]=$gQFA4 	Tilt[deg]=0
+# Phase advance correction quads
+qTQFE1 	L[cm]=76.2       	G[kG/cm]=$gQFE1 	Tilt[deg]=0
+qTQDE2 	L[cm]=76.2       	G[kG/cm]=$gQDE2 	Tilt[deg]=0
+qTQFF3 	L[cm]=76.2       	G[kG/cm]=$gQFF3 	Tilt[deg]=0
+qTQDF4 	L[cm]=76.2       	G[kG/cm]=$gQDF4 	Tilt[deg]=0
+# COLLIMATOR PHASE BUMP QUADRUPOLES.
+qTQE17 	L[cm]=76.2       	G[kG/cm]=$gQE17 	Tilt[deg]=0
+qTQE19 	L[cm]=76.2       	G[kG/cm]=$gQE19 	Tilt[deg]=0
+qTQE26 	L[cm]=76.2       	G[kG/cm]=$gQE26 	Tilt[deg]=0
+qTQE28 	L[cm]=76.2       	G[kG/cm]=$gQE28 	Tilt[deg]=0
+qTQE47 	L[cm]=76.2       	G[kG/cm]=$gQE47 	Tilt[deg]=0
+qTQF28 	L[cm]=76.2       	G[kG/cm]=$gQF28 	Tilt[deg]=0
+qTQF32 	L[cm]=76.2       	G[kG/cm]=$gQF32 	Tilt[deg]=0
+qTQF33 	L[cm]=76.2       	G[kG/cm]=$gQF33 	Tilt[deg]=0
+qTQF34 	L[cm]=76.2       	G[kG/cm]=$gQF34       	Tilt[deg]=0
+# Skew quads
+mTSQ 	Order:m=1      Bm*L[kG/cm**(m-1)]=$gKSQ   	Tilt[deg]=-45
+mTSQA0 	Order:m=1      Bm*L[kG/cm**(m-1)]=$gKSQA0  	Tilt[deg]=-45
+mTSQA4 	Order:m=1      Bm*L[kG/cm**(m-1)]=$gKSQA4   	Tilt[deg]=-45
+mTSQB1 	Order:m=1      Bm*L[kG/cm**(m-1)]=$gKSQB1   	Tilt[deg]=-45
+mTSQD0 	Order:m=1      Bm*L[kG/cm**(m-1)]=$gKSQD0   	Tilt[deg]=-45
+mTSQE0 	Order:m=1      Bm*L[kG/cm**(m-1)]=$gKSQE0   	Tilt[deg]=-45
+# QXR quads
+mTQXR_E0 	Order:m=1      Bm*L[kG/cm**(m-1)]=$gQXR_E0   	Tilt[deg]=0
+mTQXR_E1 	Order:m=1      Bm*L[kG/cm**(m-1)]=$gQXR_E1   	Tilt[deg]=0
+mTQXR_C0 	Order:m=1      Bm*L[kG/cm**(m-1)]=$gQXR_C0   	Tilt[deg]=0
+#Solenoid
+cCDF 	L[cm]=240 	B[kG]=$B_CDF
+cD0 	L[cm]=150.5 	B[kG]=$B_D0
+cTEL	L[cm]=250	B[kG]=$B_TEL
+# Quads correcting optics due to beam displacemeing in sextupoles and other focusing errors
+ MQSF_A0U5	Order:m=1	Bm*L[kG/cm**(m-1)]=$gAU5	Tilt[deg]=$aAU5
+ MQSF_A0U4	Order:m=1	Bm*L[kG/cm**(m-1)]=$gAU4	Tilt[deg]=$aAU4
+ MQSF_A0U1	Order:m=1	Bm*L[kG/cm**(m-1)]=$gAU1	Tilt[deg]=$aAU1
+ MQSF_A0D1	Order:m=1	Bm*L[kG/cm**(m-1)]=$gAD1	Tilt[deg]=$aAD1
+ MQSF_A0D4	Order:m=1	Bm*L[kG/cm**(m-1)]=$gAD4	Tilt[deg]=$aAD4
+ MQSF_A0D5	Order:m=1	Bm*L[kG/cm**(m-1)]=$gAD5	Tilt[deg]=$aAD5
+ MQSF_A13	Order:m=1	Bm*L[kG/cm**(m-1)]=$gA13	Tilt[deg]=$aA13
+ MQSF_A14	Order:m=1	Bm*L[kG/cm**(m-1)]=$gA14	Tilt[deg]=$aA14
+ MQSF_A15	Order:m=1	Bm*L[kG/cm**(m-1)]=$gA15	Tilt[deg]=$aA15
+ MQSF_A16	Order:m=1	Bm*L[kG/cm**(m-1)]=$gA16	Tilt[deg]=$aA16
+ MQSF_A17	Order:m=1	Bm*L[kG/cm**(m-1)]=$gA17	Tilt[deg]=$aA17
+ MQSF_A18	Order:m=1	Bm*L[kG/cm**(m-1)]=$gA18	Tilt[deg]=$aA18
+ MQSF_A19	Order:m=1	Bm*L[kG/cm**(m-1)]=$gA19	Tilt[deg]=$aA19
+ MQSF_A21	Order:m=1	Bm*L[kG/cm**(m-1)]=$gA21	Tilt[deg]=$aA21
+ MQSF_A22	Order:m=1	Bm*L[kG/cm**(m-1)]=$gA22	Tilt[deg]=$aA22
+ MQSF_A23	Order:m=1	Bm*L[kG/cm**(m-1)]=$gA23	Tilt[deg]=$aA23
+ MQSF_A24	Order:m=1	Bm*L[kG/cm**(m-1)]=$gA24	Tilt[deg]=$aA24
+ MQSF_A25	Order:m=1	Bm*L[kG/cm**(m-1)]=$gA25	Tilt[deg]=$aA25
+ MQSF_A26	Order:m=1	Bm*L[kG/cm**(m-1)]=$gA26	Tilt[deg]=$aA26
+ MQSF_A27	Order:m=1	Bm*L[kG/cm**(m-1)]=$gA27	Tilt[deg]=$aA27
+ MQSF_A28	Order:m=1	Bm*L[kG/cm**(m-1)]=$gA28	Tilt[deg]=$aA28
+ MQSF_A29	Order:m=1	Bm*L[kG/cm**(m-1)]=$gA29	Tilt[deg]=$aA29
+ MQSF_A32	Order:m=1	Bm*L[kG/cm**(m-1)]=$gA32	Tilt[deg]=$aA32
+ MQSF_A33	Order:m=1	Bm*L[kG/cm**(m-1)]=$gA33	Tilt[deg]=$aA33
+ MQSF_A34	Order:m=1	Bm*L[kG/cm**(m-1)]=$gA34	Tilt[deg]=$aA34
+ MQSF_A35	Order:m=1	Bm*L[kG/cm**(m-1)]=$gA35	Tilt[deg]=$aA35
+ MQSF_A36	Order:m=1	Bm*L[kG/cm**(m-1)]=$gA36	Tilt[deg]=$aA36
+ MQSF_A37	Order:m=1	Bm*L[kG/cm**(m-1)]=$gA37	Tilt[deg]=$aA37
+ MQSF_A38	Order:m=1	Bm*L[kG/cm**(m-1)]=$gA38	Tilt[deg]=$aA38
+ MQSF_A39	Order:m=1	Bm*L[kG/cm**(m-1)]=$gA39	Tilt[deg]=$aA39
+ MQSF_A42	Order:m=1	Bm*L[kG/cm**(m-1)]=$gA42	Tilt[deg]=$aA42
+ MQSF_A43	Order:m=1	Bm*L[kG/cm**(m-1)]=$gA43	Tilt[deg]=$aA43
+ MQSF_A44	Order:m=1	Bm*L[kG/cm**(m-1)]=$gA44	Tilt[deg]=$aA44
+ MQSF_A45	Order:m=1	Bm*L[kG/cm**(m-1)]=$gA45	Tilt[deg]=$aA45
+ MQSF_A46	Order:m=1	Bm*L[kG/cm**(m-1)]=$gA46	Tilt[deg]=$aA46
+ MQSF_A47	Order:m=1	Bm*L[kG/cm**(m-1)]=$gA47	Tilt[deg]=$aA47
+ MQSF_A48	Order:m=1	Bm*L[kG/cm**(m-1)]=$gA48	Tilt[deg]=$aA48
+ MQSF_A49	Order:m=1	Bm*L[kG/cm**(m-1)]=$gA49	Tilt[deg]=$aA49
+ MQSF_B0U	Order:m=1	Bm*L[kG/cm**(m-1)]=$gB0U	Tilt[deg]=$aB0U
+ MQSF_B0D	Order:m=1	Bm*L[kG/cm**(m-1)]=$gB0D	Tilt[deg]=$aB0D
+ MQSF_B11	Order:m=1	Bm*L[kG/cm**(m-1)]=$gB11	Tilt[deg]=$aB11
+ MQSF_B12	Order:m=1	Bm*L[kG/cm**(m-1)]=$gB12	Tilt[deg]=$aB12
+ MQSF_B13	Order:m=1	Bm*L[kG/cm**(m-1)]=$gB13	Tilt[deg]=$aB13
+ MQSF_B14	Order:m=1	Bm*L[kG/cm**(m-1)]=$gB14	Tilt[deg]=$aB14
+ MQSF_B15	Order:m=1	Bm*L[kG/cm**(m-1)]=$gB15	Tilt[deg]=$aB15
+ MQSF_B16	Order:m=1	Bm*L[kG/cm**(m-1)]=$gB16	Tilt[deg]=$aB16
+ MQSF_B17	Order:m=1	Bm*L[kG/cm**(m-1)]=$gB17	Tilt[deg]=$aB17
+ MQSF_B18	Order:m=1	Bm*L[kG/cm**(m-1)]=$gB18	Tilt[deg]=$aB18
+ MQSF_B19	Order:m=1	Bm*L[kG/cm**(m-1)]=$gB19	Tilt[deg]=$aB19
+ MQSF_B21	Order:m=1	Bm*L[kG/cm**(m-1)]=$gB21	Tilt[deg]=$aB21
+ MQSF_B22	Order:m=1	Bm*L[kG/cm**(m-1)]=$gB22	Tilt[deg]=$aB22
+ MQSF_B23	Order:m=1	Bm*L[kG/cm**(m-1)]=$gB23	Tilt[deg]=$aB23
+ MQSF_B24	Order:m=1	Bm*L[kG/cm**(m-1)]=$gB24	Tilt[deg]=$aB24
+ MQSF_B25	Order:m=1	Bm*L[kG/cm**(m-1)]=$gB25	Tilt[deg]=$aB25
+ MQSF_B26	Order:m=1	Bm*L[kG/cm**(m-1)]=$gB26	Tilt[deg]=$aB26
+ MQSF_B27	Order:m=1	Bm*L[kG/cm**(m-1)]=$gB27	Tilt[deg]=$aB27
+ MQSF_B28	Order:m=1	Bm*L[kG/cm**(m-1)]=$gB28	Tilt[deg]=$aB28
+ MQSF_B29	Order:m=1	Bm*L[kG/cm**(m-1)]=$gB29	Tilt[deg]=$aB29
+ MQSF_B32	Order:m=1	Bm*L[kG/cm**(m-1)]=$gB32	Tilt[deg]=$aB32
+ MQSF_B33	Order:m=1	Bm*L[kG/cm**(m-1)]=$gB33	Tilt[deg]=$aB33
+ MQSF_B34	Order:m=1	Bm*L[kG/cm**(m-1)]=$gB34	Tilt[deg]=$aB34
+ MQSF_B35	Order:m=1	Bm*L[kG/cm**(m-1)]=$gB35	Tilt[deg]=$aB35
+ MQSF_B36	Order:m=1	Bm*L[kG/cm**(m-1)]=$gB36	Tilt[deg]=$aB36
+ MQSF_B37	Order:m=1	Bm*L[kG/cm**(m-1)]=$gB37	Tilt[deg]=$aB37
+ MQSF_B38	Order:m=1	Bm*L[kG/cm**(m-1)]=$gB38	Tilt[deg]=$aB38
+ MQSF_B39	Order:m=1	Bm*L[kG/cm**(m-1)]=$gB39	Tilt[deg]=$aB39
+ MQSF_B42	Order:m=1	Bm*L[kG/cm**(m-1)]=$gB42	Tilt[deg]=$aB42
+ MQSF_B43	Order:m=1	Bm*L[kG/cm**(m-1)]=$gB43	Tilt[deg]=$aB43
+ MQSF_B44	Order:m=1	Bm*L[kG/cm**(m-1)]=$gB44	Tilt[deg]=$aB44
+ MQSF_B45	Order:m=1	Bm*L[kG/cm**(m-1)]=$gB45	Tilt[deg]=$aB45
+ MQSF_B46	Order:m=1	Bm*L[kG/cm**(m-1)]=$gB46	Tilt[deg]=$aB46
+ MQSF_B47	Order:m=1	Bm*L[kG/cm**(m-1)]=$gB47	Tilt[deg]=$aB47
+ MQSF_C0U3	Order:m=1	Bm*L[kG/cm**(m-1)]=$gCU3	Tilt[deg]=$aCU3
+ MQSF_C0U2	Order:m=1	Bm*L[kG/cm**(m-1)]=$gCU2	Tilt[deg]=$aCU2
+ MQSF_C0U1	Order:m=1	Bm*L[kG/cm**(m-1)]=$gCU1	Tilt[deg]=$aCU1
+ MQSF_C0D1	Order:m=1	Bm*L[kG/cm**(m-1)]=$gCD1	Tilt[deg]=$aCD1
+ MQSF_C0D2	Order:m=1	Bm*L[kG/cm**(m-1)]=$gCD2	Tilt[deg]=$aCD2
+ MQSF_C0D3	Order:m=1	Bm*L[kG/cm**(m-1)]=$gCD3	Tilt[deg]=$aCD3
+ MQSF_C13	Order:m=1	Bm*L[kG/cm**(m-1)]=$gC13	Tilt[deg]=$aC13
+ MQSF_C14	Order:m=1	Bm*L[kG/cm**(m-1)]=$gC14	Tilt[deg]=$aC14
+ MQSF_C15	Order:m=1	Bm*L[kG/cm**(m-1)]=$gC15	Tilt[deg]=$aC15
+ MQSF_C16	Order:m=1	Bm*L[kG/cm**(m-1)]=$gC16	Tilt[deg]=$aC16
+ MQSF_C17	Order:m=1	Bm*L[kG/cm**(m-1)]=$gC17	Tilt[deg]=$aC17
+ MQSF_C18	Order:m=1	Bm*L[kG/cm**(m-1)]=$gC18	Tilt[deg]=$aC18
+ MQSF_C19	Order:m=1	Bm*L[kG/cm**(m-1)]=$gC19	Tilt[deg]=$aC19
+ MQSF_C21	Order:m=1	Bm*L[kG/cm**(m-1)]=$gC21	Tilt[deg]=$aC21
+ MQSF_C22	Order:m=1	Bm*L[kG/cm**(m-1)]=$gC22	Tilt[deg]=$aC22
+ MQSF_C23	Order:m=1	Bm*L[kG/cm**(m-1)]=$gC23	Tilt[deg]=$aC23
+ MQSF_C24	Order:m=1	Bm*L[kG/cm**(m-1)]=$gC24	Tilt[deg]=$aC24
+ MQSF_C25	Order:m=1	Bm*L[kG/cm**(m-1)]=$gC25	Tilt[deg]=$aC25
+ MQSF_C26	Order:m=1	Bm*L[kG/cm**(m-1)]=$gC26	Tilt[deg]=$aC26
+ MQSF_C27	Order:m=1	Bm*L[kG/cm**(m-1)]=$gC27	Tilt[deg]=$aC27
+ MQSF_C28	Order:m=1	Bm*L[kG/cm**(m-1)]=$gC28	Tilt[deg]=$aC28
+ MQSF_C29	Order:m=1	Bm*L[kG/cm**(m-1)]=$gC29	Tilt[deg]=$aC29
+ MQSF_C32	Order:m=1	Bm*L[kG/cm**(m-1)]=$gC32	Tilt[deg]=$aC32
+ MQSF_C33	Order:m=1	Bm*L[kG/cm**(m-1)]=$gC33	Tilt[deg]=$aC33
+ MQSF_C34	Order:m=1	Bm*L[kG/cm**(m-1)]=$gC34	Tilt[deg]=$aC34
+ MQSF_C35	Order:m=1	Bm*L[kG/cm**(m-1)]=$gC35	Tilt[deg]=$aC35
+ MQSF_C36	Order:m=1	Bm*L[kG/cm**(m-1)]=$gC36	Tilt[deg]=$aC36
+ MQSF_C37	Order:m=1	Bm*L[kG/cm**(m-1)]=$gC37	Tilt[deg]=$aC37
+ MQSF_C38	Order:m=1	Bm*L[kG/cm**(m-1)]=$gC38	Tilt[deg]=$aC38
+ MQSF_C39	Order:m=1	Bm*L[kG/cm**(m-1)]=$gC39	Tilt[deg]=$aC39
+ MQSF_C42	Order:m=1	Bm*L[kG/cm**(m-1)]=$gC42	Tilt[deg]=$aC42
+ MQSF_C43	Order:m=1	Bm*L[kG/cm**(m-1)]=$gC43	Tilt[deg]=$aC43
+ MQSF_C44	Order:m=1	Bm*L[kG/cm**(m-1)]=$gC44	Tilt[deg]=$aC44
+ MQSF_C45	Order:m=1	Bm*L[kG/cm**(m-1)]=$gC45	Tilt[deg]=$aC45
+ MQSF_C46	Order:m=1	Bm*L[kG/cm**(m-1)]=$gC46	Tilt[deg]=$aC46
+ MQSF_C47	Order:m=1	Bm*L[kG/cm**(m-1)]=$gC47	Tilt[deg]=$aC47
+ MQSF_C48	Order:m=1	Bm*L[kG/cm**(m-1)]=$gC48	Tilt[deg]=$aC48
+ MQSF_C49	Order:m=1	Bm*L[kG/cm**(m-1)]=$gC49	Tilt[deg]=$aC49
+ MQSF_D0U	Order:m=1	Bm*L[kG/cm**(m-1)]=$gD0U	Tilt[deg]=$aD0U
+ MQSF_D0D	Order:m=1	Bm*L[kG/cm**(m-1)]=$gD0D	Tilt[deg]=$aD0D
+ MQSF_D11	Order:m=1	Bm*L[kG/cm**(m-1)]=$gD11	Tilt[deg]=$aD11
+ MQSF_D12	Order:m=1	Bm*L[kG/cm**(m-1)]=$gD12	Tilt[deg]=$aD12
+ MQSF_D13	Order:m=1	Bm*L[kG/cm**(m-1)]=$gD13	Tilt[deg]=$aD13
+ MQSF_D14	Order:m=1	Bm*L[kG/cm**(m-1)]=$gD14	Tilt[deg]=$aD14
+ MQSF_D15	Order:m=1	Bm*L[kG/cm**(m-1)]=$gD15	Tilt[deg]=$aD15
+ MQSF_D16	Order:m=1	Bm*L[kG/cm**(m-1)]=$gD16	Tilt[deg]=$aD16
+ MQSF_D17	Order:m=1	Bm*L[kG/cm**(m-1)]=$gD17	Tilt[deg]=$aD17
+ MQSF_D18	Order:m=1	Bm*L[kG/cm**(m-1)]=$gD18	Tilt[deg]=$aD18
+ MQSF_D19	Order:m=1	Bm*L[kG/cm**(m-1)]=$gD19	Tilt[deg]=$aD19
+ MQSF_D21	Order:m=1	Bm*L[kG/cm**(m-1)]=$gD21	Tilt[deg]=$aD21
+ MQSF_D22	Order:m=1	Bm*L[kG/cm**(m-1)]=$gD22	Tilt[deg]=$aD22
+ MQSF_D23	Order:m=1	Bm*L[kG/cm**(m-1)]=$gD23	Tilt[deg]=$aD23
+ MQSF_D24	Order:m=1	Bm*L[kG/cm**(m-1)]=$gD24	Tilt[deg]=$aD24
+ MQSF_D25	Order:m=1	Bm*L[kG/cm**(m-1)]=$gD25	Tilt[deg]=$aD25
+ MQSF_D26	Order:m=1	Bm*L[kG/cm**(m-1)]=$gD26	Tilt[deg]=$aD26
+ MQSF_D27	Order:m=1	Bm*L[kG/cm**(m-1)]=$gD27	Tilt[deg]=$aD27
+ MQSF_D28	Order:m=1	Bm*L[kG/cm**(m-1)]=$gD28	Tilt[deg]=$aD28
+ MQSF_D29	Order:m=1	Bm*L[kG/cm**(m-1)]=$gD29	Tilt[deg]=$aD29
+ MQSF_D32	Order:m=1	Bm*L[kG/cm**(m-1)]=$gD32	Tilt[deg]=$aD32
+ MQSF_D33	Order:m=1	Bm*L[kG/cm**(m-1)]=$gD33	Tilt[deg]=$aD33
+ MQSF_D34	Order:m=1	Bm*L[kG/cm**(m-1)]=$gD34	Tilt[deg]=$aD34
+ MQSF_D35	Order:m=1	Bm*L[kG/cm**(m-1)]=$gD35	Tilt[deg]=$aD35
+ MQSF_D36	Order:m=1	Bm*L[kG/cm**(m-1)]=$gD36	Tilt[deg]=$aD36
+ MQSF_D37	Order:m=1	Bm*L[kG/cm**(m-1)]=$gD37	Tilt[deg]=$aD37
+ MQSF_D38	Order:m=1	Bm*L[kG/cm**(m-1)]=$gD38	Tilt[deg]=$aD38
+ MQSF_D39	Order:m=1	Bm*L[kG/cm**(m-1)]=$gD39	Tilt[deg]=$aD39
+ MQSF_D42	Order:m=1	Bm*L[kG/cm**(m-1)]=$gD42	Tilt[deg]=$aD42
+ MQSF_D43	Order:m=1	Bm*L[kG/cm**(m-1)]=$gD43	Tilt[deg]=$aD43
+ MQSF_D44	Order:m=1	Bm*L[kG/cm**(m-1)]=$gD44	Tilt[deg]=$aD44
+ MQSF_D45	Order:m=1	Bm*L[kG/cm**(m-1)]=$gD45	Tilt[deg]=$aD45
+ MQSF_D46	Order:m=1	Bm*L[kG/cm**(m-1)]=$gD46	Tilt[deg]=$aD46
+ MQSF_D47	Order:m=1	Bm*L[kG/cm**(m-1)]=$gD47	Tilt[deg]=$aD47
+ MQSF_E0U3	Order:m=1	Bm*L[kG/cm**(m-1)]=$gEU3	Tilt[deg]=$aEU3
+ MQSF_E0U2	Order:m=1	Bm*L[kG/cm**(m-1)]=$gEU2	Tilt[deg]=$aEU2
+ MQSF_E0U1	Order:m=1	Bm*L[kG/cm**(m-1)]=$gEU1	Tilt[deg]=$aEU1
+ MQSF_E0D1	Order:m=1	Bm*L[kG/cm**(m-1)]=$gED1	Tilt[deg]=$aED1
+ MQSF_E0D2	Order:m=1	Bm*L[kG/cm**(m-1)]=$gED2	Tilt[deg]=$aED2
+ MQSF_E0D3	Order:m=1	Bm*L[kG/cm**(m-1)]=$gED3	Tilt[deg]=$aED3
+ MQSF_E13	Order:m=1	Bm*L[kG/cm**(m-1)]=$gE13	Tilt[deg]=$aE13
+ MQSF_E14	Order:m=1	Bm*L[kG/cm**(m-1)]=$gE14	Tilt[deg]=$aE14
+ MQSF_E15	Order:m=1	Bm*L[kG/cm**(m-1)]=$gE15	Tilt[deg]=$aE15
+ MQSF_E16	Order:m=1	Bm*L[kG/cm**(m-1)]=$gE16	Tilt[deg]=$aE16
+ MQSF_E17	Order:m=1	Bm*L[kG/cm**(m-1)]=$gE17	Tilt[deg]=$aE17
+ MQSF_E18	Order:m=1	Bm*L[kG/cm**(m-1)]=$gE18	Tilt[deg]=$aE18
+ MQSF_E19	Order:m=1	Bm*L[kG/cm**(m-1)]=$gE19	Tilt[deg]=$aE19
+ MQSF_E21	Order:m=1	Bm*L[kG/cm**(m-1)]=$gE21	Tilt[deg]=$aE21
+ MQSF_E22	Order:m=1	Bm*L[kG/cm**(m-1)]=$gE22	Tilt[deg]=$aE22
+ MQSF_E23	Order:m=1	Bm*L[kG/cm**(m-1)]=$gE23	Tilt[deg]=$aE23
+ MQSF_E24	Order:m=1	Bm*L[kG/cm**(m-1)]=$gE24	Tilt[deg]=$aE24
+ MQSF_E25	Order:m=1	Bm*L[kG/cm**(m-1)]=$gE25	Tilt[deg]=$aE25
+ MQSF_E26	Order:m=1	Bm*L[kG/cm**(m-1)]=$gE26	Tilt[deg]=$aE26
+ MQSF_E27	Order:m=1	Bm*L[kG/cm**(m-1)]=$gE27	Tilt[deg]=$aE27
+ MQSF_E28	Order:m=1	Bm*L[kG/cm**(m-1)]=$gE28	Tilt[deg]=$aE28
+ MQSF_E29	Order:m=1	Bm*L[kG/cm**(m-1)]=$gE29	Tilt[deg]=$aE29
+ MQSF_E32	Order:m=1	Bm*L[kG/cm**(m-1)]=$gE32	Tilt[deg]=$aE32
+ MQSF_E33	Order:m=1	Bm*L[kG/cm**(m-1)]=$gE33	Tilt[deg]=$aE33
+ MQSF_E34	Order:m=1	Bm*L[kG/cm**(m-1)]=$gE34	Tilt[deg]=$aE34
+ MQSF_E35	Order:m=1	Bm*L[kG/cm**(m-1)]=$gE35	Tilt[deg]=$aE35
+ MQSF_E36	Order:m=1	Bm*L[kG/cm**(m-1)]=$gE36	Tilt[deg]=$aE36
+ MQSF_E37	Order:m=1	Bm*L[kG/cm**(m-1)]=$gE37	Tilt[deg]=$aE37
+ MQSF_E38	Order:m=1	Bm*L[kG/cm**(m-1)]=$gE38	Tilt[deg]=$aE38
+ MQSF_E39	Order:m=1	Bm*L[kG/cm**(m-1)]=$gE39	Tilt[deg]=$aE39
+ MQSF_E42	Order:m=1	Bm*L[kG/cm**(m-1)]=$gE42	Tilt[deg]=$aE42
+ MQSF_E43	Order:m=1	Bm*L[kG/cm**(m-1)]=$gE43	Tilt[deg]=$aE43
+ MQSF_E44	Order:m=1	Bm*L[kG/cm**(m-1)]=$gE44	Tilt[deg]=$aE44
+ MQSF_E45	Order:m=1	Bm*L[kG/cm**(m-1)]=$gE45	Tilt[deg]=$aE45
+ MQSF_E46	Order:m=1	Bm*L[kG/cm**(m-1)]=$gE46	Tilt[deg]=$aE46
+ MQSF_E47	Order:m=1	Bm*L[kG/cm**(m-1)]=$gE47	Tilt[deg]=$aE47
+ MQSF_F0U3	Order:m=1	Bm*L[kG/cm**(m-1)]=$gFU3	Tilt[deg]=$aFU3
+ MQSF_F0U2	Order:m=1	Bm*L[kG/cm**(m-1)]=$gFU2	Tilt[deg]=$aFU2
+ MQSF_F0U1	Order:m=1	Bm*L[kG/cm**(m-1)]=$gFU1	Tilt[deg]=$aFU1
+ MQSF_F0D1	Order:m=1	Bm*L[kG/cm**(m-1)]=$gFD1	Tilt[deg]=$aFD1
+ MQSF_F0D2	Order:m=1	Bm*L[kG/cm**(m-1)]=$gFD2	Tilt[deg]=$aFD2
+ MQSF_F0D3	Order:m=1	Bm*L[kG/cm**(m-1)]=$gFD3	Tilt[deg]=$aFD3
+ MQSF_F13	Order:m=1	Bm*L[kG/cm**(m-1)]=$gF13	Tilt[deg]=$aF13
+ MQSF_F14	Order:m=1	Bm*L[kG/cm**(m-1)]=$gF14	Tilt[deg]=$aF14
+ MQSF_F15	Order:m=1	Bm*L[kG/cm**(m-1)]=$gF15	Tilt[deg]=$aF15
+ MQSF_F16	Order:m=1	Bm*L[kG/cm**(m-1)]=$gF16	Tilt[deg]=$aF16
+ MQSF_F17	Order:m=1	Bm*L[kG/cm**(m-1)]=$gF17	Tilt[deg]=$aF17
+ MQSF_F18	Order:m=1	Bm*L[kG/cm**(m-1)]=$gF18	Tilt[deg]=$aF18
+ MQSF_F19	Order:m=1	Bm*L[kG/cm**(m-1)]=$gF19	Tilt[deg]=$aF19
+ MQSF_F21	Order:m=1	Bm*L[kG/cm**(m-1)]=$gF21	Tilt[deg]=$aF21
+ MQSF_F22	Order:m=1	Bm*L[kG/cm**(m-1)]=$gF22	Tilt[deg]=$aF22
+ MQSF_F23	Order:m=1	Bm*L[kG/cm**(m-1)]=$gF23	Tilt[deg]=$aF23
+ MQSF_F24	Order:m=1	Bm*L[kG/cm**(m-1)]=$gF24	Tilt[deg]=$aF24
+ MQSF_F25	Order:m=1	Bm*L[kG/cm**(m-1)]=$gF25	Tilt[deg]=$aF25
+ MQSF_F26	Order:m=1	Bm*L[kG/cm**(m-1)]=$gF26	Tilt[deg]=$aF26
+ MQSF_F27	Order:m=1	Bm*L[kG/cm**(m-1)]=$gF27	Tilt[deg]=$aF27
+ MQSF_F28	Order:m=1	Bm*L[kG/cm**(m-1)]=$gF28	Tilt[deg]=$aF28
+ MQSF_F29	Order:m=1	Bm*L[kG/cm**(m-1)]=$gF29	Tilt[deg]=$aF29
+ MQSF_F32	Order:m=1	Bm*L[kG/cm**(m-1)]=$gF32	Tilt[deg]=$aF32
+ MQSF_F33	Order:m=1	Bm*L[kG/cm**(m-1)]=$gF33	Tilt[deg]=$aF33
+ MQSF_F34	Order:m=1	Bm*L[kG/cm**(m-1)]=$gF34	Tilt[deg]=$aF34
+ MQSF_F35	Order:m=1	Bm*L[kG/cm**(m-1)]=$gF35	Tilt[deg]=$aF35
+ MQSF_F36	Order:m=1	Bm*L[kG/cm**(m-1)]=$gF36	Tilt[deg]=$aF36
+ MQSF_F37	Order:m=1	Bm*L[kG/cm**(m-1)]=$gF37	Tilt[deg]=$aF37
+ MQSF_F38	Order:m=1	Bm*L[kG/cm**(m-1)]=$gF38	Tilt[deg]=$aF38
+ MQSF_F39	Order:m=1	Bm*L[kG/cm**(m-1)]=$gF39	Tilt[deg]=$aF39
+ MQSF_F42	Order:m=1	Bm*L[kG/cm**(m-1)]=$gF42	Tilt[deg]=$aF42
+ MQSF_F43	Order:m=1	Bm*L[kG/cm**(m-1)]=$gF43	Tilt[deg]=$aF43
+ MQSF_F44	Order:m=1	Bm*L[kG/cm**(m-1)]=$gF44	Tilt[deg]=$aF44
+ MQSF_F45	Order:m=1	Bm*L[kG/cm**(m-1)]=$gF45	Tilt[deg]=$aF45
+ MQSF_F46	Order:m=1	Bm*L[kG/cm**(m-1)]=$gF46	Tilt[deg]=$aF46
+ MQSF_F47	Order:m=1	Bm*L[kG/cm**(m-1)]=$gF47	Tilt[deg]=$aF47
+#------------------------------------------
+# Sextupoles
+#
+# Chromaticity Sextupoles
+mSF 	Order:m=2   Bm*L[kG/cm**(m-1)]=$sCHROMF   Tilt[deg]=0
+mSD 	Order:m=2   Bm*L[kG/cm**(m-1)]=$sCHROMD   Tilt[deg]=60
+# Feed down sextupoles
+mCA0P	Order:m=2   Bm*L[kG/cm**(m-1)]=0                Tilt[deg]=   0
+mCS1E2AP 	Order:m=2   Bm*L[kG/cm**(m-1)]=$gS1E2A   Tilt[deg]=   0
+mCS1E2AM  Order:m=2   Bm*L[kG/cm**(m-1)]=$gS1E2A   Tilt[deg]= 60
+mCS1F2AP 	Order:m=2   Bm*L[kG/cm**(m-1)]=$gS1F2A   Tilt[deg]=   0
+mCS1F2AM 	Order:m=2   Bm*L[kG/cm**(m-1)]=$gS1F2A   Tilt[deg]= 60
+mCS1F3AP 	Order:m=2   Bm*L[kG/cm**(m-1)]=$gS1F3A   Tilt[deg]=   0
+mCS1F3AM 	Order:m=2   Bm*L[kG/cm**(m-1)]=$gS1F3A   Tilt[deg]= 60
+mCS1B1AM  Order:m=2   Bm*L[kG/cm**(m-1)]=$gS1B1A   Tilt[deg]= 60
+mCS1B3AP 	Order:m=2   Bm*L[kG/cm**(m-1)]=$gS1B3A   Tilt[deg]=   0
+mCS1C2AP 	Order:m=2   Bm*L[kG/cm**(m-1)]=$gS1C2A   Tilt[deg]=   0
+mCS1C2AM Order:m=2   Bm*L[kG/cm**(m-1)]=$gS1C2A   Tilt[deg]= 60
+#
+mCS2F1AP 	Order:m=2   Bm*L[kG/cm**(m-1)]=$gS2F1A   Tilt[deg]= -30
+mCS2F1AM 	Order:m=2   Bm*L[kG/cm**(m-1)]=$gS2F1A   Tilt[deg]=  30
+mCS2F2AP 	Order:m=2   Bm*L[kG/cm**(m-1)]=$gS2F2A   Tilt[deg]= -30
+mCS2F4AM 	Order:m=2   Bm*L[kG/cm**(m-1)]=$gS2F4A   Tilt[deg]=  30
+mCS2A1AM Order:m=2   Bm*L[kG/cm**(m-1)]=$gS2A1A   Tilt[deg]=  30
+mCS2A3AP 	Order:m=2   Bm*L[kG/cm**(m-1)]=$gS2A3A   Tilt[deg]= -30
+mCS2B4AP 	Order:m=2   Bm*L[kG/cm**(m-1)]=$gS2B4A   Tilt[deg]= -30
+mCS2B4AM  Order:m=2   Bm*L[kG/cm**(m-1)]=$gS2B4A   Tilt[deg]=  30
+mCS2C3AP 	Order:m=2   Bm*L[kG/cm**(m-1)]=$gS2C3A   Tilt[deg]= -30
+mCS2C3AM Order:m=2   Bm*L[kG/cm**(m-1)]=$gS2C3A   Tilt[deg]=  30
+mCS2D2AP 	Order:m=2   Bm*L[kG/cm**(m-1)]=$gS2D2A   Tilt[deg]= -30
+mCS2D2AM	Order:m=2   Bm*L[kG/cm**(m-1)]=$gS2D2A   Tilt[deg]=  30
+#
+mCS3E1AP 	Order:m=2   Bm*L[kG/cm**(m-1)]=$gS3E1A   Tilt[deg]= -30
+mCS3E1AM	Order:m=2   Bm*L[kG/cm**(m-1)]=$gS3E1A   Tilt[deg]=  30
+mCS3E3AP 	Order:m=2   Bm*L[kG/cm**(m-1)]=$gS3E3A   Tilt[deg]= -30
+mCS3E3AM	Order:m=2   Bm*L[kG/cm**(m-1)]=$gS3E3A   Tilt[deg]=  30
+mCS3A2AP 	Order:m=2   Bm*L[kG/cm**(m-1)]=$gS3A2A   Tilt[deg]= -30
+mCS3A2AM	Order:m=2   Bm*L[kG/cm**(m-1)]=$gS3A2A   Tilt[deg]=  30
+mCS3D2AP 	Order:m=2   Bm*L[kG/cm**(m-1)]=$gS3D2A   Tilt[deg]= -30
+mCS3D2AM	Order:m=2   Bm*L[kG/cm**(m-1)]=$gS3D2A   Tilt[deg]=  30
+mCS3D4AP 	Order:m=2   Bm*L[kG/cm**(m-1)]=$gS3D4A   Tilt[deg]= -30
+mCS3D4AM	Order:m=2   Bm*L[kG/cm**(m-1)]=$gS3D4A   Tilt[deg]=  30
+#
+mCS4F2AP 	Order:m=2   Bm*L[kG/cm**(m-1)]=$gS4F2A   Tilt[deg]=0
+mCS4F2AM 	Order:m=2   Bm*L[kG/cm**(m-1)]=$gS4F2A   Tilt[deg]=60
+mCS4C2AP 	Order:m=2   Bm*L[kG/cm**(m-1)]=$gS4C2A   Tilt[deg]=0
+mCS4C2AM	Order:m=2   Bm*L[kG/cm**(m-1)]=$gS4C2A   Tilt[deg]=60
+mCS4C2BP 	Order:m=2   Bm*L[kG/cm**(m-1)]=$gS4C2B   Tilt[deg]=0
+mCS4C2BM	Order:m=2   Bm*L[kG/cm**(m-1)]=$gS4C2B   Tilt[deg]=60
+#
+mCS5F1AM 	Order:m=2   Bm*L[kG/cm**(m-1)]=$gS5F1A   Tilt[deg]=30
+mCS5F3AP 	Order:m=2   Bm*L[kG/cm**(m-1)]=$gS5F3A   Tilt[deg]=-30
+mCS5A2AP 	Order:m=2   Bm*L[kG/cm**(m-1)]=$gS5A2A   Tilt[deg]=-30
+mCS5A3AM	Order:m=2   Bm*L[kG/cm**(m-1)]=$gS5A3A   Tilt[deg]=30
+mCS5D3AP 	Order:m=2   Bm*L[kG/cm**(m-1)]=$gS5D3A   Tilt[deg]=-30
+mCS5D3AM	Order:m=2   Bm*L[kG/cm**(m-1)]=$gS5D3A   Tilt[deg]=30
+#
+mCS6A4AP 	Order:m=2   Bm*L[kG/cm**(m-1)]=$gS6A4A   Tilt[deg]=0
+mCS6C4AM	Order:m=2   Bm*L[kG/cm**(m-1)]=$gS6C4A   Tilt[deg]=60
+#
+mCS7B1AP 	Order:m=2   Bm*L[kG/cm**(m-1)]=$gS7B1A   Tilt[deg]=0
+mCS7D1AP 	Order:m=2   Bm*L[kG/cm**(m-1)]=$gS7D1A   Tilt[deg]=0
+#---------------------------------------------------------------------------------------
+#  Betatron tune spread Octupoles
+mTOF 	Order:m=3   Bm*L[kG/cm**(m-1)]=$gTOF   	Tilt[deg]=0
+mTOD 	Order:m=3   Bm*L[kG/cm**(m-1)]=$gTOD   	Tilt[deg]=0
+# FEEDDOWN-Octupoles
+mTO2P 	Order:m=3   Bm*L[kG/cm**(m-1)]=$gTO2   	Tilt[deg]=0
+mTO2M 	Order:m=3   Bm*L[kG/cm**(m-1)]=$gTO2   	Tilt[deg]=45
+mTO1P 	Order:m=3   Bm*L[kG/cm**(m-1)]=$gTO1   	Tilt[deg]=0
+mTO1M 	Order:m=3   Bm*L[kG/cm**(m-1)]=$gTO1   	Tilt[deg]=45
+mTO1OFF 	Order:m=3   Bm*L[kG/cm**(m-1)]=0  	Tilt[deg]=0
+#----------------------------------------------------------------------------------------
+#Unused multipole circuits
+# M-Quads
+mTQF39S 	Order:m=1   Bm*L[kG/cm**(m-1)]=0   Tilt[deg]=0
+mTQD39S 	Order:m=1   Bm*L[kG/cm**(m-1)]=0   Tilt[deg]=90
+mTQF39C 	Order:m=1   Bm*L[kG/cm**(m-1)]=0   Tilt[deg]=0
+mTQD39C 	Order:m=1   Bm*L[kG/cm**(m-1)]=0   Tilt[deg]=90
+#
+mTOF39C 	Order:m=3   Bm*L[kG/cm**(m-1)]=0   Tilt[deg]=0
+mTOD39C 	Order:m=3   Bm*L[kG/cm**(m-1)]=0   Tilt[deg]=0
+#
+mTQX 	Order:m=1   Bm*L[kG/cm**(m-1)]=0   Tilt[deg]=0
+mTQ2 	Order:m=1   Bm*L[kG/cm**(m-1)]=0   Tilt[deg]=0
+mTQ4 	Order:m=1   Bm*L[kG/cm**(m-1)]=0   Tilt[deg]=0
+mTR1 	Order:m=1   Bm*L[kG/cm**(m-1)]=0   Tilt[deg]=90
+mTR2 	Order:m=1   Bm*L[kG/cm**(m-1)]=0   Tilt[deg]=90
+mTR3 	Order:m=1   Bm*L[kG/cm**(m-1)]=0   Tilt[deg]=90
+mTSX 	Order:m=2   Bm*L[kG/cm**(m-1)]=0   Tilt[deg]=0
+mTS1 	Order:m=2   Bm*L[kG/cm**(m-1)]=0   Tilt[deg]=0
+mTS2 	Order:m=2   Bm*L[kG/cm**(m-1)]=0   Tilt[deg]=0
+mTS3 	Order:m=2   Bm*L[kG/cm**(m-1)]=0   Tilt[deg]=0
+mTS4 	Order:m=2   Bm*L[kG/cm**(m-1)]=0   Tilt[deg]=0
+mTX1 	Order:m=2   Bm*L[kG/cm**(m-1)]=0   Tilt[deg]=30
+mTX2 	Order:m=2   Bm*L[kG/cm**(m-1)]=0   Tilt[deg]=30
+mTX3 	Order:m=2   Bm*L[kG/cm**(m-1)]=0   Tilt[deg]=30
+mTX4 	Order:m=2   Bm*L[kG/cm**(m-1)]=0   Tilt[deg]=30
+#--------------------------------   
+# Electrostatic separators
+#
+HSCesepH	Ax[cm]=2.5 	Ay[cm]=3.5 	Shape=0   OffsetX[cm]=0   OffsetY[cm]=0 	Tilt[deg]=0
+HSCesepV	Ax[cm]=3.5 	Ay[cm]=2.5 	Shape=0   OffsetX[cm]=0   OffsetY[cm]=0 	Tilt[deg]=0
+kB11HESEP 	L[cm]=257.175    	B[kG]=$ESEPB11H   	Tilt[deg]=0
+kB11VESEP 	L[cm]=257.175    	B[kG]=$ESEPB11V   	Tilt[deg]=90
+kB17HESEP 	L[cm]=257.175    	B[kG]=$ESEPB17H   	Tilt[deg]=0
+kC17VESEP 	L[cm]=257.175    	B[kG]=$ESEPC17V   	Tilt[deg]=90
+kC49HESEP 	L[cm]=257.175    	B[kG]=$ESEPC49H   	Tilt[deg]=0
+kC49VESEP 	L[cm]=257.175    	B[kG]=$ESEPC49V   	Tilt[deg]=90
+kD11HESEP 	L[cm]=257.175    	B[kG]=$ESEPD11H   	Tilt[deg]=0
+kD11VESEP 	L[cm]=257.175    	B[kG]=$ESEPD11V   	Tilt[deg]=90
+kD48HESEP 	L[cm]=257.175    	B[kG]=$ESEPD48H   	Tilt[deg]=0
+kA17VESEP 	L[cm]=257.175    	B[kG]=$ESEPA17V   	Tilt[deg]=90
+kA49HESEP 	L[cm]=257.175    	B[kG]=$ESEPA49H   	Tilt[deg]=0
+kA49VESEP 	L[cm]=257.175    	B[kG]=$ESEPA49V   	Tilt[deg]=90
+KESEP 	L[cm]=257.175    	B[kG]=0   		Tilt[deg]=0
+#--------------------------------
+# Correctors
+#
+kHDD11 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kHDB11 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDB11 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kVDB12 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDB12 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kHDB13 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDB14 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDB15 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDB16 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDB17 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDB18 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDB19 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDB21 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDB22 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kHDB24 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDB25 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDB26 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDB27 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDB28 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDB29 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDB32 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDB33 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDB34 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDB35 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDB36 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDB37 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDB38 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDB39 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDB42 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDB43 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDB44 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDB45 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDB46 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDB47 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kVDB23 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDB48 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDB49 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDB49 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kHDC11 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDC11 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kVDC12 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDC13 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDC14 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDC15 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDC16 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDC17 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDC18 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDC19 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDC21 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDC22 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDC23 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDC24 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDC25 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDC26 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDC27 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDC28 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDC29 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDC32 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDC33 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDC34 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDC35 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDC36 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDC37 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDC38 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDC39 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDC42 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDC43 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDC44 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDC45 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDC46 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDC47 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kVDC48 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDC48C 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kHDC48 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kHDC49 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDC49 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kVDD11 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kVDD12 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDD12 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kHDD13 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDD14 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDD15 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDD16 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDD17 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDD18 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDD19 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDD21 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDD22 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDD23 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDD24 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDD25 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDD26 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDD27 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDD28 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDD29 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDD32 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDD33 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDD34 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDD35 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDD36 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDD37 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDD38 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDD39 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDD42 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDD43 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDD44 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDD45 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDD46 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDD47 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDD48 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDD49 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDD49 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kHDE11 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDE11 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kVDE12 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDE13 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDE14 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDE15 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDE16 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDE17 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDE18 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDE19 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDE21 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDE22 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDE23 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDE24 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDE25 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDE26 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDE27 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDE28 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDE29 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDE32 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDE33 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDE34 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDE35 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDE36 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDE37 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDE38 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDE39 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+# Correctors are tilted for unknown reason !!!
+kHDE42 	L[cm]=1.e-4          	B[kG]=$bE42   	Tilt[deg]=$kx1roll      
+kVDE43 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDE44 	L[cm]=1.e-4          	B[kG]=$bE44   	Tilt[deg]=$kx2roll
+kVDE45 	L[cm]=1.e-4          	B[kG]=$bE45   	Tilt[deg]=$ky2roll 
+kHDE46 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDE47 	L[cm]=1.e-4          	B[kG]=$bE47   	Tilt[deg]=$ky1roll
+kHDE48 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDE49 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDE49 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kHDF11 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDF11 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kVDF12 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDF13 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0 
+kVDF14 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDF15 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDF16 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDF17 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDF18 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDF19 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDF21 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDF22 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDF23 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDF24 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDF25 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDF26 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDF27 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDF28 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDF29 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDF32 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDF33 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDF34 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDF35 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDF36 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDF37 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDF38 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDF39 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDF42 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDF43 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDF44 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDF45 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDF46 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDF47 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDF48 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kHDF49 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDF49 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kVDA11 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDA11 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDA12 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDA13 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDA14 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDA15 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDA16 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDA17 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDA18 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDA19 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDA21 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDA22 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDA23 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDA24 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDA25 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDA26 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDA27 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDA28 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDA29 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDA32 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDA33 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDA34 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDA35 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDA36 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDA37 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDA38 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDA39 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDA42 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDA43 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDA44 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDA45 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDA46 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDA47 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kVDA48 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+kHDA48C 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kHDA48 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kHDA49 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=0
+kVDA49 	L[cm]=1.e-4          	B[kG]=0   	Tilt[deg]=90
+#--------------------------------
+# Monitors
+#
+IM 	L[cm]=0        	Tilt[deg]=0  
+# flying wires and synchrotron radiation monitor
+is                    L[cm]=0          Tilt[deg]=0
+# BPMS
+ipT: 	L[cm]=0        	Tilt[deg]=0  
+#BLT
+iBLTH 	L[cm]=0 	Tilt[deg]=0
+iBLTV 	L[cm]=0 	Tilt[deg]=0
+#--------------------------------
+# cavities
+aRFCAVITY  	L[cm]=274.955   Ncell=1  Eff_L[cm]=20  A[MeV]=0.125         Phase[deg]=0  WaveL[cm]=$WaveLen
+#oDRFCAVITY 	L[cm]=274.955  
+#--------------------------------
+#strip line and kicker
+oDF0STRIP 	L[cm]=17
+IkF0STRIP 	L[cm]=100
+oDHDAMPPU 	L[cm]=8.42   
+oDVDAMPPU 	L[cm]=8.42   
+IkE0PHPU	L[cm]=50
+IkE0PBHPU	L[cm]=50
+IkE0PVPU	L[cm]=50
+IkE0PBVPU	L[cm]=50
+IkD48PHPU	L[cm]=50
+IkD48PBHPU	L[cm]=50
+IkD48PVPU	L[cm]=50
+IkD48PBVPU	L[cm]=50
+oDPHDAMPK 	L[cm]=8.42   
+oDPVDAMPK 	L[cm]=8.42   
+oDPBHDAMPK L[cm]=8.42   
+oDPBVDAMPK L[cm]=8.42   
+IkE0PHK	L[cm]=100
+IkE0PBHK	L[cm]=100
+IkE0PVK	L[cm]=100
+IkE0PBVK	L[cm]=100          
+# Drifts
+oLAMF0end 	L[cm]=23.03625 
+oDBEND 	L[cm]=13.97    
+oDFMI1  	L[cm]=17.78
+oDFMI2  	L[cm]=25.4
+oDCMAG 	L[cm]=26.416
+oDB0C 	L[cm]=496.2825 
+oDV2H 	L[cm]=12.065   
+oDTRIPIN 	L[cm]=13.97    
+oDTRIPB 	L[cm]=87.63    
+oDTRIPOUT 	L[cm]=5.4127   
+oDFCANIN 	L[cm]=20.955   
+oFCAN 	L[cm]=44.45    
+oDFCANOUT 	L[cm]=8.255    
+oDCOLD1 	L[cm]=30.1625  
+oDSEPEND 	L[cm]=32.0777  
+oDSEPB 	L[cm]=18.7325  
+oDCOLD2 	L[cm]=42.8625  
+oDLB1 	L[cm]=15.5575  
+oDLB2 	L[cm]=22.86    
+oDLB3 	L[cm]=53.5711  
+oDLB4 	L[cm]=50.6298  
+oDLB5 	L[cm]=28.0518  
+oDLB6 	L[cm]=16.7462  
+oDLB7 	L[cm]=103.4517 
+oDBPMIN 	L[cm]=26.0655  
+oDBPMOUT 	L[cm]=20.0025  
+oDQOUT 	L[cm]=17.178   
+oDPACKIN3 	L[cm]=18.4519  
+oDPACKU2D3 L[cm]=13.6106  
+oDPACKOUT3 L[cm]=13.9751  
+oDPACKIN2 	L[cm]=17.0231  
+oDPACKU2D2 L[cm]=50.2818  
+oDPACKOUT2 L[cm]=52.0751  
+oDPIN5LOC 	L[cm]=16.8275  
+oDPOUT5LOC L[cm]=16.1925  
+oDSEPEND1 	L[cm]=40.1638  
+oMEDSTR 	L[cm]=41.91    
+oDPACKIN 	L[cm]=14.2875  
+oDPACKU2D 	L[cm]=40.64    
+oDPACKOUT 	L[cm]=51.7525  
+oDSSINF 	L[cm]=29.21    
+oDTAB 	L[cm]=17.145   
+oDGV3 	L[cm]=10.16    
+oDHQUADC 	L[cm]=38.1     
+oDB48SP1 	L[cm]=51.72    
+oDB48ABTK 	L[cm]=190.5    
+oDB48ABTKB L[cm]=27.94    
+oDB48SP2 	L[cm]=231.0912 
+oDQOUT1 	L[cm]=22.7381  
+oDSTRAIT5 	L[cm]=140.8836 
+oDBPMIN1 	L[cm]=18.2677  
+oDBPMOUT1 	L[cm]=15.9004  
+oDPACKOUT1 L[cm]=16.4033  
+oDQUAD1END L[cm]=18.4963  
+#oDC0U1 	L[cm]=397.3029 
+#oDC0U2 	L[cm]=472.3417 
+oDC0U1 	L[cm]=91.5845 
+oDC0U2 	L[cm]=155.4411 
+oDC0D1 	L[cm]=902.6823 
+oDLONG3a 	L[cm]=324 
+oDLONG3b 	L[cm]=156.9325 
+oDCOLLIM 	L[cm]=304.8    
+oDCOLLOUT 	L[cm]=99.3064  
+oDSTRAIG1 	L[cm]=244.3251 
+oDSYNCLIGH L[cm]=320.04   
+oDFPDSPC2 	L[cm]=21.391   
+oDFPDSEP 	L[cm]=15.2     
+oDFPDSPC1 	L[cm]=18.4     
+oDFPDSPC3 	L[cm]=170.5254 
+oDLB1S 	L[cm]=54.61    
+oDLB2S 	L[cm]=56.0832  
+oDLB3S 	L[cm]=16.0782  
+oDVACVLV 	L[cm]=8.509    
+oDFPDSPC4 	L[cm]=73.8276  
+oDD0C 	L[cm]=554.6725 
+oDD0B 	L[cm]=30.48    
+oDD0A 	L[cm]=0.63   
+oD6IN 	L[cm]=15.24    
+oDGV 	L[cm]=7.3025   
+oDD17SP1 	L[cm]=8.6563   
+oDBELL7 	L[cm]=17.4625  
+oDR2TARGSE L[cm]=8.9813   
+oDR2TARGLE L[cm]=15.7838  
+oDD17SP2 	L[cm]=671.195  
+oDR2COLLEN L[cm]=8.82     
+oDR2COLL2 	L[cm]=75       
+oDD17SP3 	L[cm]=8.1712   
+oDWSTRSS 	L[cm]=30.7975  
+oDSEPEND48 L[cm]=21.59    
+oDD48SP 	L[cm]=33.8912  
+oD3IN 	L[cm]=7.62     
+oDD49SP1 	L[cm]=50       
+oDD49SP2 	L[cm]=66.1186  
+oDE0SP1 	L[cm]=16.7772  
+oDE0SP2 	L[cm]=8.89     
+oDGV4 	L[cm]=8.5725   
+oDE0SP3 	L[cm]=51.8236  
+oDDOGEND1 	L[cm]=13.97    
+oDBELL7A 	L[cm]=17.78    
+oDE0SP4 	L[cm]=88.9     
+oDE0SP5 	L[cm]=203.2    
+oDE0SP6 	L[cm]=103.4745 
+oDE0SP7a 	L[cm]=114 
+oDE0SP7b 	L[cm]=725.5868 
+oDE0SP8 	L[cm]=41.058   
+oDE0SP9 	L[cm]=6.2972   
+oDE11END 	L[cm]=111.3676 
+oDE11MID 	L[cm]=21.59    
+oDE17Aa 	L[cm]=165  
+oDE17Ab 	L[cm]=253.465  
+oDE17B 	L[cm]=325.4375 
+oDE17C 	L[cm]=184.785  
+oDE17D 	L[cm]=236.5375 
+oDE48SP1 	L[cm]=25.0825  
+oDPBINJK 	L[cm]=230.505  
+oDE48SP2 	L[cm]=104.0587 
+oDRFUP 	L[cm]=104.624  
+oDRFSP1 	L[cm]=7.3085   
+oDRFSP2 	L[cm]=148.4402 
+oDRFDOWN 	L[cm]=144.786  
+oDF0SP1A 	L[cm]=493.3372 
+oDF0SP2A 	L[cm]=19.1     
+oDF0SP3 	L[cm]=134.7578 
+oDF0SP4 	L[cm]=84.6322  
+oDF0SP5 	L[cm]=287.063         
+oDF0SP6 	L[cm]=119.061  
+oDSTRAIT1 	L[cm]=244.3251 
+oDGV2 	L[cm]=10.4775  
+oDIONP 	L[cm]=27.305   
+oDF17SP1 	L[cm]=35.8776  
+oDPINJK 	L[cm]=121.285  
+oDTQJUMP 	L[cm]=76.2     
+oDPACKU2D4 L[cm]=2.54     
+oDPACKOUT4 L[cm]=13.6525  
+oDF48SP1 	L[cm]=50       
+oDF48SP2 	L[cm]=366.9664
+oDF48TEL 	L[cm]=58.4832
+oDF49SP1 	L[cm]=151.9803 
+oDF49SP2 	L[cm]=46       
+oDA0SP1 	L[cm]=86.49    
+oDA0KICK 	L[cm]=189.23   
+oD12IN 	L[cm]=30.48    
+oD18IN 	L[cm]=45.72    
+oDA0SP4 	L[cm]=47.24    
+oDA0SP5A 	L[cm]=479.29
+oDA0SP5B 	L[cm]=174   
+oDA0SP6 	L[cm]=19.05    
+oDA0SP7 	L[cm]=77.59    
+oDA0PAB 	L[cm]=455.93   
+oDA0SP8A 	L[cm]=35.5612  
+oDA0SP8B 	L[cm]=22.1016  
+oDA0PBAB 	L[cm]=455.93   
+oDA0SP9 	L[cm]=71.88    
+oDA0SP10 	L[cm]=23.88    
+oDA0SP11 	L[cm]=887.22   
+oDA0SP12 	L[cm]=81.4996  
+oDSTRAIT0 	L[cm]=247.7977 
+oDSTRAIT4 	L[cm]=280.5074 
+# Scrapers
+hCD171LD 	Ax[cm]=$ScrPos 	Ay[cm]=$ScrPos 	Shape=0   OffsetX[cm]=0   OffsetY[cm]=0   Tilt[deg]=0
+hCD172UR 	Ax[cm]=$ScrPos 	Ay[cm]=$ScrPos 	Shape=0   OffsetX[cm]=0   OffsetY[cm]=0   Tilt[deg]=0
+hCD173LD 	Ax[cm]=$ScrPos 	Ay[cm]=$ScrPos 	Shape=0   OffsetX[cm]=0   OffsetY[cm]=0   Tilt[deg]=0
+hCD49UR 	Ax[cm]=$ScrPos 	Ay[cm]=$ScrPos 	Shape=0   OffsetX[cm]=0   OffsetY[cm]=0   Tilt[deg]=0
+hCE01UR 	Ax[cm]=$ScrPos 	Ay[cm]=$ScrPos 	Shape=0   OffsetX[cm]=0   OffsetY[cm]=0   Tilt[deg]=0
+hCE02LD 	Ax[cm]=$ScrPos 	Ay[cm]=$ScrPos 	Shape=0   OffsetX[cm]=0   OffsetY[cm]=0   Tilt[deg]=0
+hCE03UR 	Ax[cm]=$ScrPos 	Ay[cm]=$ScrPos 	Shape=0   OffsetX[cm]=0   OffsetY[cm]=0   Tilt[deg]=0
+hCF171LD 	Ax[cm]=$ScrPos 	Ay[cm]=$ScrPos 	Shape=0   OffsetX[cm]=0   OffsetY[cm]=0   Tilt[deg]=0
+hCF172UR 	Ax[cm]=$ScrPos 	Ay[cm]=$ScrPos 	Shape=0   OffsetX[cm]=0   OffsetY[cm]=0   Tilt[deg]=0
+hCF173LD 	Ax[cm]=$ScrPos 	Ay[cm]=$ScrPos 	Shape=0   OffsetX[cm]=0   OffsetY[cm]=0   Tilt[deg]=0
+hCF48RD 	Ax[cm]=$ScrPos 	Ay[cm]=$ScrPos 	Shape=0   OffsetX[cm]=0   OffsetY[cm]=0   Tilt[deg]=0
+hCF49UR 	Ax[cm]=$ScrPos 	Ay[cm]=$ScrPos 	Shape=0   OffsetX[cm]=0   OffsetY[cm]=0   Tilt[deg]=0
+hCA01LD 	Ax[cm]=$ScrPos 	Ay[cm]=$ScrPos 	Shape=0   OffsetX[cm]=0   OffsetY[cm]=0   Tilt[deg]=0
+hCA48LD	Ax[cm]=$ScrPos 	Ay[cm]=$ScrPos 	Shape=0   OffsetX[cm]=0   OffsetY[cm]=0   Tilt[deg]=0

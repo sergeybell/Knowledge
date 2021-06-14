@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="header.js"></script>
+<title> OptiMX Help : Transfer Matrix </title>
+</head>
+<body>
+<h4>X-Transfer Matrix </h4>
+<table id="element">
+   <tr>
+    <th>Parameter Description</th>
+    <th>Argument Order</th>
+    <th>Argument Name </th>
+    <th>Units </th>
+    <th>Default Value</th>
+   </tr>
+   <tr>
+    <td>  Energy Change </td>
+    <td>  1  </td>
+    <td>  dE  </td>
+    <td>  MeV </td>
+    <td>  0.0   </td>
+  </tr>
+  <tr>
+    <td>  Length </td>
+    <td>  2  </td>
+    <td>  L  </td>
+    <td>  cm </td>
+    <td>  0.0   </td>
+  </tr>
+</table>
+<p>
+The letters "X" and "x" denote a linear 6x6 transfer matrix. There are two arguments: the first one is the energy change occuring 
+when the beam passes through the section described by transfer matrix; the second the is total length of the section in cm.  
+The following 6 lines hold the matrix itself. The transfer matrix for the entire lattice or its fraction can be directly 
+copied from the program output (View|Matrix). 
+</p>
+<pre>
+Example: 
+Xmatr1     	Energy increase[MeV]=0        	L[cm]=0       
+# X[cm]		Px	Y[cm]	Py	dL[cm]	dP/P
+0.9261	6.243	0	0	0	-11 
+0.007249	1.129	0	0	0	-0.6453 
+0	0	115.9	4161	0	0 
+0	0	3.903	140.1	0	0 
+-0.5178	8.393	0	0	1	33.63 
+0	0	0	0	0	1 
+</pre>
+</body>
+</html>
+  

@@ -1,0 +1,55 @@
+# PXIE opticx (starts fom the RFQ vanes and goes to the beam dump)
+
+$E=0.030
+$P=sqrt(($E+$Mp)^2-$Mp^2);
+$gamma=1+$E/$Mp;
+$beta=sqrt(1-1/$gamma^2);
+$EmitN=0.11e-4;
+$EmitNL=$EmitN;
+$Emit=$EmitN/$gamma/$beta;
+$Accept=3^2 * $Emit ;
+$EmitL_n=$Mp*$EmitNL/$c*1e6;
+$SigmaP=0.0001
+$BetaX=21.5
+$AlphaX=-1.39
+$BetaY=21.5
+$AlphaY=-1.39
+#
+
+OptiM
+Energy[MeV]=$E  Mass[MeV]=$Mp
+Emittance: ex[cm]=0.0116 ey[cm]=0.0116  DP/P=3*$SigmaP
+Initial:BetaX[cm]=$BetaX 	BetaY[cm]=$BetaY 
+	AlfaX=$AlphaX 	AlfaY=$AlphaY 
+	DispersX[cm]=0 	DispersY[cm]=0 
+	Dsp_PrimeX=0 	DspPrimeY=0 
+        X=0	Y=0	Z=0  S[cm]=0
+        tetaX=0.        tetaY=0.
+#
+begin lattice. Number of periods=1
+o1 csol o2
+end lattice
+#
+#
+begin list: dL=1.  dB=.1  dG=0.01  dS=0.01
+o1 	L[cm]=35.08      
+o2 	L[cm]=70   
+csol               L[cm]=11.84 B[kG]=3.248 a[cm]=3.18  
+end list of elements
+
+TrajParamBlock
+	X[cm]=0.0 	Teta_X[rad]=0.
+	Y[cm]=0. 	Teta_Y[rad]=0.
+	s[cm]=0 	DeltaP/P=0
+EndTrajParamBlock
+
+4D_BetaBlock
+	Beta_X_1[cm]=$BetaX	Beta_X_2[cm]=0.
+	Alfa_X_1=$AlphaX     	Alfa_X_2=0.	
+Beta_Y_1[cm]=0.0 Beta_Y_2[cm]=$BetaY 
+	Alfa_Y_1=0.0     	Alfa_Y_2=$AlphaY 
+	Teta_1[deg]=0.   	Teta_2[deg]=0    U=0
+	Emit1[cm]=0.0116 	Emit2[cm]=0.0116
+	DispX[cm]=0.     	DispY[cm]=0
+	DispXpr[cm]=0.   	DispYpr[cm]=0
+End4DBetaBlock

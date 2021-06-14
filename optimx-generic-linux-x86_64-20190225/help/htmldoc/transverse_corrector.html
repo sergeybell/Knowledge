@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="header.js"></script>
+<title> OptiMX Help: Corrector </title>
+</head>
+<body>
+<h4>K-corrector</h4>
+<table id="element">
+   <tr>
+    <th>Parameter Description</th>
+    <th>Argument Order</th>
+    <th>Argument Name </th>
+    <th>Units </th>
+    <th>Default Value</th>
+   </tr>
+   <tr>
+    <td>  Length </td>
+    <td>  1  </td>
+    <td>  L  </td>
+    <td>  cm </td>
+    <td>       </td>
+  </tr>
+  <tr class="alt">
+    <td>  Magnetic Field </td>
+    <td>  2  </td>
+    <td>  B  </td>
+    <td>  kG </td>
+    <td>     </td>
+  </tr>
+  <tr>
+    <td>  Tilt </td>
+    <td>  3  </td>
+    <td>  tilt  </td>
+    <td>  deg </td>
+    <td>     </td>
+  </tr>
+</table>
+<p>
+  The letters "K" and "k" denote a dipole corrector. The first parameter is the length of the magnet in cm. 
+The second parameter is the magnetic field in kG. The third parameter is the tilt around beam direction 
+(Tilt=0 for the horizontal corrector and Tilt=90 for the vertical one). 
+Correctors affect particle tracking only (Tools|Trajectory, Tools|Type trajectory).
+</p>
+<pre>
+Example: 
+k          	L[cm]=10   	B[kG]=0.01   	Tilt[deg]=0
+</pre>
+</body>
+</html>
+  

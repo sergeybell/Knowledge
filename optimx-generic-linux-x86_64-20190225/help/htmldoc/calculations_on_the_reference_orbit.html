@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="header.js"></script>
+<title>OptiMX: Calculations on the Reference Orbit</title>
+</head>
+<body>
+<h2>Optics Calculations on the Reference Orbit</h2>
+<p> In many applications, linear optics computations (tunes, beta-functions, etc.) need to be carried out not only on the design (central)
+  orbit but also on one or many excited orbits. This arises when the optics change with beam momentum or when the beam is put on an helical orbit to achieve
+  beam separation at parasitic crossings in a collider. To perform such computations, the program needs to be put in the so-called reference orbit mode
+  (see Control). In that case, for each requested calculation the program performs the following actions:
+</p>
+<ol>
+<li>   Parses the main window and creates a structure describing the beam optics on the central orbit. </li> 
+<li>   Finds a reference orbit. This is done in exactly the same manner as when the Tools/Trajectory command in sinvoked. 
+In line mode the program uses the parameters given in TrajParamBlock as initial values. 
+In ring mode the program first closes the trajectory and then builds the beam positions at every element.</li>  
+<li>   From the known properties of elements and beam positions at each element, the program builds a new lattice referenced to this new orbit. 
+  Multiipole elements are added to account for feeddown effects arising from off-center trajectories.
+  In reference orbit mode the View/Lattice command shows element parameters in the reference mode. In generatal, each element in the origial lattice
+  is represented by a set of elements elements. </li> 
+<li>  once the reference mode lattice is built,  subsequent computations are performed exactly as they were for the design (central) orbit.
+  Consequently, all commands can be used in the reference orbit mode. The only exception is Tool|Trajectory command which yields ambiguous results
+  since the same sources of orbit excitation are used to compute orbit change at parsing and then for a real calculation. </li> 
+</ol>
+</body>
+</html>

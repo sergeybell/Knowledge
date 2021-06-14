@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="header.js"> </script>
+<title> OptiMX Help: Space Charge Menu </title>
+</head>
+<body>
+<h2>Space Charge Menu</h2>
+<p>
+  The Space Charge menu provides commands to compute the effect of the beam space charge on beam transport assuming a K-V distribution
+  for either coupled or uncoupled transverse motion (see Graphical Window and XY coupled lattice treatment).
+  For a KV-distribution,  the bunch electric field depends linearly on the transverse coordinates and the 4D Twiss functions can be used
+  to describe the beam transport with space charge taken into account.
+  Initial conditions for transverse phase space are extracted from the 4D Beta-functions block.
+  If this block does not exist a template will be created and the correct
+  initial 4D Twiss functions and emittances must supplied (View 4D|Close 4D can be used to determine initial Twiss functions for a circular machine).
+  If the space charge block does not exist a template will be created. Appropriate values
+  for the beam current and bunch parameters must then be entered. The second line in SpaceChargeBlock is reserved for bunched beam
+  calculations and is not used for a CW beam. For the case of bunched beam you additionally will need to provide correct values
+  for the initial bunch length and the orientation of phase space ellipse in the longitudinal phase space, i.e. $\alpha$ (see Size4D for definitions).
+  The structure of the space charge block is shown below. 
+</p>
+<pre>
+SpaceChargeBlock
+  BeamCurrent[A]=0.1
+  BunchLength[cm]=1.0   dP/P=0.001   Alpha[-1,1]=0.
+EndSpaceChargeBlock
+</pre>
+<table class="sansserif">
+<tr><td> CW Betas	</td><td>  <a href=""> Plots 4D beta functions for CW beam. </a></td></tr> 
+<tr><td> CW Sizes       </td><td>  <a href=""> Plots the large and small semi-axes of the beam size ellipsoid and its rotation. </a></td></tr> 
+<tr><td> CW Projections	</td><td>  <a href=""> Plots the horizontal, vertical beam sizes and the ellipse orientation parameter, a (see Size4D17Z36H6 for definition) for CW beam. </a></td></tr> 
+<tr><td> CW Phases	</td><td>  <a href=""> Plots the 4D betatron phases </a></td></tr> 
+<tr><td> CW Functions	</td><td>  <a href=""> Prints 4D Twiss parameters into a text window </a></td></tr> 
+<tr><td> Control  	</td><td>  <a href=""> Controls the behavior for calculations of the CW menu. </a></td></tr> 
+</table>
+
+<h4>Space Charge|CW Betas</h4>
+<p>
+Plots 4D beta functions for CW beam with KV-distribution. 
+</p>
+
+<h4>Space Charge|CW Sizes</h4>
+<p>
+Plots the large and small semi-axes of the beam size ellipsoid and the rotation angle of the ellipsoid (see . Size4D17Z36H6). 
+</p>
+
+<h4>Space Charge|CW Projections</h4>
+<p>
+  Plots the horizontal, vertical beam sizes and the ellipse orientation parameter, $a$, (see Size4Dfor definition) for CW beam with KV-distribution
+  (see Size projections).
+</p>
+
+<h4>Space Charge|CW Phases</h4>
+<p>
+Plots 4D betatron phases for CW beam with KV-distribution. 
+</p>
+<h4>Space Charge|CW Functions</h4>
+<p>
+Prints 4D Twiss parameters into a text window for CW beam with KV-distribution. 
+</p>
+<h4>Space Charge|CW Control</h4>
+<p>
+Integration step for all CW commands. 
+</p>
+
+</body>
+</html>

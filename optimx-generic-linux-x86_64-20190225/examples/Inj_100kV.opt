@@ -1,0 +1,55 @@
+# An example how to use a cavity with numerical integration of trajectoties (w...).
+$BetaX=77.34 	
+$BetaY=77.34
+$AlfaX=-1 	
+$AlfaY=-1 
+OptiM
+# CEBAF Injector, initial energy 
+Energy[MeV]=0.1        Mass[MeV]=0.511    
+Emittance: ex[cm]=0.001  ey[cm]=0.001  DP/P=0.01 
+Initial:	BetaX[cm]=$BetaX 	BetaY[cm]=$BetaY 
+	AlfaX=$AlfaX 		AlfaY=$AlfaY 
+	DispersX[cm]=0 	DispersY[cm]=0 
+	Dsp_PrimeX=0 	DspPrimeY=0 
+	X[cm]=0.000    	Y[cm]=0.000    	Z[cm]=0.000    	S[cm]=0.000    
+	tetaX[deg]=0        	tetaY[deg]=0        
+#
+file reference start
+1  "Fit.dat"   
+file reference end
+#
+begin lattice. Number of periods=1 
+o2 CC3 	o3a o3b CC4 o4c CC4 o3b o3a    CC5 o5a Ab o5b CC6     o6a Ac o6b CC7 o7 
+#o7a Aq1 o7c Aq2 o7a o8
+o7aw wAq1 wAq2 o7aw o8
+end lattice
+#
+begin list
+o2         	L[cm]=5.89     
+CC3        	L[cm]=10         	B[kG]=0.136   
+#
+o3a        	L[cm]=8.83     
+o3b        	L[cm]=51.21    
+CC4        	L[cm]=10         	B[kG]=0.095646
+o4c        	L[cm]=7.14     
+#
+CC5        	L[cm]=10         	B[kG]=0.13    
+o5a        	L[cm]=37.46    
+Ab         	L[cm]=12        Ncell=1  Eff_L[cm]=6  A[MeV]=0.02      Phase[deg]=90  WaveL[cm]=20
+o5b        	L[cm]=15.21    
+CC6        	L[cm]=10         	B[kG]=0.11    
+#
+o6a        	L[cm]=59.21    
+Ac         	L[cm]=36        Ncell=4  Eff_L[cm]=5  A[MeV]=0.4       Phase[deg]=0  WaveL[cm]=20
+o6b        	L[cm]=50.15    
+CC7        	L[cm]=10         	B[kG]=0.144   
+o7         	L[cm]=105.12   
+o7a        	L[cm]=40       
+o7c        	L[cm]=20       
+o8         	L[cm]=200      
+Aq1        	L[cm]=50        Ncell=5  Eff_L[cm]=7  A[MeV]=2.25      Phase[deg]=0  WaveL[cm]=20
+Aq2        	L[cm]=50        Ncell=5  Eff_L[cm]=7  A[MeV]=2.25      Phase[deg]=0  WaveL[cm]=20
+o7aw       	L[cm]=30       
+wAq1       	L[cm]=70        A[MeV]=2.5       Phase[deg]=-20  WaveL[cm]=20 FileRef=1
+wAq2       	L[cm]=70        A[MeV]=2.5       Phase[deg]=0  WaveL[cm]=20 FileRef=1
+end list of elements

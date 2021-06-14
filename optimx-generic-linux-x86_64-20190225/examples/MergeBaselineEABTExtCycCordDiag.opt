@@ -1,0 +1,396 @@
+# Merged from files: 
+#    H:\E Linac\ERL\3BeamU\Merger2B10MeVCycCord.opt  E:\E Linac\EHall_Solution\7MeV_New\EABTEHAT10MeVExtPhase1.opt  
+# 
+# Taken from file H:\E Linac\ERL\3BeamU\Merger2B10MeVCycCord.opt
+# Merged from files: 
+#    H:\E Linac\ERL\3BeamQ\Merger5MeV.opt  E:\E Linac\EHall_Solution\CavMat\Pass1ERLRecB5MeVBS4.opt  
+# 
+# Taken from file H:\E Linac\ERL\3BeamQ\Merger5MeV.opt
+$LoD1=          30;  =>          30
+$IKE=15.00;  =>          15
+$DipLen=           15;  =>          15
+$Bang=         18;  =>          18
+$BangB=          28;  =>          28
+$BangH=$Bang/2;  =>           9
+#$BangH=        30.25;  =>       30.25
+#$Aang=        18.7;  =>        18.7
+$pp=sqrt(($IKE+0.511006)^2-0.511006^2);  =>  15.5025862
+$rhoA=$DipLen/sin($Bang/180.0*3.1415926536);  =>  48.5410197
+$BmergeA=$pp*3.335641/$rhoA;  =>  1.06530647
+$rhoB=$DipLen/2/sin($BangB/2/180.0*3.1415926536);  =>  31.0017412
+$BmergeB=$pp*3.335641/$rhoB;  =>  1.66800509
+$BlenA=   $rhoA* $Bang/180.0*3.1415926536;  =>  15.2496111
+$BlenB=   $rhoB* $BangB/180.0*3.1415926536;  =>  15.1503088
+$edgeA=2.54*(1+sin($Bang/180.0*3.1415926536)^2)/cos($Bang/180.0*3.1415926536)^3;  =>  3.23462362
+$edgeB=2.54*(1+sin($BangH/180.0*3.1415926536)^2)/cos($BangH/180.0*3.1415926536)^3;  =>  2.70068492
+$Emit=5.0/10000/($pp/0.511006);  =>1.64813145e-05
+# 
+# 
+# Taken from file E:\E Linac\EHall_Solution\7MeV_New\EABTEHAT10MeVExtPhase1.opt
+# Taken from file H:\E Linac\ERL\3BeamQ\Merger5MeV.opt
+$LoD1=          30;  =>          30
+$IKE=10.00;  =>          10
+$pp=sqrt(($IKE+0.511006)^2-0.511006^2);  =>   10.498577
+$Emit=5.0/10000/($pp/0.511006);  =>2.43369172e-05
+$FKE= 51.9432 ;  =>     51.9432
+$DipLenH=           50;  =>          50
+$BangH=         0.7744;  =>      0.7744
+$Fpp=sqrt(($FKE+0.511006)^2-0.511006^2);  =>  52.4517168
+$rhoH=$DipLenH/sin($BangH/180.0*3.1415926536);  =>  3699.47856
+$BmergeH=$Fpp*3.335641/$rhoH;  =>0.0472931777
+$edgeH=2.54*(1+sin($BangH/180.0*3.1415926536)^2)/cos($BangH/180.0*3.1415926536)^3;  =>  2.54116022
+OptiM
+# Converted from DIMAD output file: E:\E Linac\EHall_Solution\SepNew2\Merger10MeVADJ.out
+Energy[MeV]=10         Mass[MeV]=0.511006 
+Emittance: ex[cm]=$Emit  ey[cm]=$Emit  DP/P=2e-05 
+Initial:	BetaX[cm]=500 	BetaY[cm]=500 
+	AlfaX=0.4 	AlfaY=0.4 
+	DispersX[cm]=0 	DispersY[cm]=0 
+	Dsp_PrimeX=0 	DspPrimeY=0 
+	X[cm]=-3499.295		Y[cm]=-60.9600   	Z[cm]=-748.780	S[cm]=415.892   
+#	X[cm]=-3499.295		Y[cm]=-60.9600   	Z[cm]=-748.780	S[cm]=0   
+	tetaX[deg]=-36.00000        	tetaY[deg]=0        
+# 
+# 
+begin lattice. Number of periods=1
+# 
+# Taken from file H:\E Linac\ERL\3BeamU\Merger2B10MeVCycCord.opt
+# 
+# Taken from file H:\E Linac\ERL\3BeamQ\Merger5MeV.opt
+oDCF	iEMBT:XC0	oDCB	oDCF	iEMBT:YC0	oDCF	
+oDBF	iEMBT:BPM0	oDBF	
+oDDF	iEMBT:FC0	oDDB	oDDF	iEMBT:RFS0	oDDB	oDDF	iEMBT:VS0	oDDF	
+oDDB	oDBB	oDCB	oDDB	oDBB	oDCB
+oDM01   qEMBTQ1   
+oDCF	iEMBT:XC1	oDCB	oDCF	iEMBT:YC1	oDCF	
+oDDCF	iEMBT:DCCT1	oDDCF	
+oDDCB	oDCB	oDDCB	oDCB
+oDM02   qEMBTQ2   
+oDBF	iEMBT:BPM2	oDBF	
+oDCF	iEMBT:XC2	oDCB	oDCF	iEMBT:YC2	oDCF
+oDBB	oDCB	oDBB	oDCB
+oDM03   qEMBTQ3   
+oDCF	iEMBT:XC3	oDCB	oDCF	iEMBT:YC3	oDCB	
+oDM04A   bEMBD   
+oDM04A   qEMBTQ4   
+oDDF	iEMBT:VS4	oDDB	oDDF	iEMBT:RFS4	oDDB	oDDF	iEMBT:WF4	oDDF	
+oDCF	iEMBT:XC4	oDCB	oDCF	iEMBT:YC4	oDCF	
+oDBF	iEMBT:BPM4	oDBF	
+oDDB	oDBB	oDCB	oDDB	oDBB	oDCB
+oDM05   qEMBTQ5   
+oDM06   
+gMA1 bMA1 GMA1 
+oDCF	iEMBT:YC5A	oDCF	
+oDDF	iEMBT:VS5A	oDDB	oDDF	iEMBT:COL5A	oDDF	
+oDCB	oDDB	oDCB	oDDB
+oDQN 
+qEMBTQ5B 
+oDCF	iEMBT:XC5B	oDCB	oDCF	iEMBT:YC5B	oDCF	
+oDDF	iEMBT:RFS5B	oDDB	oDDF	iEMBT:WF5B	oDDF	
+oDBF	iEMBT:BPM5B	oDBF	
+oDCB	oDCB	oDDB	oDDB	oDBB	oDBB
+oDQN 
+oDCB	iEMBT:YC5B2	oDCF	
+gMA3 bMA3 GMA3 
+oDCF	iEMBT:XC5C	oDCB	oDCF	iEMBT:YC5C	oDCF	
+oDBF	iEMBT:BPM5C	oDBF
+oDCB	oDCB	oDBB	oDBB
+oCOR oCOR 
+#
+# Conventional 0
+#
+oDN01    qEMBTQ6    
+oDDF	iEMBT:VS6	oDDB	oDDF	iEMBT:WF6	oDDB	oDDF	iEMBT:RFS6	oDDB	
+oDN02    qEMBTQ7    
+oDBF	iEMBT:BPM7	oDBF	
+oDCF	iEMBT:XC7	oDCB	oDCF	iEMBT:YC7	oDCF	
+oDBB	oDBB	oDCB	oDCB
+oDN03    
+# 
+# EACA
+#
+xCAV10ACC10 oD02 xCAV20ACC10 
+oDN04A    
+oDCF	iEABT:XC0	oDCB	oDCF	iEABT:YC0	oDCF	
+oDBF	iEABT:BPM0	oDBF	
+oDCB	oDCB	oDBB	oDBB
+oDN04B    qEABTQ1    
+oDDF	iEABT:FC1	oDDB	oDDF	iEABT:VS1	oDDB	oDDF	iEABT:RFS1	oDDB	
+oDN05A bEABD oDN05A qEABTQ2    
+oDBF	iEABT:BPM2	oDBF	
+oDDF	iEABT:VS2	oDDB	oDDF	iEABT:WF2	oDDB	oDDF	iEABT:RFS2	oDDF	
+oDBB	oDBB	oDDB	oDDB
+oDN06    qEABTQ3    
+oDCF	iEABT:XC3	oDCB	oDCF	iEABT:YC3	oDCF	
+oDBF	iEABT:BPM3	oDBF	
+oDCB	oDCB	oDBB	oDBB
+oDN07    
+#ACM
+oACM oD02 oACM
+oDN08A    
+oDCF	iEHAT:XC0	oDCB	oDCF	iEHAT:YC0	oDCF	
+oDBF	iEHAT:BPM0	oDBF
+oDCB	oDCB	oDBB	oDBB
+oDN08B    qEHATQ1    
+oDDF	iEHAT:FC1	oDDB	oDDF	iEHAT:VS1	oDDB	oDDF	iEHAT:RFS1	oDDB	
+oDN09    
+#KRF 
+bRF 
+# KBstr 
+gBstr   bBstr   GBstr   
+#oBstr
+oDN11    
+oDCB	iEHAT:XC1	oDCF	oDCB	iEHAT:YC1	oDCB	
+oDBB	iEHAT:BPM1	oDBB	
+oDCF	oDCF	oDBF	oDBF
+qEHATQ2    
+oDN12    
+#
+oDDB	iEHAT:VS2	oDDF	oDDB	iEHAT:RFS2	oDDB	
+oDCB	iEHAT:XC2	oDCF	oDCB	iEHAT:YC2	oDCB	
+oDBB	iEHAT:BPM2	oDBB	
+oDDF	oDDF	oDCF	oDCF	oDBF	oDBF
+# KSep 
+gBsep   bBsep   GBsep    
+#oBsep
+oDN13    qEHATQ3
+oDBF	iEHAT:BPM3	oDBF	
+oDCF	iEHAT:XC3	oDCB	oDCF	iEHAT:YC3	oDCF	
+oDBB	oDBB	oDCB	oDCB
+oDN14    qEHATQ4
+oDDF	iEHAT:VS4	oDDB	oDDF	iEHAT:WF4	oDDB	oDDF	iEHAT:RFS4	oDDB	oDN15    bEHATB4            
+end lattice
+begin list: dL=1.  dB=.1  dG=0.01  dS=0.01
+# 
+# Taken from file H:\E Linac\ERL\3BeamU\Merger2B10MeVCycCord.opt
+# 
+# Taken from file H:\E Linac\ERL\3BeamQ\Merger5MeV.opt
+gMA1 	B[kG]=-0.72144105   Angle[deg]=9  EffLen[cm]=2.70068492  Tilt[deg]=0  
+bMA1 	L[cm]=15.249611   	B[kG]=-0.72144105   	G[kG/cm]=0        	Tilt[deg]=0
+GMA1 	B[kG]=-0.72144105   Angle[deg]=9  EffLen[cm]=2.70068492  Tilt[deg]=0  
+gMA2 	B[kG]=-1.1295973   Angle[deg]=14  EffLen[cm]=2.94322  Tilt[deg]=0  
+bMA2 	L[cm]=15.150309   	B[kG]=-1.1295973   	G[kG/cm]=0        	Tilt[deg]=0
+GMA2 	B[kG]=-1.1295973   Angle[deg]=14  EffLen[cm]=2.94322  Tilt[deg]=0  
+gMA3 	B[kG]=-0.72144105   Angle[deg]=9  EffLen[cm]=2.70068492  Tilt[deg]=0  
+bMA3 	L[cm]=15.249611   	B[kG]=-0.72144105   	G[kG/cm]=0        	Tilt[deg]=0
+GMA3 	B[kG]=-0.72144105   Angle[deg]=9  EffLen[cm]=2.70068492  Tilt[deg]=0  
+bEMBD 	L[cm]=15         	B[kG]=0          	G[kG/cm]=0        	Tilt[deg]=0
+oDQB 	L[cm]=5        
+oDM01 	L[cm]=40       
+oDM02 	L[cm]=54.401   
+oDM03 	L[cm]=15       
+oDM04 	L[cm]=33.3     
+oDM04A 	L[cm]=9.15     
+oDM05 	L[cm]=28.3     
+oDM06 	L[cm]=9.441    
+oDQN 	L[cm]=60.8275  
+qEMBTQ1 	L[cm]=10         	G[kG/cm]=-0.05244616 	Tilt[deg]=0
+qEMBTQ2 	L[cm]=10         	G[kG/cm]=0.08124922 	Tilt[deg]=0
+qEMBTQ3 	L[cm]=10         	G[kG/cm]=-0.07447787 	Tilt[deg]=0
+qEMBTQ4 	L[cm]=10         	G[kG/cm]=0.04993471 	Tilt[deg]=0
+qEMBTQ5 	L[cm]=10         	G[kG/cm]=-0.05913396 	Tilt[deg]=0
+qEMBTQ5B 	L[cm]=10         	G[kG/cm]=0.1000526 	Tilt[deg]=0
+oBPM 	L[cm]=5        
+oCOR 	L[cm]=2.5      
+oDB 	L[cm]=7.5      
+iBPM 	L[cm]=0        	Tilt[deg]=0  
+iCOR 	L[cm]=0        	Tilt[deg]=0  
+iDB 	L[cm]=0        	Tilt[deg]=0  
+oD0 	L[cm]=32       
+oDQ2 	L[cm]=3        
+oMQ 	L[cm]=8        
+oDQ 	L[cm]=5        
+oD1 	L[cm]=7        
+oD100 	L[cm]=10       
+# 
+# 
+# Taken from file E:\E Linac\EHall_Solution\7MeV_New\EABTEHAT10MeVExtPhase1.opt
+# 
+# Taken from file H:\E Linac\ERL\3BeamR\Merger7MeV.opt
+# 
+# Taken from file H:\E Linac\ERL\3BeamQ\Merger5MeV.opt
+oDN05A		L[cm]=	23.4279
+bEABD 	L[cm]=15   	B[kG]=0.   	G[kG/cm]=0        	Tilt[deg]=0                	
+oDQB 	L[cm]=5        
+oDQN 	L[cm]=49.5       
+oD0 	L[cm]=32       
+oDQ2 	L[cm]=3        
+oMQ 	L[cm]=8        
+oDQ 	L[cm]=5        
+oD1 	L[cm]=7        
+oD100 	L[cm]=10       
+# 
+# 
+# Taken from file E:\E Linac\EHall_Solution\7MeV\Pass1ERLExtFit3.opt
+# 
+# Taken from file H:\E Linac\ERL\3BeamQ\Merger5MeV.opt
+# 
+# Taken from file E:\E Linac\EHall_Solution\CavMat\Pass1ERLRecB5MeVBS4.opt
+qEMBTQ6 	L[cm]=8          	G[kG/cm]=-0.08116612 	Tilt[deg]=0
+qEMBTQ7 	L[cm]=8          	G[kG/cm]=0.08477244 	Tilt[deg]=0
+#
+qEABTQ1 	L[cm]=8          	G[kG/cm]=-0.1012908 	Tilt[deg]=0
+qEABTQ2 	L[cm]=8          	G[kG/cm]=0.1396227 	Tilt[deg]=0
+qEABTQ3 	L[cm]=8          	G[kG/cm]=-0.05720508 	Tilt[deg]=0
+#
+qEHATQ1 	L[cm]=8          	G[kG/cm]=0.04325848 	Tilt[deg]=0
+qEHATQ2 	L[cm]=8          	G[kG/cm]=-0.08459793 	Tilt[deg]=0
+#
+# Taken from file H:\E Linac\BBU\MatrixGen\Pass1.opt
+xCAV10ACC10	Energy increase[MeV]=10.4812	L[cm]=127.953
+        0.86853164       122.55270977         0.00000000         0.00000000         0.00000000         0.00000000
+       -0.00172013         0.90865182         0.00000000         0.00000000         0.00000000         0.00000000
+        0.00000000         0.00000000         0.86853164       122.55270977         0.00000000         0.00000000
+        0.00000000         0.00000000        -0.00172013         0.90865182         0.00000000         0.00000000
+        0.00000000         0.00000000         0.00000000         0.00000000         1.00000000         0.00000000
+        0.00000000         0.00000000         0.00000000         0.00000000         0.00000000         1.00000000
+xCAV20ACC10	Energy increase[MeV]=10.4862	L[cm]=127.953
+        0.95695264       126.03887290         0.00000000         0.00000000         0.00000000         0.00000000
+       -0.00060774         0.96493867         0.00000000         0.00000000         0.00000000         0.00000000
+        0.00000000         0.00000000         0.95695264       126.03887290         0.00000000         0.00000000
+        0.00000000         0.00000000        -0.00060774         0.96493867         0.00000000         0.00000000
+        0.00000000         0.00000000         0.00000000         0.00000000         1.00000000         0.00000000
+        0.00000000         0.00000000         0.00000000         0.00000000         0.00000000         1.00000000
+xCAV30ACC10	Energy increase[MeV]=10.4872	L[cm]=127.953
+        0.97877602       126.97206048         0.00000000         0.00000000         0.00000000         0.00000000
+       -0.00031035         0.98142363         0.00000000         0.00000000         0.00000000         0.00000000
+        0.00000000         0.00000000         0.97877602       126.97206036         0.00000000         0.00000000
+        0.00000000         0.00000000        -0.00031035         0.98142363         0.00000000         0.00000000
+        0.00000000         0.00000000         0.00000000         0.00000000         1.00000000         0.00000000
+        0.00000000         0.00000000         0.00000000         0.00000000         0.00000000         1.00000000
+xCAV40ACC10	Energy increase[MeV]=10.4886	L[cm]=127.953
+        0.98739490       127.35753791         0.00000000         0.00000000         0.00000000         0.00000000
+       -0.00018833         0.98847495         0.00000000         0.00000000         0.00000000         0.00000000
+        0.00000000         0.00000000         0.98739490       127.35753791         0.00000000         0.00000000
+        0.00000000         0.00000000        -0.00018833         0.98847495         0.00000000         0.00000000
+        0.00000000         0.00000000         0.00000000         0.00000000         1.00000000         0.00000000
+        0.00000000         0.00000000         0.00000000         0.00000000         0.00000000         1.00000000
+oACM		L[cm]=127.953
+oDN01		L[cm]=	23.8004
+oDN02		L[cm]=	22.0962
+oDN03		L[cm]=	40.5691
+oDN04A		L[cm]=	28.5691
+oDN04B		L[cm]=	12.0
+oDN05		L[cm]=	61.8558
+oDN06		L[cm]=	22
+oDN07		L[cm]=	40.5691
+oDN08A		L[cm]=	31.1424
+oDN08B		L[cm]=	12
+oDN09		L[cm]=	23.3972
+oDN10		L[cm]=	0
+oDN11		L[cm]=	100
+oDN12		L[cm]=	100
+oDN13		L[cm]=	158.594
+oDN14		L[cm]=	30
+oDN15		L[cm]=	26
+oD02 	L[cm]=65.1     
+#
+# This drift leads to arc dipole center
+oDArc 	L[cm]=125        
+# This drift leads to dump dipole center
+oDDmp 	L[cm]=52.5        
+# Recirculated beam
+bRF 	L[cm]=50         	B[kG]=0   	G[kG/cm]=0        	Tilt[deg]=0
+#
+gBstr 	B[kG]=0   Angle[deg]=0.251335  EffLen[cm]=2.54012  Tilt[deg]=0  
+bBstr 	L[cm]=30         	B[kG]=0   	G[kG/cm]=0        	Tilt[deg]=0
+GBstr 	B[kG]=0   Angle[deg]=0.674285  EffLen[cm]=2.54088  Tilt[deg]=0  
+oBstr	L[cm]=80
+# This sends the extracted beam to 0 at dump dipole
+gBsep 	B[kG]=-0   Angle[deg]=0  EffLen[cm]=2.54  Tilt[deg]=0                
+bBsep 	L[cm]=50         	B[kG]=0   	G[kG/cm]=0        	Tilt[deg]=0              
+GBsep 	B[kG]=0   Angle[deg]=0  EffLen[cm]=2.54  Tilt[deg]=0                
+oBsep	L[cm]=50
+# Orbit effect by quad is needed to complete baseline picture.  Unfortunately using dipole screws up the optics.  Had to use kick instead.
+#
+#qEHATQ3 	L[cm]=8          	G[kG/cm]=0.135   	Tilt[deg]=0
+#qEHATQ4 	L[cm]=8          	G[kG/cm]=-0.145  	Tilt[deg]=0
+qEHATQ3 	L[cm]=8          	G[kG/cm]=0.0   	Tilt[deg]=0
+qEHATQ4 	L[cm]=8          	G[kG/cm]=-0.0  	Tilt[deg]=0
+bEHATB4             L[cm]=50          	B[kG]=0                    G[kG/cm]=0.0 	Tilt[deg]=0              
+#
+#
+oDDCF 		L[cm]=20
+oDDCB 		L[cm]=-20
+oDCF 		L[cm]=2.5
+oDCB 		L[cm]=-2.5
+oDBF 		L[cm]=4
+oDBB 		L[cm]=-4
+oDDF 		L[cm]=6
+oDDB 		L[cm]=-6
+#
+iEMBT:XC0	L[cm]=0
+iEMBT:YC0	L[cm]=0
+iEMBT:BPM0	L[cm]=0
+iEMBT:FC0	L[cm]=0
+iEMBT:RFS0	L[cm]=0
+iEMBT:VS0	L[cm]=0
+iEMBT:DCCT1	L[cm]=0
+iEMBT:XC1	L[cm]=0
+iEMBT:YC1	L[cm]=0
+iEMBT:BPM2	L[cm]=0
+iEMBT:XC2	L[cm]=0
+iEMBT:YC2	L[cm]=0
+iEMBT:XC3	L[cm]=0
+iEMBT:YC3	L[cm]=0
+iEMBT:VS4	L[cm]=0
+iEMBT:RFS4	L[cm]=0
+iEMBT:WF4	L[cm]=0
+iEMBT:BPM4	L[cm]=0
+iEMBT:XC4	L[cm]=0
+iEMBT:YC4	L[cm]=0
+iEMBT:YC5A	L[cm]=0
+iEMBT:COL5A	L[cm]=0
+iEMBT:VS5A	L[cm]=0
+iEMBT:XC5B	L[cm]=0
+iEMBT:YC5B	L[cm]=0
+iEMBT:RFS5B	L[cm]=0
+iEMBT:WF5B	L[cm]=0
+iEMBT:BPM5B	L[cm]=0
+iEMBT:YC5B2	L[cm]=0
+iEMBT:XC5C	L[cm]=0
+iEMBT:YC5C	L[cm]=0
+iEMBT:BPM5C	L[cm]=0
+iEMBT:VS6	L[cm]=0
+iEMBT:WF6	L[cm]=0
+iEMBT:RFS6	L[cm]=0
+iEMBT:BPM7	L[cm]=0
+iEMBT:XC7	L[cm]=0
+iEMBT:YC7	L[cm]=0
+iEABT:XC0	L[cm]=0
+iEABT:YC0	L[cm]=0
+iEABT:BPM0	L[cm]=0
+iEABT:FC1	L[cm]=0
+iEABT:VS1	L[cm]=0
+iEABT:RFS1	L[cm]=0
+iEABT:BPM2	L[cm]=0
+iEABT:VS2	L[cm]=0
+iEABT:WF2	L[cm]=0
+iEABT:RFS2	L[cm]=0
+iEABT:XC3	L[cm]=0
+iEABT:YC3	L[cm]=0
+iEABT:BPM3	L[cm]=0
+iEHAT:XC0	L[cm]=0
+iEHAT:YC0	L[cm]=0
+iEHAT:BPM0	L[cm]=0
+iEHAT:FC1	L[cm]=0
+iEHAT:VS1	L[cm]=0
+iEHAT:RFS1	L[cm]=0
+iEHAT:BPM1	L[cm]=0
+iEHAT:XC1	L[cm]=0
+iEHAT:YC1	L[cm]=0
+iEHAT:BPM2	L[cm]=0
+iEHAT:XC2	L[cm]=0
+iEHAT:YC2	L[cm]=0
+iEHAT:VS2	L[cm]=0
+iEHAT:RFS2	L[cm]=0
+iEHAT:BPM3	L[cm]=0
+iEHAT:XC3	L[cm]=0
+iEHAT:YC3	L[cm]=0
+iEHAT:VS4	L[cm]=0
+iEHAT:WF4	L[cm]=0
+iEHAT:RFS4	L[cm]=0
+	 
+
+
+end list

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="header.js"></script>
+<title> OptiMX Help: Lithium Lens </title>
+</head>
+<body>
+<h4>F-Lithium lens</h4>
+<table id="element">
+   <tr>
+    <th>Parameter Description</th>
+    <th>Argument Order</th>
+    <th>Argument Name </th>
+    <th>Units </th>
+    <th>Default Value</th>
+   </tr>
+   <tr>
+    <td>  Length </td>
+    <td>  1  </td>
+    <td>  L  </td>
+    <td>  cm </td>
+    <td>       </td>
+  </tr>
+  <tr>
+    <td>  Current Density </td>
+    <td>  2  </td>
+    <td>  j  </td>
+    <td>  kA/cm**2 </td>
+    <td>     </td>
+  </tr>
+</table>
+<p>
+The letters "F" and "f" denote the lithium lens. The first parameter is the length of the lens in cm. 
+The second parameter is the electric current density in kA/cm/cm. It can be also used for an estimate of the lattice 
+function change due to linear contribution of the beam-beam effects or the electron beam space charge in 
+the electron cooler. For these cases, one needs to make a correction for the electric field effect.
+</p>
+<pre>
+Examples: 
+F1		L[cm]=10  	j[kA/cm**2]=88.72665
+</pre>
+The example below represents a description of the Fermilab lithium lens. This description includes all important physical
+phenomena in the lens: (1) non-linearity of lithium lens focusing due to the skin-effect and (2) particle scattering in the berylium
+window and in the lithium (see also M- axial symmetric multipole and T-transverse random particle scattering).
+<pre>
+#--------------------------------------------------
+#                    Lens description in the math header
+$LensCurrent= 517.719904;  =>  517.719904
+$PulseLength=360e-6;  =>     0.00036  # usec,  duration of half sinusooidal pulse 
+$LensDelay=45;  =>          45  # deg, delay relative to the wave crest
+$LensL=15;  =>          15  # cm, effective length of the lens
+$LensR=1;  =>           1  # cm, radius of the lens
+$DTi=0.1;  =>         0.1  # cm, thickness of titanium contaner
+$Nlp=9;  =>           9  # number of pieces to split lens for non-linear tracking
+$RoLi=11.45e-6;  =>   1.145e-05  # Ohm cm, resistivity of lithium
+$RoTi=42e-6;  =>     4.2e-05  # Ohm cm, resistivity of titanium
+   $LensLp=$LensL/$Nlp/2;  => 0.833333333
+   $LensI0=$LensCurrent*$RoTi/($RoTi+2*$RoLi*$DTi/$LensR);  =>  490.951365
+   $LensJ0=$LensI0/($PI*$LensR*$LensR);  =>  156.274673
+   $Feff=0.5/$PulseLength;  =>  1388.88889
+   $SigmaR=$c*$c * 1e-9 / $RoLi;  =>7.84939021e+16
+   $DeltaSkin=$c/(2*$PI*sqrt($SigmaR*$Feff));  => 0.456971508
+   $KsiMax=sqrt(2)*$LensR/$DeltaSkin;  =>  3.09475216
+   $x=$KsiMax*$KsiMax;  =>  9.57749093
+   $FiKsiMax= $KsiMax / (2*sqrt(2)) * (1 + $x*(-1/8+$x*(-1/192+$x*(1/9216+$x/737280))));  => -0.6217
+   $FrKsiMax= $KsiMax / (2*sqrt(2)) * (-1 + $x*(-1/8+$x*(1/192+$x*(1/9216-$x/737280))));  => -1.7895
+   $Fr2=sqrt($FiKsiMax*$FiKsiMax + $FrKsiMax*$FrKsiMax);  =>   1.8944391
+   $Psi=atan($FiKsiMax/$FrKsiMax) + $PI/4;  =>  1.11976553
+   $si=sin($PI*$LensDelay/180-$Psi);  =>-0.328171637
+   $co=cos($PI*$LensDelay/180-$Psi);  => 0.944618111
+   $KsiNorm=sqrt(2)/$DeltaSkin;  =>  3.09475216
+   $x=$KsiNorm*$KsiNorm;  =>  9.57749093
+   $M1= $KsiNorm*$co/2/$Fr2;  => 0.771563189
+   $M3=-$KsiNorm*$si*$x*3/8/$Fr2;  =>  1.92543689
+   $M5=-$KsiNorm*$co*$x*$x*5/16/$Fr2;  =>  -44.233878
+   $M7= $KsiNorm*$si*$x*$x*$x*35/128/$Fr2;  => -128.783313
+   $M9= $KsiNorm*$co*$x*$x*$x*$x*63/256/$Fr2;  =>  3195.28114
+   $LensJ=$LensJ0*$M1;  =>  120.575785
+   $GL1=.200*$LensI0/($LensR*$LensR)*$M1*$LensL/$Nlp;  =>  126.266667
+   $GL3=.200*$LensI0/($LensR*$LensR)*$M3*$LensL/$Nlp;  =>  315.098623
+   $GL5=.200*$LensI0/($LensR*$LensR)*$M5*$LensL/$Nlp;  => -7238.89426
+   $GL7=.200*$LensI0/($LensR*$LensR)*$M7*$LensL/$Nlp;  => -21075.4478
+   $GL9=.200*$LensI0/($LensR*$LensR)*$M9*$LensL/$Nlp;  =>  522909.213
+   $ScatLi =1000*sqrt(($LensL+0.5*$LensR)/$Nlp/155.)*13.6/$E0;  => 0.179195734
+   $ScatBe=1000*sqrt(0.7/35.5)*13.6/$E0;  => 0.238717229
+   $ScatTot=1000*sqrt(($LensL+0.5*$LensR)/155.+1.4/35.5)*13.6/$E0;  => 0.634800623
+   $LiLens="fLens tLi mLens3 mLens5  mLens7 mLens9 fLens";
+
+begin lattice. Number of periods=1 
+hLens tBe
+$LiLens $LiLens $LiLens 
+$LiLens $LiLens $LiLens 
+$LiLens $LiLens $LiLens 
+tBe hLens IAP2START oDR700A 
+end lattice 
+#
+begin list
+mLens3 	Order:m=-3   	Bm*L[kG/cm**(m-1)]=$GL3   
+mLens5   	Order:m=-5   	Bm*L[kG/cm**(m-1)]=$GL5   
+mLens7  	Order:m=-7   	Bm*L[kG/cm**(m-1)]=$GL7   
+mLens9  	Order:m=-9   	Bm*L[kG/cm**(m-1)]=$GL9  
+tLi     	Rms angle[mrad]=$ScatLi  	1/L*dL/dx[1/cm]=0 	Tilt[deg]=0 
+tBe     	Rms angle[mrad]=$ScatBe	1/L*dL/dx[1/cm]=0 	Tilt[deg]=0 
+fLens        	L[cm]=$LensLp          	j[kA/cm**2]=$LensJ
+#
+end list 
+</pre>
+</body>
+</html>
+  

@@ -1,0 +1,1439 @@
+
+# ---------- BEAM PARAMETERS ----------
+$E0=4500;  =>        4500
+$Mp = 939.205;  =>     939.205
+$Z=79;  =>          79
+$A=197;  =>         197
+
+$Mu0=4*$pi*10^(-7);  =>1.25663706e-06
+
+$gamma=($Mp+$E0)/$Mp;  =>  5.79128625
+$beta=sqrt(1-1/$gamma^2);  => 0.984979168
+
+$P0=$Mp*$gamma*$beta;  =>  5357.50362
+$Bro=$A/$Z*$P0/$c*1e11;  =>  44563.6654
+
+$EmitX=1*10^(-4);  =>      0.0001
+$EmitZ=1*10^(-4);  =>      0.0001
+# Beam emittances [cm] ( /$pi*0.1*0.001 - converts X in Pi*mm*mrad -> cm ( * rad ) )
+
+
+$dp_p=0.01;  =>        0.01
+
+$Accept=40e-4;  =>       0.004
+$SigmaP=2.5e-3;  =>      0.0025
+$P_Accept=1.25e-2;  =>      0.0125
+
+
+#-----------DIPOLES-----------------------------
+$N_d=80;  =>          80  # Number of dipoles in the ring
+$L_d=194;  =>         194  # Effective length of the dipole magnet [cm]
+$h_d=7.2;  =>         7.2  # Vertical apperture of the dipoles [cm]
+$Nt_d=10;  =>          10  # Number of turns in dipoles' coil (full)
+
+
+$B_d = 2*$pi*$Bro/$N_d/$L_d;  =>   18.041351  #  [kG] Magnetic field in the dipoles for fixed $E0
+
+$I_d = ($B_d/10) * ($h_d/100) / ($Mu0 * $Nt_d);  =>  10336.9327  # [A] dipoles current
+
+$B_d_check = ($I_d * $Nt_d) * $Mu0 / ($h_d/100) *10;  =>   18.041351
+
+
+$FiEdge = 1/2*$B_d*$L_d/$Bro*180/$pi;  =>        2.25  # [degree] half of the dipoles' bending angle
+
+
+$D="od   Hd g bH g Hd    oo    Hd g bH g Hd  od";
+
+
+
+
+#------------QUADS-------------------------------
+$L_q=47;  =>          47  # Length of the main quad in regular cell [cm]
+$r_q=4.75;  =>        4.75  # Radius of the inscribed circle in the quad aperture [cm]
+$Nt_q=4;  =>           4  # Number of turns in quad coil (full)
+
+$r_q_ff=9.0;  =>           9  # Radius of the inscribed circle in the final focus quad aperture [cm]
+$Nt_q_ff=12;  =>          12  # Number of turns in quad coil (full)
+
+$G_q = 2*$Mu0*$Nt_q/2*$I_d/($r_q/100)^2;  =>    23.02896  # [T/m] quads gradient for I=$I_d analytically calculated
+
+
+
+#----------------regular quads-------------------
+$G_qF =2.294302*10;  =>    22.94302  # [T/m] actual gradient taken after cell fitting to Qx=Qy=0.25  (Cell---7-fit---B-dip-positive file)
+
+$dI_q = $G_qF*(($r_q/100)^2) / (2*$Mu0*$Nt_q/2) - $I_d;  => -38.5755859  # [A] additional current for F- and D- quads
+
+$G_qF_check = 2*$Mu0*$Nt_q/2*($I_d + $dI_q)/($r_q/100)^2;  =>    22.94302
+
+$G_qF_ = $G_qF_check/10;  =>    2.294302
+
+
+
+
+$G_qD=2.24472*10;  =>     22.4472  # [T/m] actual (ABSolute value) gradient taken after cell fitting to Qx=Qy=0.25   (Cell---7-fit---B-dip-positive file)
+
+$dI_qD = $G_qD*(($r_q/100)^2) / (2*$Mu0*$Nt_q/2) - $I_d - $dI_q;  => -222.557075
+
+$G_qD_check = (-1) * 2*$Mu0*$Nt_q/2*($I_d + $dI_q + $dI_qD)/($r_q/100)^2;  =>    -22.4472
+
+$G_qD_ = $G_qD_check/10;  =>    -2.24472
+
+
+
+#---------------------hor-dispersion supressor-------
+$G_qF1 =2.205706*10;  =>    22.05706  # [T/m] F1 gradient taken after 6-cell line fitting to Dx=0 at the end 
+$G_qF2 =1.81916*10;  =>     18.1916  # [T/m] F2 gradient taken after 6-cell line fitting to Dx=0 at the end
+
+$dI_qF1 = $G_qF1*(($r_q/100)^2) / (2*$Mu0*$Nt_q/2) - $I_d;  => -436.253506  # [A] additional current for F1- quad in Dx supressor cell
+
+$G_qF1_check = 2*$Mu0*$Nt_q/2*($I_d + $dI_qF1)/($r_q/100)^2;  =>    22.05706
+
+$G_qF1_ = $G_qF1_check/10;  =>    2.205706
+
+
+
+$dI_qF2 = $G_qF2*(($r_q/100)^2) / (2*$Mu0*$Nt_q/2) - $I_d;  => -2171.32968  # [A] additional current for F2- quad in Dx supressor cell
+
+$G_qF2_check = 2*$Mu0*$Nt_q/2*($I_d + $dI_qF2)/($r_q/100)^2;  =>     18.1916
+
+$G_qF2_ = $G_qF2_check/10;  =>     1.81916
+
+
+
+
+#-------Ss---a!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+$G_Q1 = 4.111586*10;  =>    41.11586  # [T/m] gradient in Q1 after matching SS---a to arc and fitting total tune
+
+$dI_Q1 = $G_Q1*(($r_q/100)^2) / (2*$Mu0*$Nt_q/2) - $I_d;  =>  8118.60669
+
+$G_Q1_check = 2*$Mu0*$Nt_q/2*($I_d + $dI_Q1)/($r_q/100)^2;  =>    41.11586
+
+$G_Q1_= $G_Q1_check/10;  =>    4.111586
+
+
+
+$G_Q2 = -4.053317*10;  =>   -40.53317  # [T/m] gradient in Q2 after matching SS---a to arc and fitting total tune
+
+$dI_Q2 = (-1) * $G_Q2*(($r_q/100)^2) / (2*$Mu0*$Nt_q/2) - $I_d;  =>  7857.05657
+
+$G_Q2_check = (-1) * 2*$Mu0*$Nt_q/2*($I_d + $dI_Q2)/($r_q/100)^2;  =>   -40.53317
+
+$G_Q2_= $G_Q2_check/10;  =>   -4.053317
+
+
+
+$G_Q3 = -2.075074*10;  =>   -20.75074  # [T/m] gradient in Q3 after matching SS---a to arc and fitting total tune
+
+$dI_Q3 = (-1) * $G_Q3*(($r_q/100)^2) / (2*$Mu0*$Nt_q/2) - $I_d;  => -1022.61702
+
+$G_Q3_check = (-1) * 2*$Mu0*$Nt_q/2*($I_d + $dI_Q3)/($r_q/100)^2;  =>   -20.75074
+
+$G_Q3_= $G_Q3_check/10;  =>   -2.075074
+
+
+
+$G_Q6 = -2.622996*10;  =>   -26.22996  # [T/m] gradient in Q6 after matching SS---a to arc and fitting total tune
+
+$dI_Q6 = (-1) * $G_Q6*(($r_q/100)^2) / (2*$Mu0*$Nt_q/2) - $I_d;  =>  1436.82224
+
+$G_Q6_check = (-1) * 2*$Mu0*$Nt_q/2*($I_d + $dI_Q6)/($r_q/100)^2;  =>   -26.22996
+
+$G_Q6_= $G_Q6_check/10;  =>   -2.622996
+
+
+
+$G_Q7 = 1.805454*10;  =>    18.05454  # [T/m] gradient in Q7 after matching SS---a to arc and fitting total tune
+
+$dI_Q7 = $G_Q7*(($r_q/100)^2) / (2*$Mu0*$Nt_q/2) - $I_d;  => -2232.85135
+
+$G_Q7_check = 2*$Mu0*$Nt_q/2*($I_d + $dI_Q7)/($r_q/100)^2;  =>    18.05454
+
+$G_Q7_= $G_Q7_check/10;  =>    1.805454
+
+
+
+$G_Q8 = -2.528407*10;  =>   -25.28407  # [T/m] gradient in Q8 after matching SS---a to arc and fitting total tune
+
+$dI_Q8 = (-1) * $G_Q8*(($r_q/100)^2) / (2*$Mu0*$Nt_q/2) - $I_d;  =>  1012.24374
+
+$G_Q8_check = (-1) * 2*$Mu0*$Nt_q/2*($I_d + $dI_Q8)/($r_q/100)^2;  =>   -25.28407
+
+$G_Q8_= $G_Q8_check/10;  =>   -2.528407
+
+
+
+#-------Ss---b!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+$G_Q32 = -2.508815*10;  =>   -25.08815  # [T/m] gradient in Q32 after matching SS---a to arc and fitting total tune
+
+$dI_Q32 = (-1) * $G_Q32*(($r_q/100)^2) / (2*$Mu0*$Nt_q/2) - $I_d;  =>  924.301786
+
+$G_Q32_check = (-1) * 2*$Mu0*$Nt_q/2*($I_d + $dI_Q32)/($r_q/100)^2;  =>   -25.08815
+
+$G_Q32_= $G_Q32_check/10;  =>   -2.508815
+
+
+
+$G_Q33 = 1.856305*10;  =>    18.56305  # [T/m] gradient in Q33 after matching SS---a to arc and fitting total tune
+
+$dI_Q33 = $G_Q33*(($r_q/100)^2) / (2*$Mu0*$Nt_q/2) - $I_d;  => -2004.59816
+
+$G_Q33_check = 2*$Mu0*$Nt_q/2*($I_d + $dI_Q33)/($r_q/100)^2;  =>    18.56305
+
+$G_Q33_= $G_Q33_check/10;  =>    1.856305
+
+
+
+$G_Q34 = -2.426544*10;  =>   -24.26544  # [T/m] gradient in Q34 after matching SS---a to arc and fitting total tune
+
+$dI_Q34 = (-1) * $G_Q34*(($r_q/100)^2) / (2*$Mu0*$Nt_q/2) - $I_d;  =>  555.014683
+
+$G_Q34_check = (-1) * 2*$Mu0*$Nt_q/2*($I_d + $dI_Q34)/($r_q/100)^2;  =>   -24.26544
+
+$G_Q34_= $G_Q34_check/10;  =>   -2.426544
+
+
+
+$G_Q37 = -2.288516*10;  =>   -22.88516  # [T/m] gradient in Q37 after matching SS---a to arc and fitting total tune
+
+$dI_Q37 = (-1) * $G_Q37*(($r_q/100)^2) / (2*$Mu0*$Nt_q/2) - $I_d;  => -64.5470118
+
+$G_Q37_check = (-1) * 2*$Mu0*$Nt_q/2*($I_d + $dI_Q37)/($r_q/100)^2;  =>   -22.88516
+
+$G_Q37_= $G_Q37_check/10;  =>   -2.288516
+
+
+
+$G_Q38 = 4.211758*10;  =>    42.11758  # [T/m] gradient in Q38 after matching SS---a to arc and fitting total tune
+
+$dI_Q38 = $G_Q38*(($r_q/100)^2) / (2*$Mu0*$Nt_q/2) - $I_d;  =>  8568.24541
+
+$G_Q38_check = 2*$Mu0*$Nt_q/2*($I_d + $dI_Q38)/($r_q/100)^2;  =>    42.11758
+
+$G_Q38_= $G_Q38_check/10;  =>    4.211758
+
+
+
+$G_Q39 = -4.089483*10;  =>   -40.89483  # [T/m] gradient in Q39 after matching SS---a to arc and fitting total tune
+
+$dI_Q39 = (-1) * $G_Q39*(($r_q/100)^2) / (2*$Mu0*$Nt_q/2) - $I_d;  =>  8019.39369
+
+$G_Q39_check = (-1) * 2*$Mu0*$Nt_q/2*($I_d + $dI_Q39)/($r_q/100)^2;  =>   -40.89483
+
+$G_Q39_= $G_Q39_check/10;  =>   -4.089483
+
+
+
+#--------------------------final focus magnets gradients and currents
+
+$G_FF1 = 1.70962*10;  =>     17.0962  # [T/m] gradient in final focus quad #1 after matching SS to arc and fitting total tune
+$dI_FF1 = $G_FF1*(($r_q_ff/100)^2) / (2*$Mu0*$Nt_q_ff/2) - $I_d;  => -1153.74421
+$G_FF1_check =2*$Mu0*$Nt_q_ff/2*($I_d + $dI_FF1)/($r_q_ff/100)^2;  =>     17.0962
+$G_FF1_=$G_FF1_check/10;  =>     1.70962
+
+$G_FF2 = -1.8815*10;  =>     -18.815  # [T/m] gradient in final focus quad #2 after matching SS to arc and fitting total tune
+$dI_FF2 =(-1) * $G_FF2*(($r_q_ff/100)^2) / (2*$Mu0*$Nt_q_ff/2) - $I_d;  =>  -230.49434
+$G_FF2_check =(-1) * 2*$Mu0*$Nt_q_ff/2*($I_d + $dI_FF2)/($r_q_ff/100)^2;  =>     -18.815
+$G_FF2_=$G_FF2_check/10;  =>     -1.8815
+
+$G_FF3 = 1.894845*10;  =>    18.94845  # [T/m] gradient in final focus quad #3 after matching SS to arc and fitting total tune
+$dI_FF3 = $G_FF3*(($r_q_ff/100)^2) / (2*$Mu0*$Nt_q_ff/2) - $I_d;  => -158.811948
+$G_FF3_check =2*$Mu0*$Nt_q_ff/2*($I_d + $dI_FF3)/($r_q_ff/100)^2;  =>    18.94845
+$G_FF3_=$G_FF3_check/10;  =>    1.894845
+
+
+
+$G_FF4 = -1.704585*10;  =>   -17.04585  # [T/m] gradient in final focus quad #4 after matching SS to arc and fitting total tune
+$dI_FF4 = (-1) *$G_FF4*(($r_q_ff/100)^2) / (2*$Mu0*$Nt_q_ff/2) - $I_d;  => -1180.78961
+$G_FF4_check =(-1) * 2*$Mu0*$Nt_q_ff/2*($I_d + $dI_FF4)/($r_q_ff/100)^2;  =>   -17.04585
+$G_FF4_=$G_FF4_check/10;  =>   -1.704585
+
+$G_FF5 = 1.873948*10;  =>    18.73948  # [T/m] gradient in final focus quad #5 after matching SS to arc and fitting total tune
+$dI_FF5 = $G_FF5*(($r_q_ff/100)^2) / (2*$Mu0*$Nt_q_ff/2) - $I_d;  => -271.059752
+$G_FF5_check =2*$Mu0*$Nt_q_ff/2*($I_d + $dI_FF5)/($r_q_ff/100)^2;  =>    18.73948
+$G_FF5_=$G_FF5_check/10;  =>    1.873948
+
+$G_FF6 = -1.880276*10;  =>   -18.80276  # [T/m] gradient in final focus quad #6 after matching SS to arc and fitting total tune
+$dI_FF6 = (-1) *$G_FF6*(($r_q_ff/100)^2) / (2*$Mu0*$Nt_q_ff/2) - $I_d;  =>  -237.06903
+$G_FF6_check =(-1) * 2*$Mu0*$Nt_q_ff/2*($I_d + $dI_FF6)/($r_q_ff/100)^2;  =>   -18.80276
+$G_FF6_=$G_FF6_check/10;  =>   -1.880276
+
+#---end-----------------------final focus magnets gradients and currents
+
+
+
+#-------Ss---a
+$Q1W2="oq Hq Q1W2 Hq oq";  # straight section quad
+$Q2W2="oq Hq Q2W2 Hq oq";  # straight section quad
+$Q3W2="oq Hq Q3W2 Hq oq";  # straight section quad
+$Q4W2="oq Hq Q4W2 Hq oq";  # straight section quad
+$Q5W2="oq Hq Q5W2 Hq oq";  # straight section quad
+$Q6W2="oq Hq Q6W2 Hq oq";  # straight section quad
+$Q7W2="oq Hq Q7W2 Hq oq";  # straight section quad
+$Q8W2="oq Hq Q8W2 Hq oq";  # straight section quad
+
+#---------arc-----
+$Q9W2="oq Hq Q9W2 Hq oq";  # F2 quad in Dx-supressor
+$Q10W2="oq Hq Q10W2 Hq oq";  # regular quads
+$Q11W2="oq Hq Q11W2 Hq oq";  # F1 quad in Dx-supressor
+$Q12W2="oq Hq Q12W2 Hq oq";  # regular quads
+$Q13W2="oq Hq Q13W2 Hq oq";  # regular quads
+$Q14W2="oq Hq Q14W2 Hq oq";  # regular quads
+$Q15W2="oq Hq Q15W2 Hq oq";  # regular quads
+$Q16W2="oq Hq Q16W2 Hq oq";  # regular quads
+$Q17W2="oq Hq Q17W2 Hq oq";  # regular quads
+$Q18W2="oq Hq Q18W2 Hq oq";  # regular quads
+$Q19W2="oq Hq Q19W2 Hq oq";  # regular quads
+$Q20W2="oq Hq Q20W2 Hq oq";  # regular quads
+
+$Q20W2h="oq Hq Q20W2h Hq oq";  # regular quads
+
+$Q21W2="oq Hq Q21W2 Hq oq";  # regular quads   $qF="oq  Hq qF Hq oq"
+$Q22W2="oq Hq Q22W2 Hq oq";  # regular quads   $qD="oq Hq qD Hq oq"
+$Q23W2="oq Hq Q23W2 Hq oq";  # regular quads
+$Q24W2="oq Hq Q24W2 Hq oq";  # regular quads
+$Q25W2="oq Hq Q25W2 Hq oq";  # regular quads
+$Q26W2="oq Hq Q26W2 Hq oq";  # regular quads
+$Q27W2="oq Hq Q27W2 Hq oq";  # regular quads
+$Q28W2="oq Hq Q28W2 Hq oq";  # regular quads
+$Q29W2="oq Hq Q29W2 Hq oq";  # F1 quad in Dx-supressor 
+$Q30W2="oq Hq Q30W2 Hq oq";  # regular quads
+$Q31W2="oq Hq Q31W2 Hq oq";  # F2 quad in Dx-supressor
+
+#-------Ss---b
+$Q32W2="oq Hq Q32W2 Hq oq";  # straight section quad
+$Q33W2="oq Hq Q33W2 Hq oq";  # straight section quad
+$Q34W2="oq Hq Q34W2 Hq oq";  # straight section quad
+$Q35W2="oq Hq Q35W2 Hq oq";  # straight section quad
+$Q36W2="oq Hq Q36W2 Hq oq";  # straight section quad
+$Q37W2="oq Hq Q37W2 Hq oq";  # straight section quad
+$Q38W2="oq Hq Q38W2 Hq oq";  # straight section quad
+$Q39W2="oq Hq Q39W2 Hq oq";  # straight section quad
+
+
+
+
+#-------Ss---a
+$Q1E2="oq Hq Q1E2 Hq oq";  # straight section quad
+$Q2E2="oq Hq Q2E2 Hq oq";  # straight section quad
+$Q3E2="oq Hq Q3E2 Hq oq";  # straight section quad
+$Q4E2="oq Hq Q4E2 Hq oq";  # straight section quad
+$Q5E2="oq Hq Q5E2 Hq oq";  # straight section quad
+$Q6E2="oq Hq Q6E2 Hq oq";  # straight section quad
+$Q7E2="oq Hq Q7E2 Hq oq";  # straight section quad
+$Q8E2="oq Hq Q8E2 Hq oq";  # straight section quad
+
+#---------arc-----
+$Q9E2="oq Hq Q9E2 Hq oq";  # F2 quad in Dx-supressor
+$Q10E2="oq Hq Q10E2 Hq oq";  # regular quads
+$Q11E2="oq Hq Q11E2 Hq oq";  # F1 quad in Dx-supressor
+$Q12E2="oq Hq Q12E2 Hq oq";  # regular quads
+$Q13E2="oq Hq Q13E2 Hq oq";  # regular quads
+$Q14E2="oq Hq Q14E2 Hq oq";  # regular quads
+$Q15E2="oq Hq Q15E2 Hq oq";  # regular quads
+$Q16E2="oq Hq Q16E2 Hq oq";  # regular quads
+$Q17E2="oq Hq Q17E2 Hq oq";  # regular quads
+$Q18E2="oq Hq Q18E2 Hq oq";  # regular quads
+$Q19E2="oq Hq Q19E2 Hq oq";  # regular quads
+$Q20E2="oq Hq Q20E2 Hq oq";  # regular quads
+
+$Q20E2h="oq Hq Q20E2h Hq oq";  # regular quads
+
+$Q21E2="oq Hq Q21E2 Hq oq";  # regular quads   $qF="oq  Hq qF Hq oq"
+$Q22E2="oq Hq Q22E2 Hq oq";  # regular quads   $qD="oq Hq qD Hq oq"
+$Q23E2="oq Hq Q23E2 Hq oq";  # regular quads
+$Q24E2="oq Hq Q24E2 Hq oq";  # regular quads
+$Q25E2="oq Hq Q25E2 Hq oq";  # regular quads
+$Q26E2="oq Hq Q26E2 Hq oq";  # regular quads
+$Q27E2="oq Hq Q27E2 Hq oq";  # regular quads
+$Q28E2="oq Hq Q28E2 Hq oq";  # regular quads
+$Q29E2="oq Hq Q29E2 Hq oq";  # F1 quad in Dx-supressor 
+$Q30E2="oq Hq Q30E2 Hq oq";  # regular quads
+$Q31E2="oq Hq Q31E2 Hq oq";  # F2 quad in Dx-supressor
+
+#-------Ss---b
+$Q32E2="oq Hq Q32E2 Hq oq";  # straight section quad
+$Q33E2="oq Hq Q33E2 Hq oq";  # straight section quad
+$Q34E2="oq Hq Q34E2 Hq oq";  # straight section quad
+$Q35E2="oq Hq Q35E2 Hq oq";  # straight section quad
+$Q36E2="oq Hq Q36E2 Hq oq";  # straight section quad
+$Q37E2="oq Hq Q37E2 Hq oq";  # straight section quad
+$Q38E2="oq Hq Q38E2 Hq oq";  # straight section quad
+$Q39E2="oq Hq Q39E2 Hq oq";  # straight section quad
+
+
+#----------------X,Y-Corrector + Beam Pick Up:   CP------------
+$L_cp=30;  =>          30
+
+#-----Ss---a------------
+$CP1W2="Kx1W2 iPU1W2";
+$CP2W2="Kx2W2 iPU2W2";
+$CP3W2="Kx3W2 iPU3W2";
+$CP4W2="Kx4W2 iPU4W2";
+
+#-----arc---------------
+$CP5W2="Kx5W2 iPU5W2";
+$CP6W2="Kx6W2 iPU6W2";
+$CP7W2="Kx7W2 iPU7W2";
+$CP8W2="Kx8W2 iPU8W2";
+$CP9W2="Kx9W2 iPU9W2";
+$CP10W2="Kx10W2 iPU10W2";
+$CP11W2="Kx11W2 iPU11W2";
+$CP12W2="Kx12W2 iPU12W2";
+
+$CP13W2="Kx13W2 iPU13W2";
+$CP14W2="Kx14W2 iPU14W2";
+$CP15W2="Kx15W2 iPU15W2";
+$CP16W2="Kx16W2 iPU16W2";
+$CP17W2="Kx17W2 iPU17W2";
+$CP18W2="Kx18W2 iPU18W2";
+$CP19W2="Kx19W2 iPU19W2";
+$CP20W2="Kx20W2 iPU20W2";
+$CP21W2="Kx21W2 iPU21W2";
+$CP22W2="Kx22W2 iPU22W2";
+$CP23W2="Kx23W2 iPU23W2";
+$CP24W2="Kx24W2 iPU24W2";
+$CP25W2="Kx25W2 iPU25W2";
+$CP26W2="Kx26W2 iPU26W2";
+$CP27W2="Kx27W2 iPU27W2";
+
+#-------Ss---b-----------
+$CP28W2="Kx28W2 iPU28W2";
+$CP29W2="Kx29W2 iPU29W2";
+$CP30W2="Kx30W2 iPU30W2";
+$CP31W2="Kx31W2 iPU31W2";
+
+
+
+#-----Ss---a------------
+$CP1E2="Kx1E2 iPU1E2";
+$CP2E2="Kx2E2 iPU2E2";
+$CP3E2="Kx3E2 iPU3E2";
+$CP4E2="Kx4E2 iPU4E2";
+
+#-----arc---------------
+$CP5E2="Kx5E2 iPU5E2";
+$CP6E2="Kx6E2 iPU6E2";
+$CP7E2="Kx7E2 iPU7E2";
+$CP8E2="Kx8E2 iPU8E2";
+$CP9E2="Kx9E2 iPU9E2";
+$CP10E2="Kx10E2 iPU10E2";
+$CP11E2="Kx11E2 iPU11E2";
+$CP12E2="Kx12E2 iPU12E2";
+
+$CP13E2="Kx13E2 iPU13E2";
+$CP14E2="Kx14E2 iPU14E2";
+$CP15E2="Kx15E2 iPU15E2";
+$CP16E2="Kx16E2 iPU16E2";
+$CP17E2="Kx17E2 iPU17E2";
+$CP18E2="Kx18E2 iPU18E2";
+$CP19E2="Kx19E2 iPU19E2";
+$CP20E2="Kx20E2 iPU20E2";
+$CP21E2="Kx21E2 iPU21E2";
+$CP22E2="Kx22E2 iPU22E2";
+$CP23E2="Kx23E2 iPU23E2";
+$CP24E2="Kx24E2 iPU24E2";
+$CP25E2="Kx25E2 iPU25E2";
+$CP26E2="Kx26E2 iPU26E2";
+$CP27E2="Kx27E2 iPU27E2";
+
+#-------Ss---b-----------
+$CP28E2="Kx28E2 iPU28E2";
+$CP29E2="Kx29E2 iPU29E2";
+$CP30E2="Kx30E2 iPU30E2";
+$CP31E2="Kx31E2 iPU31E2";
+
+
+
+#-------------Multipole Corrector:    MC------------------
+$L_mc=30;  =>          30  # Length of the multipole corector [cm]
+
+#---------Ss---a
+$MC1W2="imc MC1W2q MC1W2s MC1W2o";
+$MC2W2="imc MC2W2q MC2W2s MC2W2o";
+$MC3W2="imc MC3W2q MC3W2s MC3W2o";
+$MC4W2="imc MC4W2q MC4W2s MC4W2o";
+
+#-----arc----------
+$MC5W2="imc MC5W2q MC5W2s MC5W2o";
+$MC6W2="imc MC6W2q MC6W2s MC6W2o";
+$MC7W2="imc MC7W2q MC7W2s MC7W2o";
+$MC8W2="imc MC8W2q MC8W2s MC8W2o";
+$MC9W2="imc MC9W2q MC9W2s MC9W2o";
+$MC10W2="imc MC10W2q MC10W2s MC10W2o";
+$MC11W2="imc MC11W2q MC11W2s MC11W2o";
+$MC12W2="imc MC12W2q MC12W2s MC12W2o";
+$MC13W2="imc MC13W2q MC13W2s MC13W2o";
+$MC14W2="imc MC14W2q MC14W2s MC14W2o";
+$MC15W2="imc MC15W2q MC15W2s MC15W2o";
+$MC16W2="imc MC16W2q MC16W2s MC16W2o";
+$MC17W2="imc MC17W2q MC17W2s MC17W2o";
+
+$MC18W2="imc MC18W2q MC18W2s MC18W2o";  #$mF="imc mFq mFs mFo";
+$MC19W2="imc MC19W2q MC19W2s MC19W2o";  #$mD="imc mDq mDs mDo";
+$MC20W2="imc MC20W2q MC20W2s MC20W2o";
+$MC21W2="imc MC21W2q MC21W2s MC21W2o";
+$MC22W2="imc MC22W2q MC22W2s MC22W2o";
+$MC23W2="imc MC23W2q MC23W2s MC23W2o";
+$MC24W2="imc MC24W2q MC24W2s MC24W2o";
+$MC25W2="imc MC25W2q MC25W2s MC25W2o";
+$MC26W2="imc MC26W2q MC26W2s MC26W2o";
+$MC27W2="imc MC27W2q MC27W2s MC27W2o";
+
+#---------Ss------multipole correctors
+$MC28W2="imc MC28W2q MC28W2s MC28W2o";
+$MC29W2="imc MC29W2q MC29W2s MC29W2o";
+$MC30W2="imc MC30W2q MC30W2s MC30W2o";
+$MC31W2="imc MC31W2q MC31W2s MC31W2o";
+$MC32W2="imc MC32W2q MC32W2s MC32W2o";
+
+#----------multipole correctors for both beams in Ss
+$MC1W="imc MC1Wq MC1Ws MC1Wo";
+$MC2W="imc MC2Wq MC2Ws MC2Wo";
+
+
+
+#---------Ss---a
+$MC1E2="imc MC1E2q MC1E2s MC1E2o";
+$MC2E2="imc MC2E2q MC2E2s MC2E2o";
+$MC3E2="imc MC3E2q MC3E2s MC3E2o";
+$MC4E2="imc MC4E2q MC4E2s MC4E2o";
+
+#-----arc----------
+$MC5E2="imc MC5E2q MC5E2s MC5E2o";
+$MC6E2="imc MC6E2q MC6E2s MC6E2o";
+$MC7E2="imc MC7E2q MC7E2s MC7E2o";
+$MC8E2="imc MC8E2q MC8E2s MC8E2o";
+$MC9E2="imc MC9E2q MC9E2s MC9E2o";
+$MC10E2="imc MC10E2q MC10E2s MC10E2o";
+$MC11E2="imc MC11E2q MC11E2s MC11E2o";
+$MC12E2="imc MC12E2q MC12E2s MC12E2o";
+$MC13E2="imc MC13E2q MC13E2s MC13E2o";
+$MC14E2="imc MC14E2q MC14E2s MC14E2o";
+$MC15E2="imc MC15E2q MC15E2s MC15E2o";
+$MC16E2="imc MC16E2q MC16E2s MC16E2o";
+$MC17E2="imc MC17E2q MC17E2s MC17E2o";
+
+$MC18E2="imc MC18E2q MC18E2s MC18E2o";  #$mF="imc mFq mFs mFo";
+$MC19E2="imc MC19E2q MC19E2s MC19E2o";  #$mD="imc mDq mDs mDo";
+$MC20E2="imc MC20E2q MC20E2s MC20E2o";
+$MC21E2="imc MC21E2q MC21E2s MC21E2o";
+$MC22E2="imc MC22E2q MC22E2s MC22E2o";
+$MC23E2="imc MC23E2q MC23E2s MC23E2o";
+$MC24E2="imc MC24E2q MC24E2s MC24E2o";
+$MC25E2="imc MC25E2q MC25E2s MC25E2o";
+$MC26E2="imc MC26E2q MC26E2s MC26E2o";
+$MC27E2="imc MC27E2q MC27E2s MC27E2o";
+
+#---------Ss------multipole correctors
+$MC28E2="imc MC28E2q MC28E2s MC28E2o";
+$MC29E2="imc MC29E2q MC29E2s MC29E2o";
+$MC30E2="imc MC30E2q MC30E2s MC30E2o";
+$MC31E2="imc MC31E2q MC31E2s MC31E2o";
+$MC32E2="imc MC32E2q MC32E2s MC32E2o";
+
+#----------multipole correctors for both beams in Ss
+$MC1E="imc MC1Eq MC1Es MC1Eo";
+$MC2E="imc MC2Eq MC2Es MC2Eo";
+
+# imc Used only to fix on elements sequence sketch space for multipole corrector pack
+
+
+
+
+#----------------------DRIFTS--------------------------
+$L_odd=30;  =>          30  # between dipoles 
+$L_od=26.5;  =>        26.5  # dipole - multipole corrector; dipole - PickUp+X,Y-corrector
+$L_oq=10;  =>          10  # quadrupole - multipole corrector; quadrupole - PickUp+X,Y-corrector
+
+$L_miss=2*$L_od + 2*$L_d + $L_odd;  =>         471  # Size of the free space in the cell with miss-magnet [cm]
+
+
+
+#--------------------------------------SS DRIFTS--------------
+$L_oS1=1300;  =>        1300  # Length of 1st large drift [cm]
+$L_oS2=860;  =>         860  # Length of 2nd large drift [cm]
+$L_oS3=1005.45;  =>     1005.45  # Length of 3rd large drift [cm]
+
+#------------------------------------------EC-solenoid-----------
+$L_EC=600;  =>         600  # Length of the electron cooling system (EC) - solenoid [cm]
+
+
+#------------VERTICAL BEND---------------------------------------------
+$Lvb12=400;  =>         400  # Distance between centers of bV1 and bV2 [cm]
+$h=16;  =>          16  # Orbit elevation above median plane after bV2 [cm]
+$alfa=atan($h/$Lvb12);  =>0.0399786871  # Bending angle of the bV1 [rad]
+$Etop=4500;  =>        4500
+$BbV=13*$E0/$Etop;  =>          13  # Magnetic field in bV1 and bV2 [kG] at 4.5 GeV
+
+$LbV=$alfa*$P0*$A/$Z/$c/$BbV*1e11;  =>   137.04591  # Length of bV1 and bV2 [cm]
+
+
+#------------------------for Dy supression
+
+$BdL__MC7W2q=     -11.964;  =>     -11.964
+$BdL__MC8W2q=      -0.635;  =>      -0.635
+
+$BdL__MC24W2q=       3.889;  =>       3.889
+$BdL__MC25W2q=     -15.129;  =>     -15.129
+
+$BdL__MC7E2q=    -12.0321;  =>    -12.0321
+$BdL__MC8E2q=     -0.6399;  =>     -0.6399
+
+$BdL__MC24E2q=      3.8819;  =>      3.8819
+$BdL__MC25E2q=    -14.9845;  =>    -14.9845
+
+
+
+#----------------------------for X-Y-coupling supression 
+$BdL__MC1W2q=       -3.92;  =>       -3.92
+$BdL__MC2W2q=       5.487;  =>       5.487
+$BdL__MC3W2q=           0;  =>           0
+$BdL__MC4W2q=      -0;  =>           0
+
+#$BdL__MC1W2q=      -4.352
+#$BdL__MC2W2q=       5.455
+#$BdL__MC3W2q=       1.079
+#$BdL__MC4W2q=      -2.508
+
+$BdL__MC28W2q= $BdL__MC4W2q;  =>           0
+$BdL__MC29W2q=$BdL__MC3W2q;  =>           0
+$BdL__MC30W2q=$BdL__MC2W2q;  =>       5.487
+$BdL__MC31W2q=$BdL__MC1W2q;  =>       -3.92
+
+
+
+$BdL__MC1E2q=$BdL__MC1W2q;  =>       -3.92
+$BdL__MC2E2q=$BdL__MC2W2q;  =>       5.487
+$BdL__MC3E2q=$BdL__MC3W2q;  =>           0
+$BdL__MC4E2q=$BdL__MC4W2q;  =>           0
+
+$BdL__MC28E2q= $BdL__MC4W2q;  =>           0
+$BdL__MC29E2q=$BdL__MC3W2q;  =>           0
+$BdL__MC30E2q=$BdL__MC2W2q;  =>       5.487
+$BdL__MC31E2q=$BdL__MC1W2q;  =>       -3.92
+
+#-------------------------------Chromatycity corection---------------------------
+$BdL__sF1 =2.76;  =>        2.76
+$BdL__sD1 =-4.56;  =>       -4.56
+
+$BdL__sF2 =1.41;  =>        1.41
+$BdL__sD2 =-3.65;  =>       -3.65
+
+$BdL__MC9W2s = $BdL__sF1;  =>        2.76
+$BdL__MC10W2s = $BdL__sD1;  =>       -4.56
+
+$BdL__MC11W2s = $BdL__sF2;  =>        1.41
+$BdL__MC12W2s = $BdL__sD2;  =>       -3.65
+
+$BdL__MC13W2s = $BdL__sF1;  =>        2.76
+$BdL__MC14W2s = $BdL__sD1;  =>       -4.56
+
+$BdL__MC15W2s = $BdL__sF2;  =>        1.41
+$BdL__MC16W2s = $BdL__sD2;  =>       -3.65
+#-----------------ring half
+
+$BdL__MC17W2s = $BdL__sF1;  =>        2.76
+$BdL__MC18W2s = $BdL__sD1;  =>       -4.56
+
+$BdL__MC19W2s = $BdL__sF2;  =>        1.41
+$BdL__MC20W2s = $BdL__sD2;  =>       -3.65
+
+$BdL__MC21W2s = $BdL__sF1;  =>        2.76
+$BdL__MC22W2s = $BdL__sD1;  =>       -4.56
+
+$BdL__MC23W2s = $BdL__sF2;  =>        1.41
+$BdL__MC24W2s = $BdL__sD2;  =>       -3.65
+
+
+
+$BdL__MC9E2s = $BdL__sF1;  =>        2.76
+$BdL__MC10E2s = $BdL__sD1;  =>       -4.56
+
+$BdL__MC11E2s = $BdL__sF2;  =>        1.41
+$BdL__MC12E2s = $BdL__sD2;  =>       -3.65
+
+$BdL__MC13E2s = $BdL__sF1;  =>        2.76
+$BdL__MC14E2s = $BdL__sD1;  =>       -4.56
+
+$BdL__MC15E2s = $BdL__sF2;  =>        1.41
+$BdL__MC16E2s = $BdL__sD2;  =>       -3.65
+#-----------------ring half
+
+$BdL__MC17E2s = $BdL__sF1;  =>        2.76
+$BdL__MC18E2s = $BdL__sD1;  =>       -4.56
+
+$BdL__MC19E2s = $BdL__sF2;  =>        1.41
+$BdL__MC20E2s = $BdL__sD2;  =>       -3.65
+
+$BdL__MC21E2s = $BdL__sF1;  =>        2.76
+$BdL__MC22E2s = $BdL__sD1;  =>       -4.56
+
+$BdL__MC23E2s = $BdL__sF2;  =>        1.41
+$BdL__MC24E2s = $BdL__sD2;  =>       -3.65
+
+# ---------------------------------------------------------------------------------
+OptiM
+# ---------------------------------------------------------------------------------  
+Energy[MeV]=$E0*$A/$Z       Mass[MeV]=$Mp*$A/$Z
+Emittance: ex[cm]=$EmitX  	ey[cm]=$EmitZ  		DP/P=$dp_p 
+Initial:	BetaX[cm]=59.5038 	BetaY[cm]=59.4111 
+	AlfaX=-0.000259179 	AlfaY=0.000926524 
+	DispersX[cm]=0 	DispersY[cm]=0 
+	Dsp_PrimeX=0 	DspPrimeY=0 
+	X[cm]=0.000    	Y[cm]=0.000    	Z[cm]=0.000    	S[cm]=0.000    
+	tetaX[deg]=0        	tetaY[deg]=0        
+#
+#  Elements: O,I-drift, D,B-sector dipole, G-magnet edge 
+#       Q-quad, S-sextupole, C,CC-solenoid and its focusing part only 
+#
+#
+begin lattice. Number of periods=1 
+#-------SPD-SS------------------------------------------------
+C_SPD
+QFF6W    oo    QFF5W    oo    QFF4W
+oq  $MC2W  oq
+BV4W  ObV12  BV3W2 
+$CP1W2   $MC1W2
+oS3
+$Q1W2  $CP2W2  $Q2W2     $MC2W2
+oS2
+$Q3W2  $Q4W2      $CP3W2     $Q5W2  $Q6W2     $MC3W2
+oS1
+$Q7W2   $MC4W2   $Q8W2
+    
+$CP4W2
+#----arc---
+               $D     $MC5W2  $Q9W2   $CP5W2       o_miss  $MC6W2  $Q10W2  $CP6W2  
+            o_miss   $MC7W2  $Q11W2  $CP7W2        $D     $MC8W2  $Q12W2  $CP8W2
+               $D     $MC9W2  $Q13W2  $CP9W2        $D     $MC10W2  $Q14W2  $CP10W2
+               $D     $MC11W2  $Q15W2  $CP11W2     $D     $MC12W2  $Q16W2  $CP12W2
+               $D     $MC13W2  $Q17W2  $CP13W2     $D     $MC14W2  $Q18W2  $CP14W2
+               $D     $MC15W2  $Q19W2  $CP15W2     $D     $MC16W2  $Q20W2  $CP16W2
+
+               $D     $MC17W2  $Q21W2  $CP17W2     $D     $MC18W2  $Q22W2  $CP18W2
+               $D     $MC19W2  $Q23W2  $CP19W2     $D     $MC20W2  $Q24W2  $CP20W2
+               $D     $MC21W2  $Q25W2  $CP21W2     $D     $MC22W2  $Q26W2  $CP22W2
+               $D     $MC23W2  $Q27W2  $CP23W2     $D     $MC24W2  $Q28W2  $CP24W2  
+               $D     $MC25W2  $Q29W2  $CP25W2  o_miss  $MC26W2  $Q30W2   $CP26W2  
+            o_miss  $MC27W2  $Q31W2   $CP27W2    $D  
+#----end---arc---
+$MC28W2
+
+#-------MPD-SS------------------------------------------------
+$Q32W2  $CP28W2   $Q33W2
+#oS1
+o_EC   C_EC   o_EC
+$MC29W2      $Q34W2  $Q35W2       $CP29W2       $Q36W2  $Q37W2
+oS2
+$MC30W2      $Q38W2  $CP30W2  $Q39W2
+oS3
+$MC31W2   $CP31W2 
+BV2W2  ObV12  BV1W 
+oq  $MC1W  oq
+QFF3W   oo   QFF2W   oo    QFF1W
+C_MPD 
+
+C_MPD
+QFF6E    oo    QFF5E    oo    QFF4E
+oq  $MC2E  oq
+BV4E  ObV12  BV3E2 
+$CP1E2   $MC1E2
+oS3
+$Q1E2  $CP2E2  $Q2E2     $MC2E2
+oS2
+$Q3E2  $Q4E2      $CP3E2     $Q5E2  $Q6E2     $MC3E2
+oS1
+$Q7E2   $MC4E2   $Q8E2
+    
+$CP4E2
+#----arc---
+               $D     $MC5E2  $Q9E2   $CP5E2       o_miss  $MC6E2  $Q10E2  $CP6E2  
+            o_miss   $MC7E2  $Q11E2  $CP7E2        $D     $MC8E2  $Q12E2  $CP8E2
+               $D     $MC9E2  $Q13E2  $CP9E2        $D     $MC10E2  $Q14E2  $CP10E2
+               $D     $MC11E2  $Q15E2  $CP11E2     $D     $MC12E2  $Q16E2  $CP12E2
+               $D     $MC13E2  $Q17E2  $CP13E2     $D     $MC14E2  $Q18E2  $CP14E2
+               $D     $MC15E2  $Q19E2  $CP15E2     $D     $MC16E2  $Q20E2  $CP16E2
+
+               $D     $MC17E2  $Q21E2  $CP17E2     $D     $MC18E2  $Q22E2  $CP18E2
+               $D     $MC19E2  $Q23E2  $CP19E2     $D     $MC20E2  $Q24E2  $CP20E2
+               $D     $MC21E2  $Q25E2  $CP21E2     $D     $MC22E2  $Q26E2  $CP22E2
+               $D     $MC23E2  $Q27E2  $CP23E2     $D     $MC24E2  $Q28E2  $CP24E2  
+               $D     $MC25E2  $Q29E2  $CP25E2  o_miss  $MC26E2  $Q30E2   $CP26E2  
+            o_miss  $MC27E2  $Q31E2   $CP27E2    $D  
+#----end---arc---
+$MC28E2
+
+#-------MPD-SS------------------------------------------------
+$Q32E2  $CP28E2   $Q33E2
+oS1
+$MC29E2      $Q34E2  $Q35E2       $CP29E2       $Q36E2  $Q37E2
+oS2
+$MC30E2      $Q38E2  $CP30E2  $Q39E2
+oS3
+$MC31E2   $CP31E2 
+BV2E2  ObV12  BV1E 
+oq  $MC1E  oq
+QFF3E   oo   QFF2E   oo    QFF1E
+C_SPD 
+ 
+
+
+end lattice
+
+
+
+begin list
+#-------Dipole Magnets------------------------------------------------------------------------------
+bH 	L[cm]=$L_d        	B[kG]=$B_d_check  	G[kG/cm]=0           	Tilt[deg]=0
+
+g 	B[kG]=$B_d_check        Angle[deg]=$FiEdge  	EffLen[cm]=$h_d/2                             Tilt[deg]=0  
+
+Hd	Ax[cm]=60 	Ay[cm]=35 	Shape=1 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+
+
+
+
+#------Ss---a---Quadrupoles------
+Q1W2 	L[cm]=47         	G[kG/cm]=$G_Q1_	 	Tilt[deg]=0
+Q2W2 	L[cm]=47         	G[kG/cm]=$G_Q2_	 	Tilt[deg]=0
+Q3W2 	L[cm]=47         	G[kG/cm]=$G_Q3_	 	Tilt[deg]=0
+Q4W2 	L[cm]=47         	G[kG/cm]=$G_qF_ 	Tilt[deg]=0
+Q5W2 	L[cm]=47         	G[kG/cm]=$G_qF_ 	Tilt[deg]=0
+Q6W2 	L[cm]=47         	G[kG/cm]=$G_Q6_ 	Tilt[deg]=0
+Q7W2 	L[cm]=47         	G[kG/cm]=$G_Q7_ 	Tilt[deg]=0
+Q8W2 	L[cm]=47         	G[kG/cm]=$G_Q8_ 	Tilt[deg]=0
+
+#------arc------Quadrupoles-------
+Q9W2 	L[cm]=$L_q         	G[kG/cm]=$G_qF2_ 	Tilt[deg]=0
+Q10W2 	L[cm]=$L_q         	G[kG/cm]=$G_qD_ 	Tilt[deg]=0
+Q11W2 	L[cm]=$L_q         	G[kG/cm]=$G_qF1_ 	Tilt[deg]=0
+
+Q12W2 	L[cm]=$L_q         	G[kG/cm]=$G_qD_ 	Tilt[deg]=0
+Q13W2 	L[cm]=$L_q         	G[kG/cm]=$G_qF_ 	Tilt[deg]=0
+Q14W2 	L[cm]=$L_q         	G[kG/cm]=$G_qD_ 	Tilt[deg]=0
+Q15W2 	L[cm]=$L_q         	G[kG/cm]=$G_qF_ 	Tilt[deg]=0
+Q16W2 	L[cm]=$L_q         	G[kG/cm]=$G_qD_ 	Tilt[deg]=0
+Q17W2 	L[cm]=$L_q         	G[kG/cm]=$G_qF_ 	Tilt[deg]=0
+Q18W2 	L[cm]=$L_q         	G[kG/cm]=$G_qD_ 	Tilt[deg]=0
+Q19W2 	L[cm]=$L_q         	G[kG/cm]=$G_qF_ 	Tilt[deg]=0
+Q20W2 	L[cm]=$L_q         	G[kG/cm]=$G_qD_ 	Tilt[deg]=0
+
+Q20W2h 	L[cm]=$L_q/2         G[kG/cm]=$G_qD_ 	Tilt[deg]=0
+
+Q21W2 	L[cm]=$L_q         	G[kG/cm]=$G_qF_ 	Tilt[deg]=0
+Q22W2 	L[cm]=$L_q         	G[kG/cm]=$G_qD_ 	Tilt[deg]=0
+Q23W2 	L[cm]=$L_q         	G[kG/cm]=$G_qF_ 	Tilt[deg]=0
+Q24W2 	L[cm]=$L_q         	G[kG/cm]=$G_qD_ 	Tilt[deg]=0
+Q25W2 	L[cm]=$L_q         	G[kG/cm]=$G_qF_ 	Tilt[deg]=0
+Q26W2 	L[cm]=$L_q         	G[kG/cm]=$G_qD_ 	Tilt[deg]=0
+Q27W2 	L[cm]=$L_q         	G[kG/cm]=$G_qF_ 	Tilt[deg]=0
+Q28W2 	L[cm]=$L_q         	G[kG/cm]=$G_qD_ 	Tilt[deg]=0
+
+Q29W2 	L[cm]=$L_q         	G[kG/cm]=$G_qF1_ 	Tilt[deg]=0
+Q30W2 	L[cm]=$L_q         	G[kG/cm]=$G_qD_ 	Tilt[deg]=0
+Q31W2 	L[cm]=$L_q      	  	G[kG/cm]=$G_qF2_ 	Tilt[deg]=0
+
+#------Ss---b---Quadrupoles------
+Q32W2 	L[cm]=47         	G[kG/cm]=$G_Q32_ 	Tilt[deg]=0
+Q33W2 	L[cm]=47         	G[kG/cm]=$G_Q33_ 	Tilt[deg]=0
+Q34W2 	L[cm]=47         	G[kG/cm]=$G_Q34_ 	Tilt[deg]=0
+Q35W2 	L[cm]=47         	G[kG/cm]=$G_qF_ 	Tilt[deg]=0
+Q36W2 	L[cm]=47         	G[kG/cm]=$G_qF_ 	Tilt[deg]=0
+Q37W2 	L[cm]=47         	G[kG/cm]=$G_Q37_ 	Tilt[deg]=0
+Q38W2 	L[cm]=47         	G[kG/cm]=$G_Q38_ 	Tilt[deg]=0
+Q39W2 	L[cm]=47         	G[kG/cm]=$G_Q39_ 	Tilt[deg]=0
+
+#Hq	Ax[cm]=6.0 	Ay[cm]=3.5 	Shape=1 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+Hq	Ax[cm]=60 	Ay[cm]=35 	Shape=1 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+
+#------Final focus quadrupoles-------
+QFF1W 	L[cm]=85         	G[kG/cm]=$G_FF1_ 	Tilt[deg]=0
+QFF2W 	L[cm]=165        	G[kG/cm]=$G_FF2_ 	Tilt[deg]=0
+QFF3W 	L[cm]=100        	G[kG/cm]=$G_FF3_ 	Tilt[deg]=0
+
+QFF6W 	L[cm]=85         	G[kG/cm]=$G_FF4_ 	Tilt[deg]=0
+QFF5W 	L[cm]=165        	G[kG/cm]=$G_FF5_ 	Tilt[deg]=0
+QFF4W 	L[cm]=100        	G[kG/cm]=$G_FF6_ 	Tilt[deg]=0
+
+
+
+#------Ss---a---Quadrupoles------
+Q1E2 	L[cm]=47         	G[kG/cm]=$G_Q1_	 	Tilt[deg]=0
+Q2E2 	L[cm]=47         	G[kG/cm]=$G_Q2_	 	Tilt[deg]=0
+Q3E2 	L[cm]=47         	G[kG/cm]=$G_Q3_	 	Tilt[deg]=0
+Q4E2 	L[cm]=47         	G[kG/cm]=$G_qF_ 	Tilt[deg]=0
+Q5E2 	L[cm]=47         	G[kG/cm]=$G_qF_ 	Tilt[deg]=0
+Q6E2 	L[cm]=47         	G[kG/cm]=$G_Q6_ 	Tilt[deg]=0
+Q7E2 	L[cm]=47         	G[kG/cm]=$G_Q7_ 	Tilt[deg]=0
+Q8E2 	L[cm]=47         	G[kG/cm]=$G_Q8_ 	Tilt[deg]=0
+
+#------arc------Quadrupoles-------
+Q9E2 	L[cm]=$L_q         	G[kG/cm]=$G_qF2_ 	Tilt[deg]=0
+Q10E2 	L[cm]=$L_q         	G[kG/cm]=$G_qD_ 	Tilt[deg]=0
+Q11E2 	L[cm]=$L_q         	G[kG/cm]=$G_qF1_ 	Tilt[deg]=0
+
+Q12E2 	L[cm]=$L_q         	G[kG/cm]=$G_qD_ 	Tilt[deg]=0
+Q13E2 	L[cm]=$L_q         	G[kG/cm]=$G_qF_ 	Tilt[deg]=0
+Q14E2 	L[cm]=$L_q         	G[kG/cm]=$G_qD_ 	Tilt[deg]=0
+Q15E2 	L[cm]=$L_q         	G[kG/cm]=$G_qF_ 	Tilt[deg]=0
+Q16E2 	L[cm]=$L_q         	G[kG/cm]=$G_qD_ 	Tilt[deg]=0
+Q17E2 	L[cm]=$L_q         	G[kG/cm]=$G_qF_ 	Tilt[deg]=0
+Q18E2 	L[cm]=$L_q         	G[kG/cm]=$G_qD_ 	Tilt[deg]=0
+Q19E2 	L[cm]=$L_q         	G[kG/cm]=$G_qF_ 	Tilt[deg]=0
+Q20E2 	L[cm]=$L_q         	G[kG/cm]=$G_qD_ 	Tilt[deg]=0
+
+Q20E2h 	L[cm]=$L_q/2         G[kG/cm]=$G_qD_ 	Tilt[deg]=0
+
+Q21E2 	L[cm]=$L_q         	G[kG/cm]=$G_qF_ 	Tilt[deg]=0
+Q22E2 	L[cm]=$L_q         	G[kG/cm]=$G_qD_ 	Tilt[deg]=0
+Q23E2 	L[cm]=$L_q         	G[kG/cm]=$G_qF_ 	Tilt[deg]=0
+Q24E2 	L[cm]=$L_q         	G[kG/cm]=$G_qD_ 	Tilt[deg]=0
+Q25E2 	L[cm]=$L_q         	G[kG/cm]=$G_qF_ 	Tilt[deg]=0
+Q26E2 	L[cm]=$L_q         	G[kG/cm]=$G_qD_ 	Tilt[deg]=0
+Q27E2 	L[cm]=$L_q         	G[kG/cm]=$G_qF_ 	Tilt[deg]=0
+Q28E2 	L[cm]=$L_q         	G[kG/cm]=$G_qD_ 	Tilt[deg]=0
+
+Q29E2 	L[cm]=$L_q         	G[kG/cm]=$G_qF1_ 	Tilt[deg]=0
+Q30E2 	L[cm]=$L_q         	G[kG/cm]=$G_qD_ 	Tilt[deg]=0
+Q31E2 	L[cm]=$L_q      	  	G[kG/cm]=$G_qF2_ 	Tilt[deg]=0
+
+#------Ss---b---Quadrupoles------
+Q32E2 	L[cm]=47         	G[kG/cm]=$G_Q32_ 	Tilt[deg]=0
+Q33E2 	L[cm]=47         	G[kG/cm]=$G_Q33_ 	Tilt[deg]=0
+Q34E2 	L[cm]=47         	G[kG/cm]=$G_Q34_ 	Tilt[deg]=0
+Q35E2 	L[cm]=47         	G[kG/cm]=$G_qF_ 	Tilt[deg]=0
+Q36E2 	L[cm]=47         	G[kG/cm]=$G_qF_ 	Tilt[deg]=0
+Q37E2 	L[cm]=47         	G[kG/cm]=$G_Q37_ 	Tilt[deg]=0
+Q38E2 	L[cm]=47         	G[kG/cm]=$G_Q38_ 	Tilt[deg]=0
+Q39E2 	L[cm]=47         	G[kG/cm]=$G_Q39_ 	Tilt[deg]=0
+
+
+#------Final focus quadrupoles-------
+QFF1E 	L[cm]=85         	G[kG/cm]=$G_FF1_ 	Tilt[deg]=0
+QFF2E 	L[cm]=165        	G[kG/cm]=$G_FF2_ 	Tilt[deg]=0
+QFF3E 	L[cm]=100        	G[kG/cm]=$G_FF3_ 	Tilt[deg]=0
+
+QFF6E 	L[cm]=85         	G[kG/cm]=$G_FF4_ 	Tilt[deg]=0
+QFF5E 	L[cm]=165        	G[kG/cm]=$G_FF5_ 	Tilt[deg]=0
+QFF4E 	L[cm]=100        	G[kG/cm]=$G_FF6_ 	Tilt[deg]=0
+
+
+
+#----------------X,Y-Corrector + Beam Pick Up:   CP------------
+iPU1W2   	L[cm]=0	        	Tilt[deg]=0 
+iPU2W2   	L[cm]=0	        	Tilt[deg]=0 
+iPU3W2   	L[cm]=0	        	Tilt[deg]=0 
+iPU4W2   	L[cm]=0	        	Tilt[deg]=0 
+iPU5W2   	L[cm]=0	        	Tilt[deg]=0 
+iPU6W2   	L[cm]=0	        	Tilt[deg]=0 
+iPU7W2   	L[cm]=0	        	Tilt[deg]=0 
+iPU8W2   	L[cm]=0	        	Tilt[deg]=0 
+iPU9W2   	L[cm]=0	        	Tilt[deg]=0 
+iPU10W2   	L[cm]=0	        	Tilt[deg]=0 
+iPU11W2   	L[cm]=0	        	Tilt[deg]=0 
+iPU12W2   	L[cm]=0	        	Tilt[deg]=0 
+iPU13W2   	L[cm]=0	        	Tilt[deg]=0 
+iPU14W2   	L[cm]=0	        	Tilt[deg]=0 
+iPU15W2   	L[cm]=0	        	Tilt[deg]=0 
+iPU16W2   	L[cm]=0	        	Tilt[deg]=0 
+iPU17W2   	L[cm]=0	        	Tilt[deg]=0 
+iPU18W2   	L[cm]=0	        	Tilt[deg]=0 
+iPU19W2   	L[cm]=0	        	Tilt[deg]=0 
+iPU20W2   	L[cm]=0	        	Tilt[deg]=0 
+iPU21W2   	L[cm]=0	        	Tilt[deg]=0 
+iPU22W2   	L[cm]=0	        	Tilt[deg]=0 
+iPU23W2   	L[cm]=0	        	Tilt[deg]=0 
+iPU24W2   	L[cm]=0	        	Tilt[deg]=0 
+iPU25W2   	L[cm]=0	        	Tilt[deg]=0 
+iPU26W2   	L[cm]=0	        	Tilt[deg]=0 
+iPU27W2   	L[cm]=0	        	Tilt[deg]=0 
+iPU28W2   	L[cm]=0	        	Tilt[deg]=0 
+iPU29W2   	L[cm]=0	        	Tilt[deg]=0 
+iPU30W2   	L[cm]=0	        	Tilt[deg]=0 
+iPU31W2   	L[cm]=0	        	Tilt[deg]=0 
+
+Kx1W2	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx2W2	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx3W2	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx4W2	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx5W2	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx6W2	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx7W2	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx8W2	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx9W2	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx10W2	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx11W2	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx12W2	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx13W2	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx14W2	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx15W2	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx16W2	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx17W2	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx18W2	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx19W2	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx20W2	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx21W2	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx22W2	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx23W2	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx24W2	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx25W2	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx26W2	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx27W2	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx28W2	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx29W2	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx30W2	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx31W2	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+
+
+
+iPU1E2   	L[cm]=0	        	Tilt[deg]=0 
+iPU2E2   	L[cm]=0	        	Tilt[deg]=0 
+iPU3E2   	L[cm]=0	        	Tilt[deg]=0 
+iPU4E2   	L[cm]=0	        	Tilt[deg]=0 
+iPU5E2   	L[cm]=0	        	Tilt[deg]=0 
+iPU6E2   	L[cm]=0	        	Tilt[deg]=0 
+iPU7E2   	L[cm]=0	        	Tilt[deg]=0 
+iPU8E2   	L[cm]=0	        	Tilt[deg]=0 
+iPU9E2   	L[cm]=0	        	Tilt[deg]=0 
+iPU10E2   	L[cm]=0	        	Tilt[deg]=0 
+iPU11E2   	L[cm]=0	        	Tilt[deg]=0 
+iPU12E2   	L[cm]=0	        	Tilt[deg]=0 
+iPU13E2   	L[cm]=0	        	Tilt[deg]=0 
+iPU14E2   	L[cm]=0	        	Tilt[deg]=0 
+iPU15E2   	L[cm]=0	        	Tilt[deg]=0 
+iPU16E2   	L[cm]=0	        	Tilt[deg]=0 
+iPU17E2   	L[cm]=0	        	Tilt[deg]=0 
+iPU18E2   	L[cm]=0	        	Tilt[deg]=0 
+iPU19E2   	L[cm]=0	        	Tilt[deg]=0 
+iPU20E2   	L[cm]=0	        	Tilt[deg]=0 
+iPU21E2   	L[cm]=0	        	Tilt[deg]=0 
+iPU22E2   	L[cm]=0	        	Tilt[deg]=0 
+iPU23E2   	L[cm]=0	        	Tilt[deg]=0 
+iPU24E2   	L[cm]=0	        	Tilt[deg]=0 
+iPU25E2   	L[cm]=0	        	Tilt[deg]=0 
+iPU26E2   	L[cm]=0	        	Tilt[deg]=0 
+iPU27E2   	L[cm]=0	        	Tilt[deg]=0 
+iPU28E2   	L[cm]=0	        	Tilt[deg]=0 
+iPU29E2   	L[cm]=0	        	Tilt[deg]=0 
+iPU30E2   	L[cm]=0	        	Tilt[deg]=0 
+iPU31E2   	L[cm]=0	        	Tilt[deg]=0 
+
+Kx1E2		L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx2E2		L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx3E2 	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx4E2 	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx5E2 	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx6E2 	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx7E2 	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx8E2 	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx9E2 	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx10E2 	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx11E2 	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx12E2 	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx13E2 	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx14E2 	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx15E2 	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx16E2 	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx17E2 	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx18E2 	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx19E2 	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx20E2 	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx21E2 	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx22E2 	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx23E2 	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx24E2 	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx25E2 	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx26E2 	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx27E2 	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx28E2 	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx29E2 	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx30E2 	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+Kx31E2 	L[cm]=$L_cp 	B[kG]=0.0 	Tilt[deg]=0 
+
+
+
+#-------------Multipole Corrector:    MC------------------
+imc	L[cm]=$L_mc	        Tilt[deg]=0  
+
+MC1W2q	Order: m=1	Bm*L[kG/cm**(m-1)]=$BdL__MC1W2q  Tilt[deg]=45
+MC1W2s	Order: m=2	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC1W2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC2W2q	Order: m=1	Bm*L[kG/cm**(m-1)]=$BdL__MC2W2q  Tilt[deg]=45
+MC2W2s	Order: m=2	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC2W2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC3W2q	Order: m=1	Bm*L[kG/cm**(m-1)]=$BdL__MC3W2q  Tilt[deg]=45
+MC3W2s	Order: m=2	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC3W2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC4W2q	Order: m=1	Bm*L[kG/cm**(m-1)]=$BdL__MC4W2q  Tilt[deg]=45
+MC4W2s	Order: m=2	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC4W2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC5W2q	Order: m=1	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC5W2s	Order: m=2	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC5W2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+        
+MC6W2q	Order: m=1	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC6W2s	Order: m=2	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC6W2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC7W2q	Order: m=1	Bm*L[kG/cm**(m-1)]=$BdL__MC7W2q  Tilt[deg]=45
+MC7W2s	Order: m=2	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC7W2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC8W2q	Order: m=1	Bm*L[kG/cm**(m-1)]=$BdL__MC8W2q  Tilt[deg]=45
+MC8W2s	Order: m=2	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC8W2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC9W2q	Order: m=1	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC9W2s	Order: m=2	Bm*L[kG/cm**(m-1)]=$BdL__MC9W2s  Tilt[deg]=0
+MC9W2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC10W2q	Order: m=1	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC10W2s	Order: m=2	Bm*L[kG/cm**(m-1)]=$BdL__MC10W2s  Tilt[deg]=0
+MC10W2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC11W2q	Order: m=1	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC11W2s	Order: m=2	Bm*L[kG/cm**(m-1)]=$BdL__MC11W2s  Tilt[deg]=0
+MC11W2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC12W2q	Order: m=1	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC12W2s	Order: m=2	Bm*L[kG/cm**(m-1)]=$BdL__MC12W2s  Tilt[deg]=0
+MC12W2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC13W2q	Order: m=1	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC13W2s	Order: m=2	Bm*L[kG/cm**(m-1)]=$BdL__MC13W2s  Tilt[deg]=0
+MC13W2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC14W2q	Order: m=1	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC14W2s	Order: m=2	Bm*L[kG/cm**(m-1)]=$BdL__MC14W2s  Tilt[deg]=0
+MC14W2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC15W2q	Order: m=1	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC15W2s	Order: m=2	Bm*L[kG/cm**(m-1)]=$BdL__MC15W2s  Tilt[deg]=0
+MC15W2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC16W2q	Order: m=1	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC16W2s	Order: m=2	Bm*L[kG/cm**(m-1)]=$BdL__MC16W2s  Tilt[deg]=0
+MC16W2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC17W2q	Order: m=1	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC17W2s	Order: m=2	Bm*L[kG/cm**(m-1)]=$BdL__MC17W2s  Tilt[deg]=0
+MC17W2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+
+
+MC18W2q	Order: m=1	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC18W2s	Order: m=2	Bm*L[kG/cm**(m-1)]=$BdL__MC18W2s  Tilt[deg]=0
+MC18W2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC19W2q	Order: m=1	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC19W2s	Order: m=2	Bm*L[kG/cm**(m-1)]=$BdL__MC19W2s  Tilt[deg]=0
+MC19W2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC20W2q	Order: m=1	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC20W2s	Order: m=2	Bm*L[kG/cm**(m-1)]=$BdL__MC20W2s  Tilt[deg]=0
+MC20W2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC21W2q	Order: m=1	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC21W2s	Order: m=2	Bm*L[kG/cm**(m-1)]=$BdL__MC21W2s  Tilt[deg]=0
+MC21W2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC22W2q	Order: m=1	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC22W2s	Order: m=2	Bm*L[kG/cm**(m-1)]=$BdL__MC22W2s  Tilt[deg]=0
+MC22W2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC23W2q	Order: m=1	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC23W2s	Order: m=2	Bm*L[kG/cm**(m-1)]=$BdL__MC23W2s  Tilt[deg]=0
+MC23W2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC24W2q	Order: m=1	Bm*L[kG/cm**(m-1)]=$BdL__MC24W2q  Tilt[deg]=45
+MC24W2s	Order: m=2	Bm*L[kG/cm**(m-1)]=$BdL__MC24W2s  Tilt[deg]=0
+MC24W2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC25W2q	Order: m=1	Bm*L[kG/cm**(m-1)]=$BdL__MC25W2q  Tilt[deg]=45
+MC25W2s	Order: m=2	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC25W2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC26W2q	Order: m=1	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC26W2s	Order: m=2	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC26W2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC27W2q	Order: m=1	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC27W2s	Order: m=2	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC27W2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC28W2q	Order: m=1	Bm*L[kG/cm**(m-1)]=$BdL__MC4W2q  Tilt[deg]=45
+MC28W2s	Order: m=2	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC28W2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC29W2q	Order: m=1	Bm*L[kG/cm**(m-1)]=$BdL__MC3W2q  Tilt[deg]=45
+MC29W2s	Order: m=2	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC29W2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC30W2q	Order: m=1	Bm*L[kG/cm**(m-1)]=$BdL__MC2W2q  Tilt[deg]=45
+MC30W2s	Order: m=2	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC30W2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC31W2q	Order: m=1	Bm*L[kG/cm**(m-1)]=$BdL__MC1W2q  Tilt[deg]=45
+MC31W2s	Order: m=2	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC31W2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+
+MC1Wq	Order: m=1	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC1Ws	Order: m=2	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC1Wo	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC2Wq	Order: m=1	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC2Ws	Order: m=2	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC2Wo	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+
+
+MC1E2q	Order: m=1	Bm*L[kG/cm**(m-1)]=$BdL__MC1E2q  Tilt[deg]=45
+MC1E2s	Order: m=2	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC1E2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC2E2q	Order: m=1	Bm*L[kG/cm**(m-1)]=$BdL__MC2E2q  Tilt[deg]=45
+MC2E2s	Order: m=2	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC2E2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC3E2q	Order: m=1	Bm*L[kG/cm**(m-1)]=$BdL__MC3E2q  Tilt[deg]=45
+MC3E2s	Order: m=2	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC3E2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC4E2q	Order: m=1	Bm*L[kG/cm**(m-1)]=$BdL__MC4E2q  Tilt[deg]=45
+MC4E2s	Order: m=2	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC4E2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC5E2q	Order: m=1	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC5E2s	Order: m=2	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC5E2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+        
+MC6E2q	Order: m=1	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC6E2s	Order: m=2	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC6E2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC7E2q	Order: m=1	Bm*L[kG/cm**(m-1)]=$BdL__MC7E2q  Tilt[deg]=45
+MC7E2s	Order: m=2	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC7E2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC8E2q	Order: m=1	Bm*L[kG/cm**(m-1)]=$BdL__MC8E2q  Tilt[deg]=45
+MC8E2s	Order: m=2	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC8E2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC9E2q	Order: m=1	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC9E2s	Order: m=2	Bm*L[kG/cm**(m-1)]=$BdL__MC9E2s  Tilt[deg]=0
+MC9E2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC10E2q	Order: m=1	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC10E2s	Order: m=2	Bm*L[kG/cm**(m-1)]=$BdL__MC10E2s  Tilt[deg]=0
+MC10E2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC11E2q	Order: m=1	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC11E2s	Order: m=2	Bm*L[kG/cm**(m-1)]=$BdL__MC11E2s  Tilt[deg]=0
+MC11E2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC12E2q	Order: m=1	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC12E2s	Order: m=2	Bm*L[kG/cm**(m-1)]=$BdL__MC12E2s  Tilt[deg]=0
+MC12E2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC13E2q	Order: m=1	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC13E2s	Order: m=2	Bm*L[kG/cm**(m-1)]=$BdL__MC13E2s  Tilt[deg]=0
+MC13E2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC14E2q	Order: m=1	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC14E2s	Order: m=2	Bm*L[kG/cm**(m-1)]=$BdL__MC14E2s  Tilt[deg]=0
+MC14E2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC15E2q	Order: m=1	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC15E2s	Order: m=2	Bm*L[kG/cm**(m-1)]=$BdL__MC15E2s  Tilt[deg]=0
+MC15E2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC16E2q	Order: m=1	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC16E2s	Order: m=2	Bm*L[kG/cm**(m-1)]=$BdL__MC16E2s  Tilt[deg]=0
+MC16E2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC17E2q	Order: m=1	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC17E2s	Order: m=2	Bm*L[kG/cm**(m-1)]=$BdL__MC17E2s  Tilt[deg]=0
+MC17E2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+
+
+MC18E2q	Order: m=1	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC18E2s	Order: m=2	Bm*L[kG/cm**(m-1)]=$BdL__MC18E2s  Tilt[deg]=0
+MC18E2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC19E2q	Order: m=1	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC19E2s	Order: m=2	Bm*L[kG/cm**(m-1)]=$BdL__MC19E2s  Tilt[deg]=0
+MC19E2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC20E2q	Order: m=1	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC20E2s	Order: m=2	Bm*L[kG/cm**(m-1)]=$BdL__MC20E2s  Tilt[deg]=0
+MC20E2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC21E2q	Order: m=1	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC21E2s	Order: m=2	Bm*L[kG/cm**(m-1)]=$BdL__MC21E2s  Tilt[deg]=0
+MC21E2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC22E2q	Order: m=1	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC22E2s	Order: m=2	Bm*L[kG/cm**(m-1)]=$BdL__MC22E2s  Tilt[deg]=0
+MC22E2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC23E2q	Order: m=1	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC23E2s	Order: m=2	Bm*L[kG/cm**(m-1)]=$BdL__MC23E2s  Tilt[deg]=0
+MC23E2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC24E2q	Order: m=1	Bm*L[kG/cm**(m-1)]=$BdL__MC24E2q  Tilt[deg]=45
+MC24E2s	Order: m=2	Bm*L[kG/cm**(m-1)]=$BdL__MC24E2s  Tilt[deg]=0
+MC24E2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC25E2q	Order: m=1	Bm*L[kG/cm**(m-1)]=$BdL__MC25E2q  Tilt[deg]=45
+MC25E2s	Order: m=2	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC25E2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC26E2q	Order: m=1	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC26E2s	Order: m=2	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC26E2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC27E2q	Order: m=1	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC27E2s	Order: m=2	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC27E2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC28E2q	Order: m=1	Bm*L[kG/cm**(m-1)]=$BdL__MC4E2q  Tilt[deg]=45
+MC28E2s	Order: m=2	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC28E2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC29E2q	Order: m=1	Bm*L[kG/cm**(m-1)]=$BdL__MC3E2q  Tilt[deg]=45
+MC29E2s	Order: m=2	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC29E2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC30E2q	Order: m=1	Bm*L[kG/cm**(m-1)]=$BdL__MC2E2q  Tilt[deg]=45
+MC30E2s	Order: m=2	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC30E2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC31E2q	Order: m=1	Bm*L[kG/cm**(m-1)]=$BdL__MC1E2q  Tilt[deg]=45
+MC31E2s	Order: m=2	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC31E2o	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+
+MC1Eq	Order: m=1	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC1Es	Order: m=2	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC1Eo	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+MC2Eq	Order: m=1	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC2Es	Order: m=2	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+MC2Eo	Order: m=3	Bm*L[kG/cm**(m-1)]=0.0  Tilt[deg]=0
+
+
+#-------Free Space in Regular Cell------------------------------
+oo	L[cm]=$L_odd
+oo2	L[cm]=$L_odd/2
+oq	L[cm]=$L_oq
+od	L[cm]=$L_od
+#----------------------------------drift in hor-dispersion supressor---
+o_miss	L[cm]=$L_miss
+
+
+O_det 	L[cm]=525   
+C_MPD	L[cm]=525	B[kG]=5
+C_SPD	L[cm]=525	B[kG]=0
+C_EC		L[cm]=$L_EC	B[kG]=2
+
+#--------Straight section "large" drifts-----------------------------------
+oS1                      L[cm]=$L_oS1
+oS2                      L[cm]=$L_oS2
+oS3                      L[cm]=$L_oS3
+
+o_EC                    L[cm]=$L_oS1/2 - $L_EC/2
+
+
+#---------------drift between vertical bending magnets---------------------
+ObV12                  L[cm]=$Lvb12-$LbV
+
+#----------Vertical bending dipoles------------------------------------------
+BV1W 	L[cm]=$LbV     	B[kG]=-$BbV    	G[kG/cm]=0        	Tilt[deg]=90
+BV2W2 	L[cm]=$LbV     	B[kG]=$BbV   	G[kG/cm]=0        	Tilt[deg]=90
+
+BV4W 	L[cm]=$LbV     	B[kG]=-$BbV    	G[kG/cm]=0        	Tilt[deg]=90
+BV3W2 	L[cm]=$LbV     	B[kG]=$BbV   	G[kG/cm]=0        	Tilt[deg]=90
+
+
+BV1E 	L[cm]=$LbV     	B[kG]=-$BbV    	G[kG/cm]=0        	Tilt[deg]=90
+BV2E2 	L[cm]=$LbV     	B[kG]=$BbV   	G[kG/cm]=0        	Tilt[deg]=90
+
+BV4E 	L[cm]=$LbV     	B[kG]=-$BbV    	G[kG/cm]=0        	Tilt[deg]=90
+BV3E2 	L[cm]=$LbV     	B[kG]=$BbV   	G[kG/cm]=0        	Tilt[deg]=90
+
+end list of elements
+
+
+
+
+BetaFitBlock dL[cm]=0.01 dB[kG]=0.01 dG[kG/cm]=0.00000001 
+
+#Required parameters and their accuracy listed below(dPARM<=0. - no fitting)
+#Maximum Betas[cm] and MomentumCompaction are on the next line
+
+BtXmax=50000.  dBtXmax=-0.1  BtYmax=50000.  dBtYmax=-0.1  Alfa=0.05  dAlfa=0
+#Fitting parameters at the end of the lattice
+
+Beta_X[cm]=60   dBeta_X[cm]=0.001    Alfa_X=0.0         dAlfa_X=0.0001
+Beta_Y[cm]=60    dBeta_Y[cm]=0.001    Alfa_Y=0.0         dAlfa_Y=0.0001
+
+Disp_X[cm]=0.0     dDisp_X[cm]=0   D_prime_X=0     dD_prime_X=0
+Disp_Y[cm]=0.0      dDisp_Y[cm]=0   D_prime_Y=0       dD_prime_Y=0
+
+Qx=0.9409                dQx=0.000001
+Qy=0.8620                      dQy=0.000001
+
+#Insert groups of elements below. Each group has to be located on one line.
+#Start from the letter describing the type of changable parameter such as: L:, B:, G: 
+#---------------fit for beta-f-at-IP---ajustment
+G:QFF1W  min=-1e10   max=1e10
+#-----------closed when tune fitting
+#G:QFF2W  min=-1e10   max=1e10
+#G:QFF3W  min=-1e10   max=1e10
+G:Q39W2  min=-1e+10 max=1e+10                                      
+# Q39W2Can be open in tune-fitting!!
+#---------------end group for fit for beta-f-at-IP---ajustment
+
+#--------------fit for SS tune ajustment-------
+G:Q38W2  min=-1e10   max=1e10
+
+G:Q37W2  min=-1e10   max=1e10
+
+G:Q34W2  min=-1e10   max=1e10
+
+G:Q33W2  min=-1e10   max=1e10
+
+G:Q32W2  min=-1e10   max=1e10
+
+EndBetaFitBlock
+
+
+4D_BetaBlock
+	Beta_X_1[cm]=60.4887 	Beta_X_2[cm]=0.938378
+	Alfa_X_1=-0.0384148  	Alfa_X_2=0.00558224
+	Beta_Y_1[cm]=0.856914 	Beta_Y_2[cm]=61.8013
+	Alfa_Y_1=0.00655971  	Alfa_Y_2=0.0213282
+	Teta_1[deg]=164.081      	Teta_2[deg]=164.972      	U=-0.0131365  
+	Emit1[cm]=$EmitX  	Emit2[cm]=$EmitZ
+	DispX[cm]=-1.1802      	DispY[cm]=-0.0420682  
+	DispXpr[cm]=-0.00387732  	DispYpr[cm]=-0.000764054
+End4DBetaBlock
+
+
+TrajParamBlock
+	X[cm]=0.0 	Teta_X[rad]=0.0
+	Y[cm]=0.0 	Teta_Y[rad]=0.0
+	s[cm]=0.0 	DeltaP/P=$dp_p
+EndTrajParamBlock
+
+SpaceChargeBlock
+  BeamCurrent[A]=0.1
+  BunchLength[cm]=1.0   dP/P=$dp_p   Alpha[-1,1]=0.   S_Offset[cm]=0.
+EndSpaceChargeBlock

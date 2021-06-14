@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="header.js"></script>
+<title> OptiMX Help: Edit Menu</title>
+</head>
+<body>
+<h2> Edit Menu </h2>
+<p> The Edit menu provides commands to undo edits, access the clipboard, delete text, and to perform special editing for the main window.</p>
+
+<table class=sansserif>
+<tr><td> Undo	 </td><td> <a href=""> Undo the previous operation with selected text window. </a></td></tr>
+<tr><td> Cut	 </td><td><a href="">Delete selected text in the selected text window and move it to the clipboard.</a></td></tr>
+<tr><td> Copy	 </td><td><a href="">Copy selected text from the selected text window to clipboard or copy a plot to the clipboard if the selected window is a Graphical Window</a></td></tr>
+<tr><td> Paste	 </td><td><a href="">Move text from the clipboard to the selected text window.</a></td></tr>
+<tr><td> Clear   </td><td> <a href="">Delete all text in a selected text window.</a></td></tr>
+<tr><td> Delete	 </td><td><a href="">Delete selected text in a selected text window.</a></td></tr>
+<tr><td> Analyze Lattice </td><td> <a href="">Parse a contents of the main window.</a></td></tr>
+<tr><td> Analyze Header </td><td><a href="">	Perform calculations for the math header of the main window and print results of the calculations at the end of lines.</a></td></tr>
+<tr><td> Analyze Line </td><td>	<a href="">Similar to Analyze Lattice and Analyze Header but updates only the line where the cursor is located</a></td></tr>
+<tr><td> Consistency Check </td><td>	<a href="">Perform a consistency check.</a></td></tr>
+<tr><td> Inverse Lattice </td><td>	<a href="">Inverse an order of elements in the lattice.</a></td></tr>
+<tr><td> Scale Energy  </td><td>	<a href="">Scale all elements of the lattice to a new energy</a></td></tr>
+<tr><td> Read Field Integral  </td><td>	<a href="">Read the field integral for elements from .snap file.</a></td></tr>
+<tr><td> Increment  </td><td> <a href="">Increment a value of chosen parameter for element.</a></td></tr>
+<tr><td> Decrement 	 </td><td><a href="">Decrement a value of chosen parameter for element. </a></td></tr>
+<tr><td> Steps 	   </td><td> <a href="">Change steps for Increment and Decrement menu items.</a></td></tr>
+</table>
+
+<h4>Edit|Undo</h4>
+<p>
+The Edit|Undo command restores the file in the current window to the way it was before your most recent edit operation. 
+Undo inserts any characters you deleted, deletes any characters you inserted, replaces any characters you overwrote, and moves your cursor back to a prior position.
+</p>
+<h4>Edit|Cut</h4>
+<p>
+  The Edit|Cut Command removes the selected text from your document and places the text into the clipboard. Choose the Edit|Paste menu or Shift+Insert key
+  to paste the cut text into another document. The text remains selected in the clipboard, and can be pasted multiple times. 
+</p>
+<h4>Edit|Copy</h4>
+<p>
+  The Edit|Copy command leaves the selected text intact and places an exact copy of it in the clipboard. To paste the copied text into another document,
+  choose Edit|Paste or Shift+Insert key. For an active graphical window the Edit|Copy command places a copy of the plot into the clipboard
+</p>
+<h4>Edit|Paste</h4>
+<p>
+The Edit|Paste command inserts the text currently selected in the clipboard into the current text window at the cursor position. 
+</p>
+<h4>Edit|Clear All</h4>
+<p>
+The Edit|Clear All Command deletes the entire contents of the current text window. Use Edit|Undo to restore the contents.
+</p>
+<h4>Edit|Delete</h4>
+<p>
+Deletes select text without placing it in the clipboard. 
+</p>
+<h4>Edit|Analyze Lattice</h4>
+<p>
+  Parses the contents of the main window, which holds the lattice description. The program pops up a message window if
+  it encounters a syntax error. The cursor will be positioned in the line where program encounters the first error.
+  The program rewrites the contents of the main window in its standard format. User comments will not be affected. 
+  All references to variables determined in the math header will be substituted by their values.
+  Thus if one needs these references to be preserved the Edit|Analyse Lattice command should not be used. 
+To prevent unintentional use of this command the dialog box warning about the file changes is popped up before any changes take place.
+It works in the main window only.
+</p>
+<h4>Edit|Analyze Header</h4>
+<p>
+  Parses the contents of the math header4.ACT2 of the main window (the window which holds the lattice description),
+  performs calculations, and prints results of the calculations at the end of each line of the header. The program pops up a message
+  window if it encounters a syntax error. The cursor will be positioned in the line where program encounters the first error.
+This operation does not destroy the end line comments, which are allowed in the math header. 	It works in the main window only.
+</p>
+<h4>Edit|Analyze Line</h4>
+<p>
+  Parses the contents of the main window (the window which holds the lattice description), performs calculations.
+  If the current line (line where the cursor is located) is in the math header it reprints the result of the calculations
+  for this line. This operation does not destroy the end line comment. If the current line is located in the element list
+  the command prints the parsing result for this line. If element parameters are presented by variables it will replace
+  the variables by their numerical values, and, consequently, it will brake relationship of this line to the math header.
+This command works in the main window only.
+</p>
+<h4>Edit|Consistency Check</h4>
+<p>
+  The command checks that the elements are not repeated in the element list (as it normally has to be) and that all elements
+  of the element list are used in the lattice list. This feature is created to check repeated definitions or unused lines in the element list. 
+  The command checks that the field values and the tilts of edge focusing elements correspond to the field value and the tilt of adjacent dipoles.
+  One needs to remember that if the tilt of a dipole is different from 0 or 90 deg. the input and output tilt angles are different
+  (see B, D-combined function magnet). The command also informs about edge focusing elements, which do not have immediately adjacent dipoles. 
+</p>
+<h4>Edit|Inverse Lattice</h4>
+<p>
+  Inverses the order of elements in the lattice. Substitutes values of exit beta-functions, dispersions, energy and absolute
+  coordinates of the initial lattice as initial beta-functions, dispersions, energy and absolute coordinates for the inverted lattice.
+  Changes signs of (1) the accelerating gradient for accelerating cavities, (2) of the bending field for dipoles and solenoids.
+  Adjusts the tilt angles for dipoles so that the absolute beam trajectory would stay the same. Changes signs for quad rolls.
+  Thus after the inversion the beta-functions and the vertical dispersion through lattice will stay the same,
+  while the horizontal dispersion will change its sign.
+</p>
+<h4>Edit|Scale Energy</h4>
+<p>
+  Scale magnetic fields for all elements of the lattice to a new energy. This command should be used when the energy of the
+  beam has to be changed. Magnetic fields of magnets are scaled proportionally to the momentum change, while cavity
+  accelerating gradients are scaled proportionally to the energy change.
+</p>
+<h4>Edit|Read Field Integral</h4>
+<p>
+Reads field integrals for elements from .snap file. This type of files is used in EPICS control software and has the following structure:
+</p>
+<pre>
+Start header
+.............
+End header
+Name_1  1  value_1
+............
+Name_n  1  value_n
+</pre>
+<p>
+The header, if it exists, is ignored by the program. 
+Name_n is the name of the EPICS  field which determines the element integral field. It must have the following structure: pname.BDL,
+where p is the name prefix (q for quadrupole, b for dipole, etc., see Elements), name is the element name (like MQB1A01 for the case of the CEBAF accelerator),
+and .BDL is the name suffix denoting that value_n represents element integral field measured in Gauss and centimeters
+(G cm - for dipole, G - for quadrupole, G/cm - for sextupole). Actually, the program truncates the suffix from name and does not check what follows
+after period. Thus any suffix or no suffix can be used. If naming convention does not have appropriate OptiM prefix (b, q, etc.)
+it can be added with help of the dialog window coming after Edit|Read field integral menu is chosen. The filter in this dialog box
+is applied to the names of the .snap file and allows to choose desired elements for the integral field update.
+If check box compare only is checked the field values in the main window will not be updated so that the comparison of
+integral fields of the .snap file and the OptiM file will be performed only. 
+By definition the second parameters informs how many data values are in a given line.
+The program ignores it (or in other words sets it to one) and considers the third parameters as a set value.
+Other fields if they are present in the line are ignored.
+The following example shows a naming convention for the CEBAF accelerator:
+</p>
+<pre>
+MQB1A01      is the element name for a CEBAF quad,
+qMQB1A01     is the corresponding OptiM element name,
+MQB1A01.BDL  is the name of the EPICS field which holds a value of the element integral field.
+</pre>
+<p>
+  See also View|Lattice. This menu choice allows one to create .snap file for download into a machine.
+</p>
+<h4>Edit|Increment</h4>
+<p>
+  Increments a value of chosen parameter for element. If text or graphical windows are opened their contents will be renewed
+  for incremented value of the parameter. To increment the value of a parameter put cursor in area of this parameter
+  (after "=" sign) and press "Ctrl +right arrow". The steps of the increment are controlled by Edit|Steps command.
+This command can be also used for incrementing a variable in the math header.
+</p>
+<h4>Edit|Decrement</h4>
+<p>
+  Decrements a value of chosen parameter for element. If text or graphical windows are opened, their contents will be renewed
+  for decremented value of the parameter. To increment a value of the parameter put cursor in area of this parameter
+  (after "=" sign) and press "Ctrl + left arrow". The steps of the decrement are controlled by Edit|Steps command.
+This command can be also used for decrementing a variable in the math header.
+</p>
+<h4>Edit|Steps</h4>
+<p>
+  Change steps for Edit|Increment and Edit|Decrement menu items. There are steps for incrementing the element length,
+  the element magnetic field, and the element quadrupole and sextupole gradients. There are also steps for cavity
+  gradient and phase and for decrementing and incrementing variables. 
+</p>
+</body>
+</html>

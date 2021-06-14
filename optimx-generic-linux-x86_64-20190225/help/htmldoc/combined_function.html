@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<script src="header.js"></script>
+</head>
+
+<h4>Type B or D : Combined Function Magnet</h4>
+<table id="element">
+   <tr>
+    <th>Parameter Description</th>
+    <th>Argument Order</th>
+    <th>Argument Name </th>
+    <th>Units </th>
+    <th>Default Value</th>
+  </tr>
+  <tr>
+    <td>Length </td>
+    <td>  1    </td>
+    <td>  L    </td>
+    <td> cm    </td>
+    <td> 0.0   </td>
+  </tr>
+  <tr class="alt">
+    <td> Bend Field </td>
+    <td>   2  </td>
+    <td> B[kG]  </td>
+    <td>  kG   </td>
+    <td>  0.0     </td>
+  </tr>
+ <tr>
+    <td>  Gradient </td>
+    <td>   3  </td>
+    <td> G[kG/cm]  </td>
+    <td>  kG/cm   </td>
+    <td>  0.0     </td>
+  </tr>
+  <tr class="alt">
+    <td> Tilt </td>
+    <td>   4  </td>
+    <td>  T[deg]  </td>
+    <td>  degree </td>
+    <td>  0.0 </td>
+  </tr>
+  <tr>
+    <td> Tilt Error </td>
+    <td>   5  </td>
+    <td>  TiltError[deg]  </td>
+    <td>  degree </td>
+    <td>  0.0 </td>
+  </tr>
+</table>
+
+<p>
+The rotation is performed around the beam trajectory at the magnet upstream end. 
+Dipole edge focusing is handled with a distinct element (see: G: magnet edge).
+Edge focusing elements must immediately precede or follow a dipole.
+If the tilt of a dipole is different from 0 or 90 deg., the input and output tilt angles will be different. 
+This is a consequence of the local coordinate frame convention (see Coordinate system).
+While the tilt of an edge focusing element at the dipole entrance must coincide with the tilt
+of the corresponding dipole, the tilt of an edge focusing element at the magnet downstream end
+can be obtained from the View|Lattice menu or calculated independently from the local
+coordinate frame definition. Edit|Consistency Check verifies that all edge focusing elements
+are correctly specified.
+</p>
+<pre>
+Examples: 
+B	L[cm]=12.8  	B[kG]=8.008  	G[kG/cm]=0.033144 	Tilt[deg]=45
+b2	L[cm]=12.8  	B[kG]=8.008  	G[kG/cm]=0.033144 	Tilt[deg]=0
+b2	    =12.8  	=8.008  	
+</pre>
+<p>
+  Note that in this example the third and fourth arguments are implicitly zero on the last line.
+A dipole can have a tilt (i.e. roll) error. The latter produces a beam kick proportional to the roll in a  
+direction normal to the bending plane. In a similar fashion to correctors, dipole rolls 
+affect the beam trajectory and are accounted for in all trajectory related calculations 
+including optics calculations on a reference orbit.
+<pre>
+Example: 
+BB1   L[cm]=120   B[kG]=8.00   G[kG/cm]=0.0331   Tilt[deg]=0   TiltError[deg]=0.1
+</pre>
+</body>
+</html>
+  

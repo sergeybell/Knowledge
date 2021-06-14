@@ -1,0 +1,117 @@
+# PIP-II Transfer Line.
+# This line starts aright at the end of the 4th HB 650 MHz Cryomodule of the linac.
+# and ends with the c-magnet for vertical injection in the Booster
+#$MASS_Hminus=939.294;  =>     939.294
+$MASS_Hminus=$Mp;
+$E0=800;  =>         800
+$P0= sqrt(($E0+$MASS_Hminus)^2-$MASS_Hminus^2);  =>  1463.85464
+$gamma=sqrt(($P0^2/$MASS_Hminus^2) + 1);  =>  1.85170351
+$beta=sqrt(1-1/$gamma/$gamma);  => 0.841637261
+#-------------------------
+$Brho=$P0/$c*1e11;  =>  4882.89348
+$Bdip=2.35911566;  =>  2.35911566
+$Angle=218.6521764483668/32;  =>  6.83288051  # deg
+$x=360-$Angle;  =>  353.167119
+$Ldip=$PI*$Angle/180*$Brho/$Bdip;  =>  246.836404
+#----------------------
+# Emittancee
+$AcceptN=       25e-6;  =>    2.5e-005
+$Accept=$AcceptN/($gamma*$beta);  =>1.60414493e-005
+$DPoverPtot=0.00015;  =>     0.00015
+#----------------------
+$G=0.5  
+$L_O=123;  =>         123
+#------------------
+$Lq=20;  =>          20
+$FIq=$G*$Lq/$Brho*100;  => 0.233029312  #1/m
+$FIq=$G / $Brho*1e4;  =>  1.16514656  # 1/m^2
+#========================================
+OptiM
+Energy[MeV]=$E0   Mass[MeV]=$MASS_Hminus 
+Emittance: ex[cm]=$Accept  ey[cm]=$Accept  DP/P=$DPoverPtot
+Initial:	BetaX[cm]=2014.58	BetaY[cm]=2716.55 
+	AlfaX=-0.3167	AlfaY=-1.3150
+	DispersX[cm]=0 	DispersY[cm]=0 
+	Dsp_PrimeX=0 	DspPrimeY=0 
+	tetaX[deg]=4.834200252785752/$PI*180       	tetaY[deg]=0        
+	X[cm]=0*3.030491238E+04 Y[cm]=0*2.214337227E+02  Z[cm]=0*3.055846444E+04   	S[cm]=0*1.889080000E+02   
+#===================================================
+begin lattice. Number of periods= 1
+# Linac end
+oL1 qLF1 oLq qLD1 oL2 oCM 
+oL1 qLF2 oLq qLD2 oL2 oCM 
+oL1 qLF3 oLq qLD3 oL2 oCM 
+oL1 qLF4 oLq qLD4 oL2 oCM oL1
+#Arc 1
+#h qF1 h o
+h qF h o1 gA bA gA o2 h qD h o3 gA bA gA o4
+h qF h o1 gA bA gA o2 h qD h o3 gA bA gA o4
+h qF h o1 gA bA gA o2 h qD h o3 gA bA gA o4
+h qF h o1 gA bA gA o2 h qD h o3 gA bA gA o4
+# straight 1 
+h qF h oS1 h qD h oS1
+h qF h oS1 h qD h oS1
+#arc 2
+#h qF h o1 gA bA gA o2 h qD h o3 gA bA gA o4
+h qF h o1 gA bA gA o2 h qD h o3 gA bA gA o4
+h qF h o1 gA bA gA o2 h qD h o3 gA bA gA o4
+h qF h o1 gA bA gA o2 h qD h o3 gA bA gA o4
+h qF h o1 gA bA gA o2 h qD h o3 gA bA gA o4
+h qF h o1 gA bA gA o2 h qD h o3 gA bA gA o4
+h qF h o1 gA bA gA o2 h qD h o3 gA bA gA o4
+h qF h o1 gA bA gA o2 h qD h o3 gA bA gA o4
+h qF h o1 gA bA gA o2 h qD h o3 gA bA gA o4
+h qF h o1 gA bA gA o2 h qD h o3 gA bA gA o4
+h qF h o1 gA bA gA o2 h qD h o3 gA bA gA o4
+h qF h o1 gA bA gA o2 h qD h o3 gA bA gA o4
+h qF h o1 gA bA gA o2 h qD h o3 gA bA gA o4
+# Booster line
+#oQB qB1 o qB2  o qB3 oQB bV1 oBV bV2 o qFb oQB qDb oQB qFb o bV2 oBV bV1
+end lattice 
+#===================================================
+begin list
+# Linac end
+oL1 	L[cm]=40
+oLq 	L[cm]=20 
+oL2 	L[cm]=40  
+oCM 	L[cm]=947.9        
+qLF1 	L[cm]=30         	G[kG/cm]=0.388198115363561 	Tilt[deg]=0
+qLD1 	L[cm]=30         	G[kG/cm]=-0.453448342078878 	Tilt[deg]=0
+qLF2 	L[cm]=30         	G[kG/cm]=0.037510761249068  	Tilt[deg]=0
+qLD2 	L[cm]=30         	G[kG/cm]=-0.110567056292097	Tilt[deg]=0
+qLF3 	L[cm]=30         	G[kG/cm]=0.0326589705343509	Tilt[deg]=0
+qLD3 	L[cm]=30         	G[kG/cm]=0.1622719179747435 Tilt[deg]=0
+qLF4 	L[cm]=30         	G[kG/cm]=-0.18394459016375	Tilt[deg]=0
+qLD4 	L[cm]=30         	G[kG/cm]=-0.04565651601   	Tilt[deg]=0
+#qLD5 	L[cm]=30         	G[kG/cm]=0.705   	Tilt[deg]=0
+#qLF5 	L[cm]=30         	G[kG/cm]=-0.62   	Tilt[deg]=0
+#Arcs 1 & 2
+o1	L[cm]=139.4168487518320 
+o2	L[cm]=198.8336975036639
+o3	L[cm]=139.416848751832
+o4	L[cm]=198.8336975036639 
+oS1	L[cm]=585.3619825718933
+qF 	L[cm]=20         	G[kG/cm]=$G       	Tilt[deg]=0
+qD 	L[cm]=20         	G[kG/cm]=-$G       	Tilt[deg]=0
+gA 	B[kG]=$Bdip       Angle[deg]=0.5*$Angle  EffLen[cm]=0  Tilt[deg]=0  
+bA 	L[cm]=$Ldip         B[kG]=-$Bdip          	G[kG/cm]=0        	Tilt[deg]=0.1234
+h 	Ax[cm]=2.54*0.75 	Ay[cm]=2.54*0.75 	Shape=0 	OffsetX[cm]=0 	OffsetY[cm]=0 	Tilt[deg]=0
+# Booster line
+oBV 	L[cm]=200        
+oQB 	L[cm]=40        
+bV1 	L[cm]=200          	B[kG]=$Bdip          	G[kG/cm]=0        	Tilt[deg]=-90
+bV2 	L[cm]=200          	B[kG]=-$Bdip          	G[kG/cm]=0        	Tilt[deg]=-90
+qB1 	L[cm]=30         	G[kG/cm]=0.6     	Tilt[deg]=0
+qB2 	L[cm]=30         	G[kG/cm]=0.155   	Tilt[deg]=0
+qB3 	L[cm]=30         	G[kG/cm]=-0.45   	Tilt[deg]=0
+qFb 	L[cm]=30         	G[kG/cm]=0.625   	Tilt[deg]=0
+qDb 	L[cm]=50         	G[kG/cm]=-0.61   	Tilt[deg]=0
+end list 
+#
+#
+#
+TrajParamBlock
+	X[cm]=0 	Teta_X[rad]=0
+	Y[cm]=0 	Teta_Y[rad]=0
+	s[cm]=0. 	DeltaP/P=0.00001
+EndTrajParamBlock

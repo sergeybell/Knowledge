@@ -1,0 +1,317 @@
+# Merged from files: 
+#    H:\E Linac\Planning\DesignNoteFinal\Optim\EMBTNoMB0.opt  H:\E Linac\Planning\DesignNoteFinal\Optim\EMBDDiagDump.opt  
+# 
+# Taken from file H:\E Linac\Planning\DesignNoteFinal\Optim\EMBTNoMB0.opt
+# Merged from files: 
+#    H:\E Linac\ERL\3BeamU\Merger2B10MeVCycCord.opt  E:\E Linac\EHall_Solution\7MeV_New\EABTEHAT10MeVExtPhase1.opt  
+# 
+# Taken from file H:\E Linac\ERL\3BeamU\Merger2B10MeVCycCord.opt
+# Merged from files: 
+#    H:\E Linac\ERL\3BeamQ\Merger5MeV.opt  E:\E Linac\EHall_Solution\CavMat\Pass1ERLRecB5MeVBS4.opt  
+# 
+# Taken from file H:\E Linac\ERL\3BeamQ\Merger5MeV.opt
+$LoD1=          30;  =>          30
+$IKE=0.3;  =>         0.3
+$AKE=1.0;  =>           1
+$DipLen=           21.;  =>          21
+$Bang=         60;  =>          60
+$BangB=         60;  =>          60
+$LenProj=$DipLen*cos($Bang/180.0*3.1415926536);  =>        10.5
+$BangH=$Bang/2;  =>          30
+$pp=sqrt(($IKE+0.511006)^2-0.511006^2);  => 0.629764718
+$ppA=sqrt(($IKE+$AKE+0.511006)^2-0.511006^2);  =>  1.73741636
+$rhoB=$DipLen/2/sin($BangB/2/180.0*3.1415926536);  =>          21
+$BmergeB=$ppA*3.335641/$rhoB;  => 0.275971297
+$BlenB=   $rhoB* $BangB/180.0*3.1415926536;  =>  21.9911486
+$edgeB=2.54*(1+sin($BangH/180.0*3.1415926536)^2)/cos($BangH/180.0*3.1415926536)^3;  =>  4.88823228
+$Emit=10.0/10000/($pp/0.511006);  =>0.000811423672
+# 
+# 
+# 
+# 
+OptiM
+# Converted from DIMAD output file: E:\E Linac\EHall_Solution\SepNew2\Merger10MeVADJ.out
+Energy[MeV]=0.3         Mass[MeV]=0.511006 
+Emittance: ex[cm]=$Emit  ey[cm]=$Emit  DP/P=1e-03 
+Initial:	BetaX[cm]=84.5143 	BetaY[cm]=84.5143 
+	AlfaX=0.732545     	AlfaY=0.732545     
+	DispersX[cm]=0 	DispersY[cm]=0 
+	Dsp_PrimeX=0 	DspPrimeY=0 
+#	X[cm]=0		Y[cm]=0   	Z[cm]=0	S[cm]=0   
+#	tetaX[deg]=0.00000        	tetaY[deg]=0        
+	X[cm]=-3499.295		Y[cm]=-60.9600   	Z[cm]=-748.780	S[cm]=251.71   
+	tetaX[deg]=-36.00000        	tetaY[deg]=0        
+# 
+# 
+# 
+file reference start
+1 ez9cellBCM.dat
+file reference end
+#
+begin lattice. Number of periods=1
+# 
+# Taken from file H:\E Linac\Planning\DesignNoteFinal\Optim\EMBTNoMB0.opt
+# 
+# Taken from file H:\E Linac\ERL\3BeamU\Merger2B10MeVCycCord.opt
+# 
+# Taken from file H:\E Linac\ERL\3BeamQ\Merger5MeV.opt
+#oICM       
+aICM	oDCF0	iEMBT:XC0	oDCB	oDCF	iEMBT:YC0	oDCF	
+oDBF	iEMBT:BPM0	oDBF	
+oDDF	iEMBT:FC0	oDDB	oDDF	iEMBT:RFS0	oDDB	oDDF	iEMBT:VS0	oDDF	
+oDDB	oDBB	oDCB	oDDB	oDBB	oDCB
+oDM01   qEMBTQ1   
+oDCF	iEMBT:XC1	oDCB	oDCF	iEMBT:YC1	oDCF	
+oDDCF	iEMBT:DCCT1	oDDCF	
+oDDCB	oDCB	oDDCB	oDCB
+oDM02   qEMBTQ2   
+oDBF	iEMBT:BPM2	oDBF	
+oDCF	iEMBT:XC2	oDCB	oDCF	iEMBT:YC2	oDCF
+oDBB	oDCB	oDBB	oDCB
+oDM03   qEMBTQ3   
+oDCF	iEMBT:XC3	oDCB	oDCF	iEMBT:YC3	oDCB	
+oDM04A   
+#gEMBD:MB0  bEMBD:MB0  GEMBD:MB0  
+#oAPP
+# 
+# Taken from file H:\E Linac\ERL\3BeamQ\Merger5MeV.opt
+gEMBD:MB0  bEMBD:MB0  GEMBD:MB0  
+oED1	oEMBD:YC0
+oED20	
+oEDM	qEMBD:Q1	oEDM
+oED4	oEMBD:XC1	oEMBD:YC1
+oED2	oEMBD:BPM1
+oED5
+oEDM	qEMBD:Q2	oEDM
+oED6	oEMBD:XC2	oEMBD:YC2
+oED7	oEMBD:VS2	oEMBD:WF2
+oED8	oEMBD:FC2
+oDump	oDumpCenter	
+end lattice
+begin list: dL=1.  dB=.1  dG=0.01  dS=0.01
+# 
+wICM       	L[cm]=127.95        A[MeV]=1.0       Phase[deg]=0  WaveL[cm]=23.061 FileRef=1
+# 
+aICM 	L[cm]=127.95  Ncell=9  Eff_L[cm]=10  A[MeV]=1.0  Phase[deg]=0  WaveL[cm]=23.061
+#
+oICM       	L[cm]=127.95       
+oDQB 	L[cm]=5        
+oDM01 	L[cm]=40       
+oDM02 	L[cm]=54.401   
+oDM03 	L[cm]=15       
+oDM04 	L[cm]=33.3     
+oDM04A 	L[cm]=9.15     
+oDM05 	L[cm]=28.3     
+oDM06 	L[cm]=9.441    
+oDQN 	L[cm]=60.8275  
+qEMBTQ1 	L[cm]=10         	G[kG/cm]=0.00188716 	Tilt[deg]=0
+qEMBTQ2 	L[cm]=10         	G[kG/cm]=-0.007033622 	Tilt[deg]=0
+qEMBTQ3 	L[cm]=10         	G[kG/cm]=0.01113124 	Tilt[deg]=0
+qEMBD:Q1 	L[cm]=10         	G[kG/cm]=-0.02357204 	Tilt[deg]=0
+qEMBD:Q2 	L[cm]=10         	G[kG/cm]=0.005502142 	Tilt[deg]=0
+oBPM 	L[cm]=5        
+oCOR 	L[cm]=2.5      
+oDB 	L[cm]=7.5      
+iBPM 	L[cm]=0        	Tilt[deg]=0  
+iCOR 	L[cm]=0        	Tilt[deg]=0  
+iDB 	L[cm]=0        	Tilt[deg]=0  
+oD0 	L[cm]=32       
+oDQ2 	L[cm]=3        
+oMQ 	L[cm]=8        
+oDQ 	L[cm]=5        
+oD1 	L[cm]=7        
+oD100 	L[cm]=10       
+oDumpCenter		L[cm]=26  
+# 
+# Taken from file E:\E Linac\EHall_Solution\7MeV_New\EABTEHAT10MeVExtPhase1.opt
+# 
+# Taken from file H:\E Linac\ERL\3BeamR\Merger7MeV.opt
+# 
+# Taken from file H:\E Linac\ERL\3BeamQ\Merger5MeV.opt
+oDN05A		L[cm]=	23.4279
+bEABD 	L[cm]=15   	B[kG]=0.   	G[kG/cm]=0        	Tilt[deg]=0                	
+oDQB 	L[cm]=5        
+oDQN 	L[cm]=49.5       
+oD0 	L[cm]=32       
+oDQ2 	L[cm]=3        
+oMQ 	L[cm]=8        
+oDQ 	L[cm]=5        
+oD1 	L[cm]=7        
+oD100 	L[cm]=10       
+# 
+# 
+# Taken from file E:\E Linac\EHall_Solution\7MeV\Pass1ERLExtFit3.opt
+# 
+# Taken from file H:\E Linac\ERL\3BeamQ\Merger5MeV.opt
+# 
+#
+oACM		L[cm]=127.953
+oDN01		L[cm]=	23.8004
+oDN02		L[cm]=	22.0962
+oDN03		L[cm]=	40.5691
+oDN04A		L[cm]=	28.5691
+oDN04B		L[cm]=	12.0
+oDN05		L[cm]=	61.8558
+oDN06		L[cm]=	22
+oDN07		L[cm]=	40.5691
+oDN08A		L[cm]=	31.1424
+oDN08B		L[cm]=	12
+oDN09		L[cm]=	23.3972
+oDN10		L[cm]=	0
+oDN11		L[cm]=	100
+oDN12		L[cm]=	100
+oDN13		L[cm]=	158.594
+oDN14		L[cm]=	30
+oDN15		L[cm]=	26
+oD02 	L[cm]=65.1     
+#
+# This drift leads to arc dipole center
+oDArc 	L[cm]=125        
+# This drift leads to dump dipole center
+oDDmp 	L[cm]=52.5        
+# Recirculated beam
+oDDCF 		L[cm]=20
+oDDCB 		L[cm]=-20
+oDCF 		L[cm]=2.5
+oDCF0 		L[cm]=71.4+95.29-127.95        
+oDCB 		L[cm]=-2.5
+oDBF 		L[cm]=4
+oDBB 		L[cm]=-4
+oDDF 		L[cm]=6
+oDDB 		L[cm]=-6
+#
+iEMBT:XC0	L[cm]=0
+iEMBT:YC0	L[cm]=0
+iEMBT:BPM0	L[cm]=0
+iEMBT:FC0	L[cm]=0
+iEMBT:RFS0	L[cm]=0
+iEMBT:VS0	L[cm]=0
+iEMBT:DCCT1	L[cm]=0
+iEMBT:XC1	L[cm]=0
+iEMBT:YC1	L[cm]=0
+iEMBT:BPM2	L[cm]=0
+iEMBT:XC2	L[cm]=0
+iEMBT:YC2	L[cm]=0
+iEMBT:XC3	L[cm]=0
+iEMBT:YC3	L[cm]=0
+iEMBT:VS4	L[cm]=0
+iEMBT:RFS4	L[cm]=0
+iEMBT:WF4	L[cm]=0
+iEMBT:BPM4	L[cm]=0
+iEMBT:XC4	L[cm]=0
+iEMBT:YC4	L[cm]=0
+iEMBT:YC5A	L[cm]=0
+iEMBT:COL5A	L[cm]=0
+iEMBT:VS5A	L[cm]=0
+iEMBT:XC5B	L[cm]=0
+iEMBT:YC5B	L[cm]=0
+iEMBT:RFS5B	L[cm]=0
+iEMBT:WF5B	L[cm]=0
+iEMBT:BPM5B	L[cm]=0
+iEMBT:YC5B2	L[cm]=0
+iEMBT:XC5C	L[cm]=0
+iEMBT:YC5C	L[cm]=0
+iEMBT:BPM5C	L[cm]=0
+iEMBT:VS6	L[cm]=0
+iEMBT:WF6	L[cm]=0
+iEMBT:RFS6	L[cm]=0
+iEMBT:BPM7	L[cm]=0
+iEMBT:XC7	L[cm]=0
+iEMBT:YC7	L[cm]=0
+iEABT:XC0	L[cm]=0
+iEABT:YC0	L[cm]=0
+iEABT:BPM0	L[cm]=0
+iEABT:FC1	L[cm]=0
+iEABT:VS1	L[cm]=0
+iEABT:RFS1	L[cm]=0
+iEABT:BPM2	L[cm]=0
+iEABT:VS2	L[cm]=0
+iEABT:WF2	L[cm]=0
+iEABT:RFS2	L[cm]=0
+iEABT:XC3	L[cm]=0
+iEABT:YC3	L[cm]=0
+iEABT:BPM3	L[cm]=0
+iEHAT:XC0	L[cm]=0
+iEHAT:YC0	L[cm]=0
+iEHAT:BPM0	L[cm]=0
+iEHAT:FC1	L[cm]=0
+iEHAT:VS1	L[cm]=0
+iEHAT:RFS1	L[cm]=0
+iEHAT:BPM1	L[cm]=0
+iEHAT:XC1	L[cm]=0
+iEHAT:YC1	L[cm]=0
+iEHAT:BPM2	L[cm]=0
+iEHAT:XC2	L[cm]=0
+iEHAT:YC2	L[cm]=0
+iEHAT:VS2	L[cm]=0
+iEHAT:RFS2	L[cm]=0
+iEHAT:BPM3	L[cm]=0
+iEHAT:XC3	L[cm]=0
+iEHAT:YC3	L[cm]=0
+iEHAT:VS4	L[cm]=0
+iEHAT:WF4	L[cm]=0
+iEHAT:RFS4	L[cm]=0
+	 
+
+
+# 
+# Taken from file H:\E Linac\Planning\DesignNoteFinal\Optim\EMBDDiagDump.opt
+# 
+# Taken from file H:\E Linac\ERL\3BeamU\Merger2B10MeVCycCord.opt
+# 
+# Taken from file H:\E Linac\ERL\3BeamQ\Merger5MeV.opt
+gEMBD:MB0 	B[kG]=-$BmergeB   Angle[deg]=30  EffLen[cm]=$edgeB  Tilt[deg]=0  
+bEMBD:MB0 	L[cm]=$BlenB   	B[kG]=-$BmergeB   	G[kG/cm]=0        	Tilt[deg]=0
+GEMBD:MB0 	B[kG]=-$BmergeB   Angle[deg]=30  EffLen[cm]=$edgeB  Tilt[deg]=0  
+oDump 	L[cm]=53.543-42.638
+# 
+# 
+oEDM	L[cm]=	-5.000
+oED1	L[cm]=	53.000-32.00
+oED20	L[cm]=	19.000+32.00
+oED2	L[cm]=	19.000
+oED3	L[cm]=	10.000
+oED4	L[cm]=	5.000
+oED5	L[cm]=	15.000
+oED6	L[cm]=	2.500
+oED7	L[cm]=	29.500
+oED8	L[cm]=	12.000
+oEMBD:YC0	    L[cm]=0
+oEMBD:XC1	    L[cm]=0
+oEMBD:YC1	    L[cm]=0
+oEMBD:BPM1	    L[cm]=0
+oEMBD:XC2	    L[cm]=0
+oEMBD:YC2	    L[cm]=0
+oEMBD:WF2	    L[cm]=0
+oEMBD:VS2	    L[cm]=0
+oEMBD:FC2	    L[cm]=0
+#
+
+
+end list
+
+BetaFitBlock dL[cm]=0.01 dB[kG]=0.01 dG[kG/cm]=0.00001
+#Required parameters and their accuracy listed below(dPARM<=0. - no fitting)
+#Maximum Betas[cm] and MomentumCompaction are on the next line
+BtXmax=5000.  dBtXmax=0.  BtYmax=5000.  dBtYmax=0.  Alfa=0.  dAlfa=0.
+#Fitting parameters at the end of the lattice
+Beta_X[cm]=670.   dBeta_X[cm]=100.   Alfa_X=0.        dAlfa_X=-0.
+Beta_Y[cm]=1630.   dBeta_Y[cm]=100.0   Alfa_Y=0.        dAlfa_Y=-0.
+Disp_X[cm]=-900.     dDisp_X[cm]=50.   D_prime_X=0.     dD_prime_X=-0.
+Disp_Y[cm]=0.     dDisp_Y[cm]=-0.   D_prime_Y=0.     dD_prime_Y=-0.
+Qx=0.             dQx=0.
+Qy=0.             dQy=0.
+#Fit at element with number =2 
+#To create a Fitting at intermidiate element: uncomment the line above, 
+# write the correct element number and insert six lines describing the
+# fit parameters. You can use up to 4 intermidiate points
+#Each point has to be determined as described above
+#
+#Insert groups of elements below. Each group has to be located on one line.
+#Start from the letter describing the type of changable parameter such as: L:, B:, G: 
+G: qEMBTQ1  min=-0.11   max=0.11
+G: qEMBTQ2  min=-0.11   max=0.11
+G: qEMBTQ3  min=-0.11   max=0.11
+G: qEMBD:Q1  min=-0.11   max=0.11
+G: qEMBD:Q2  min=-0.11   max=0.11
+EndBetaFitBlock

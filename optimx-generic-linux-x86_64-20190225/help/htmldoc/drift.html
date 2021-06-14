@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="header.js"></script>  
+</head>
+<body>
+<h4>Element type O: Free Space (Drift) </h4>
+
+<table id="element">
+  <tr>
+    <th>Parameter Description</th>
+    <th>Argument Order</th>
+    <th>Argument Mnemonic</th>
+    <th>Units </th>
+    <th>Default Value</th>
+  </tr>
+  <tr>
+   <td>Length    </td>
+    <td> 1       </td>
+    <td> L[cm] </td>
+    <td>cm       </td>
+    <td>0.0      </td>
+  </tr>
+</table>
+
+<h4>Element type I: Instrument </h4>
+
+
+<table id="element">
+  <tr>
+    <th>Parameter Description</th>
+    <th>Argument Order</th>
+    <th>Argument Mnemonic </th>
+    <th>Units </th>
+    <th>Default Value</th>
+  </tr>
+  <tr>
+    <td>Length </td>
+    <td>  1    </td>
+    <td> L[cm]    </td>
+    <td> cm    </td>
+    <td> 0.0   </td>
+  </tr>
+  <tr class="alt">
+    <td>Tilt     </td>
+     <td>  2     </td>
+    <td>   T     </td>
+    <td> not specified </td>
+    <td>  0.0 </td>
+  </tr>
+</table>
+
+<p>
+  While a drift element (type "O") has a single argument, namely the length of the drift in cm, 
+  the Instrument (type "I") is meant to be used for beam instrumentation e.g. beam position
+  monitor, etc ... and is analogeous to the "monitor" element of DIMAD and MAD.
+  Basically, it is an element which while behaving optically like a drift,  needs to be
+  distinguishible from generic empty space. Elements of type "I"  allow a second argument.
+  Although refered to as "tilt angle", it is not used in any OptiM calculations.
+  and can be used to store any type of useful information.
+  A possible application would be to use it as a flag to distinguish between horizontal
+  and vertical BPMs. Even though it has no effect, the value of the "T" attribute is
+  printed from the View|Lattice menu.
+
+</p>
+<pre>
+Example: 
+O    		L[cm]=136 
+otarget		=10
+iIPM1A23   	L[cm]=1        	Tilt[deg]=90  
+</pre>
+<p> Note that the second line is not a syntax error. Arguments are read sequentially
+    and are delimited by the "=" character. The argument labels on the left hand side of "=" are
+    ignored and are used only as mnemonics. In this example, the second line would be interpreted
+    as
+</p>
+<pre>
+otarget	L[cm]=10.
+</pre>
+</body>
+</hody>

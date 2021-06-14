@@ -1,0 +1,37 @@
+$En=0.025;  =>       0.025
+$M=20*$Mp;  =>   18765.446
+$gamma=1+$En/$M;  =>  1.00000133
+$beta=sqrt(1-1/$gamma/$gamma);  =>0.00163231933
+$R=25;  =>          25
+$L1=$R*$PI*160/180;  =>  69.8131701
+$E1=$M*$gamma*$beta*$beta/$R*1000;  =>  1.99999867
+$G1=$E1/$R;  =>0.0799999467
+$L2=10;  =>          10
+$E2=$M*$gamma*$beta*$beta/$L2*$PI*10/180*1000;  => 0.872664045
+OptiM
+#  Insert comment here
+Energy[MeV]=$En  Mass[MeV]=$M
+Emittance: ex[cm]=1.e-5.  ey[cm]=1.e-7  DP/P=1e-4.
+Initial:	BetaX[cm]=293.976 	BetaY[cm]=90.0801 
+	AlfaX=1.35069e-15 	AlfaY=-2.0564e-16 
+	DispersX[cm]=122.967 	DispersY[cm]=0 
+	Dsp_PrimeX=2.78194e-16 	DspPrimeY=0 
+         X=0.	Y=0.	Z=0.
+         tetaX=0.     tetaY=0.
+begin lattice. Number of periods=1
+O Lf o Ld o1 R2 o2 R1 o2 R2 o1 Ld o Lf O
+O Lf o Ld o1 R2 o2 R1 o2 R2 o1 Ld o Lf O
+end lattice
+#
+begin list: dL=1.  dB=.1  dG=0.01  dS=0.01
+O           L[cm]=75.5
+o           L[cm]=5.0
+o1          L[cm]=15.0
+o2          L[cm]=30.0
+# spherical deflector with 160 degrees bending of beam :
+R1         	L[cm]=$L1       	B[kG]=0          	Gb[kG/cm]=0  	E[kV/cm]=$E1         	Ge[kV/cm**2]=-$G1
+# cylindrical deflector with 10 degree bending of beam:
+R2         	L[cm]=10         	B[kG]=0          	Gb[kG/cm]=0  	E[kV/cm]=$E2     	Ge[kV/cm**2]=0
+Lf         	L[cm]=10         	Ge[kV/cm**2]=0.12143 
+Ld         	L[cm]=10         	Ge[kV/cm**2]=-0.14083 
+end list of elements
