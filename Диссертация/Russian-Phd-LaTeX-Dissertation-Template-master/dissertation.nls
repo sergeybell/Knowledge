@@ -1,0 +1,36 @@
+
+\begin{thenomenclature} 
+\nomgroup{A}
+  \item [{     \( \begin{rcases}         a_n \\         b_n     \end{rcases} \) }]\begingroup и снова коэффициенты разложения Ми в дальнем поле соответствующие     электрическим и магнитным мультиполям. Добавлено много текста, так что     описание группы условных обозначений значительно превысило высоту этой     группы...\nomeqref {1.7}\nompageref{16}
+  \item [{     \( \begin{rcases}         a_n \\         b_n     \end{rcases} \) }]\begingroup коэффициенты разложения Ми в дальнем поле соответствующие электрическим и     магнитным мультиполям\nomeqref {1.7}\nompageref{16}
+  \item [{     \( \begin{rcases}         {\mathbf{N}}_{e1n}^{(j)} & {\mathbf{N}}_{o1n}^{(j)} \\         {\mathbf{M}_{o1n}^{(j)}} & {\mathbf{M}_{e1n}^{(j)}}     \end{rcases} \) }]\begingroup сферические векторные гармоники\nomeqref {1.7}\nompageref{16}
+  \item [{\( \lambda \)}]\begingroup длина волны электромагнитного излучения в вакууме\nomeqref {1.7}\nompageref{16}
+  \item [{\( \mu \)}]\begingroup магнитная проницаемость в вакууме\nomeqref {1.7}\nompageref{16}
+  \item [{\( \omega \)}]\begingroup частота падающей волны\nomeqref {1.7}\nompageref{16}
+  \item [{\( {\boldsymbol{\hat{\mathrm e}}} \)}]\begingroup единичный вектор\nomeqref {1.7}\nompageref{16}
+  \item [{\( E_0 \)}]\begingroup амплитуда падающего поля\nomeqref {1.7}\nompageref{16}
+  \item [{\( j \)}]\begingroup тип функции Бесселя\nomeqref {1.7}\nompageref{16}
+  \item [{\( k \)}]\begingroup волновой вектор падающей волны\nomeqref {1.7}\nompageref{16}
+  \item [{\( L \)}]\begingroup общее число слоёв\nomeqref {1.7}\nompageref{16}
+  \item [{\( l \)}]\begingroup номер слоя внутри стратифицированной сферы\nomeqref {1.7}\nompageref{16}
+  \item [{\( n \)}]\begingroup порядок мультиполя\nomeqref {1.7}\nompageref{16}
+  \item [{\( r, \theta, \phi \)}]\begingroup полярные координаты\nomeqref {1.7}\nompageref{16}
+  \item [{\(\omega\)}]\begingroup частота света\nomrefeq\nomeqref {1.7}\nompageref{16}
+  \item [{\(c\)}]\begingroup скорость света\nomrefpage\nomeqref {1.7}\nompageref{16}
+  \item [{\(k\)}]\begingroup модуль волнового вектора\nomrefeqpage\nomeqref {1.7}\nompageref{16}
+  \item [{BEM}]\begingroup boundary element method, метод граничных элементов\nomeqref {1.7}\nompageref{16}
+  \item [{CST MWS}]\begingroup Computer Simulation Technology Microwave Studio     программа для компьютерного моделирования уравнен Максвелла\nomeqref {1.7}\nompageref{16}
+  \item [{DDA}]\begingroup discrete dipole approximation, приближение дискретиных     диполей\nomeqref {1.7}\nompageref{16}
+  \item [{FDFD}]\begingroup finite difference frequency domain, метод конечных     разностей в~частотной области\nomeqref {1.7}\nompageref{16}
+  \item [{FDTD}]\begingroup finite difference time domain, метод конечных разностей     во~временной области\nomeqref {1.7}\nompageref{16}
+  \item [{FEM}]\begingroup finite element method, метод конечных элементов\nomeqref {1.7}\nompageref{16}
+  \item [{FIT}]\begingroup finite integration technique, метод конечных интегралов\nomeqref {1.7}\nompageref{16}
+  \item [{FMM}]\begingroup fast multipole method, быстрый метод многополюсника\nomeqref {1.7}\nompageref{16}
+  \item [{FVTD}]\begingroup finite volume time-domain, метод конечных объёмов     во~временной области\nomeqref {1.7}\nompageref{16}
+  \item [{MLFMA}]\begingroup multilevel fast multipole algorithm, многоуровневый     быстрый алгоритм многополюсника\nomeqref {1.7}\nompageref{16}
+  \item [{MoM}]\begingroup method of moments, метод моментов\nomeqref {1.7}\nompageref{16}
+  \item [{MSTM}]\begingroup multiple sphere T-Matrix, метод Т-матриц для множества     сфер\nomeqref {1.7}\nompageref{16}
+  \item [{PSTD}]\begingroup pseudospectral time domain method, псевдоспектральный метод     во~временной области\nomeqref {1.7}\nompageref{16}
+  \item [{TLM}]\begingroup transmission line matrix method, метод матриц линий передач\nomeqref {1.7}\nompageref{16}
+
+\end{thenomenclature}

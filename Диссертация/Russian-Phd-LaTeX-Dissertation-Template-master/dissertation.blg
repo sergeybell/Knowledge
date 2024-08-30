@@ -1,0 +1,52 @@
+[0] Config.pm:304> INFO - This is Biber 2.14
+[0] Config.pm:307> INFO - Logfile is 'dissertation.blg'
+[76] biber-darwin:322> INFO - === Wed Feb 14, 2024, 14:47:58
+[100] Biber.pm:415> INFO - Reading 'dissertation.bcf'
+[238] Biber.pm:943> INFO - Found 2 citekeys in bib section 0
+[238] Biber.pm:940> INFO - Using all citekeys in bib section 1
+[238] Biber.pm:943> INFO - Found 0 citekeys in bib section 0
+[238] Biber.pm:943> INFO - Found 5 citekeys in bib section 2
+[241] Biber.pm:943> INFO - Found 48 citekeys in bib section 0
+[267] Biber.pm:4256> INFO - Processing section 0
+[268] Utils.pm:75> INFO - Globbing data source 'biblio/external.bib'
+[268] Utils.pm:91> INFO - Globbed data source 'biblio/external.bib' to biblio/external.bib
+[268] Utils.pm:75> INFO - Globbing data source 'biblio/author.bib'
+[268] Utils.pm:91> INFO - Globbed data source 'biblio/author.bib' to biblio/author.bib
+[268] Utils.pm:75> INFO - Globbing data source 'biblio/registered.bib'
+[268] Utils.pm:91> INFO - Globbed data source 'biblio/registered.bib' to biblio/registered.bib
+[283] Biber.pm:4455> INFO - Looking for bibtex format file 'biblio/external.bib' for section 0
+[289] bibtex.pm:1653> INFO - LaTeX decoding ...
+[371] bibtex.pm:1471> INFO - Found BibTeX data source 'biblio/external.bib'
+[704] Biber.pm:4455> INFO - Looking for bibtex format file 'biblio/author.bib' for section 0
+[707] bibtex.pm:1653> INFO - LaTeX decoding ...
+[724] bibtex.pm:1471> INFO - Found BibTeX data source 'biblio/author.bib'
+[785] UCollate.pm:68> INFO - Overriding locale 'ru-RU' defaults 'variable = shifted' with 'variable = non-ignorable'
+[785] UCollate.pm:68> INFO - Overriding locale 'ru-RU' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[785] Biber.pm:4084> INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'ru-RU'
+[785] Biber.pm:4090> INFO - No sort tailoring available for locale 'ru-RU'
+[831] Biber.pm:4256> INFO - Processing section 1
+[831] Utils.pm:75> INFO - Globbing data source 'biblio/author.bib'
+[831] Utils.pm:91> INFO - Globbed data source 'biblio/author.bib' to biblio/author.bib
+[831] Utils.pm:75> INFO - Globbing data source 'biblio/registered.bib'
+[831] Utils.pm:91> INFO - Globbed data source 'biblio/registered.bib' to biblio/registered.bib
+[831] Biber.pm:4455> INFO - Looking for bibtex format file 'biblio/author.bib' for section 1
+[875] Biber.pm:4455> INFO - Looking for bibtex format file 'biblio/registered.bib' for section 1
+[878] bibtex.pm:1653> INFO - LaTeX decoding ...
+[888] bibtex.pm:1471> INFO - Found BibTeX data source 'biblio/registered.bib'
+[917] UCollate.pm:68> INFO - Overriding locale 'ru-RU' defaults 'variable = shifted' with 'variable = non-ignorable'
+[918] UCollate.pm:68> INFO - Overriding locale 'ru-RU' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[918] Biber.pm:4084> INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'ru-RU'
+[918] Biber.pm:4090> INFO - No sort tailoring available for locale 'ru-RU'
+[926] Biber.pm:4256> INFO - Processing section 2
+[926] Utils.pm:75> INFO - Globbing data source 'biblio/author.bib'
+[926] Utils.pm:91> INFO - Globbed data source 'biblio/author.bib' to biblio/author.bib
+[926] Utils.pm:75> INFO - Globbing data source 'biblio/registered.bib'
+[926] Utils.pm:91> INFO - Globbed data source 'biblio/registered.bib' to biblio/registered.bib
+[926] Biber.pm:4455> INFO - Looking for bibtex format file 'biblio/author.bib' for section 2
+[942] Biber.pm:4455> INFO - Looking for bibtex format file 'biblio/registered.bib' for section 2
+[969] UCollate.pm:68> INFO - Overriding locale 'ru-RU' defaults 'variable = shifted' with 'variable = non-ignorable'
+[969] UCollate.pm:68> INFO - Overriding locale 'ru-RU' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[969] Biber.pm:4084> INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'ru-RU'
+[969] Biber.pm:4090> INFO - No sort tailoring available for locale 'ru-RU'
+[974] bbl.pm:652> INFO - Writing 'dissertation.bbl' with encoding 'UTF-8'
+[1005] bbl.pm:755> INFO - Output to dissertation.bbl
