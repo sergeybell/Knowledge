@@ -12,3 +12,5 @@ MADX
 
 Examples
 https://github.com/MethodicalAcceleratorDesign/madx-examples
+
+https://people.frib.msu.edu/~haoy/teaching/AP_course_materials/

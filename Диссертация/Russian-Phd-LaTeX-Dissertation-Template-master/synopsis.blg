@@ -1,0 +1,93 @@
+[0] Config.pm:307> INFO - This is Biber 2.19
+[0] Config.pm:310> INFO - Logfile is 'synopsis.blg'
+[107] biber-darwin:340> INFO - === Fri Nov 22, 2024, 12:51:12
+[136] Biber.pm:419> INFO - Reading 'synopsis.bcf'
+[284] Biber.pm:979> INFO - Found 1 citekeys in bib section 0
+[285] Biber.pm:976> INFO - Using all citekeys in bib section 1
+[285] Biber.pm:979> INFO - Found 0 citekeys in bib section 0
+[285] Biber.pm:979> INFO - Found 5 citekeys in bib section 2
+[285] Biber.pm:979> INFO - Found 13 citekeys in bib section 0
+[336] Biber.pm:4419> INFO - Processing section 0
+[356] Biber.pm:4610> INFO - Looking for bibtex file 'biblio/external.bib' for section 0
+[361] bibtex.pm:1713> INFO - LaTeX decoding ...
+[438] bibtex.pm:1519> INFO - Found BibTeX data source 'biblio/external.bib'
+[481] Biber.pm:4610> INFO - Looking for bibtex file 'biblio/author.bib' for section 0
+[483] bibtex.pm:1713> INFO - LaTeX decoding ...
+[521] bibtex.pm:1519> INFO - Found BibTeX data source 'biblio/author.bib'
+[574] Biber.pm:4610> INFO - Looking for bibtex file 'biblio/registered.bib' for section 0
+[575] bibtex.pm:1713> INFO - LaTeX decoding ...
+[578] bibtex.pm:1519> INFO - Found BibTeX data source 'biblio/registered.bib'
+[598] UCollate.pm:68> INFO - Overriding locale 'ru-RU' defaults 'variable = shifted' with 'variable = non-ignorable'
+[599] UCollate.pm:68> INFO - Overriding locale 'ru-RU' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[599] Biber.pm:4239> INFO - Sorting list 'none/global/7FC56270E7A70FA81A5935B72EACBE29/global/global' of type 'entry' with template 'none' and locale 'ru-RU'
+[599] Biber.pm:4245> INFO - No sort tailoring available for locale 'ru-RU'
+[608] UCollate.pm:68> INFO - Overriding locale 'ru-RU' defaults 'variable = shifted' with 'variable = non-ignorable'
+[609] UCollate.pm:68> INFO - Overriding locale 'ru-RU' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[609] Biber.pm:4239> INFO - Sorting list 'none/global/D41D8CD98F00B204E9800998ECF8427E/global/global' of type 'entry' with template 'none' and locale 'ru-RU'
+[609] Biber.pm:4245> INFO - No sort tailoring available for locale 'ru-RU'
+[618] UCollate.pm:68> INFO - Overriding locale 'ru-RU' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[618] UCollate.pm:68> INFO - Overriding locale 'ru-RU' defaults 'variable = shifted' with 'variable = non-ignorable'
+[618] Biber.pm:4239> INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'ru-RU'
+[618] Biber.pm:4245> INFO - No sort tailoring available for locale 'ru-RU'
+[632] Biber.pm:4419> INFO - Processing section 1
+[632] Biber.pm:4610> INFO - Looking for bibtex file 'biblio/author.bib' for section 1
+[795] Biber.pm:4610> INFO - Looking for bibtex file 'biblio/registered.bib' for section 1
+[824] UCollate.pm:68> INFO - Overriding locale 'ru-RU' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[824] UCollate.pm:68> INFO - Overriding locale 'ru-RU' defaults 'variable = shifted' with 'variable = non-ignorable'
+[824] Biber.pm:4239> INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'ru-RU'
+[824] Biber.pm:4245> INFO - No sort tailoring available for locale 'ru-RU'
+[841] Biber.pm:4419> INFO - Processing section 2
+[841] Biber.pm:4610> INFO - Looking for bibtex file 'biblio/author.bib' for section 2
+[842] Biber.pm:4610> INFO - Looking for bibtex file 'biblio/registered.bib' for section 2
+[857] UCollate.pm:68> INFO - Overriding locale 'ru-RU' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[858] UCollate.pm:68> INFO - Overriding locale 'ru-RU' defaults 'variable = shifted' with 'variable = non-ignorable'
+[858] Biber.pm:4239> INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'ru-RU'
+[858] Biber.pm:4245> INFO - No sort tailoring available for locale 'ru-RU'
+[859] bbl.pm:660> INFO - Writing 'synopsis.bbl' with encoding 'UTF-8'
+[887] bbl.pm:763> INFO - Output to synopsis.bbl
+[888] Biber.pm:131> WARN - article entry 'Kolokolchikov:2023_bb_IPAC' (biblio/author.bib): Invalid format '2023/01/01' of date field 'date' - ignoring
+[888] Biber.pm:131> WARN - ISBN '1742-6596; 1742-6588' in entry 'Kolokolchikov:2023_bb_IPAC' is invalid - run biber with '--validate_datamodel' for details.
+[888] Biber.pm:131> WARN - article entry 'Kolokolchikov:2021trans' (biblio/author.bib): Invalid format '2021/12/01' of date field 'date' - ignoring
+[888] Biber.pm:131> WARN - ISBN '1562-692X' in entry 'Kolokolchikov:2021trans' is invalid - run biber with '--validate_datamodel' for details.
+[888] Biber.pm:131> WARN - article entry 'Senichev:2023_QFS' (biblio/author.bib): Invalid format '2023/01/01' of date field 'date' - ignoring
+[888] Biber.pm:131> WARN - ISBN '1742-6596; 1742-6588' in entry 'Senichev:2023_QFS' is invalid - run biber with '--validate_datamodel' for details.
+[888] Biber.pm:131> WARN - I didn't find a database entry for 'vakbib1' (section 0)
+[888] Biber.pm:131> WARN - I didn't find a database entry for 'vakbib2' (section 0)
+[888] Biber.pm:131> WARN - I didn't find a database entry for 'wosbib1' (section 0)
+[888] Biber.pm:131> WARN - I didn't find a database entry for 'scbib1' (section 0)
+[888] Biber.pm:131> WARN - I didn't find a database entry for 'patbib1' (section 0)
+[888] Biber.pm:131> WARN - I didn't find a database entry for 'confbib1' (section 0)
+[888] Biber.pm:131> WARN - I didn't find a database entry for 'confbib2' (section 0)
+[888] Biber.pm:131> WARN - I didn't find a database entry for 'bib1' (section 0)
+[888] Biber.pm:131> WARN - I didn't find a database entry for 'bib2' (section 0)
+[889] Biber.pm:131> WARN - article entry 'Senichev:2023_nuclotron' (biblio/author.bib): Invalid format '2023/12/01' of date field 'date' - ignoring
+[889] Biber.pm:131> WARN - ISBN '1562-692X' in entry 'Senichev:2023_nuclotron' is invalid - run biber with '--validate_datamodel' for details.
+[889] Biber.pm:131> WARN - article entry 'Syresin:2021_polar' (biblio/author.bib): Invalid format '2021/09/01' of date field 'date' - ignoring
+[889] Biber.pm:131> WARN - ISBN '1531-8559' in entry 'Syresin:2021_polar' is invalid - run biber with '--validate_datamodel' for details.
+[889] Biber.pm:131> WARN - article entry 'Kolokolchikov:2023_bypass_IPAC' (biblio/author.bib): Invalid format '2024/01/01' of date field 'date' - ignoring
+[889] Biber.pm:131> WARN - ISBN '1742-6596; 1742-6588' in entry 'Kolokolchikov:2023_bypass_IPAC' is invalid - run biber with '--validate_datamodel' for details.
+[889] Biber.pm:131> WARN - article entry 'Kolokolchikov:2021trans' (biblio/author.bib): Invalid format '2021/12/01' of date field 'date' - ignoring
+[889] Biber.pm:131> WARN - ISBN '1562-692X' in entry 'Kolokolchikov:2021trans' is invalid - run biber with '--validate_datamodel' for details.
+[889] Biber.pm:131> WARN - article entry 'Kolokolchikov:2023_bypass' (biblio/author.bib): Invalid format '2023/12/01' of date field 'date' - ignoring
+[889] Biber.pm:131> WARN - ISBN '1562-692X' in entry 'Kolokolchikov:2023_bypass' is invalid - run biber with '--validate_datamodel' for details.
+[889] Biber.pm:131> WARN - article entry 'Kolokolchikov:2023_sc' (biblio/author.bib): Invalid format '2023/12/01' of date field 'date' - ignoring
+[889] Biber.pm:131> WARN - ISBN '1562-692X' in entry 'Kolokolchikov:2023_sc' is invalid - run biber with '--validate_datamodel' for details.
+[889] Biber.pm:131> WARN - article entry 'Kolokolchikov:2023_bb_IPAC' (biblio/author.bib): Invalid format '2023/01/01' of date field 'date' - ignoring
+[889] Biber.pm:131> WARN - ISBN '1742-6596; 1742-6588' in entry 'Kolokolchikov:2023_bb_IPAC' is invalid - run biber with '--validate_datamodel' for details.
+[889] Biber.pm:131> WARN - article entry 'Kolokolchikov:2024_bb_rupac' (biblio/author.bib): Invalid format '2024/06/01' of date field 'date' - ignoring
+[889] Biber.pm:131> WARN - ISBN '1531-8567' in entry 'Kolokolchikov:2024_bb_rupac' is invalid - run biber with '--validate_datamodel' for details.
+[889] Biber.pm:131> WARN - article entry 'Kolokolchikov:2023_pecular' (biblio/author.bib): Invalid format '2023/12/01' of date field 'date' - ignoring
+[889] Biber.pm:131> WARN - ISBN '1562-692X' in entry 'Kolokolchikov:2023_pecular' is invalid - run biber with '--validate_datamodel' for details.
+[889] Biber.pm:131> WARN - article entry 'Kolokolchikov:2023_sc_IPAC' (biblio/author.bib): Invalid format '2024/01/01' of date field 'date' - ignoring
+[889] Biber.pm:131> WARN - ISBN '1742-6596; 1742-6588' in entry 'Kolokolchikov:2023_sc_IPAC' is invalid - run biber with '--validate_datamodel' for details.
+[889] Biber.pm:131> WARN - article entry 'Senichev:2024_nica_edm' (biblio/author.bib): Invalid format '2024/08/01' of date field 'date' - ignoring
+[890] Biber.pm:131> WARN - ISBN '1562-692X' in entry 'Senichev:2024_nica_edm' is invalid - run biber with '--validate_datamodel' for details.
+[890] Biber.pm:131> WARN - article entry 'Senichev:2023_QFS' (biblio/author.bib): Invalid format '2023/01/01' of date field 'date' - ignoring
+[890] Biber.pm:131> WARN - ISBN '1742-6596; 1742-6588' in entry 'Senichev:2023_QFS' is invalid - run biber with '--validate_datamodel' for details.
+[890] Biber.pm:131> WARN - article entry 'Kolokolchikov:2024_bb_dspin' (biblio/author.bib): Invalid format '2024/06/01' of date field 'date' - ignoring
+[890] Biber.pm:131> WARN - ISBN '1562-692X' in entry 'Kolokolchikov:2024_bb_dspin' is invalid - run biber with '--validate_datamodel' for details.
+[890] Biber.pm:131> WARN - I didn't find a database entry for 'vakbib2' (section 2)
+[890] Biber.pm:131> WARN - I didn't find a database entry for 'patbib1' (section 2)
+[890] Biber.pm:131> WARN - I didn't find a database entry for 'bib1' (section 2)
+[890] Biber.pm:131> WARN - I didn't find a database entry for 'confbib1' (section 2)
+[890] Biber.pm:133> INFO - WARNINGS: 45

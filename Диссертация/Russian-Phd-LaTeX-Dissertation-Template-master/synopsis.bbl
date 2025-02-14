@@ -1,0 +1,1834 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global/7FC56270E7A70FA81A5935B72EACBE29/global/global}
+    \entry{Methodology}{book}{}
+      \name{author}{1}{}{%
+        {{hash=05c030f7781b702e98c050228c9cb7c9}{%
+           family={Загорюев},
+           familyi={З\bibinitperiod},
+           given={А.\bibnamedelimi Л.},
+           giveni={А\bibinitperiod\bibinitdelim Л\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Уральский институт практической психологии}%
+      }
+      \list{location}{1}{%
+        {Екатеринбург}%
+      }
+      \strng{namehash}{05c030f7781b702e98c050228c9cb7c9}
+      \strng{fullhash}{05c030f7781b702e98c050228c9cb7c9}
+      \strng{bibnamehash}{05c030f7781b702e98c050228c9cb7c9}
+      \strng{authorbibnamehash}{05c030f7781b702e98c050228c9cb7c9}
+      \strng{authornamehash}{05c030f7781b702e98c050228c9cb7c9}
+      \strng{authorfullhash}{05c030f7781b702e98c050228c9cb7c9}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelprefix}{A}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{langid}{russian}
+      \field{media}{text}
+      \field{pagetotal}{102}
+      \field{title}{Методология и методы изучения военно-профессиональной направленности подростков : отчёт о НИР}
+      \field{year}{2008}
+      \keyw{,biblioexternal,bibliofull}
+    \endentry
+    \entry{Kolokolchikov:2023_bb_IPAC}{article}{useauthor=false}
+      \name{author}{4}{}{%
+        {{hash=c4100053edc7bce08567c27b3689f697}{%
+           family={Kolokolchikov},
+           familyi={K\bibinitperiod},
+           given={S},
+           giveni={S\bibinitperiod}}}%
+        {{hash=329cad99d4d45b3143732578446eb3a4}{%
+           family={Senichev},
+           familyi={S\bibinitperiod},
+           given={Y},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=2f848d58c5d28e172fbc9ab51a059f6e}{%
+           family={Melnikov},
+           familyi={M\bibinitperiod},
+           given={A},
+           giveni={A\bibinitperiod}}}%
+        {{hash=e32b1b767e2c98a454ce6429bc33ee58}{%
+           family={Syresin},
+           familyi={S\bibinitperiod},
+           given={E},
+           giveni={E\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {IOP Publishing}%
+      }
+      \strng{authorbibnamehash}{1aeea6ea78f651fa6af11380e4514c00}
+      \strng{authornamehash}{1aeea6ea78f651fa6af11380e4514c00}
+      \strng{authorfullhash}{1efe9f0fc487fa7ad98dfe8239d45477}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelprefix}{A}
+      \field{labeltitlesource}{title}
+      \field{internalsortvolume}{2420}
+      \field{isbn}{1742-6596; 1742-6588}
+      \field{journaltitle}{Journal of Physics: Conference Series}
+      \field{media}{text}
+      \field{title}{Acceleration and crossing of transition energy investigation using an RF structure of the barrier bucket type in the NICA accelerator complex}
+      \field{year}{2023}
+      \field{number}{1}
+      \range{number}{1}
+      \field{pages}{012001}
+      \range{pages}{1}
+      \field{volume}{2420}
+      \range{volume}{1}
+      \verb{doi}
+      \verb 10.1088/1742-6596/2420/1/012001
+      \endverb
+      \verb{urlraw}
+      \verb https://dx.doi.org/10.1088/1742-6596/2420/1/012001
+      \endverb
+      \verb{url}
+      \verb https://dx.doi.org/10.1088/1742-6596/2420/1/012001
+      \endverb
+      \keyw{,biblioauthor,bibliofull}
+      \warn{\item article entry 'Kolokolchikov:2023_bb_IPAC' (biblio/author.bib): Invalid format '2023/01/01' of date field 'date' - ignoring}
+    \endentry
+    \entry{Kolokolchikov:2021trans}{article}{}
+      \name{author}{2}{}{%
+        {{hash=fb5933417ac0705e7f96d9031ed98da6}{%
+           family={Kolokolchikov},
+           familyi={K\bibinitperiod},
+           given={S.\bibnamedelimi D.},
+           giveni={S\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+        {{hash=36c9b8717cc43183c3f8e16130f9099c}{%
+           family={Senichev},
+           familyi={S\bibinitperiod},
+           given={Y.\bibnamedelimi V.},
+           giveni={Y\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+      }
+      \strng{namehash}{1504ca1000db89414f1b1ab205d4daaf}
+      \strng{fullhash}{1504ca1000db89414f1b1ab205d4daaf}
+      \strng{bibnamehash}{1504ca1000db89414f1b1ab205d4daaf}
+      \strng{authorbibnamehash}{1504ca1000db89414f1b1ab205d4daaf}
+      \strng{authornamehash}{1504ca1000db89414f1b1ab205d4daaf}
+      \strng{authorfullhash}{1504ca1000db89414f1b1ab205d4daaf}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelprefix}{A}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{internalsortvolume}{84}
+      \field{isbn}{1562-692X}
+      \field{journaltitle}{Physics of Atomic Nuclei}
+      \field{media}{text}
+      \field{title}{Magneto-Optical Structure of the NICA Collider with High Transition Energy}
+      \field{year}{2021}
+      \field{number}{10}
+      \range{number}{1}
+      \field{pages}{1734\bibrangedash 1742}
+      \range{pages}{9}
+      \field{volume}{84}
+      \range{volume}{1}
+      \verb{doi}
+      \verb 10.1134/S1063778821100185
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1134/S1063778821100185
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1134/S1063778821100185
+      \endverb
+      \keyw{,biblioauthor,bibliofull}
+      \warn{\item article entry 'Kolokolchikov:2021trans' (biblio/author.bib): Invalid format '2021/12/01' of date field 'date' - ignoring}
+    \endentry
+    \entry{Senichev:2023_QFS}{article}{useauthor=false}
+      \name{author}{7}{}{%
+        {{hash=329cad99d4d45b3143732578446eb3a4}{%
+           family={Senichev},
+           familyi={S\bibinitperiod},
+           given={Y},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=19a96077b899eeb34a8bf7c3e4909db0}{%
+           family={Aksentyev},
+           familyi={A\bibinitperiod},
+           given={A},
+           giveni={A\bibinitperiod}}}%
+        {{hash=c4100053edc7bce08567c27b3689f697}{%
+           family={Kolokolchikov},
+           familyi={K\bibinitperiod},
+           given={S},
+           giveni={S\bibinitperiod}}}%
+        {{hash=2f848d58c5d28e172fbc9ab51a059f6e}{%
+           family={Melnikov},
+           familyi={M\bibinitperiod},
+           given={A},
+           giveni={A\bibinitperiod}}}%
+        {{hash=bc5eb9f9e3e393c1ea10bf4c2579a8ef}{%
+           family={Ladygin},
+           familyi={L\bibinitperiod},
+           given={V},
+           giveni={V\bibinitperiod}}}%
+        {{hash=e32b1b767e2c98a454ce6429bc33ee58}{%
+           family={Syresin},
+           familyi={S\bibinitperiod},
+           given={E},
+           giveni={E\bibinitperiod}}}%
+        {{hash=db0d9a1086e139100535f89f49a23d08}{%
+           family={Nikolaev},
+           familyi={N\bibinitperiod},
+           given={N},
+           giveni={N\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {IOP Publishing}%
+      }
+      \strng{authorbibnamehash}{1fde9805322e15399add78e935298625}
+      \strng{authornamehash}{1fde9805322e15399add78e935298625}
+      \strng{authorfullhash}{babdedef07e017e79d70949c66f388ad}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelprefix}{A}
+      \field{labeltitlesource}{title}
+      \field{internalsortvolume}{2420}
+      \field{isbn}{1742-6596; 1742-6588}
+      \field{journaltitle}{Journal of Physics: Conference Series}
+      \field{media}{text}
+      \field{title}{Quasi-frozen spin concept of magneto-optical structure of NICA adapted to study the electric dipole moment of the deuteron and to search for the axion}
+      \field{year}{2023}
+      \field{number}{1}
+      \range{number}{1}
+      \field{pages}{012052}
+      \range{pages}{1}
+      \field{volume}{2420}
+      \range{volume}{1}
+      \verb{doi}
+      \verb 10.1088/1742-6596/2420/1/012052
+      \endverb
+      \verb{urlraw}
+      \verb https://dx.doi.org/10.1088/1742-6596/2420/1/012052
+      \endverb
+      \verb{url}
+      \verb https://dx.doi.org/10.1088/1742-6596/2420/1/012052
+      \endverb
+      \keyw{,biblioauthor,bibliofull}
+      \warn{\item article entry 'Senichev:2023_QFS' (biblio/author.bib): Invalid format '2023/01/01' of date field 'date' - ignoring}
+    \endentry
+    \entry{progbib1}{patent}{useauthor=false}
+      \name{author}{1}{}{%
+        {{hash=f905ebf57d59a975a8416302bc876807}{%
+           family={Петров},
+           familyi={П\bibinitperiod},
+           given={П.\bibnamedelimi П.},
+           giveni={П\bibinitperiod\bibinitdelim П\bibinitperiod}}}%
+      }
+      \name{holder}{1}{}{%
+        {{hash=80232904ede76aacda9b0d162f5a593b}{%
+           family={НИИ\bibnamedelima ГДААДАВБА},
+           familyi={Н\bibinitperiod\bibinitdelim Г\bibinitperiod}}}%
+      }
+      \strng{authorbibnamehash}{f905ebf57d59a975a8416302bc876807}
+      \strng{authornamehash}{f905ebf57d59a975a8416302bc876807}
+      \strng{authorfullhash}{f905ebf57d59a975a8416302bc876807}
+      \strng{holderbibnamehash}{80232904ede76aacda9b0d162f5a593b}
+      \strng{holdernamehash}{80232904ede76aacda9b0d162f5a593b}
+      \strng{holderfullhash}{80232904ede76aacda9b0d162f5a593b}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelprefix}{A}
+      \field{labeltitlesource}{title}
+      \field{day}{1}
+      \field{heading}{Свидетельство о гос. регистрации программы для {ЭВМ}}
+      \field{langid}{russian}
+      \field{media}{text}
+      \field{month}{1}
+      \field{prioritycountry}{countryru}
+      \field{prioritynumber}{1234567890}
+      \field{publicationday}{2}
+      \field{publicationmonth}{1}
+      \field{publicationyear}{2020}
+      \field{requestnumber}{1234567890}
+      \field{title}{foobar}
+      \field{year}{2020}
+      \field{dateera}{ce}
+      \field{publicationdateera}{ce}
+      \true{nocite}
+      \keyw{,biblioauthorprogram,biblioregistered,bibliofull}
+    \endentry
+  \enddatalist
+  \datalist[entry]{none/global/D41D8CD98F00B204E9800998ECF8427E/global/global}
+    \entry{Methodology}{book}{}
+      \name{author}{1}{}{%
+        {{hash=05c030f7781b702e98c050228c9cb7c9}{%
+           family={Загорюев},
+           familyi={З\bibinitperiod},
+           given={А.\bibnamedelimi Л.},
+           giveni={А\bibinitperiod\bibinitdelim Л\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Уральский институт практической психологии}%
+      }
+      \list{location}{1}{%
+        {Екатеринбург}%
+      }
+      \strng{namehash}{05c030f7781b702e98c050228c9cb7c9}
+      \strng{fullhash}{05c030f7781b702e98c050228c9cb7c9}
+      \strng{bibnamehash}{05c030f7781b702e98c050228c9cb7c9}
+      \strng{authorbibnamehash}{05c030f7781b702e98c050228c9cb7c9}
+      \strng{authornamehash}{05c030f7781b702e98c050228c9cb7c9}
+      \strng{authorfullhash}{05c030f7781b702e98c050228c9cb7c9}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{langid}{russian}
+      \field{media}{text}
+      \field{pagetotal}{102}
+      \field{title}{Методология и методы изучения военно-профессиональной направленности подростков : отчёт о НИР}
+      \field{year}{2008}
+      \keyw{,biblioexternal,bibliofull}
+    \endentry
+    \entry{Kolokolchikov:2023_bb_IPAC}{article}{useauthor=false}
+      \name{author}{4}{}{%
+        {{hash=c4100053edc7bce08567c27b3689f697}{%
+           family={Kolokolchikov},
+           familyi={K\bibinitperiod},
+           given={S},
+           giveni={S\bibinitperiod}}}%
+        {{hash=329cad99d4d45b3143732578446eb3a4}{%
+           family={Senichev},
+           familyi={S\bibinitperiod},
+           given={Y},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=2f848d58c5d28e172fbc9ab51a059f6e}{%
+           family={Melnikov},
+           familyi={M\bibinitperiod},
+           given={A},
+           giveni={A\bibinitperiod}}}%
+        {{hash=e32b1b767e2c98a454ce6429bc33ee58}{%
+           family={Syresin},
+           familyi={S\bibinitperiod},
+           given={E},
+           giveni={E\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {IOP Publishing}%
+      }
+      \strng{authorbibnamehash}{1aeea6ea78f651fa6af11380e4514c00}
+      \strng{authornamehash}{1aeea6ea78f651fa6af11380e4514c00}
+      \strng{authorfullhash}{1efe9f0fc487fa7ad98dfe8239d45477}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labeltitlesource}{title}
+      \field{internalsortvolume}{2420}
+      \field{isbn}{1742-6596; 1742-6588}
+      \field{journaltitle}{Journal of Physics: Conference Series}
+      \field{media}{text}
+      \field{title}{Acceleration and crossing of transition energy investigation using an RF structure of the barrier bucket type in the NICA accelerator complex}
+      \field{year}{2023}
+      \field{number}{1}
+      \range{number}{1}
+      \field{pages}{012001}
+      \range{pages}{1}
+      \field{volume}{2420}
+      \range{volume}{1}
+      \verb{doi}
+      \verb 10.1088/1742-6596/2420/1/012001
+      \endverb
+      \verb{urlraw}
+      \verb https://dx.doi.org/10.1088/1742-6596/2420/1/012001
+      \endverb
+      \verb{url}
+      \verb https://dx.doi.org/10.1088/1742-6596/2420/1/012001
+      \endverb
+      \keyw{,biblioauthor,bibliofull}
+      \warn{\item article entry 'Kolokolchikov:2023_bb_IPAC' (biblio/author.bib): Invalid format '2023/01/01' of date field 'date' - ignoring}
+    \endentry
+    \entry{Kolokolchikov:2021trans}{article}{}
+      \name{author}{2}{}{%
+        {{hash=fb5933417ac0705e7f96d9031ed98da6}{%
+           family={Kolokolchikov},
+           familyi={K\bibinitperiod},
+           given={S.\bibnamedelimi D.},
+           giveni={S\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+        {{hash=36c9b8717cc43183c3f8e16130f9099c}{%
+           family={Senichev},
+           familyi={S\bibinitperiod},
+           given={Y.\bibnamedelimi V.},
+           giveni={Y\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+      }
+      \strng{namehash}{1504ca1000db89414f1b1ab205d4daaf}
+      \strng{fullhash}{1504ca1000db89414f1b1ab205d4daaf}
+      \strng{bibnamehash}{1504ca1000db89414f1b1ab205d4daaf}
+      \strng{authorbibnamehash}{1504ca1000db89414f1b1ab205d4daaf}
+      \strng{authornamehash}{1504ca1000db89414f1b1ab205d4daaf}
+      \strng{authorfullhash}{1504ca1000db89414f1b1ab205d4daaf}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{internalsortvolume}{84}
+      \field{isbn}{1562-692X}
+      \field{journaltitle}{Physics of Atomic Nuclei}
+      \field{media}{text}
+      \field{title}{Magneto-Optical Structure of the NICA Collider with High Transition Energy}
+      \field{year}{2021}
+      \field{number}{10}
+      \range{number}{1}
+      \field{pages}{1734\bibrangedash 1742}
+      \range{pages}{9}
+      \field{volume}{84}
+      \range{volume}{1}
+      \verb{doi}
+      \verb 10.1134/S1063778821100185
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1134/S1063778821100185
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1134/S1063778821100185
+      \endverb
+      \keyw{,biblioauthor,bibliofull}
+      \warn{\item article entry 'Kolokolchikov:2021trans' (biblio/author.bib): Invalid format '2021/12/01' of date field 'date' - ignoring}
+    \endentry
+    \entry{Senichev:2023_QFS}{article}{useauthor=false}
+      \name{author}{7}{}{%
+        {{hash=329cad99d4d45b3143732578446eb3a4}{%
+           family={Senichev},
+           familyi={S\bibinitperiod},
+           given={Y},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=19a96077b899eeb34a8bf7c3e4909db0}{%
+           family={Aksentyev},
+           familyi={A\bibinitperiod},
+           given={A},
+           giveni={A\bibinitperiod}}}%
+        {{hash=c4100053edc7bce08567c27b3689f697}{%
+           family={Kolokolchikov},
+           familyi={K\bibinitperiod},
+           given={S},
+           giveni={S\bibinitperiod}}}%
+        {{hash=2f848d58c5d28e172fbc9ab51a059f6e}{%
+           family={Melnikov},
+           familyi={M\bibinitperiod},
+           given={A},
+           giveni={A\bibinitperiod}}}%
+        {{hash=bc5eb9f9e3e393c1ea10bf4c2579a8ef}{%
+           family={Ladygin},
+           familyi={L\bibinitperiod},
+           given={V},
+           giveni={V\bibinitperiod}}}%
+        {{hash=e32b1b767e2c98a454ce6429bc33ee58}{%
+           family={Syresin},
+           familyi={S\bibinitperiod},
+           given={E},
+           giveni={E\bibinitperiod}}}%
+        {{hash=db0d9a1086e139100535f89f49a23d08}{%
+           family={Nikolaev},
+           familyi={N\bibinitperiod},
+           given={N},
+           giveni={N\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {IOP Publishing}%
+      }
+      \strng{authorbibnamehash}{1fde9805322e15399add78e935298625}
+      \strng{authornamehash}{1fde9805322e15399add78e935298625}
+      \strng{authorfullhash}{babdedef07e017e79d70949c66f388ad}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labeltitlesource}{title}
+      \field{internalsortvolume}{2420}
+      \field{isbn}{1742-6596; 1742-6588}
+      \field{journaltitle}{Journal of Physics: Conference Series}
+      \field{media}{text}
+      \field{title}{Quasi-frozen spin concept of magneto-optical structure of NICA adapted to study the electric dipole moment of the deuteron and to search for the axion}
+      \field{year}{2023}
+      \field{number}{1}
+      \range{number}{1}
+      \field{pages}{012052}
+      \range{pages}{1}
+      \field{volume}{2420}
+      \range{volume}{1}
+      \verb{doi}
+      \verb 10.1088/1742-6596/2420/1/012052
+      \endverb
+      \verb{urlraw}
+      \verb https://dx.doi.org/10.1088/1742-6596/2420/1/012052
+      \endverb
+      \verb{url}
+      \verb https://dx.doi.org/10.1088/1742-6596/2420/1/012052
+      \endverb
+      \keyw{,biblioauthor,bibliofull}
+      \warn{\item article entry 'Senichev:2023_QFS' (biblio/author.bib): Invalid format '2023/01/01' of date field 'date' - ignoring}
+    \endentry
+    \entry{progbib1}{patent}{useauthor=false}
+      \name{author}{1}{}{%
+        {{hash=f905ebf57d59a975a8416302bc876807}{%
+           family={Петров},
+           familyi={П\bibinitperiod},
+           given={П.\bibnamedelimi П.},
+           giveni={П\bibinitperiod\bibinitdelim П\bibinitperiod}}}%
+      }
+      \name{holder}{1}{}{%
+        {{hash=80232904ede76aacda9b0d162f5a593b}{%
+           family={НИИ\bibnamedelima ГДААДАВБА},
+           familyi={Н\bibinitperiod\bibinitdelim Г\bibinitperiod}}}%
+      }
+      \strng{authorbibnamehash}{f905ebf57d59a975a8416302bc876807}
+      \strng{authornamehash}{f905ebf57d59a975a8416302bc876807}
+      \strng{authorfullhash}{f905ebf57d59a975a8416302bc876807}
+      \strng{holderbibnamehash}{80232904ede76aacda9b0d162f5a593b}
+      \strng{holdernamehash}{80232904ede76aacda9b0d162f5a593b}
+      \strng{holderfullhash}{80232904ede76aacda9b0d162f5a593b}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labeltitlesource}{title}
+      \field{day}{1}
+      \field{heading}{Свидетельство о гос. регистрации программы для {ЭВМ}}
+      \field{langid}{russian}
+      \field{media}{text}
+      \field{month}{1}
+      \field{prioritycountry}{countryru}
+      \field{prioritynumber}{1234567890}
+      \field{publicationday}{2}
+      \field{publicationmonth}{1}
+      \field{publicationyear}{2020}
+      \field{requestnumber}{1234567890}
+      \field{title}{foobar}
+      \field{year}{2020}
+      \field{dateera}{ce}
+      \field{publicationdateera}{ce}
+      \true{nocite}
+      \keyw{,biblioauthorprogram,biblioregistered,bibliofull}
+    \endentry
+  \enddatalist
+  \datalist[entry]{none/global//global/global}
+    \entry{Methodology}{book}{}
+      \name{author}{1}{}{%
+        {{hash=05c030f7781b702e98c050228c9cb7c9}{%
+           family={Загорюев},
+           familyi={З\bibinitperiod},
+           given={А.\bibnamedelimi Л.},
+           giveni={А\bibinitperiod\bibinitdelim Л\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Уральский институт практической психологии}%
+      }
+      \list{location}{1}{%
+        {Екатеринбург}%
+      }
+      \strng{namehash}{05c030f7781b702e98c050228c9cb7c9}
+      \strng{fullhash}{05c030f7781b702e98c050228c9cb7c9}
+      \strng{bibnamehash}{05c030f7781b702e98c050228c9cb7c9}
+      \strng{authorbibnamehash}{05c030f7781b702e98c050228c9cb7c9}
+      \strng{authornamehash}{05c030f7781b702e98c050228c9cb7c9}
+      \strng{authorfullhash}{05c030f7781b702e98c050228c9cb7c9}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{langid}{russian}
+      \field{media}{text}
+      \field{pagetotal}{102}
+      \field{title}{Методология и методы изучения военно-профессиональной направленности подростков : отчёт о НИР}
+      \field{year}{2008}
+      \keyw{,biblioexternal,bibliofull}
+    \endentry
+    \entry{Kolokolchikov:2023_bb_IPAC}{article}{useauthor=false}
+      \name{author}{4}{}{%
+        {{hash=c4100053edc7bce08567c27b3689f697}{%
+           family={Kolokolchikov},
+           familyi={K\bibinitperiod},
+           given={S},
+           giveni={S\bibinitperiod}}}%
+        {{hash=329cad99d4d45b3143732578446eb3a4}{%
+           family={Senichev},
+           familyi={S\bibinitperiod},
+           given={Y},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=2f848d58c5d28e172fbc9ab51a059f6e}{%
+           family={Melnikov},
+           familyi={M\bibinitperiod},
+           given={A},
+           giveni={A\bibinitperiod}}}%
+        {{hash=e32b1b767e2c98a454ce6429bc33ee58}{%
+           family={Syresin},
+           familyi={S\bibinitperiod},
+           given={E},
+           giveni={E\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {IOP Publishing}%
+      }
+      \strng{authorbibnamehash}{1aeea6ea78f651fa6af11380e4514c00}
+      \strng{authornamehash}{1aeea6ea78f651fa6af11380e4514c00}
+      \strng{authorfullhash}{1efe9f0fc487fa7ad98dfe8239d45477}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labeltitlesource}{title}
+      \field{internalsortvolume}{2420}
+      \field{isbn}{1742-6596; 1742-6588}
+      \field{journaltitle}{Journal of Physics: Conference Series}
+      \field{media}{text}
+      \field{title}{Acceleration and crossing of transition energy investigation using an RF structure of the barrier bucket type in the NICA accelerator complex}
+      \field{year}{2023}
+      \field{number}{1}
+      \range{number}{1}
+      \field{pages}{012001}
+      \range{pages}{1}
+      \field{volume}{2420}
+      \range{volume}{1}
+      \verb{doi}
+      \verb 10.1088/1742-6596/2420/1/012001
+      \endverb
+      \verb{urlraw}
+      \verb https://dx.doi.org/10.1088/1742-6596/2420/1/012001
+      \endverb
+      \verb{url}
+      \verb https://dx.doi.org/10.1088/1742-6596/2420/1/012001
+      \endverb
+      \keyw{,biblioauthor,bibliofull}
+      \warn{\item article entry 'Kolokolchikov:2023_bb_IPAC' (biblio/author.bib): Invalid format '2023/01/01' of date field 'date' - ignoring}
+    \endentry
+    \entry{Kolokolchikov:2021trans}{article}{}
+      \name{author}{2}{}{%
+        {{hash=fb5933417ac0705e7f96d9031ed98da6}{%
+           family={Kolokolchikov},
+           familyi={K\bibinitperiod},
+           given={S.\bibnamedelimi D.},
+           giveni={S\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+        {{hash=36c9b8717cc43183c3f8e16130f9099c}{%
+           family={Senichev},
+           familyi={S\bibinitperiod},
+           given={Y.\bibnamedelimi V.},
+           giveni={Y\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+      }
+      \strng{namehash}{1504ca1000db89414f1b1ab205d4daaf}
+      \strng{fullhash}{1504ca1000db89414f1b1ab205d4daaf}
+      \strng{bibnamehash}{1504ca1000db89414f1b1ab205d4daaf}
+      \strng{authorbibnamehash}{1504ca1000db89414f1b1ab205d4daaf}
+      \strng{authornamehash}{1504ca1000db89414f1b1ab205d4daaf}
+      \strng{authorfullhash}{1504ca1000db89414f1b1ab205d4daaf}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{internalsortvolume}{84}
+      \field{isbn}{1562-692X}
+      \field{journaltitle}{Physics of Atomic Nuclei}
+      \field{media}{text}
+      \field{title}{Magneto-Optical Structure of the NICA Collider with High Transition Energy}
+      \field{year}{2021}
+      \field{number}{10}
+      \range{number}{1}
+      \field{pages}{1734\bibrangedash 1742}
+      \range{pages}{9}
+      \field{volume}{84}
+      \range{volume}{1}
+      \verb{doi}
+      \verb 10.1134/S1063778821100185
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1134/S1063778821100185
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1134/S1063778821100185
+      \endverb
+      \keyw{,biblioauthor,bibliofull}
+      \warn{\item article entry 'Kolokolchikov:2021trans' (biblio/author.bib): Invalid format '2021/12/01' of date field 'date' - ignoring}
+    \endentry
+    \entry{Senichev:2023_QFS}{article}{useauthor=false}
+      \name{author}{7}{}{%
+        {{hash=329cad99d4d45b3143732578446eb3a4}{%
+           family={Senichev},
+           familyi={S\bibinitperiod},
+           given={Y},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=19a96077b899eeb34a8bf7c3e4909db0}{%
+           family={Aksentyev},
+           familyi={A\bibinitperiod},
+           given={A},
+           giveni={A\bibinitperiod}}}%
+        {{hash=c4100053edc7bce08567c27b3689f697}{%
+           family={Kolokolchikov},
+           familyi={K\bibinitperiod},
+           given={S},
+           giveni={S\bibinitperiod}}}%
+        {{hash=2f848d58c5d28e172fbc9ab51a059f6e}{%
+           family={Melnikov},
+           familyi={M\bibinitperiod},
+           given={A},
+           giveni={A\bibinitperiod}}}%
+        {{hash=bc5eb9f9e3e393c1ea10bf4c2579a8ef}{%
+           family={Ladygin},
+           familyi={L\bibinitperiod},
+           given={V},
+           giveni={V\bibinitperiod}}}%
+        {{hash=e32b1b767e2c98a454ce6429bc33ee58}{%
+           family={Syresin},
+           familyi={S\bibinitperiod},
+           given={E},
+           giveni={E\bibinitperiod}}}%
+        {{hash=db0d9a1086e139100535f89f49a23d08}{%
+           family={Nikolaev},
+           familyi={N\bibinitperiod},
+           given={N},
+           giveni={N\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {IOP Publishing}%
+      }
+      \strng{authorbibnamehash}{1fde9805322e15399add78e935298625}
+      \strng{authornamehash}{1fde9805322e15399add78e935298625}
+      \strng{authorfullhash}{babdedef07e017e79d70949c66f388ad}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labeltitlesource}{title}
+      \field{internalsortvolume}{2420}
+      \field{isbn}{1742-6596; 1742-6588}
+      \field{journaltitle}{Journal of Physics: Conference Series}
+      \field{media}{text}
+      \field{title}{Quasi-frozen spin concept of magneto-optical structure of NICA adapted to study the electric dipole moment of the deuteron and to search for the axion}
+      \field{year}{2023}
+      \field{number}{1}
+      \range{number}{1}
+      \field{pages}{012052}
+      \range{pages}{1}
+      \field{volume}{2420}
+      \range{volume}{1}
+      \verb{doi}
+      \verb 10.1088/1742-6596/2420/1/012052
+      \endverb
+      \verb{urlraw}
+      \verb https://dx.doi.org/10.1088/1742-6596/2420/1/012052
+      \endverb
+      \verb{url}
+      \verb https://dx.doi.org/10.1088/1742-6596/2420/1/012052
+      \endverb
+      \keyw{,biblioauthor,bibliofull}
+      \warn{\item article entry 'Senichev:2023_QFS' (biblio/author.bib): Invalid format '2023/01/01' of date field 'date' - ignoring}
+    \endentry
+    \entry{progbib1}{patent}{useauthor=false}
+      \name{author}{1}{}{%
+        {{hash=f905ebf57d59a975a8416302bc876807}{%
+           family={Петров},
+           familyi={П\bibinitperiod},
+           given={П.\bibnamedelimi П.},
+           giveni={П\bibinitperiod\bibinitdelim П\bibinitperiod}}}%
+      }
+      \name{holder}{1}{}{%
+        {{hash=80232904ede76aacda9b0d162f5a593b}{%
+           family={НИИ\bibnamedelima ГДААДАВБА},
+           familyi={Н\bibinitperiod\bibinitdelim Г\bibinitperiod}}}%
+      }
+      \strng{authorbibnamehash}{f905ebf57d59a975a8416302bc876807}
+      \strng{authornamehash}{f905ebf57d59a975a8416302bc876807}
+      \strng{authorfullhash}{f905ebf57d59a975a8416302bc876807}
+      \strng{holderbibnamehash}{80232904ede76aacda9b0d162f5a593b}
+      \strng{holdernamehash}{80232904ede76aacda9b0d162f5a593b}
+      \strng{holderfullhash}{80232904ede76aacda9b0d162f5a593b}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labeltitlesource}{title}
+      \field{day}{1}
+      \field{heading}{Свидетельство о гос. регистрации программы для {ЭВМ}}
+      \field{langid}{russian}
+      \field{media}{text}
+      \field{month}{1}
+      \field{prioritycountry}{countryru}
+      \field{prioritynumber}{1234567890}
+      \field{publicationday}{2}
+      \field{publicationmonth}{1}
+      \field{publicationyear}{2020}
+      \field{requestnumber}{1234567890}
+      \field{title}{foobar}
+      \field{year}{2020}
+      \field{dateera}{ce}
+      \field{publicationdateera}{ce}
+      \true{nocite}
+      \keyw{,biblioauthorprogram,biblioregistered,bibliofull}
+    \endentry
+  \enddatalist
+  \missing{bib1}
+  \missing{bib2}
+  \missing{confbib1}
+  \missing{confbib2}
+  \missing{patbib1}
+  \missing{scbib1}
+  \missing{vakbib1}
+  \missing{vakbib2}
+  \missing{wosbib1}
+\endrefsection
+
+\refsection{1}
+  \datalist[entry]{none/global//global/global}
+    \entry{Kolokolchikov:2023_bb_IPAC}{article}{useauthor=false}
+      \name{author}{4}{}{%
+        {{hash=c4100053edc7bce08567c27b3689f697}{%
+           family={Kolokolchikov},
+           familyi={K\bibinitperiod},
+           given={S},
+           giveni={S\bibinitperiod}}}%
+        {{hash=329cad99d4d45b3143732578446eb3a4}{%
+           family={Senichev},
+           familyi={S\bibinitperiod},
+           given={Y},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=2f848d58c5d28e172fbc9ab51a059f6e}{%
+           family={Melnikov},
+           familyi={M\bibinitperiod},
+           given={A},
+           giveni={A\bibinitperiod}}}%
+        {{hash=e32b1b767e2c98a454ce6429bc33ee58}{%
+           family={Syresin},
+           familyi={S\bibinitperiod},
+           given={E},
+           giveni={E\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {IOP Publishing}%
+      }
+      \strng{authorbibnamehash}{1aeea6ea78f651fa6af11380e4514c00}
+      \strng{authornamehash}{1aeea6ea78f651fa6af11380e4514c00}
+      \strng{authorfullhash}{1efe9f0fc487fa7ad98dfe8239d45477}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labeltitlesource}{title}
+      \field{internalsortvolume}{2420}
+      \field{isbn}{1742-6596; 1742-6588}
+      \field{journaltitle}{Journal of Physics: Conference Series}
+      \field{media}{text}
+      \field{title}{Acceleration and crossing of transition energy investigation using an RF structure of the barrier bucket type in the NICA accelerator complex}
+      \field{year}{2023}
+      \true{nocite}
+      \field{number}{1}
+      \range{number}{1}
+      \field{pages}{012001}
+      \range{pages}{1}
+      \field{volume}{2420}
+      \range{volume}{1}
+      \verb{doi}
+      \verb 10.1088/1742-6596/2420/1/012001
+      \endverb
+      \verb{urlraw}
+      \verb https://dx.doi.org/10.1088/1742-6596/2420/1/012001
+      \endverb
+      \verb{url}
+      \verb https://dx.doi.org/10.1088/1742-6596/2420/1/012001
+      \endverb
+      \keyw{,biblioauthor,bibliofull}
+      \warn{\item article entry 'Kolokolchikov:2023_bb_IPAC' (biblio/author.bib): Invalid format '2023/01/01' of date field 'date' - ignoring}
+    \endentry
+    \entry{Senichev:2023_QFS}{article}{useauthor=false}
+      \name{author}{7}{}{%
+        {{hash=329cad99d4d45b3143732578446eb3a4}{%
+           family={Senichev},
+           familyi={S\bibinitperiod},
+           given={Y},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=19a96077b899eeb34a8bf7c3e4909db0}{%
+           family={Aksentyev},
+           familyi={A\bibinitperiod},
+           given={A},
+           giveni={A\bibinitperiod}}}%
+        {{hash=c4100053edc7bce08567c27b3689f697}{%
+           family={Kolokolchikov},
+           familyi={K\bibinitperiod},
+           given={S},
+           giveni={S\bibinitperiod}}}%
+        {{hash=2f848d58c5d28e172fbc9ab51a059f6e}{%
+           family={Melnikov},
+           familyi={M\bibinitperiod},
+           given={A},
+           giveni={A\bibinitperiod}}}%
+        {{hash=bc5eb9f9e3e393c1ea10bf4c2579a8ef}{%
+           family={Ladygin},
+           familyi={L\bibinitperiod},
+           given={V},
+           giveni={V\bibinitperiod}}}%
+        {{hash=e32b1b767e2c98a454ce6429bc33ee58}{%
+           family={Syresin},
+           familyi={S\bibinitperiod},
+           given={E},
+           giveni={E\bibinitperiod}}}%
+        {{hash=db0d9a1086e139100535f89f49a23d08}{%
+           family={Nikolaev},
+           familyi={N\bibinitperiod},
+           given={N},
+           giveni={N\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {IOP Publishing}%
+      }
+      \strng{authorbibnamehash}{1fde9805322e15399add78e935298625}
+      \strng{authornamehash}{1fde9805322e15399add78e935298625}
+      \strng{authorfullhash}{babdedef07e017e79d70949c66f388ad}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labeltitlesource}{title}
+      \field{internalsortvolume}{2420}
+      \field{isbn}{1742-6596; 1742-6588}
+      \field{journaltitle}{Journal of Physics: Conference Series}
+      \field{media}{text}
+      \field{title}{Quasi-frozen spin concept of magneto-optical structure of NICA adapted to study the electric dipole moment of the deuteron and to search for the axion}
+      \field{year}{2023}
+      \true{nocite}
+      \field{number}{1}
+      \range{number}{1}
+      \field{pages}{012052}
+      \range{pages}{1}
+      \field{volume}{2420}
+      \range{volume}{1}
+      \verb{doi}
+      \verb 10.1088/1742-6596/2420/1/012052
+      \endverb
+      \verb{urlraw}
+      \verb https://dx.doi.org/10.1088/1742-6596/2420/1/012052
+      \endverb
+      \verb{url}
+      \verb https://dx.doi.org/10.1088/1742-6596/2420/1/012052
+      \endverb
+      \keyw{,biblioauthor,bibliofull}
+      \warn{\item article entry 'Senichev:2023_QFS' (biblio/author.bib): Invalid format '2023/01/01' of date field 'date' - ignoring}
+    \endentry
+    \entry{Kolokolchikov:2023_bypass_IPAC}{article}{useauthor=false}
+      \name{author}{6}{}{%
+        {{hash=c4100053edc7bce08567c27b3689f697}{%
+           family={Kolokolchikov},
+           familyi={K\bibinitperiod},
+           given={S},
+           giveni={S\bibinitperiod}}}%
+        {{hash=19a96077b899eeb34a8bf7c3e4909db0}{%
+           family={Aksentyev},
+           familyi={A\bibinitperiod},
+           given={A},
+           giveni={A\bibinitperiod}}}%
+        {{hash=2f848d58c5d28e172fbc9ab51a059f6e}{%
+           family={Melnikov},
+           familyi={M\bibinitperiod},
+           given={A},
+           giveni={A\bibinitperiod}}}%
+        {{hash=329cad99d4d45b3143732578446eb3a4}{%
+           family={Senichev},
+           familyi={S\bibinitperiod},
+           given={Y},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=e32b1b767e2c98a454ce6429bc33ee58}{%
+           family={Syresin},
+           familyi={S\bibinitperiod},
+           given={E},
+           giveni={E\bibinitperiod}}}%
+        {{hash=bc5eb9f9e3e393c1ea10bf4c2579a8ef}{%
+           family={Ladygin},
+           familyi={L\bibinitperiod},
+           given={V},
+           giveni={V\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {IOP Publishing}%
+      }
+      \strng{authorbibnamehash}{1aeea6ea78f651fa6af11380e4514c00}
+      \strng{authornamehash}{1aeea6ea78f651fa6af11380e4514c00}
+      \strng{authorfullhash}{7d745908d261bc9bd2307f7d4302030e}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labeltitlesource}{title}
+      \field{internalsortvolume}{2687}
+      \field{isbn}{1742-6596; 1742-6588}
+      \field{journaltitle}{Journal of Physics: Conference Series}
+      \field{media}{text}
+      \field{title}{ByPass optics design in NICA storage ring for experiment with polarized beams for EDM search}
+      \field{year}{2024}
+      \true{nocite}
+      \field{number}{2}
+      \range{number}{1}
+      \field{pages}{022026}
+      \range{pages}{1}
+      \field{volume}{2687}
+      \range{volume}{1}
+      \verb{doi}
+      \verb 10.1088/1742-6596/2687/2/022026
+      \endverb
+      \verb{urlraw}
+      \verb https://dx.doi.org/10.1088/1742-6596/2687/2/022026
+      \endverb
+      \verb{url}
+      \verb https://dx.doi.org/10.1088/1742-6596/2687/2/022026
+      \endverb
+      \keyw{,biblioauthor,bibliofull}
+      \warn{\item article entry 'Kolokolchikov:2023_bypass_IPAC' (biblio/author.bib): Invalid format '2024/01/01' of date field 'date' - ignoring}
+    \endentry
+    \entry{Kolokolchikov:2023_sc_IPAC}{article}{useauthor=false}
+      \name{author}{4}{}{%
+        {{hash=c4100053edc7bce08567c27b3689f697}{%
+           family={Kolokolchikov},
+           familyi={K\bibinitperiod},
+           given={S},
+           giveni={S\bibinitperiod}}}%
+        {{hash=19a96077b899eeb34a8bf7c3e4909db0}{%
+           family={Aksentyev},
+           familyi={A\bibinitperiod},
+           given={A},
+           giveni={A\bibinitperiod}}}%
+        {{hash=2f848d58c5d28e172fbc9ab51a059f6e}{%
+           family={Melnikov},
+           familyi={M\bibinitperiod},
+           given={A},
+           giveni={A\bibinitperiod}}}%
+        {{hash=329cad99d4d45b3143732578446eb3a4}{%
+           family={Senichev},
+           familyi={S\bibinitperiod},
+           given={Y},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {IOP Publishing}%
+      }
+      \strng{authorbibnamehash}{1aeea6ea78f651fa6af11380e4514c00}
+      \strng{authornamehash}{1aeea6ea78f651fa6af11380e4514c00}
+      \strng{authorfullhash}{ae48a999a8fcd67050739b83c5b6120c}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labeltitlesource}{title}
+      \field{internalsortvolume}{2687}
+      \field{isbn}{1742-6596; 1742-6588}
+      \field{journaltitle}{Journal of Physics: Conference Series}
+      \field{media}{text}
+      \field{title}{Spin coherence and betatron chromaticity of deuteron beam in NICA storage ring}
+      \field{year}{2024}
+      \true{nocite}
+      \field{number}{2}
+      \range{number}{1}
+      \field{pages}{022027}
+      \range{pages}{1}
+      \field{volume}{2687}
+      \range{volume}{1}
+      \verb{doi}
+      \verb 10.1088/1742-6596/2687/2/022027
+      \endverb
+      \verb{urlraw}
+      \verb https://dx.doi.org/10.1088/1742-6596/2687/2/022027
+      \endverb
+      \verb{url}
+      \verb https://dx.doi.org/10.1088/1742-6596/2687/2/022027
+      \endverb
+      \keyw{,biblioauthor,bibliofull}
+      \warn{\item article entry 'Kolokolchikov:2023_sc_IPAC' (biblio/author.bib): Invalid format '2024/01/01' of date field 'date' - ignoring}
+    \endentry
+    \entry{Senichev:2024_nica_edm}{article}{useauthor=false}
+      \name{author}{7}{}{%
+        {{hash=c8d8e79d77f5f5633f4a93a439ffa05c}{%
+           family={Senichev},
+           familyi={S\bibinitperiod},
+           given={Yu.},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=19a96077b899eeb34a8bf7c3e4909db0}{%
+           family={Aksentyev},
+           familyi={A\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+        {{hash=c4100053edc7bce08567c27b3689f697}{%
+           family={Kolokolchikov},
+           familyi={K\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod}}}%
+        {{hash=2f848d58c5d28e172fbc9ab51a059f6e}{%
+           family={Melnikov},
+           familyi={M\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+        {{hash=db0d9a1086e139100535f89f49a23d08}{%
+           family={Nikolaev},
+           familyi={N\bibinitperiod},
+           given={N.},
+           giveni={N\bibinitperiod}}}%
+        {{hash=bc5eb9f9e3e393c1ea10bf4c2579a8ef}{%
+           family={Ladygin},
+           familyi={L\bibinitperiod},
+           given={V.},
+           giveni={V\bibinitperiod}}}%
+        {{hash=e32b1b767e2c98a454ce6429bc33ee58}{%
+           family={Syresin},
+           familyi={S\bibinitperiod},
+           given={E.},
+           giveni={E\bibinitperiod}}}%
+      }
+      \strng{authorbibnamehash}{3ee43d3134d96d9726ef0b87b227048e}
+      \strng{authornamehash}{3ee43d3134d96d9726ef0b87b227048e}
+      \strng{authorfullhash}{a23e9e4bfe02b67168757be9c2a35b87}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{labeltitlesource}{title}
+      \field{internalsortvolume}{87}
+      \field{isbn}{1562-692X}
+      \field{journaltitle}{Physics of Atomic Nuclei}
+      \field{media}{text}
+      \field{title}{NICA Facilities for the Search for EDM Light Nuclei}
+      \field{year}{2024}
+      \true{nocite}
+      \field{number}{4}
+      \range{number}{1}
+      \field{pages}{436\bibrangedash 441}
+      \range{pages}{6}
+      \field{volume}{87}
+      \range{volume}{1}
+      \verb{doi}
+      \verb 10.1134/S1063778824700534
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1134/S1063778824700534
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1134/S1063778824700534
+      \endverb
+      \keyw{,biblioauthor,bibliofull}
+      \warn{\item article entry 'Senichev:2024_nica_edm' (biblio/author.bib): Invalid format '2024/08/01' of date field 'date' - ignoring}
+    \endentry
+    \entry{Syresin:2021_polar}{article}{useauthor=false}
+      \name{author}{11}{}{%
+        {{hash=c97b18be7fb0ec992e4d83a99631da26}{%
+           family={Syresin},
+           familyi={S\bibinitperiod},
+           given={E.\bibnamedelimi M.},
+           giveni={E\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=4a5ef3c1b15965eb90b964fb1ac5c252}{%
+           family={Butenko},
+           familyi={B\bibinitperiod},
+           given={A.\bibnamedelimi V.},
+           giveni={A\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+        {{hash=061dd1a81be2b627c7cfeb3de58cdd1b}{%
+           family={Zenkevich},
+           familyi={Z\bibinitperiod},
+           given={P.\bibnamedelimi R.},
+           giveni={P\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=56e750deb86982c877e4f8015da9b3d2}{%
+           family={Kozlov},
+           familyi={K\bibinitperiod},
+           given={O.\bibnamedelimi S.},
+           giveni={O\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=fb5933417ac0705e7f96d9031ed98da6}{%
+           family={Kolokolchikov},
+           familyi={K\bibinitperiod},
+           given={S.\bibnamedelimi D.},
+           giveni={S\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+        {{hash=825081ca69ca53833b4ef677ca7f4be5}{%
+           family={Kostromin},
+           familyi={K\bibinitperiod},
+           given={S.\bibnamedelimi A.},
+           giveni={S\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=04297fea37ae11ce4d123dfd26fe9749}{%
+           family={Meshkov},
+           familyi={M\bibinitperiod},
+           given={I.\bibnamedelimi N.},
+           giveni={I\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+        {{hash=1934f05cbc366fd54f63053cd4b97806}{%
+           family={Mityanina},
+           familyi={M\bibinitperiod},
+           given={N.\bibnamedelimi V.},
+           giveni={N\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+        {{hash=b2333c60b83de0212f1b45f0848f26c5}{%
+           family={Senichev},
+           familyi={S\bibinitperiod},
+           given={Yu.\bibnamedelimi V.},
+           giveni={Y\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+        {{hash=faf254172eb46875f54c117851309c94}{%
+           family={Sidorin},
+           familyi={S\bibinitperiod},
+           given={A.\bibnamedelimi O.},
+           giveni={A\bibinitperiod\bibinitdelim O\bibinitperiod}}}%
+        {{hash=961f4f6b04223e06ba18cff4206b66a7}{%
+           family={Trubnikov},
+           familyi={T\bibinitperiod},
+           given={G.\bibnamedelimi V.},
+           giveni={G\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+      }
+      \strng{authorbibnamehash}{43483877af8df56bc0e32dafd4d3b5af}
+      \strng{authornamehash}{43483877af8df56bc0e32dafd4d3b5af}
+      \strng{authorfullhash}{1ad67382cd24d223b986136750e7f4ca}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{labeltitlesource}{title}
+      \field{internalsortvolume}{52}
+      \field{isbn}{1531-8559}
+      \field{journaltitle}{Physics of Particles and Nuclei}
+      \field{media}{text}
+      \field{title}{Formation of Polarized Proton Beams in the NICA Collider-Accelerator Complex}
+      \field{year}{2021}
+      \true{nocite}
+      \field{number}{5}
+      \range{number}{1}
+      \field{pages}{997\bibrangedash 1017}
+      \range{pages}{21}
+      \field{volume}{52}
+      \range{volume}{1}
+      \verb{doi}
+      \verb 10.1134/S1063779621050051
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1134/S1063779621050051
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1134/S1063779621050051
+      \endverb
+      \keyw{,biblioauthor,bibliofull}
+      \warn{\item article entry 'Syresin:2021_polar' (biblio/author.bib): Invalid format '2021/09/01' of date field 'date' - ignoring}
+    \endentry
+    \entry{Senichev:2023_nuclotron}{article}{useauthor=false}
+      \name{author}{6}{}{%
+        {{hash=b2333c60b83de0212f1b45f0848f26c5}{%
+           family={Senichev},
+           familyi={S\bibinitperiod},
+           given={Yu.\bibnamedelimi V.},
+           giveni={Y\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+        {{hash=812f908f88d1ef84f95035f7e7bb114b}{%
+           family={Aksentyev},
+           familyi={A\bibinitperiod},
+           given={A.\bibnamedelimi E.},
+           giveni={A\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+        {{hash=fb5933417ac0705e7f96d9031ed98da6}{%
+           family={Kolokolchikov},
+           familyi={K\bibinitperiod},
+           given={S.\bibnamedelimi D.},
+           giveni={S\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+        {{hash=2c026719b3bb658c0eba4860cf6c6cc9}{%
+           family={Melnikov},
+           familyi={M\bibinitperiod},
+           given={A.\bibnamedelimi A.},
+           giveni={A\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=e44dba3e4b1104a9a76741e39c18a0e3}{%
+           family={Ladygin},
+           familyi={L\bibinitperiod},
+           given={V.\bibnamedelimi P.},
+           giveni={V\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=c97b18be7fb0ec992e4d83a99631da26}{%
+           family={Syresin},
+           familyi={S\bibinitperiod},
+           given={E.\bibnamedelimi M.},
+           giveni={E\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \strng{authorbibnamehash}{593f72c43df45eddf5e76ab96c2353c3}
+      \strng{authornamehash}{593f72c43df45eddf5e76ab96c2353c3}
+      \strng{authorfullhash}{8b9e687f1179fba42566c7230e80f1c7}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{labeltitlesource}{title}
+      \field{internalsortvolume}{86}
+      \field{isbn}{1562-692X}
+      \field{journaltitle}{Physics of Atomic Nuclei}
+      \field{media}{text}
+      \field{title}{Consideration of an Adapted Nuclotron Structure for Searching for the Electric Dipole Moment of Light Nuclei}
+      \field{year}{2023}
+      \true{nocite}
+      \field{number}{11}
+      \range{number}{1}
+      \field{pages}{2434\bibrangedash 2438}
+      \range{pages}{5}
+      \field{volume}{86}
+      \range{volume}{1}
+      \verb{doi}
+      \verb 10.1134/S1063778823110418
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1134/S1063778823110418
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1134/S1063778823110418
+      \endverb
+      \keyw{,biblioauthor,bibliofull}
+      \warn{\item article entry 'Senichev:2023_nuclotron' (biblio/author.bib): Invalid format '2023/12/01' of date field 'date' - ignoring}
+    \endentry
+    \entry{Kolokolchikov:2025_dual}{article}{useauthor=false}
+      \name{author}{4}{}{%
+        {{hash=fb5933417ac0705e7f96d9031ed98da6}{%
+           family={Kolokolchikov},
+           familyi={K\bibinitperiod},
+           given={S.D.},
+           giveni={S\bibinitperiod}}}%
+        {{hash=812f908f88d1ef84f95035f7e7bb114b}{%
+           family={Aksentyev},
+           familyi={A\bibinitperiod},
+           given={A.E.},
+           giveni={A\bibinitperiod}}}%
+        {{hash=2c026719b3bb658c0eba4860cf6c6cc9}{%
+           family={Melnikov},
+           familyi={M\bibinitperiod},
+           given={A.A.},
+           giveni={A\bibinitperiod}}}%
+        {{hash=b2333c60b83de0212f1b45f0848f26c5}{%
+           family={Senichev},
+           familyi={S\bibinitperiod},
+           given={Yu.V.},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \strng{authorbibnamehash}{71abd5361a729a14e546d8592922e867}
+      \strng{authornamehash}{71abd5361a729a14e546d8592922e867}
+      \strng{authorfullhash}{bb483120c6d94989e753f63257bbd0d5}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Chinese Physics C}
+      \field{media}{text}
+      \field{title}{(to be written) Dual-structure features for heavy ion and light particles at NICA collider}
+      \field{year}{2025}
+      \true{nocite}
+      \keyw{,biblioauthor,bibliofull}
+    \endentry
+    \entry{Kolokolchikov:2025_nuclotron}{article}{useauthor=false}
+      \name{author}{4}{}{%
+        {{hash=fb5933417ac0705e7f96d9031ed98da6}{%
+           family={Kolokolchikov},
+           familyi={K\bibinitperiod},
+           given={S.D.},
+           giveni={S\bibinitperiod}}}%
+        {{hash=812f908f88d1ef84f95035f7e7bb114b}{%
+           family={Aksentyev},
+           familyi={A\bibinitperiod},
+           given={A.E.},
+           giveni={A\bibinitperiod}}}%
+        {{hash=2c026719b3bb658c0eba4860cf6c6cc9}{%
+           family={Melnikov},
+           familyi={M\bibinitperiod},
+           given={A.A.},
+           giveni={A\bibinitperiod}}}%
+        {{hash=b2333c60b83de0212f1b45f0848f26c5}{%
+           family={Senichev},
+           familyi={S\bibinitperiod},
+           given={Yu.V.},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \strng{authorbibnamehash}{71abd5361a729a14e546d8592922e867}
+      \strng{authornamehash}{71abd5361a729a14e546d8592922e867}
+      \strng{authorfullhash}{bb483120c6d94989e753f63257bbd0d5}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{JETP Letters}
+      \field{media}{text}
+      \field{title}{(to be written) Modernization of Nuclotron as booster for NICA and EDM experiment}
+      \field{year}{2025}
+      \true{nocite}
+      \keyw{,biblioauthor,bibliofull}
+    \endentry
+    \entry{Kolokolchikov:2025_jump}{article}{useauthor=false}
+      \name{author}{4}{}{%
+        {{hash=fb5933417ac0705e7f96d9031ed98da6}{%
+           family={Kolokolchikov},
+           familyi={K\bibinitperiod},
+           given={S.D.},
+           giveni={S\bibinitperiod}}}%
+        {{hash=b2333c60b83de0212f1b45f0848f26c5}{%
+           family={Senichev},
+           familyi={S\bibinitperiod},
+           given={Yu.V.},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=812f908f88d1ef84f95035f7e7bb114b}{%
+           family={Aksentyev},
+           familyi={A\bibinitperiod},
+           given={A.E.},
+           giveni={A\bibinitperiod}}}%
+        {{hash=2c026719b3bb658c0eba4860cf6c6cc9}{%
+           family={Melnikov},
+           familyi={M\bibinitperiod},
+           given={A.A.},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{authorbibnamehash}{71abd5361a729a14e546d8592922e867}
+      \strng{authornamehash}{71abd5361a729a14e546d8592922e867}
+      \strng{authorfullhash}{44d22925f07a9e846802d53feb5b2424}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Physics of Atomic Nuclei}
+      \field{media}{text}
+      \field{title}{(to be published) Transition energy crossing in NICA collider of polarized proton beam in harmonic and barrier RF}
+      \field{year}{2025}
+      \true{nocite}
+      \keyw{,biblioauthor,bibliofull}
+    \endentry
+    \entry{Kolokolchikov:2025_U70}{article}{}
+      \name{author}{3}{}{%
+        {{hash=fb5933417ac0705e7f96d9031ed98da6}{%
+           family={Kolokolchikov},
+           familyi={K\bibinitperiod},
+           given={S.D.},
+           giveni={S\bibinitperiod}}}%
+        {{hash=b2333c60b83de0212f1b45f0848f26c5}{%
+           family={Senichev},
+           familyi={S\bibinitperiod},
+           given={Yu.V.},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=2816130547dd2af6195501febf3cb14a}{%
+           family={Kalinin},
+           familyi={K\bibinitperiod},
+           given={V.A.},
+           giveni={V\bibinitperiod}}}%
+      }
+      \strng{namehash}{c2ac9c16e157fa85d31f17176abb4e79}
+      \strng{fullhash}{c2ac9c16e157fa85d31f17176abb4e79}
+      \strng{bibnamehash}{c2ac9c16e157fa85d31f17176abb4e79}
+      \strng{authorbibnamehash}{c2ac9c16e157fa85d31f17176abb4e79}
+      \strng{authornamehash}{c2ac9c16e157fa85d31f17176abb4e79}
+      \strng{authorfullhash}{c2ac9c16e157fa85d31f17176abb4e79}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Physics of Atomic Nuclei}
+      \field{media}{text}
+      \field{title}{(to be published) Transition energy crossing in harmonic RF at U-70 proton synchrotron}
+      \field{year}{2025}
+      \true{nocite}
+      \keyw{,biblioauthor,bibliofull}
+    \endentry
+    \entry{Kolokolchikov:2024_bb_rupac}{article}{useauthor=false}
+      \name{author}{6}{}{%
+        {{hash=c4100053edc7bce08567c27b3689f697}{%
+           family={Kolokolchikov},
+           familyi={K\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod}}}%
+        {{hash=c8d8e79d77f5f5633f4a93a439ffa05c}{%
+           family={Senichev},
+           familyi={S\bibinitperiod},
+           given={Yu.},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=f0f420bfe783bab62391999bbfe3c012}{%
+           family={Aksentev},
+           familyi={A\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+        {{hash=2f848d58c5d28e172fbc9ab51a059f6e}{%
+           family={Melnikov},
+           familyi={M\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+        {{hash=bc5eb9f9e3e393c1ea10bf4c2579a8ef}{%
+           family={Ladygin},
+           familyi={L\bibinitperiod},
+           given={V.},
+           giveni={V\bibinitperiod}}}%
+        {{hash=e32b1b767e2c98a454ce6429bc33ee58}{%
+           family={Syresin},
+           familyi={S\bibinitperiod},
+           given={E.},
+           giveni={E\bibinitperiod}}}%
+      }
+      \strng{authorbibnamehash}{1aeea6ea78f651fa6af11380e4514c00}
+      \strng{authornamehash}{1aeea6ea78f651fa6af11380e4514c00}
+      \strng{authorfullhash}{0be8c1f1971555bcaee116055a68ca8d}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labeltitlesource}{title}
+      \field{internalsortvolume}{21}
+      \field{isbn}{1531-8567}
+      \field{journaltitle}{Physics of Particles and Nuclei Letters}
+      \field{media}{text}
+      \field{title}{Longitudinal Dynamic in NICA Barrier Bucket RF System at Transition Energy Including Impedances in BLonD}
+      \field{year}{2024}
+      \true{nocite}
+      \field{number}{3}
+      \range{number}{1}
+      \field{pages}{419\bibrangedash 424}
+      \range{pages}{6}
+      \field{volume}{21}
+      \range{volume}{1}
+      \verb{doi}
+      \verb 10.1134/S1547477124700389
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1134/S1547477124700389
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1134/S1547477124700389
+      \endverb
+      \keyw{,biblioauthor,bibliofull}
+      \warn{\item article entry 'Kolokolchikov:2024_bb_rupac' (biblio/author.bib): Invalid format '2024/06/01' of date field 'date' - ignoring}
+    \endentry
+    \entry{Kolokolchikov:2023_sc}{article}{useauthor=false}
+      \name{author}{4}{}{%
+        {{hash=c4100053edc7bce08567c27b3689f697}{%
+           family={Kolokolchikov},
+           familyi={K\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod}}}%
+        {{hash=8f1362284ebb867c98db851ef7f9de80}{%
+           family={Aksentiev},
+           familyi={A\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+        {{hash=2f848d58c5d28e172fbc9ab51a059f6e}{%
+           family={Melnikov},
+           familyi={M\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+        {{hash=c8d8e79d77f5f5633f4a93a439ffa05c}{%
+           family={Senichev},
+           familyi={S\bibinitperiod},
+           given={Yu.},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \strng{authorbibnamehash}{1aeea6ea78f651fa6af11380e4514c00}
+      \strng{authornamehash}{1aeea6ea78f651fa6af11380e4514c00}
+      \strng{authorfullhash}{c69e2cea4295a46d7ba30a3c9304a59f}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labeltitlesource}{title}
+      \field{internalsortvolume}{86}
+      \field{isbn}{1562-692X}
+      \field{journaltitle}{Physics of Atomic Nuclei}
+      \field{media}{text}
+      \field{title}{Spin Coherence and Betatron Chromaticity of Deuteron Beam in ``Quasi-Frozen''Spin Regime}
+      \field{year}{2023}
+      \true{nocite}
+      \field{number}{12}
+      \range{number}{1}
+      \field{pages}{2684\bibrangedash 2688}
+      \range{pages}{5}
+      \field{volume}{86}
+      \range{volume}{1}
+      \verb{doi}
+      \verb 10.1134/S106377882311025X
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1134/S106377882311025X
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1134/S106377882311025X
+      \endverb
+      \keyw{,biblioauthor,bibliofull}
+      \warn{\item article entry 'Kolokolchikov:2023_sc' (biblio/author.bib): Invalid format '2023/12/01' of date field 'date' - ignoring}
+    \endentry
+    \entry{Kolokolchikov:2021trans}{article}{}
+      \name{author}{2}{}{%
+        {{hash=fb5933417ac0705e7f96d9031ed98da6}{%
+           family={Kolokolchikov},
+           familyi={K\bibinitperiod},
+           given={S.\bibnamedelimi D.},
+           giveni={S\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+        {{hash=36c9b8717cc43183c3f8e16130f9099c}{%
+           family={Senichev},
+           familyi={S\bibinitperiod},
+           given={Y.\bibnamedelimi V.},
+           giveni={Y\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+      }
+      \strng{namehash}{1504ca1000db89414f1b1ab205d4daaf}
+      \strng{fullhash}{1504ca1000db89414f1b1ab205d4daaf}
+      \strng{bibnamehash}{1504ca1000db89414f1b1ab205d4daaf}
+      \strng{authorbibnamehash}{1504ca1000db89414f1b1ab205d4daaf}
+      \strng{authornamehash}{1504ca1000db89414f1b1ab205d4daaf}
+      \strng{authorfullhash}{1504ca1000db89414f1b1ab205d4daaf}
+      \field{extraname}{1}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{internalsortvolume}{84}
+      \field{isbn}{1562-692X}
+      \field{journaltitle}{Physics of Atomic Nuclei}
+      \field{media}{text}
+      \field{title}{Magneto-Optical Structure of the NICA Collider with High Transition Energy}
+      \field{year}{2021}
+      \true{nocite}
+      \field{number}{10}
+      \range{number}{1}
+      \field{pages}{1734\bibrangedash 1742}
+      \range{pages}{9}
+      \field{volume}{84}
+      \range{volume}{1}
+      \verb{doi}
+      \verb 10.1134/S1063778821100185
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1134/S1063778821100185
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1134/S1063778821100185
+      \endverb
+      \keyw{,biblioauthor,bibliofull}
+      \warn{\item article entry 'Kolokolchikov:2021trans' (biblio/author.bib): Invalid format '2021/12/01' of date field 'date' - ignoring}
+    \endentry
+    \entry{Kolokolchikov:2023_bypass}{article}{useauthor=false}
+      \name{author}{6}{}{%
+        {{hash=c4100053edc7bce08567c27b3689f697}{%
+           family={Kolokolchikov},
+           familyi={K\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod}}}%
+        {{hash=19a96077b899eeb34a8bf7c3e4909db0}{%
+           family={Aksentyev},
+           familyi={A\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+        {{hash=2f848d58c5d28e172fbc9ab51a059f6e}{%
+           family={Melnikov},
+           familyi={M\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+        {{hash=c8d8e79d77f5f5633f4a93a439ffa05c}{%
+           family={Senichev},
+           familyi={S\bibinitperiod},
+           given={Yu.},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=bc5eb9f9e3e393c1ea10bf4c2579a8ef}{%
+           family={Ladygin},
+           familyi={L\bibinitperiod},
+           given={V.},
+           giveni={V\bibinitperiod}}}%
+        {{hash=e32b1b767e2c98a454ce6429bc33ee58}{%
+           family={Syresin},
+           familyi={S\bibinitperiod},
+           given={E.},
+           giveni={E\bibinitperiod}}}%
+      }
+      \strng{authorbibnamehash}{1aeea6ea78f651fa6af11380e4514c00}
+      \strng{authornamehash}{1aeea6ea78f651fa6af11380e4514c00}
+      \strng{authorfullhash}{8e282a611716286ec6397eeaeef0f360}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labeltitlesource}{title}
+      \field{internalsortvolume}{86}
+      \field{isbn}{1562-692X}
+      \field{journaltitle}{Physics of Atomic Nuclei}
+      \field{media}{text}
+      \field{title}{Designing Bypass Channels in NICA Accelerator Complex for Polarized Beam Experiments for EDM Search}
+      \field{year}{2023}
+      \true{nocite}
+      \field{number}{11}
+      \range{number}{1}
+      \field{pages}{2423\bibrangedash 2428}
+      \range{pages}{6}
+      \field{volume}{86}
+      \range{volume}{1}
+      \verb{doi}
+      \verb 10.1134/S1063778823110248
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1134/S1063778823110248
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1134/S1063778823110248
+      \endverb
+      \keyw{,biblioauthor,bibliofull}
+      \warn{\item article entry 'Kolokolchikov:2023_bypass' (biblio/author.bib): Invalid format '2023/12/01' of date field 'date' - ignoring}
+    \endentry
+    \entry{Kolokolchikov:2024_bb_dspin}{article}{useauthor=false}
+      \name{author}{6}{}{%
+        {{hash=c4100053edc7bce08567c27b3689f697}{%
+           family={Kolokolchikov},
+           familyi={K\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod}}}%
+        {{hash=c8d8e79d77f5f5633f4a93a439ffa05c}{%
+           family={Senichev},
+           familyi={S\bibinitperiod},
+           given={Yu.},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=8f1362284ebb867c98db851ef7f9de80}{%
+           family={Aksentiev},
+           familyi={A\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+        {{hash=2f848d58c5d28e172fbc9ab51a059f6e}{%
+           family={Melnikov},
+           familyi={M\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+        {{hash=e32b1b767e2c98a454ce6429bc33ee58}{%
+           family={Syresin},
+           familyi={S\bibinitperiod},
+           given={E.},
+           giveni={E\bibinitperiod}}}%
+        {{hash=bc5eb9f9e3e393c1ea10bf4c2579a8ef}{%
+           family={Ladygin},
+           familyi={L\bibinitperiod},
+           given={V.},
+           giveni={V\bibinitperiod}}}%
+      }
+      \strng{authorbibnamehash}{1aeea6ea78f651fa6af11380e4514c00}
+      \strng{authornamehash}{1aeea6ea78f651fa6af11380e4514c00}
+      \strng{authorfullhash}{8927b73f788fe3f79f65caa3c9839e27}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labeltitlesource}{title}
+      \field{internalsortvolume}{87}
+      \field{isbn}{1562-692X}
+      \field{journaltitle}{Physics of Atomic Nuclei}
+      \field{media}{text}
+      \field{title}{Transition Energy Crossing of Polarized Proton Beam at NICA}
+      \field{year}{2024}
+      \true{nocite}
+      \field{number}{3}
+      \range{number}{1}
+      \field{pages}{212\bibrangedash 215}
+      \range{pages}{4}
+      \field{volume}{87}
+      \range{volume}{1}
+      \verb{doi}
+      \verb 10.1134/S1063778824700054
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1134/S1063778824700054
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1134/S1063778824700054
+      \endverb
+      \keyw{,biblioauthor,bibliofull}
+      \warn{\item article entry 'Kolokolchikov:2024_bb_dspin' (biblio/author.bib): Invalid format '2024/06/01' of date field 'date' - ignoring}
+    \endentry
+    \entry{Kolokolchikov:2023_pecular}{article}{}
+      \name{author}{2}{}{%
+        {{hash=c4100053edc7bce08567c27b3689f697}{%
+           family={Kolokolchikov},
+           familyi={K\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod}}}%
+        {{hash=c8d8e79d77f5f5633f4a93a439ffa05c}{%
+           family={Senichev},
+           familyi={S\bibinitperiod},
+           given={Yu.},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \strng{namehash}{ea3a1f60af5507ca83651e575e88a441}
+      \strng{fullhash}{ea3a1f60af5507ca83651e575e88a441}
+      \strng{bibnamehash}{ea3a1f60af5507ca83651e575e88a441}
+      \strng{authorbibnamehash}{ea3a1f60af5507ca83651e575e88a441}
+      \strng{authornamehash}{ea3a1f60af5507ca83651e575e88a441}
+      \strng{authorfullhash}{ea3a1f60af5507ca83651e575e88a441}
+      \field{extraname}{2}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{internalsortvolume}{86}
+      \field{isbn}{1562-692X}
+      \field{journaltitle}{Physics of Atomic Nuclei}
+      \field{media}{text}
+      \field{title}{Peculiarities of Crossing and Raising the Synchrotron Transition Energy}
+      \field{year}{2023}
+      \true{nocite}
+      \field{number}{10}
+      \range{number}{1}
+      \field{pages}{2260\bibrangedash 2264}
+      \range{pages}{5}
+      \field{volume}{86}
+      \range{volume}{1}
+      \verb{doi}
+      \verb 10.1134/S1063778823110236
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1134/S1063778823110236
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1134/S1063778823110236
+      \endverb
+      \keyw{,biblioauthor,bibliofull}
+      \warn{\item article entry 'Kolokolchikov:2023_pecular' (biblio/author.bib): Invalid format '2023/12/01' of date field 'date' - ignoring}
+    \endentry
+    \entry{progbib1}{patent}{useauthor=false}
+      \name{author}{1}{}{%
+        {{hash=f905ebf57d59a975a8416302bc876807}{%
+           family={Петров},
+           familyi={П\bibinitperiod},
+           given={П.\bibnamedelimi П.},
+           giveni={П\bibinitperiod\bibinitdelim П\bibinitperiod}}}%
+      }
+      \name{holder}{1}{}{%
+        {{hash=80232904ede76aacda9b0d162f5a593b}{%
+           family={НИИ\bibnamedelima ГДААДАВБА},
+           familyi={Н\bibinitperiod\bibinitdelim Г\bibinitperiod}}}%
+      }
+      \strng{authorbibnamehash}{f905ebf57d59a975a8416302bc876807}
+      \strng{authornamehash}{f905ebf57d59a975a8416302bc876807}
+      \strng{authorfullhash}{f905ebf57d59a975a8416302bc876807}
+      \strng{holderbibnamehash}{80232904ede76aacda9b0d162f5a593b}
+      \strng{holdernamehash}{80232904ede76aacda9b0d162f5a593b}
+      \strng{holderfullhash}{80232904ede76aacda9b0d162f5a593b}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labeltitlesource}{title}
+      \field{day}{1}
+      \field{heading}{Свидетельство о гос. регистрации программы для {ЭВМ}}
+      \field{langid}{russian}
+      \field{media}{text}
+      \field{month}{1}
+      \field{prioritycountry}{countryru}
+      \field{prioritynumber}{1234567890}
+      \field{publicationday}{2}
+      \field{publicationmonth}{1}
+      \field{publicationyear}{2020}
+      \field{requestnumber}{1234567890}
+      \field{title}{foobar}
+      \field{year}{2020}
+      \field{dateera}{ce}
+      \field{publicationdateera}{ce}
+      \true{nocite}
+      \keyw{,biblioauthorprogram,biblioregistered,bibliofull}
+    \endentry
+  \enddatalist
+\endrefsection
+
+\refsection{2}
+  \datalist[entry]{none/global//global/global}
+    \entry{progbib1}{patent}{useauthor=false}
+      \name{author}{1}{}{%
+        {{hash=f905ebf57d59a975a8416302bc876807}{%
+           family={Петров},
+           familyi={П\bibinitperiod},
+           given={П.\bibnamedelimi П.},
+           giveni={П\bibinitperiod\bibinitdelim П\bibinitperiod}}}%
+      }
+      \name{holder}{1}{}{%
+        {{hash=80232904ede76aacda9b0d162f5a593b}{%
+           family={НИИ\bibnamedelima ГДААДАВБА},
+           familyi={Н\bibinitperiod\bibinitdelim Г\bibinitperiod}}}%
+      }
+      \strng{authorbibnamehash}{f905ebf57d59a975a8416302bc876807}
+      \strng{authornamehash}{f905ebf57d59a975a8416302bc876807}
+      \strng{authorfullhash}{f905ebf57d59a975a8416302bc876807}
+      \strng{holderbibnamehash}{80232904ede76aacda9b0d162f5a593b}
+      \strng{holdernamehash}{80232904ede76aacda9b0d162f5a593b}
+      \strng{holderfullhash}{80232904ede76aacda9b0d162f5a593b}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labeltitlesource}{title}
+      \field{day}{1}
+      \field{heading}{Свидетельство о гос. регистрации программы для {ЭВМ}}
+      \field{langid}{russian}
+      \field{media}{text}
+      \field{month}{1}
+      \field{prioritycountry}{countryru}
+      \field{prioritynumber}{1234567890}
+      \field{publicationday}{2}
+      \field{publicationmonth}{1}
+      \field{publicationyear}{2020}
+      \field{requestnumber}{1234567890}
+      \field{title}{foobar}
+      \field{year}{2020}
+      \field{dateera}{ce}
+      \field{publicationdateera}{ce}
+      \true{nocite}
+      \keyw{,biblioauthorprogram,biblioregistered,bibliofull}
+    \endentry
+  \enddatalist
+  \missing{bib1}
+  \missing{confbib1}
+  \missing{patbib1}
+  \missing{vakbib2}
+\endrefsection
+\endinput
+
